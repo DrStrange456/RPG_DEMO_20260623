@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://lgiailfwq5t2"]
+
+[ext_resource type="Texture2D" uid="uid://bqfr3d1jskt6c" path="res://assets/Items/Tools/axe_lv1.png" id="1_nelqm"]
+[ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_ee4oy"]
+
+[resource]
+script = ExtResource("2_ee4oy")
+name = "Hoe"
+description = "Tool for Hoeing"
+icon = ExtResource("1_nelqm")
+cost = 50
+item_type = "tool"
+max_stack = 1

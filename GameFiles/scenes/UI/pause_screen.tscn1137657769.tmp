@@ -1,0 +1,255 @@
+[gd_scene format=3 uid="uid://ddexedh883cvx"]
+
+[ext_resource type="PackedScene" uid="uid://xxbrqpi5ntgu" path="res://Inventory/MainInventoryUI/MainInventoryUI.tscn" id="1_355ex"]
+[ext_resource type="Script" uid="uid://cps85ael0p0su" path="res://scenes/UI/pause_screen.gd" id="1_n8qtr"]
+[ext_resource type="PackedScene" uid="uid://crnibhkprfejy" path="res://scenes/UI/character_ui.tscn" id="2_bdp6l"]
+[ext_resource type="AudioStream" uid="uid://bn064mlluy2x1" path="res://audio/music/OST_MissionCrit.mp3" id="3_icfcd"]
+[ext_resource type="AudioStream" uid="uid://bs01c5aihqu4y" path="res://audio/sfx/slot_pick.ogg" id="4_bdp6l"]
+
+[node name="PauseScreen" type="Control" unique_id=1211049368]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_n8qtr")
+
+[node name="CharacterUI" parent="." unique_id=1563531976 instance=ExtResource("2_bdp6l")]
+process_mode = 3
+visible = false
+layout_mode = 0
+offset_left = 0.0
+offset_right = 40.0
+
+[node name="PlayerInventoryUI" parent="." unique_id=1355165246 instance=ExtResource("1_355ex")]
+process_mode = 3
+visible = false
+z_index = 3
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 49.0
+offset_top = 141.0
+offset_right = 89.0
+offset_bottom = 181.0
+scale = Vector2(2, 2)
+
+[node name="Panel2" type="Panel" parent="PlayerInventoryUI" unique_id=372708176]
+y_sort_enabled = true
+layout_mode = 0
+offset_right = 532.5
+offset_bottom = 188.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="PlayerInventoryUI" unique_id=18020723]
+z_index = 3
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 21.5
+offset_top = 8.0
+offset_right = 112.5
+offset_bottom = 31.0
+text = "INVENTORY"
+
+[node name="VideoUI" type="Control" parent="." unique_id=616404802]
+process_mode = 3
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="dropWINDOW_MODE" type="OptionButton" parent="VideoUI" unique_id=310375832]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 216.0
+offset_right = 419.0
+offset_bottom = 247.0
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+
+[node name="Label" type="Label" parent="VideoUI/dropWINDOW_MODE" unique_id=1623172343]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -39.0
+offset_right = 92.0
+offset_bottom = -16.0
+scale = Vector2(1.5, 1.5)
+text = "Window Mode"
+
+[node name="dropdownReso" type="OptionButton" parent="VideoUI" unique_id=1599244852]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 320.0
+offset_right = 419.0
+offset_bottom = 351.0
+item_count = 4
+popup/item_0/text = "480x270"
+popup/item_0/id = 0
+popup/item_1/text = "640x360 Mode"
+popup/item_1/id = 1
+popup/item_2/text = "1280x600 Window"
+popup/item_2/id = 2
+popup/item_3/text = "1920x1080"
+popup/item_3/id = 3
+
+[node name="Label" type="Label" parent="VideoUI/dropdownReso" unique_id=2119282589]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -39.0
+offset_right = 102.0
+offset_bottom = -16.0
+scale = Vector2(1.5, 1.5)
+text = "Resolution"
+
+[node name="CheckBox" type="CheckBox" parent="VideoUI" unique_id=1800000219]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 208.00002
+offset_right = 599.0
+offset_bottom = 239.00002
+scale = Vector2(1.5, 1.5)
+text = "VSYNC"
+
+[node name="Label" type="Label" parent="VideoUI" unique_id=776155262]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 128.0
+offset_right = 148.0
+offset_bottom = 151.0
+scale = Vector2(2, 2)
+text = "Video"
+
+[node name="btnBACK_VIDEO" type="Button" parent="VideoUI" unique_id=1598941926]
+layout_mode = 0
+offset_left = 1044.0
+offset_top = 15.0
+offset_right = 1126.0
+offset_bottom = 52.0
+text = "Back"
+
+[node name="SoundUI" type="Control" parent="." unique_id=23019727]
+process_mode = 3
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="sfx_volume" type="HSlider" parent="SoundUI" unique_id=1949475609]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 258.0
+offset_right = 705.0
+offset_bottom = 300.0
+
+[node name="Label" type="Label" parent="SoundUI/sfx_volume" unique_id=1224959090]
+layout_mode = 0
+offset_left = 33.0
+offset_top = -16.0
+offset_right = 91.0
+offset_bottom = 7.0
+text = "SFX"
+
+[node name="txtValue_SFX" type="Label" parent="SoundUI/sfx_volume" unique_id=2003994056]
+layout_mode = 0
+offset_left = -76.0
+offset_top = 6.0
+offset_right = -18.0
+offset_bottom = 29.0
+text = "0"
+
+[node name="music_volume" type="HSlider" parent="SoundUI" unique_id=750989696]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 384.0
+offset_right = 706.0
+offset_bottom = 426.0
+
+[node name="Label" type="Label" parent="SoundUI/music_volume" unique_id=1967730934]
+layout_mode = 0
+offset_left = 33.0
+offset_top = -16.0
+offset_right = 91.0
+offset_bottom = 7.0
+text = "Music"
+
+[node name="txtValue_Music" type="Label" parent="SoundUI/music_volume" unique_id=959884362]
+layout_mode = 0
+offset_left = -77.0
+offset_top = 8.0
+offset_right = -19.0
+offset_bottom = 31.0
+text = "0"
+
+[node name="Label" type="Label" parent="SoundUI" unique_id=1741973750]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 128.0
+offset_right = 148.0
+offset_bottom = 151.0
+scale = Vector2(2, 2)
+text = "Audio"
+
+[node name="btnBACK_SOUND" type="Button" parent="SoundUI" unique_id=290993627]
+layout_mode = 0
+offset_left = 1044.0
+offset_top = 15.0
+offset_right = 1126.0
+offset_bottom = 52.0
+text = "Back"
+
+[node name="btnCHARACTER" type="Button" parent="." unique_id=901475316]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 203.0
+offset_bottom = 87.0
+text = "Character"
+
+[node name="btnINVENTORY" type="Button" parent="." unique_id=286151730]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 40.0
+offset_right = 395.0
+offset_bottom = 87.0
+text = "Inventory"
+
+[node name="btnSETTINGS" type="Button" parent="." unique_id=190014397]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 40.0
+offset_right = 587.0
+offset_bottom = 87.0
+text = "Settings"
+
+[node name="btnBACK" type="Button" parent="." unique_id=571221260]
+layout_mode = 0
+offset_left = 1008.0
+offset_top = 16.0
+offset_right = 1090.0
+offset_bottom = 53.0
+text = "Back"
+
+[node name="Sounds" type="Node2D" parent="." unique_id=1044060954]
+
+[node name="Music_Sample" type="AudioStreamPlayer2D" parent="Sounds" unique_id=404003875]
+stream = ExtResource("3_icfcd")
+
+[node name="SFX_Sample" type="AudioStreamPlayer2D" parent="Sounds" unique_id=2007134848]
+stream = ExtResource("4_bdp6l")
+
+[connection signal="item_selected" from="VideoUI/dropWINDOW_MODE" to="." method="_on_drop_window_mode_item_selected"]
+[connection signal="item_selected" from="VideoUI/dropdownReso" to="." method="_on_dropdown_reso_item_selected"]
+[connection signal="pressed" from="VideoUI/CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="pressed" from="VideoUI/btnBACK_VIDEO" to="." method="_on_btn_back_video_pressed"]
+[connection signal="value_changed" from="SoundUI/sfx_volume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="SoundUI/music_volume" to="." method="_on_music_volume_value_changed"]
+[connection signal="pressed" from="SoundUI/btnBACK_SOUND" to="." method="_on_btn_back_sound_pressed"]
+[connection signal="pressed" from="btnCHARACTER" to="." method="_on_btn_character_pressed"]
+[connection signal="pressed" from="btnINVENTORY" to="." method="_on_btn_inventory_pressed"]
+[connection signal="pressed" from="btnSETTINGS" to="." method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="btnBACK" to="." method="_on_btn_back_pressed"]

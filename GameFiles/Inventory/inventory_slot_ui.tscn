@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://lt04e7ajlebf"]
+
+[ext_resource type="Script" uid="uid://bpilfgcxk1mmh" path="res://Inventory/Scripts/inventory_slot_ui.gd" id="1_ncv3l"]
+[ext_resource type="Texture2D" uid="uid://cxpua55dw1rnj" path="res://assets/icons/wood.png" id="2_s2evn"]
+[ext_resource type="FontFile" uid="uid://b7s2fv2laugyl" path="res://assets/fonts/font_pixelmix.ttf" id="3_r4e7a"]
+
+[node name="InventorySlotUI" type="Panel" unique_id=119770590]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ncv3l")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1339278297]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer" unique_id=839241466]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("2_s2evn")
+
+[node name="Label" type="Label" parent="." unique_id=516630106]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 31.0
+offset_right = 36.0
+offset_bottom = 39.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_r4e7a")
+theme_override_font_sizes/font_size = 8
+text = "99"

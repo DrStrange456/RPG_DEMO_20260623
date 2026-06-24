@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://wm7pjgtulvkp"]
+
+[ext_resource type="Script" uid="uid://bc0ellsa11oht" path="res://Test/popup_ui.gd" id="1_0hpxx"]
+[ext_resource type="Texture2D" uid="uid://dmjs7ak4h3hio" path="res://assets/UI/A-MyFiles/Inventory_bg.png" id="2_30fec"]
+
+[node name="Popup_UI" type="Control" unique_id=1536917280]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_0hpxx")
+toggle_action = "alt_attack"
+
+[node name="WindowContainer" type="Node2D" parent="." unique_id=194564908]
+
+[node name="InventoryBg" type="Sprite2D" parent="WindowContainer" unique_id=1548628818]
+position = Vector2(574, 322)
+texture = ExtResource("2_30fec")

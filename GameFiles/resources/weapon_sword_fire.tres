@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://detmptw2icksl"]
+
+[ext_resource type="Texture2D" uid="uid://c0breia1dh5uo" path="res://assets/Items/Weapons/firesword.png" id="1_whb6j"]
+[ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_x6xk1"]
+
+[resource]
+script = ExtResource("2_x6xk1")
+name = "FireSword"
+description = "Fire Sword"
+icon = ExtResource("1_whb6j")
+cost = 2000
+item_type = "weapon"
+max_stack = 1

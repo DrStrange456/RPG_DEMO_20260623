@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bq7pfm6uw0ryr"
+path="res://.godot/imported/through space.ogg-b089361c4eefd33eb704aff7a53833be.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/through space.ogg"
+dest_files=["res://.godot/imported/through space.ogg-b089361c4eefd33eb704aff7a53833be.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

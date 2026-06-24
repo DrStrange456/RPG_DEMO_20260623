@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://haymw6jxj3ia"]
+
+[sub_resource type="Resource" id="Resource_ix5nx"]
+metadata/__load_path__ = "res://Scripts/HitBox.gd"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gw7n3"]
+
+[node name="Hitbox" type="Area2D"]
+position = Vector2(-4, 15)
+rotation = 1.5708
+script = SubResource("Resource_ix5nx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_gw7n3")

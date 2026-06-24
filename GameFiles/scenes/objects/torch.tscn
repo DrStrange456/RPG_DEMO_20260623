@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c3a3cja5v55je"]
+
+[ext_resource type="Script" uid="uid://bj36vt48031l5" path="res://scenes/objects/torch.gd" id="1_okrnh"]
+[ext_resource type="Texture2D" uid="uid://dn7j2shysv4we" path="res://assets/Items/Tools/small_torch.png" id="1_vyqde"]
+[ext_resource type="Texture2D" uid="uid://dgr0xsjkjppw6" path="res://assets/Effects/light.png" id="2_kyxpr"]
+[ext_resource type="Texture2D" uid="uid://bqo1be8nelocu" path="res://assets/icons/Letter_E.png" id="2_ndhn1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xbonl"]
+radius = 8.01561
+
+[node name="Torch" type="Node2D" unique_id=1172075036]
+script = ExtResource("1_okrnh")
+flicker_enabled = null
+energy_variation = null
+scale_variation = null
+flicker_speed = null
+
+[node name="Interact_Icon" type="Sprite2D" parent="." unique_id=180987879]
+visible = false
+z_index = 1
+position = Vector2(0, -22)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_ndhn1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=768268956]
+texture = ExtResource("1_vyqde")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1150385149]
+shadow_enabled = true
+texture = ExtResource("2_kyxpr")
+
+[node name="IZone" type="Area2D" parent="." unique_id=1128666561]
+visible = false
+
+[node name="InteractionZone" type="CollisionShape2D" parent="IZone" unique_id=242141104]
+position = Vector2(0, 7.5)
+shape = SubResource("CircleShape2D_xbonl")
+
+[node name="FlickerTimer" type="Timer" parent="." unique_id=1790344924]
+wait_time = 0.05
+autostart = true
+
+[connection signal="body_entered" from="IZone" to="." method="_on_i_zone_body_entered"]
+[connection signal="body_exited" from="IZone" to="." method="_on_i_zone_body_exited"]
+[connection signal="timeout" from="FlickerTimer" to="." method="_on_flicker_timer_timeout"]

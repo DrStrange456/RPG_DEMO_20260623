@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bjiwvnos7i80b"]
+
+[ext_resource type="Script" uid="uid://ccd1hkxdfhfg6" path="res://Inventory/Scripts/item_ui_obj.gd" id="1_1o2hk"]
+[ext_resource type="Texture2D" uid="uid://cxpua55dw1rnj" path="res://assets/icons/wood.png" id="1_tm8dr"]
+[ext_resource type="FontFile" uid="uid://b7s2fv2laugyl" path="res://assets/fonts/font_pixelmix.ttf" id="2_1o2hk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epe8n"]
+bg_color = Color(0.384314, 0, 0.984314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgqjy"]
+bg_color = Color(0.384314, 0, 0.984314, 1)
+
+[node name="Item" type="Node2D" unique_id=311694785]
+script = ExtResource("1_1o2hk")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=799636084]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer" unique_id=1694562500]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_tm8dr")
+
+[node name="Label" type="Label" parent="." unique_id=1090624700]
+offset_left = 24.0
+offset_top = 31.0
+offset_right = 36.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("2_1o2hk")
+theme_override_font_sizes/font_size = 8
+text = "99"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=882712466]
+visible = false
+offset_left = 36.0
+offset_top = 5.0
+offset_right = 40.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_epe8n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mgqjy")
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false

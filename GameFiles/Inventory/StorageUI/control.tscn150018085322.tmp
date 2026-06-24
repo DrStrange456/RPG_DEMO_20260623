@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://ckohoujmbd77p"]
+
+[ext_resource type="Script" uid="uid://dxcoagr7dng1l" path="res://Inventory/InvX2/control.gd" id="1_uc1gs"]
+[ext_resource type="Script" uid="uid://1m5aamday5qv" path="res://Inventory/InvX2/inventory_container_ui.gd" id="2_g8gj8"]
+[ext_resource type="PackedScene" uid="uid://lt04e7ajlebf" path="res://Inventory/InvX2/inventory_slot_ui.tscn" id="3_2lbub"]
+[ext_resource type="Script" uid="uid://cmjxv1rkven4y" path="res://Inventory/InvX2/small_container.gd" id="4_qyfit"]
+
+[node name="Control" type="Control" unique_id=1355165246]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_uc1gs")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=632474332]
+position = Vector2(321, 172)
+zoom = Vector2(3, 3)
+
+[node name="InventoryContainerUI" type="GridContainer" parent="." unique_id=932542009]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 65.0
+offset_right = 438.0
+offset_bottom = 149.0
+columns = 5
+script = ExtResource("2_g8gj8")
+
+[node name="InventorySlotUI" parent="InventoryContainerUI" unique_id=119770590 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="InventorySlotUI2" parent="InventoryContainerUI" unique_id=1063310907 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 1
+
+[node name="InventorySlotUI3" parent="InventoryContainerUI" unique_id=1606278055 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 2
+
+[node name="InventorySlotUI4" parent="InventoryContainerUI" unique_id=1942417292 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 3
+
+[node name="InventorySlotUI5" parent="InventoryContainerUI" unique_id=757594139 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 4
+
+[node name="InventorySlotUI6" parent="InventoryContainerUI" unique_id=952641919 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 5
+
+[node name="InventorySlotUI7" parent="InventoryContainerUI" unique_id=485646415 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 6
+
+[node name="InventorySlotUI8" parent="InventoryContainerUI" unique_id=851521994 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 7
+
+[node name="InventorySlotUI9" parent="InventoryContainerUI" unique_id=1401840983 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 8
+
+[node name="InventorySlotUI10" parent="InventoryContainerUI" unique_id=1995275335 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 9
+
+[node name="SmallContainer" type="GridContainer" parent="." unique_id=1872605051]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 192.0
+offset_right = 399.0
+offset_bottom = 276.0
+columns = 3
+script = ExtResource("4_qyfit")
+
+[node name="InventorySlotUI" parent="SmallContainer" unique_id=206119375 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="InventorySlotUI2" parent="SmallContainer" unique_id=377496725 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 1
+
+[node name="InventorySlotUI3" parent="SmallContainer" unique_id=1816834079 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 2
+
+[node name="InventorySlotUI4" parent="SmallContainer" unique_id=1973705277 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 3
+
+[node name="InventorySlotUI5" parent="SmallContainer" unique_id=1726031109 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 4
+
+[node name="InventorySlotUI6" parent="SmallContainer" unique_id=1599074605 instance=ExtResource("3_2lbub")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+indx = 5
+
+[node name="OptionButtons" type="Node2D" parent="." unique_id=1766532277]
+
+[node name="btnTransferAll" type="Button" parent="OptionButtons" unique_id=1130572704]
+offset_left = 456.0
+offset_top = 224.0
+offset_right = 524.0
+offset_bottom = 244.0
+theme_override_font_sizes/font_size = 8
+text = "Transfer All"
+
+[node name="btnTransferLike" type="Button" parent="OptionButtons" unique_id=1431429418]
+offset_left = 456.0
+offset_top = 200.0
+offset_right = 524.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 8
+text = "Transfer Like"
+
+[node name="btnSort_Inv" type="Button" parent="OptionButtons" unique_id=135522976]
+offset_left = 512.0
+offset_top = 40.0
+offset_right = 580.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 8
+text = "Sort Inv"
+
+[node name="btnSort_Chest" type="Button" parent="OptionButtons" unique_id=1249055402]
+offset_left = 512.0
+offset_top = 288.0
+offset_right = 580.0
+offset_bottom = 308.0
+theme_override_font_sizes/font_size = 8
+text = "Sort Chest"
+
+[connection signal="pressed" from="OptionButtons/btnTransferAll" to="." method="_on_btn_transfer_all_pressed"]
+[connection signal="pressed" from="OptionButtons/btnTransferLike" to="." method="_on_btn_transfer_like_pressed"]
+[connection signal="pressed" from="OptionButtons/btnSort_Inv" to="." method="_on_btn_sort_inv_pressed"]
+[connection signal="pressed" from="OptionButtons/btnSort_Chest" to="." method="_on_btn_sort_chest_pressed"]

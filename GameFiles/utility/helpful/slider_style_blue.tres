@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://cnup58gvlpqyb"]
+
+[ext_resource type="Texture2D" uid="uid://mcwgyrxcnm0c" path="res://assets/UI/KENNEY/PNG/Blue/Default/slide_horizontal_color.png" id="1_4yj47"]
+
+[resource]
+texture = ExtResource("1_4yj47")
+texture_margin_left = 15.0
+texture_margin_top = 8.0
+texture_margin_right = 15.0
+texture_margin_bottom = 8.0

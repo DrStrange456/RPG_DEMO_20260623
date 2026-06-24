@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b014m1kn2fdb0"]
+
+[ext_resource type="Texture2D" uid="uid://dy4vup2r2rrmw" path="res://assets/icons/tomato.png" id="1_qkyo5"]
+[ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_od66j"]
+
+[resource]
+script = ExtResource("2_od66j")
+name = "tomato"
+description = "Foraged from loot drop"
+icon = ExtResource("1_qkyo5")
+cost = 3
+item_type = "crop"
+enum_seed_value = 3
+enum_seed_item_value = 3

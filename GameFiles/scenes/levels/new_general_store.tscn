@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://24ichay8ppfd"]
+
+[ext_resource type="Texture2D" uid="uid://bn0ym4xoqx8u6" path="res://assets/UI/A-MyFiles/Shop_bg.PNG" id="1_4by30"]
+[ext_resource type="Script" uid="uid://crpb6376q5nhg" path="res://scenes/levels/new_general_store.gd" id="1_uog14"]
+[ext_resource type="PackedScene" uid="uid://cpsr1xiem504f" path="res://scenes/objects/store/market_item.tscn" id="2_uog14"]
+[ext_resource type="PackedScene" uid="uid://xxbrqpi5ntgu" path="res://Inventory/MainInventoryUI/MainInventoryUI.tscn" id="3_wrwc7"]
+
+[node name="new_general_store" type="Control" unique_id=933798175]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_uog14")
+toggle_action = "activate"
+
+[node name="PopupRoot" type="Control" parent="." unique_id=1478465031]
+anchors_preset = 0
+offset_right = 1156.0
+offset_bottom = 646.0
+
+[node name="ShopUi" type="Sprite2D" parent="PopupRoot" unique_id=1920915404]
+position = Vector2(588, 331)
+scale = Vector2(0.5564236, 0.5308642)
+texture = ExtResource("1_4by30")
+
+[node name="Merchant_Section" type="Node2D" parent="PopupRoot" unique_id=1120191318]
+position = Vector2(32, 24)
+scale = Vector2(2, 2)
+
+[node name="Panel" type="Panel" parent="PopupRoot/Merchant_Section" unique_id=157090056]
+offset_left = 19.5
+offset_top = 49.5
+offset_right = 233.5
+offset_bottom = 253.5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupRoot/Merchant_Section/Panel" unique_id=2136361759]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer" unique_id=161126692]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="market_item" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=27795363 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item2" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1575086877 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item3" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1649185220 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item4" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=2064867729 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item5" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=930865921 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item6" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1089956430 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item7" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=629858982 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item8" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1927411373 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item9" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=546645368 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item10" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1807609037 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item11" parent="PopupRoot/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=735704788 instance=ExtResource("2_uog14")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="PlayerInventory" type="Node2D" parent="PopupRoot" unique_id=1526533598]
+position = Vector2(50, 22)
+scale = Vector2(2, 2)
+
+[node name="MainInventory" parent="PopupRoot/PlayerInventory" unique_id=1355165246 instance=ExtResource("3_wrwc7")]
+offset_left = 291.0
+offset_top = 53.0
+offset_right = 331.0
+offset_bottom = 93.0
+
+[node name="btnSort_Inv" type="Button" parent="PopupRoot/PlayerInventory" unique_id=830728715]
+offset_left = 471.0
+offset_top = 273.0
+offset_right = 511.0
+offset_bottom = 293.0
+theme_override_font_sizes/font_size = 8
+text = "SORT"
+
+[connection signal="pressed" from="PopupRoot/PlayerInventory/btnSort_Inv" to="PopupRoot/PlayerInventory/MainInventory" method="_on_btn_sort_inv_pressed"]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://d3ur38ivalps"]
+
+[ext_resource type="Texture2D" uid="uid://dmerh2mm3bg1k" path="res://assets/icons/seeds_turnip.png" id="1_vkfcm"]
+[ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_w437s"]
+
+[resource]
+script = ExtResource("2_w437s")
+name = "seeds_turnip"
+description = "Foraged from loot drop"
+icon = ExtResource("1_vkfcm")
+cost = 3
+item_type = "seed_Pack"
+enum_seed_value = 4
+enum_seed_item_value = 4

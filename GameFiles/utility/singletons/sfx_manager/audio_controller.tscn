@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://deseaqrvtp54y"]
+
+[ext_resource type="Script" uid="uid://bl75hdjtxhlly" path="res://utility/singletons/sfx_manager/audio_manager.gd" id="1_kidt0"]
+
+[node name="AudioManager" type="Node2D" unique_id=1359581966]
+script = ExtResource("1_kidt0")
+
+[node name="MUSIC" type="Node2D" parent="." unique_id=2012915152]
+
+[node name="music_player" type="AudioStreamPlayer2D" parent="MUSIC" unique_id=1376644451]
+
+[node name="SFX" type="Node2D" parent="." unique_id=1368983323]
+
+[node name="sfx_player" type="AudioStreamPlayer2D" parent="SFX" unique_id=1712745220]

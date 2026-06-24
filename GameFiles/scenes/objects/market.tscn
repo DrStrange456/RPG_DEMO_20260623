@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bnkp1ls4ltgmc"]
+
+[ext_resource type="Script" uid="uid://qfmk5u33ndqf" path="res://scenes/levels/shop.gd" id="1_qkyl7"]
+[ext_resource type="Texture2D" uid="uid://bqo1be8nelocu" path="res://assets/icons/Letter_E.png" id="2_fm377"]
+[ext_resource type="Texture2D" uid="uid://cegtp4s0ls0uy" path="res://assets/AAA-TileSets/decorations-medieval.png" id="3_ddvgj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxwce"]
+size = Vector2(109, 35)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nxjub"]
+height = 56.0
+
+[node name="market" type="Node2D" unique_id=1932922336 groups=["shop"]]
+script = ExtResource("1_qkyl7")
+
+[node name="cart_bounds" type="StaticBody2D" parent="." unique_id=1547524137]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cart_bounds" unique_id=1538101917]
+shape = SubResource("RectangleShape2D_wxwce")
+
+[node name="interact_icon" type="Sprite2D" parent="." unique_id=2138313356]
+visible = false
+position = Vector2(-3, -91)
+texture = ExtResource("2_fm377")
+
+[node name="shop_main" type="Sprite2D" parent="." unique_id=236790297]
+position = Vector2(-3, -27)
+texture = ExtResource("3_ddvgj")
+region_enabled = true
+region_rect = Rect2(192, 1280, 128, 104)
+
+[node name="shop_open" type="Sprite2D" parent="." unique_id=1217461170]
+position = Vector2(1, -15)
+texture = ExtResource("3_ddvgj")
+region_enabled = true
+region_rect = Rect2(200, 1400, 120, 80)
+
+[node name="market_interactor" type="Area2D" parent="." unique_id=1865870005]
+visible = false
+position = Vector2(-1, 25)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="market_interactor" unique_id=1796990188]
+position = Vector2(-1, -6)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_nxjub")
+
+[connection signal="body_entered" from="market_interactor" to="." method="interact_enabled"]
+[connection signal="body_exited" from="market_interactor" to="." method="interact_disabled"]

@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://bfe2dt6r4h0iy"]
+
+[ext_resource type="Script" uid="uid://d23vgpxqv6p44" path="res://scenes/UI/OBSO/new_pause_screen.gd" id="1_838wx"]
+[ext_resource type="Texture2D" uid="uid://bhlp8nkvd1vdu" path="res://assets/UI/Pause/Window.png" id="1_b5a30"]
+[ext_resource type="Texture2D" uid="uid://b7w24yhlxx11a" path="res://assets/UI/Pause/Header.png" id="2_0eocy"]
+[ext_resource type="Texture2D" uid="uid://dss4bsanpv1ew" path="res://assets/UI/Buttons/BTNs/Sound_BTN.png" id="3_r1j6r"]
+[ext_resource type="Texture2D" uid="uid://bcyn48saj7tlx" path="res://assets/UI/KENNEY/PNG/Blue/Default/slide_horizontal_color_section.png" id="4_838wx"]
+[ext_resource type="Texture2D" uid="uid://dtw12cxxbfbxt" path="res://assets/UI/KENNEY/PNG/Blue/Default/slide_horizontal_grey_section.png" id="5_bxsal"]
+[ext_resource type="StyleBox" uid="uid://cnup58gvlpqyb" path="res://utility/helpful/slider_style_blue.tres" id="6_b5a30"]
+[ext_resource type="StyleBox" uid="uid://ycj4thuly14u" path="res://utility/helpful/slider_grabber_style_blue.tres" id="7_0eocy"]
+[ext_resource type="Texture2D" uid="uid://dnbi7vvj6lg32" path="res://assets/UI/Buttons/BTNs/Music_BTN.png" id="8_u88cu"]
+[ext_resource type="AudioStream" uid="uid://bn064mlluy2x1" path="res://audio/music/OST_MissionCrit.mp3" id="10_bxsal"]
+[ext_resource type="AudioStream" uid="uid://bs01c5aihqu4y" path="res://audio/sfx/slot_pick.ogg" id="11_tyf61"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6bxme"]
+texture = ExtResource("1_b5a30")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_838wx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bxsal"]
+
+[node name="NewPauseScreen" type="Control" unique_id=1495922918]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_838wx")
+
+[node name="PAUSEUI" type="Control" parent="." unique_id=179822295]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PAUSEUI" unique_id=59301136]
+layout_mode = 1
+offset_left = 357.0
+offset_top = 40.0
+offset_right = 511.0
+offset_bottom = 232.0
+scale = Vector2(3, 3)
+theme_override_styles/panel = SubResource("StyleBoxTexture_6bxme")
+
+[node name="TITLE" type="Sprite2D" parent="PAUSEUI/Panel" unique_id=509784504]
+position = Vector2(76.000015, 12.000002)
+scale = Vector2(0.32333323, 0.28389835)
+texture = ExtResource("2_0eocy")
+
+[node name="SFX" type="Sprite2D" parent="PAUSEUI/Panel" unique_id=546245879]
+position = Vector2(33.375004, 89.5)
+scale = Vector2(0.08928579, 0.09047619)
+texture = ExtResource("3_r1j6r")
+
+[node name="sfx_volume" type="HSlider" parent="PAUSEUI/Panel/SFX" unique_id=2131544441]
+offset_left = 179.19975
+offset_top = -88.42108
+offset_right = 380.79956
+offset_bottom = -46.42108
+scale = Vector2(4, 4)
+theme_override_icons/grabber = ExtResource("4_838wx")
+theme_override_icons/grabber_highlight = ExtResource("5_bxsal")
+theme_override_styles/slider = ExtResource("6_b5a30")
+theme_override_styles/grabber_area = ExtResource("7_0eocy")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_838wx")
+value = 50.0
+metadata/_edit_use_anchors_ = true
+
+[node name="txtValue_SFX" type="Label" parent="PAUSEUI/Panel/SFX/sfx_volume" unique_id=1811744111]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.04336119
+anchor_top = -0.098788485
+anchor_right = -0.04336119
+anchor_bottom = -0.098788485
+offset_left = 228.89142
+offset_top = 11.056999
+offset_right = 286.8914
+offset_bottom = 34.057
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="MUSIC" type="Sprite2D" parent="PAUSEUI/Panel" unique_id=183192781]
+position = Vector2(33.375, 117.5)
+scale = Vector2(0.084523864, 0.09047619)
+texture = ExtResource("8_u88cu")
+
+[node name="music_volume" type="HSlider" parent="PAUSEUI/Panel/MUSIC" unique_id=1679544696]
+offset_left = 178.9436
+offset_top = -99.47363
+offset_right = 391.90118
+offset_bottom = -57.473633
+scale = Vector2(4, 4)
+theme_override_icons/grabber = ExtResource("4_838wx")
+theme_override_icons/grabber_highlight = ExtResource("5_bxsal")
+theme_override_styles/slider = ExtResource("6_b5a30")
+theme_override_styles/grabber_area = ExtResource("7_0eocy")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_bxsal")
+value = 50.0
+metadata/_edit_use_anchors_ = true
+
+[node name="txtValue_Music" type="Label" parent="PAUSEUI/Panel/MUSIC/music_volume" unique_id=832007037]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0293452
+anchor_top = -0.03299904
+anchor_right = 0.029345272
+anchor_bottom = -0.03299904
+offset_left = 228.89142
+offset_top = 11.056999
+offset_right = 286.8914
+offset_bottom = 34.057
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Sounds" type="Node2D" parent="PAUSEUI/Panel" unique_id=287419839]
+
+[node name="Music_Sample" type="AudioStreamPlayer2D" parent="PAUSEUI/Panel/Sounds" unique_id=20026139]
+stream = ExtResource("10_bxsal")
+
+[node name="SFX_Sample" type="AudioStreamPlayer2D" parent="PAUSEUI/Panel/Sounds" unique_id=2037577784]
+stream = ExtResource("11_tyf61")
+
+[node name="txtReturn" type="Label" parent="PAUSEUI/Panel" unique_id=1583577116]
+layout_mode = 1
+offset_left = 30.33332
+offset_top = 167.33334
+offset_right = 163.33331
+offset_bottom = 187.33334
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 14
+text = "Press ESC to Return"
+
+[connection signal="value_changed" from="PAUSEUI/Panel/SFX/sfx_volume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="PAUSEUI/Panel/MUSIC/music_volume" to="." method="_on_music_volume_value_changed"]

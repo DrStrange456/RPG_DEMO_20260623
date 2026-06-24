@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bkwslk2p6u363"]
+
+[ext_resource type="Texture2D" uid="uid://b21g0kc400tr" path="res://assets/icons/strawberry.png" id="1_6dahj"]
+[ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_bu0jx"]
+
+[resource]
+script = ExtResource("2_bu0jx")
+name = "strawberry"
+description = "Foraged from loot drop"
+icon = ExtResource("1_6dahj")
+cost = 3
+item_type = "crop"

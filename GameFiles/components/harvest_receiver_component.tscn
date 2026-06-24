@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://deotjn4ichnpc"]
+
+[ext_resource type="Script" uid="uid://l6m7yqfut7yn" path="res://components/harvest_receiver_component.gd" id="1_glslk"]
+[ext_resource type="PackedScene" uid="uid://b154x7t0x2w0w" path="res://scenes/misc/floating_crop_popup.tscn" id="2_xlcfg"]
+
+[node name="harvest_receiver" type="Node" unique_id=1750136548]
+script = ExtResource("1_glslk")
+popup_scene = ExtResource("2_xlcfg")

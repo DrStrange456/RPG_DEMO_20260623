@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://b154x7t0x2w0w"]
+
+[ext_resource type="Script" uid="uid://g85p4hc64oc4" path="res://scenes/misc/floating_crop_popup.gd" id="1_d7wqp"]
+[ext_resource type="Texture2D" uid="uid://b21g0kc400tr" path="res://assets/icons/strawberry.png" id="2_g4bee"]
+
+[sub_resource type="Animation" id="Animation_g4bee"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rh4q4"]
+resource_name = "float"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -32), Vector2(0, -56)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sqp8n"]
+_data = {
+&"RESET": SubResource("Animation_g4bee"),
+&"float": SubResource("Animation_rh4q4")
+}
+
+[node name="floating_crop_popup" type="Node2D" unique_id=1355406511]
+script = ExtResource("1_d7wqp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=169535486]
+texture = ExtResource("2_g4bee")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=645586936]
+libraries/ = SubResource("AnimationLibrary_sqp8n")

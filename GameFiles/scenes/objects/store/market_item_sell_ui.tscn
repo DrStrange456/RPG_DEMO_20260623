@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://c5ppmdsrkqdmt"]
+
+[ext_resource type="Script" uid="uid://bsi3hjlcrgiw7" path="res://scenes/objects/store/market_item_sell_ui.gd" id="1_yvxuh"]
+[ext_resource type="Texture2D" uid="uid://cxpua55dw1rnj" path="res://assets/icons/wood.png" id="3_vqtdp"]
+
+[node name="market_item_sell_ui" type="Control" unique_id=526618704]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -384.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_yvxuh")
+item_name = "tomato"
+item_Slot_Qty = 20
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1151922284]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=1423634622]
+layout_mode = 0
+offset_left = 228.66667
+offset_top = 32.0
+offset_right = 534.6667
+offset_bottom = 369.0
+
+[node name="Label" type="Label" parent="." unique_id=127156219]
+layout_mode = 0
+offset_left = 295.66666
+offset_top = 31.0
+offset_right = 475.66666
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 12
+text = "How many do you want to sell?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=963145134]
+layout_mode = 0
+offset_left = 132.66667
+offset_top = 372.0
+offset_right = 641.6667
+offset_bottom = 395.0
+theme_override_font_sizes/font_size = 12
+text = "Left - Take Away  |  Right - Add  | Left on Zero goes to Maximum allowed  | Esc to Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="picItemToBeSold" type="TextureRect" parent="." unique_id=2014169444]
+layout_mode = 0
+offset_left = 338.66666
+offset_top = 54.0
+offset_right = 378.66666
+offset_bottom = 94.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_vqtdp")
+
+[node name="NAME" type="Node2D" parent="." unique_id=1173061707]
+position = Vector2(46.666668, 20)
+
+[node name="Label4" type="Label" parent="NAME" unique_id=100173431]
+visible = false
+offset_left = 207.0
+offset_top = 118.0
+offset_right = 246.0
+offset_bottom = 141.0
+theme_override_font_sizes/font_size = 12
+text = "Name:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="txtItemName" type="Label" parent="NAME" unique_id=1780436251]
+offset_left = 224.0
+offset_top = 119.0
+offset_right = 447.0
+offset_bottom = 142.0
+text = "long name here - - - - - - - -
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QUANTITY" type="Node2D" parent="." unique_id=1716618562]
+position = Vector2(50.666668, 45)
+
+[node name="ColorRect" type="ColorRect" parent="QUANTITY" unique_id=1412283035]
+offset_left = 221.0
+offset_top = 146.0
+offset_right = 436.0
+offset_bottom = 189.0
+color = Color(0.0588235, 0.113725, 0.509804, 1)
+
+[node name="Label2" type="Label" parent="QUANTITY" unique_id=839547605]
+visible = false
+offset_left = 440.0
+offset_top = 54.0
+offset_right = 472.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 12
+text = "Qty:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="txtQuantity" type="Label" parent="QUANTITY" unique_id=1177581091]
+offset_left = 294.0
+offset_top = 157.0
+offset_right = 357.0
+offset_bottom = 180.0
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btnSetQty_Minus1" type="Button" parent="QUANTITY" unique_id=357012455]
+offset_left = 225.0
+offset_top = 153.0
+offset_right = 263.0
+offset_bottom = 184.0
+text = "-"
+
+[node name="btnSetQty_Plus1" type="Button" parent="QUANTITY" unique_id=1615424512]
+offset_left = 393.0
+offset_top = 153.0
+offset_right = 431.0
+offset_bottom = 184.0
+text = "+"
+
+[node name="btnSetQty_Min" type="Button" parent="." unique_id=1461768520]
+visible = false
+layout_mode = 0
+offset_left = 426.0
+offset_top = 26.0
+offset_right = 464.0
+offset_bottom = 57.0
+text = "Min"
+
+[node name="btnSetQty_Max" type="Button" parent="." unique_id=1195465302]
+visible = false
+layout_mode = 0
+offset_left = 425.0
+offset_top = 56.0
+offset_right = 466.0
+offset_bottom = 87.0
+text = "Max"
+
+[node name="GAIN" type="Node2D" parent="." unique_id=403277783]
+position = Vector2(46.666668, 20)
+
+[node name="txtGain" type="Label" parent="GAIN" unique_id=2038669261]
+offset_left = 205.0
+offset_top = 243.0
+offset_right = 244.0
+offset_bottom = 266.0
+theme_override_font_sizes/font_size = 12
+text = "Value:
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="txtSellAmount" type="Label" parent="GAIN" unique_id=1474037303]
+offset_left = 250.0
+offset_top = 238.0
+offset_right = 408.0
+offset_bottom = 272.0
+theme_override_font_sizes/font_size = 24
+text = "999999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btnACCEPT" type="Button" parent="." unique_id=724541794]
+layout_mode = 0
+offset_left = 300.66666
+offset_top = 308.0
+offset_right = 450.66666
+offset_bottom = 351.0
+text = "ACCEPT
+"
+
+[node name="btnCANCEL" type="Button" parent="." unique_id=2118777425]
+visible = false
+layout_mode = 0
+offset_left = 211.0
+offset_top = 290.0
+offset_right = 281.0
+offset_bottom = 321.0
+text = "Cancel"
+
+[connection signal="pressed" from="QUANTITY/btnSetQty_Minus1" to="." method="_on_btn_set_qty_minus_1_pressed"]
+[connection signal="pressed" from="QUANTITY/btnSetQty_Plus1" to="." method="_on_btn_set_qty_plus_1_pressed"]
+[connection signal="pressed" from="btnSetQty_Min" to="." method="_on_btn_set_qty_min_pressed"]
+[connection signal="pressed" from="btnSetQty_Max" to="." method="_on_btn_set_qty_max_pressed"]
+[connection signal="pressed" from="btnACCEPT" to="." method="_on_btn_accept_pressed"]
+[connection signal="pressed" from="btnCANCEL" to="." method="_on_btn_cancel_pressed"]

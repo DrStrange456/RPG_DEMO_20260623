@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://d1awolcp4fxxw"]
+
+[ext_resource type="Shader" uid="uid://cnikbd6nebuke" path="res://Shaders/slime.gdshader" id="1_56mk7"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_56mk7")
+shader_parameter/hovered = true
+shader_parameter/outline_size = 1.5
+shader_parameter/outline_color = Color(1, 1, 1, 1)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dp1adr7o44qln"]
+
+[ext_resource type="Texture2D" uid="uid://bsmvgrg8cnvlm" path="res://assets/Items/Weapons/sword_lv2.png" id="1_wejdx"]
+[ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_vpb65"]
+
+[resource]
+script = ExtResource("2_vpb65")
+name = "Sword2"
+description = "Adv Sword"
+icon = ExtResource("1_wejdx")
+cost = 500
+item_type = "weapon"
+max_stack = 1

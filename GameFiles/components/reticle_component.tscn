@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://pqmkej5kc7fm"]
+
+[ext_resource type="Script" uid="uid://b2hgvqk3r2oso" path="res://components/Reticle_Component.gd" id="1_b7r4i"]
+[ext_resource type="Texture2D" uid="uid://b782appcbtufr" path="res://assets/misc/tool_reticle1.png" id="2_cnhpg"]
+[ext_resource type="Texture2D" uid="uid://bre4hx6p4k6jg" path="res://assets/misc/tool_reticle.png" id="3_2p3gp"]
+
+[node name="Reticle_Component" type="Node2D" unique_id=1120672500]
+script = ExtResource("1_b7r4i")
+
+[node name="Tool_Reticle" type="Sprite2D" parent="." unique_id=1328760243]
+texture = ExtResource("2_cnhpg")
+
+[node name="ReticleTracker" type="Sprite2D" parent="." unique_id=406792229]
+visible = false
+texture = ExtResource("3_2p3gp")
+
+[node name="RayCast_Pivot" type="Node2D" parent="." unique_id=2060815906]
+visible = false
+
+[node name="rcCROP_DET1" type="RayCast2D" parent="RayCast_Pivot" unique_id=1447083491]
+position = Vector2(0, -9)
+target_position = Vector2(24, 0)
+collision_mask = 32768
+
+[node name="rcCROP_DET2" type="RayCast2D" parent="RayCast_Pivot" unique_id=815977071]
+position = Vector2(0, -3)
+target_position = Vector2(24, 0)
+collision_mask = 32768
+
+[node name="rcCROP_DET3" type="RayCast2D" parent="RayCast_Pivot" unique_id=968097001]
+position = Vector2(0, 3)
+target_position = Vector2(24, 0)
+collision_mask = 32768
+
+[node name="rcIA_DET4" type="RayCast2D" parent="RayCast_Pivot" unique_id=1417248473]
+position = Vector2(0, -3)
+target_position = Vector2(24, 0)
+collision_mask = 18
+collide_with_areas = true

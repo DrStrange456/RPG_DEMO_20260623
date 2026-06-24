@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bqp6d0hamxsxv"]
+
+[ext_resource type="Script" uid="uid://brg2i6027pst4" path="res://scenes/UI/pause_ui.gd" id="1_o2sb4"]
+[ext_resource type="Texture2D" uid="uid://v2hhjfa0iidd" path="res://assets/UI/A-MyFiles/pause_ui.PNG" id="1_si5h2"]
+[ext_resource type="Texture2D" uid="uid://b7w24yhlxx11a" path="res://assets/UI/Pause/Header.png" id="2_o2sb4"]
+[ext_resource type="Texture2D" uid="uid://dpcvir4pdno1q" path="res://assets/UI/A-MyFiles/portrait.PNG" id="4_y8qm2"]
+[ext_resource type="Texture2D" uid="uid://c2qyjkhovdcji" path="res://assets/UI/A-MyFiles/resources.PNG" id="5_pugri"]
+
+[node name="pause_ui" type="Control" unique_id=252582373]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o2sb4")
+toggle_action = "open_pause"
+
+[node name="PopupRoot" type="Control" parent="." unique_id=1839961375]
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 646.0
+
+[node name="bg" type="Sprite2D" parent="PopupRoot" unique_id=1190276528]
+position = Vector2(582, 336.00003)
+scale = Vector2(0.29560637, 0.2978836)
+texture = ExtResource("1_si5h2")
+
+[node name="TITLE" type="Sprite2D" parent="PopupRoot" unique_id=1869903506]
+position = Vector2(586, 71)
+scale = Vector2(0.32333323, 0.28389835)
+texture = ExtResource("2_o2sb4")
+
+[node name="Portrait" type="Sprite2D" parent="PopupRoot" unique_id=1664820825]
+position = Vector2(728, 251)
+scale = Vector2(0.80038023, 0.7847222)
+texture = ExtResource("4_y8qm2")
+metadata/_edit_lock_ = true
+
+[node name="Resources" type="Sprite2D" parent="PopupRoot" unique_id=1469223888]
+position = Vector2(725, 456.00003)
+scale = Vector2(0.62560385, 0.5385852)
+texture = ExtResource("5_pugri")
+metadata/_edit_lock_ = true
+
+[node name="Buttons" type="Node2D" parent="PopupRoot" unique_id=745872755]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupRoot/Buttons" unique_id=687211834]
+offset_left = 324.0
+offset_top = 110.0
+offset_right = 545.0
+offset_bottom = 505.0
+theme_override_constants/separation = 11
+
+[node name="btnNEW" type="Button" parent="PopupRoot/Buttons/VBoxContainer" unique_id=659544927]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Character"
+
+[node name="btnSAVE" type="Button" parent="PopupRoot/Buttons/VBoxContainer" unique_id=389315623]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Inventory"
+
+[node name="btnLOAD" type="Button" parent="PopupRoot/Buttons/VBoxContainer" unique_id=286855200]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Crafting"
+
+[node name="btnSETTINGS" type="Button" parent="PopupRoot/Buttons/VBoxContainer" unique_id=220838603]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="btnQUIT" type="Button" parent="PopupRoot/Buttons/VBoxContainer" unique_id=2009693529]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[node name="btnDEV" type="Button" parent="PopupRoot/Buttons/VBoxContainer" unique_id=2139495033]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Developer"
+
+[connection signal="pressed" from="PopupRoot/Buttons/VBoxContainer/btnNEW" to="." method="_on_btn_new_pressed"]
+[connection signal="pressed" from="PopupRoot/Buttons/VBoxContainer/btnSAVE" to="." method="_on_btn_save_pressed"]
+[connection signal="pressed" from="PopupRoot/Buttons/VBoxContainer/btnLOAD" to="." method="_on_btn_load_pressed"]
+[connection signal="pressed" from="PopupRoot/Buttons/VBoxContainer/btnSETTINGS" to="." method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="PopupRoot/Buttons/VBoxContainer/btnQUIT" to="." method="_on_btn_quit_pressed"]
+[connection signal="pressed" from="PopupRoot/Buttons/VBoxContainer/btnDEV" to="." method="_on_btn_dev_pressed"]

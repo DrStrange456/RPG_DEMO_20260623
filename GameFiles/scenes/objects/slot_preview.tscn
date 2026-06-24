@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://pv2ki1cri6vi"]
+
+[ext_resource type="Script" uid="uid://b60feksj873sy" path="res://scenes/objects/slot_preview.gd" id="1_3h1qi"]
+[ext_resource type="Texture2D" uid="uid://cxpua55dw1rnj" path="res://assets/icons/wood.png" id="1_217q0"]
+[ext_resource type="FontFile" uid="uid://b7s2fv2laugyl" path="res://assets/fonts/font_pixelmix.ttf" id="2_3h1qi"]
+
+[node name="slot_preview" type="Control" unique_id=1012981973]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_3h1qi")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=539683092]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer" unique_id=1159180982]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_217q0")
+
+[node name="Label" type="Label" parent="." unique_id=1838159667]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 31.0
+offset_right = 36.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("2_3h1qi")
+theme_override_font_sizes/font_size = 8
+text = "99"

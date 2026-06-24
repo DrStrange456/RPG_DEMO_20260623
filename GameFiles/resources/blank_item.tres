@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://c7sfl4ufninem"]
+
+[ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_eqtyg"]
+
+[resource]
+script = ExtResource("2_eqtyg")
+name = "blank"
+max_stack = 0

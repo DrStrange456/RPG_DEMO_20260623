@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bet5jkdbhgmqk"]
+
+[ext_resource type="Script" uid="uid://uurrpghiakvp" path="res://scenes/UI/new_settings_ui.gd" id="1_io7np"]
+
+[node name="new_settings_ui" type="Control" unique_id=1131766181]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_io7np")
+
+[node name="btnSETTINGS_VIDEO" type="Button" parent="." unique_id=1998540391]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 72.0
+offset_right = 971.0
+offset_bottom = 119.0
+mouse_default_cursor_shape = 2
+text = "Video"
+
+[node name="btnSETTINGS_AUDIO" type="Button" parent="." unique_id=427330942]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 72.0
+offset_right = 1131.0
+offset_bottom = 119.0
+mouse_default_cursor_shape = 2
+text = "Audio"
+
+[node name="Label" type="Label" parent="." unique_id=1655903340]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 157.0
+offset_right = 186.0
+offset_bottom = 180.0
+scale = Vector2(2, 2)
+text = "SETTINGS"
+
+[connection signal="pressed" from="btnSETTINGS_VIDEO" to="." method="_on_btn_settings_video_pressed"]
+[connection signal="pressed" from="btnSETTINGS_AUDIO" to="." method="_on_btn_settings_audio_pressed"]

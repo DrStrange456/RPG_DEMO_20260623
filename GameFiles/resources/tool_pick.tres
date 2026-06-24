@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://7iil8u20gwr5"]
+
+[ext_resource type="Texture2D" uid="uid://bfxaf0qtdqd7k" path="res://assets/Items/Tools/pick_lv1.png" id="1_47h5l"]
+[ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_lnaim"]
+
+[resource]
+script = ExtResource("2_lnaim")
+name = "Pick"
+description = "Tool for Picking"
+icon = ExtResource("1_47h5l")
+cost = 50
+item_type = "tool"
+max_stack = 1

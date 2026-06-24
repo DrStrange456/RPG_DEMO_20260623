@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://7wr7y06ddii6"]
+
+[ext_resource type="Texture2D" uid="uid://cep81bikj0ays" path="res://assets/characters/bat/Bat.png" id="1_c2i0a"]
+[ext_resource type="Script" uid="uid://blakn1falxb4n" path="res://characters/bat/bat.gd" id="1_p1f2h"]
+[ext_resource type="Texture2D" uid="uid://ds8gfp27fuhb5" path="res://assets/Shadows/SmallShadow.png" id="2_comm3"]
+[ext_resource type="Script" uid="uid://njnspc0n5dbd" path="res://assets/characters/Common/PlayerDetectionZone.gd" id="3_2pdl2"]
+[ext_resource type="PackedScene" uid="uid://d0kufbcrh6e6q" path="res://assets/characters/Common/Stats.tscn" id="4_efwof"]
+[ext_resource type="Script" uid="uid://btu7lpa2y7jh2" path="res://assets/characters/Common/Hurtbox.gd" id="5_2r7n0"]
+[ext_resource type="Script" uid="uid://1qyjdnllmpw8" path="res://assets/characters/Common/WanderController.gd" id="6_nexul"]
+[ext_resource type="Script" uid="uid://dkjthn5i84it8" path="res://assets/characters/Common/SoftCollision.gd" id="6_ngejy"]
+[ext_resource type="Script" uid="uid://164fbmul7usm" path="res://characters/bat/hitbox.gd" id="7_pwgga"]
+[ext_resource type="PackedScene" uid="uid://df6ermeo6y044" path="res://components/damage_component.tscn" id="8_bfcxo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3hp1"]
+atlas = ExtResource("1_c2i0a")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5fbr"]
+atlas = ExtResource("1_c2i0a")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yple"]
+atlas = ExtResource("1_c2i0a")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmc71"]
+atlas = ExtResource("1_c2i0a")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueygu"]
+atlas = ExtResource("1_c2i0a")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l7bpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3hp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5fbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yple")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmc71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueygu")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xpjco"]
+radius = 4.12311
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tk6yk"]
+radius = 9.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nhn1l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_whvnl"]
+radius = 18.2483
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6yj5r"]
+radius = 67.0
+
+[node name="bat" type="CharacterBody2D" unique_id=145084458 groups=["enemy"]]
+collision_layer = 24
+collision_mask = 4
+script = ExtResource("1_p1f2h")
+KNOCKBACK_FORCE = 100
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1330958409]
+sprite_frames = SubResource("SpriteFrames_l7bpj")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.527257
+offset = Vector2(0, -12)
+
+[node name="ShadowSprite" type="Sprite2D" parent="." unique_id=1636234964]
+visible = false
+texture = ExtResource("2_comm3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=293580659]
+visible = false
+shape = SubResource("CircleShape2D_xpjco")
+
+[node name="Stats" parent="." unique_id=1702875214 instance=ExtResource("4_efwof")]
+visible = false
+max_health = 3
+
+[node name="Damage_Component" parent="." unique_id=516068233 instance=ExtResource("8_bfcxo")]
+visible = false
+
+[node name="SoftCollision" type="Area2D" parent="." unique_id=901236813]
+visible = false
+position = Vector2(0, -15)
+collision_layer = 1048576
+collision_mask = 1048576
+script = ExtResource("6_ngejy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision" unique_id=793787655]
+shape = SubResource("CircleShape2D_tk6yk")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=515234590]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("7_pwgga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2078404562]
+shape = SubResource("CapsuleShape2D_nhn1l")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1652210748]
+visible = false
+position = Vector2(0, 9)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("5_2r7n0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2061919063]
+visible = false
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_whvnl")
+
+[node name="PlayerDetectionZone" type="Area2D" parent="." unique_id=1588098271]
+visible = false
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_2pdl2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionZone" unique_id=889441920]
+visible = false
+shape = SubResource("CircleShape2D_6yj5r")
+
+[node name="WanderController" type="Node2D" parent="." unique_id=1122352761]
+visible = false
+script = ExtResource("6_nexul")
+
+[node name="Timer" type="Timer" parent="WanderController" unique_id=150672384]
+one_shot = true
+autostart = true
+
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_body_exited"]
+[connection signal="timeout" from="WanderController/Timer" to="WanderController" method="_on_timer_timeout"]

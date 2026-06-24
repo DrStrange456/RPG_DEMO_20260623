@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xe1fckuj6owi"
+path="res://.godot/imported/155 November_snow-33_tape_leveled.mp3-7cdb1d4b0e0f2939a9d3d0caea14406c.mp3str"
+
+[deps]
+
+source_file="res://audio/music/155 November_snow-33_tape_leveled.mp3"
+dest_files=["res://.godot/imported/155 November_snow-33_tape_leveled.mp3-7cdb1d4b0e0f2939a9d3d0caea14406c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

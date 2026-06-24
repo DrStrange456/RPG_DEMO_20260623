@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bedigkxthgwn4"]
+
+[ext_resource type="Script" uid="uid://di28pwb12mbdf" path="res://scenes/UI/time_of_day_ui.gd" id="1_4ib3j"]
+[ext_resource type="Shader" uid="uid://dupaascebgey3" path="res://assets/TOD/pixelperfect.gdshader" id="1_26786"]
+[ext_resource type="Texture2D" uid="uid://c5vnwccwibgos" path="res://assets/TOD/TOD.png" id="2_5ftdv"]
+[ext_resource type="FontFile" uid="uid://dt6jbuskqvs7g" path="res://assets/TOD/fonts/pixelmix/pixelmix.ttf" id="3_oo8ic"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24v4y"]
+shader = ExtResource("1_26786")
+
+[node name="TimeOfDayUI" type="Control" unique_id=2070355975]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_4ib3j")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=937294503]
+material = SubResource("ShaderMaterial_24v4y")
+layout_mode = 0
+offset_right = 73.0
+offset_bottom = 43.0
+texture = ExtResource("2_5ftdv")
+
+[node name="CenterContainerDay" type="CenterContainer" parent="." unique_id=378142036]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 9.0
+offset_right = 50.0
+offset_bottom = 20.0
+
+[node name="DayLabelBackground" type="Label" parent="CenterContainerDay" unique_id=1603513839]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.898039, 0.576471, 0.419608, 1)
+theme_override_fonts/font = ExtResource("3_oo8ic")
+theme_override_font_sizes/font_size = 8
+text = "Day 13"
+metadata/_edit_lock_ = true
+
+[node name="DayLabel" type="Label" parent="CenterContainerDay/DayLabelBackground" unique_id=1177700008]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -1.0
+offset_right = 33.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(0.490196, 0.219608, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_oo8ic")
+theme_override_font_sizes/font_size = 8
+text = "Day 13"
+metadata/_edit_lock_ = true
+
+[node name="CenterContainerTime" type="CenterContainer" parent="." unique_id=1833626942]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 29.0
+offset_right = 51.0
+offset_bottom = 40.0
+
+[node name="TimeLabelBackground" type="Label" parent="CenterContainerTime" unique_id=562314303]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.898039, 0.576471, 0.419608, 1)
+theme_override_fonts/font = ExtResource("3_oo8ic")
+theme_override_font_sizes/font_size = 8
+text = "12:00 am"
+metadata/_edit_lock_ = true
+
+[node name="TimeLabel" type="Label" parent="CenterContainerTime/TimeLabelBackground" unique_id=964496591]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(0.490196, 0.219608, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_oo8ic")
+theme_override_font_sizes/font_size = 8
+text = "12:00 am"
+metadata/_edit_lock_ = true

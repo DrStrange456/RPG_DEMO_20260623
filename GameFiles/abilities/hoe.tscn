@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2jgbhb3oy16u"]
+
+[ext_resource type="Script" uid="uid://c8qjw6utlhwot" path="res://abilities/hoe.gd" id="1_ot6k3"]
+
+[node name="Hoe" type="Node" unique_id=2121505773]
+script = ExtResource("1_ot6k3")

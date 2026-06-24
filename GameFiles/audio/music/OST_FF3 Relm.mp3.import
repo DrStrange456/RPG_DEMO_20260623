@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxuyqf8oqfxdm"
+path="res://.godot/imported/OST_FF3 Relm.mp3-63051f566c12c6b11a07c167c85072c7.mp3str"
+
+[deps]
+
+source_file="res://audio/music/OST_FF3 Relm.mp3"
+dest_files=["res://.godot/imported/OST_FF3 Relm.mp3-63051f566c12c6b11a07c167c85072c7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

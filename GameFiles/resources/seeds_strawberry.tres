@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://5s3ye33mejjp"]
+
+[ext_resource type="Texture2D" uid="uid://upaw38buubl0" path="res://assets/icons/seeds_strawberry.png" id="1_mpsqn"]
+[ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_ch61r"]
+
+[resource]
+script = ExtResource("2_ch61r")
+name = "seeds_strawberry"
+description = "Foraged from loot drop"
+icon = ExtResource("1_mpsqn")
+cost = 3
+item_type = "seed_Pack"

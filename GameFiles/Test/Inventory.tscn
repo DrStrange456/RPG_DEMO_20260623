@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://dsk1yqfu1rouu"]
+
+[ext_resource type="Texture2D" uid="uid://dmjs7ak4h3hio" path="res://assets/UI/A-MyFiles/Inventory_bg.png" id="1_bjtgy"]
+[ext_resource type="Script" uid="uid://uyoyf613x4sm" path="res://Test/inventory.gd" id="1_h3kjg"]
+[ext_resource type="Script" uid="uid://culwm761ctewy" path="res://Inventory/Scripts/main_inventory_controller.gd" id="2_ge5fo"]
+[ext_resource type="PackedScene" uid="uid://lt04e7ajlebf" path="res://Inventory/inventory_slot_ui.tscn" id="3_h3kjg"]
+[ext_resource type="Texture2D" uid="uid://ditoo2epdbb8u" path="res://assets/UI/Pause/Table.png" id="4_ge5fo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3kjg"]
+texture = ExtResource("4_ge5fo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7pj5c"]
+texture = ExtResource("4_ge5fo")
+
+[node name="Inventory_Main" type="Control" unique_id=1865347886]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h3kjg")
+toggle_action = "mapped_quick_open_inventory"
+
+[node name="PopupRoot" type="Control" parent="." unique_id=1516361027]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 1148.0
+offset_bottom = 649.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InventoryBg" type="Sprite2D" parent="PopupRoot" unique_id=679374705]
+position = Vector2(583, 322)
+texture = ExtResource("1_bjtgy")
+
+[node name="MainInventoryController" type="GridContainer" parent="PopupRoot" unique_id=1234608783]
+layout_mode = 0
+offset_left = 423.00003
+offset_top = 103.0
+offset_right = 639.0
+offset_bottom = 187.0
+scale = Vector2(1.5, 1.5)
+mouse_filter = 2
+columns = 5
+script = ExtResource("2_ge5fo")
+
+[node name="InventorySlotUI" parent="PopupRoot/MainInventoryController" unique_id=119770590 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI2" parent="PopupRoot/MainInventoryController" unique_id=1230093830 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 1
+
+[node name="InventorySlotUI3" parent="PopupRoot/MainInventoryController" unique_id=1487329088 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 2
+
+[node name="InventorySlotUI4" parent="PopupRoot/MainInventoryController" unique_id=599741642 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 3
+
+[node name="InventorySlotUI5" parent="PopupRoot/MainInventoryController" unique_id=683851712 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 4
+
+[node name="InventorySlotUI6" parent="PopupRoot/MainInventoryController" unique_id=985860287 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 5
+
+[node name="InventorySlotUI7" parent="PopupRoot/MainInventoryController" unique_id=1387588934 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 6
+
+[node name="InventorySlotUI8" parent="PopupRoot/MainInventoryController" unique_id=1496645110 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 7
+
+[node name="InventorySlotUI9" parent="PopupRoot/MainInventoryController" unique_id=652225813 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 8
+
+[node name="InventorySlotUI10" parent="PopupRoot/MainInventoryController" unique_id=595479461 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="OptionButtons" type="Node2D" parent="PopupRoot" unique_id=1661034079]
+position = Vector2(461, 266)
+scale = Vector2(1.5, 1.5)
+
+[node name="btnSort_Inv" type="Button" parent="PopupRoot/OptionButtons" unique_id=35797042]
+offset_left = 112.0
+offset_top = 181.33334
+offset_right = 192.0
+offset_bottom = 212.33334
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_h3kjg")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7pj5c")
+text = "Sort"
+icon_alignment = 1
+
+[connection signal="pressed" from="PopupRoot/OptionButtons/btnSort_Inv" to="." method="_on_btn_sort_inv_pressed"]

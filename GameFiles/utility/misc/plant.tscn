@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dtrd38rrkdk6h"]
+
+[ext_resource type="Script" uid="uid://clvdjerrpj8nf" path="res://utility/misc/plant.gd" id="1_fvfks"]
+[ext_resource type="PackedScene" uid="uid://bwi0u3rp1xep5" path="res://scenes/vfx/flash_sprite_2d.tscn" id="2_7bmar"]
+[ext_resource type="Shader" uid="uid://b6nm5dtkeitqy" path="res://scenes/vfx/flash.tres" id="3_0a33w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvfks"]
+radius = 3.0
+height = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fvfks"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxxsx"]
+resource_local_to_scene = true
+shader = ExtResource("3_0a33w")
+shader_parameter/Color = Color(1, 1, 1, 1)
+shader_parameter/Progress = 0.0
+
+[node name="Plant" type="StaticBody2D" unique_id=131340359 groups=["Plants", "harvestable"]]
+collision_layer = 32772
+collision_mask = 0
+script = ExtResource("1_fvfks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=51041967]
+shape = SubResource("CapsuleShape2D_fvfks")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=49505874]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=835992472]
+shape = SubResource("CircleShape2D_fvfks")
+
+[node name="Interactionbox" type="Area2D" parent="." unique_id=1439992051]
+collision_layer = 32768
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactionbox" unique_id=1835088760]
+shape = SubResource("CircleShape2D_fvfks")
+
+[node name="FlashSprite2D" parent="." unique_id=733671508 instance=ExtResource("2_7bmar")]
+material = SubResource("ShaderMaterial_pxxsx")
+position = Vector2(0, -9)
+hframes = 6
+
+[node name="Timer" type="Timer" parent="." unique_id=1503504666]
+autostart = true
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_collision_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

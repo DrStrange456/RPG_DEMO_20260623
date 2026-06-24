@@ -1,0 +1,593 @@
+[gd_scene format=3 uid="uid://b2seskq0f78b0"]
+
+[ext_resource type="PackedScene" uid="uid://cpsr1xiem504f" path="res://scenes/objects/store/market_item.tscn" id="1_cfucy"]
+[ext_resource type="Script" uid="uid://dy22ewj6rq1q0" path="res://scenes/UI/general_store.gd" id="1_w8hr2"]
+[ext_resource type="PackedScene" uid="uid://xxbrqpi5ntgu" path="res://Inventory/MainInventoryUI/MainInventoryUI.tscn" id="2_w8hr2"]
+[ext_resource type="FontFile" uid="uid://dgcu1rjnhgsfe" path="res://assets/fonts/Better VCR 9.0.1.ttf" id="4_rhj4l"]
+[ext_resource type="Script" uid="uid://bsi3hjlcrgiw7" path="res://scenes/objects/store/market_item_sell_ui.gd" id="5_110rx"]
+[ext_resource type="Texture2D" uid="uid://cxpua55dw1rnj" path="res://assets/icons/wood.png" id="6_pu0qb"]
+
+[node name="general_store" type="Control" unique_id=1920318109]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w8hr2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=508463577]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2324, 0.27841333, 0.28, 1)
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=188505119]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 61.0
+offset_right = 1125.0
+offset_bottom = 631.0
+current_tab = 0
+
+[node name="BUY" type="TabBar" parent="TabContainer" unique_id=1887473614]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Merchant_Section" type="Node2D" parent="TabContainer/BUY" unique_id=1745526843]
+scale = Vector2(2, 2)
+
+[node name="Panel" type="Panel" parent="TabContainer/BUY/Merchant_Section" unique_id=2050342376]
+offset_left = 19.5
+offset_top = 49.5
+offset_right = 233.5
+offset_bottom = 253.5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/BUY/Merchant_Section/Panel" unique_id=757355538]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer" unique_id=786169120]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="market_item" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=370814405 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item2" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1064762217 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item3" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1814537450 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item4" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1315872973 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item5" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1504083360 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item6" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1205974184 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item7" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=2101370361 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item8" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=2050862430 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item9" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=971246255 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item10" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=936074861 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="market_item11" parent="TabContainer/BUY/Merchant_Section/Panel/ScrollContainer/VBoxContainer" unique_id=1996119917 instance=ExtResource("1_cfucy")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="PlayerInventory" type="Node2D" parent="TabContainer/BUY" unique_id=1549288678]
+scale = Vector2(2, 2)
+
+[node name="MainInventory" parent="TabContainer/BUY/PlayerInventory" unique_id=1355165246 instance=ExtResource("2_w8hr2")]
+offset_left = 279.5
+offset_top = 53.5
+offset_right = 319.5
+offset_bottom = 93.5
+
+[node name="CreditsIndicator" type="Node2D" parent="TabContainer/BUY" unique_id=1961847088]
+
+[node name="Panel" type="Panel" parent="TabContainer/BUY/CreditsIndicator" unique_id=992206582]
+offset_left = 956.0
+offset_top = 58.0
+offset_right = 1067.0
+offset_bottom = 87.0
+
+[node name="Label" type="Label" parent="TabContainer/BUY/CreditsIndicator" unique_id=1420744342]
+offset_left = 897.0
+offset_top = 59.0
+offset_right = 950.0
+offset_bottom = 82.0
+text = "Money"
+
+[node name="txtMONEY" type="RichTextLabel" parent="TabContainer/BUY/CreditsIndicator" unique_id=2144484497]
+offset_left = 967.0
+offset_top = 60.0
+offset_right = 1061.0
+offset_bottom = 83.0
+text = "0"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="tmrUpdateCredits" type="Timer" parent="TabContainer/BUY/CreditsIndicator" unique_id=2015977712]
+wait_time = 0.1
+autostart = true
+
+[node name="SELL" type="TabBar" parent="TabContainer" unique_id=1912499540]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="PlayerInventory" type="Node2D" parent="TabContainer/SELL" unique_id=1177752020]
+position = Vector2(189, -7)
+scale = Vector2(2, 2)
+
+[node name="MainInventory" parent="TabContainer/SELL/PlayerInventory" unique_id=1943966495 instance=ExtResource("2_w8hr2")]
+offset_left = 50.0
+offset_top = 58.5
+offset_right = 90.0
+offset_bottom = 98.5
+
+[node name="SellQuantityGrid" type="GridContainer" parent="TabContainer/SELL" unique_id=782862613]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 111.0
+offset_right = 505.0
+offset_bottom = 264.0
+scale = Vector2(2, 2)
+columns = 5
+
+[node name="Control" type="Control" parent="TabContainer/SELL/SellQuantityGrid" unique_id=663274899]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="sell_qty" type="Label" parent="TabContainer/SELL/SellQuantityGrid/Control" unique_id=992525422]
+self_modulate = Color(1, 1, 1, 0.5294118)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_rhj4l")
+theme_override_font_sizes/font_size = 28
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="TabContainer/SELL/SellQuantityGrid" unique_id=581261861]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="sell_qty2" type="Label" parent="TabContainer/SELL/SellQuantityGrid/Control2" unique_id=2112644627]
+self_modulate = Color(1, 1, 1, 0.5294118)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_rhj4l")
+theme_override_font_sizes/font_size = 28
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="TabContainer/SELL/SellQuantityGrid" unique_id=680264451]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="sell_qty3" type="Label" parent="TabContainer/SELL/SellQuantityGrid/Control3" unique_id=114469304]
+self_modulate = Color(1, 1, 1, 0.5294118)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_rhj4l")
+theme_override_font_sizes/font_size = 28
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control4" type="Control" parent="TabContainer/SELL/SellQuantityGrid" unique_id=1609042992]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="sell_qty4" type="Label" parent="TabContainer/SELL/SellQuantityGrid/Control4" unique_id=1955424870]
+self_modulate = Color(1, 1, 1, 0.5294118)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_rhj4l")
+theme_override_font_sizes/font_size = 28
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control5" type="Control" parent="TabContainer/SELL/SellQuantityGrid" unique_id=878138129]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="sell_qty5" type="Label" parent="TabContainer/SELL/SellQuantityGrid/Control5" unique_id=853411483]
+self_modulate = Color(1, 1, 1, 0.5294118)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_rhj4l")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control6" type="Control" parent="TabContainer/SELL/SellQuantityGrid" unique_id=741019514]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="sell_qty6" type="Label" parent="TabContainer/SELL/SellQuantityGrid/Control6" unique_id=1680759311]
+self_modulate = Color(1, 1, 1, 0.5294118)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_rhj4l")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control7" type="Control" parent="TabContainer/SELL/SellQuantityGrid" unique_id=868999552]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="sell_qty7" type="Label" parent="TabContainer/SELL/SellQuantityGrid/Control7" unique_id=2134672524]
+self_modulate = Color(1, 1, 1, 0.5294118)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_rhj4l")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control8" type="Control" parent="TabContainer/SELL/SellQuantityGrid" unique_id=1349533161]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="sell_qty8" type="Label" parent="TabContainer/SELL/SellQuantityGrid/Control8" unique_id=1934948574]
+self_modulate = Color(1, 1, 1, 0.5294118)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_rhj4l")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control9" type="Control" parent="TabContainer/SELL/SellQuantityGrid" unique_id=1724598120]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="sell_qty9" type="Label" parent="TabContainer/SELL/SellQuantityGrid/Control9" unique_id=1969711141]
+self_modulate = Color(1, 1, 1, 0.5294118)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_rhj4l")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control10" type="Control" parent="TabContainer/SELL/SellQuantityGrid" unique_id=2050369320]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="sell_qty10" type="Label" parent="TabContainer/SELL/SellQuantityGrid/Control10" unique_id=2084757481]
+self_modulate = Color(1, 1, 1, 0.5294118)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_rhj4l")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsIndicator" type="Node2D" parent="TabContainer/SELL" unique_id=862437335]
+position = Vector2(189, -7)
+
+[node name="Panel" type="Panel" parent="TabContainer/SELL/CreditsIndicator" unique_id=1672769086]
+offset_left = 433.0
+offset_top = 48.0
+offset_right = 544.0
+offset_bottom = 77.0
+
+[node name="Label" type="Label" parent="TabContainer/SELL/CreditsIndicator" unique_id=1078744784]
+offset_left = 374.0
+offset_top = 49.0
+offset_right = 427.0
+offset_bottom = 72.0
+text = "Money"
+
+[node name="txtMONEY2" type="RichTextLabel" parent="TabContainer/SELL/CreditsIndicator" unique_id=1502654812]
+offset_left = 444.0
+offset_top = 50.0
+offset_right = 538.0
+offset_bottom = 73.0
+text = "0"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="tmrUpdateCredits" type="Timer" parent="TabContainer/SELL/CreditsIndicator" unique_id=1980086835]
+wait_time = 0.1
+autostart = true
+
+[node name="SellValueIndicator" type="Node2D" parent="TabContainer/SELL" unique_id=161342658]
+position = Vector2(189, -7)
+
+[node name="Panel" type="Panel" parent="TabContainer/SELL/SellValueIndicator" unique_id=295777730]
+offset_left = 231.0
+offset_top = 468.0
+offset_right = 383.0
+offset_bottom = 497.0
+
+[node name="txtSellAmount" type="RichTextLabel" parent="TabContainer/SELL/SellValueIndicator/Panel" unique_id=1805125980]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 2.0
+offset_right = 144.0
+offset_bottom = 25.0
+text = "0"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/SELL/SellValueIndicator" unique_id=1231562087]
+offset_left = 150.0
+offset_top = 469.0
+offset_right = 225.0
+offset_bottom = 492.0
+text = "Sell Value"
+
+[node name="btnSELL_ALL_ITEMS_IN_LIST" type="Button" parent="TabContainer/SELL" unique_id=835289205]
+layout_mode = 0
+offset_left = 639.0
+offset_top = 440.0
+offset_right = 801.0
+offset_bottom = 520.0
+text = "Accept"
+
+[node name="market_item_sell_ui" type="Control" parent="." unique_id=380906362]
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 92.0
+offset_right = 31.0
+offset_bottom = 61.0
+script = ExtResource("5_110rx")
+
+[node name="ColorRect" type="ColorRect" parent="market_item_sell_ui" unique_id=1888071823]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -95.0
+offset_right = -26.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[node name="Panel" type="Panel" parent="market_item_sell_ui" unique_id=1693640649]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 61.0
+offset_right = 668.0
+offset_bottom = 398.0
+
+[node name="Label" type="Label" parent="market_item_sell_ui" unique_id=452431897]
+layout_mode = 0
+offset_left = 429.0
+offset_top = 60.0
+offset_right = 609.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 12
+text = "How many do you want to sell?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="market_item_sell_ui" unique_id=606995395]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 401.0
+offset_right = 775.0
+offset_bottom = 424.0
+theme_override_font_sizes/font_size = 12
+text = "Left - Take Away  |  Right - Add  | Left on Zero goes to Maximum allowed  | Esc to Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="picItemToBeSold" type="TextureRect" parent="market_item_sell_ui" unique_id=1663693043]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 83.0
+offset_right = 512.0
+offset_bottom = 123.0
+scale = Vector2(2, 2)
+texture = ExtResource("6_pu0qb")
+
+[node name="NAME" type="Node2D" parent="market_item_sell_ui" unique_id=1252525064]
+position = Vector2(180, 49)
+
+[node name="Label4" type="Label" parent="market_item_sell_ui/NAME" unique_id=1723251841]
+visible = false
+offset_left = 207.0
+offset_top = 118.0
+offset_right = 246.0
+offset_bottom = 141.0
+theme_override_font_sizes/font_size = 12
+text = "Name:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="txtItemName" type="Label" parent="market_item_sell_ui/NAME" unique_id=1921765298]
+offset_left = 224.0
+offset_top = 119.0
+offset_right = 447.0
+offset_bottom = 142.0
+text = "long name here - - - - - - - -
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QUANTITY" type="Node2D" parent="market_item_sell_ui" unique_id=535027475]
+position = Vector2(184, 74)
+
+[node name="ColorRect" type="ColorRect" parent="market_item_sell_ui/QUANTITY" unique_id=211650929]
+offset_left = 221.0
+offset_top = 146.0
+offset_right = 436.0
+offset_bottom = 189.0
+color = Color(0.0588235, 0.113725, 0.509804, 1)
+
+[node name="Label2" type="Label" parent="market_item_sell_ui/QUANTITY" unique_id=976037287]
+visible = false
+offset_left = 440.0
+offset_top = 54.0
+offset_right = 472.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 12
+text = "Qty:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="txtQuantity" type="Label" parent="market_item_sell_ui/QUANTITY" unique_id=956151305]
+offset_left = 294.0
+offset_top = 157.0
+offset_right = 357.0
+offset_bottom = 180.0
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btnSetQty_Minus1" type="Button" parent="market_item_sell_ui/QUANTITY" unique_id=1990786220]
+offset_left = 225.0
+offset_top = 153.0
+offset_right = 263.0
+offset_bottom = 184.0
+text = "-"
+
+[node name="btnSetQty_Plus1" type="Button" parent="market_item_sell_ui/QUANTITY" unique_id=1819706860]
+offset_left = 393.0
+offset_top = 153.0
+offset_right = 431.0
+offset_bottom = 184.0
+text = "+"
+
+[node name="btnSetQty_Min" type="Button" parent="market_item_sell_ui" unique_id=1329597043]
+visible = false
+layout_mode = 0
+offset_left = 426.0
+offset_top = 26.0
+offset_right = 464.0
+offset_bottom = 57.0
+text = "Min"
+
+[node name="btnSetQty_Max" type="Button" parent="market_item_sell_ui" unique_id=486517812]
+visible = false
+layout_mode = 0
+offset_left = 425.0
+offset_top = 56.0
+offset_right = 466.0
+offset_bottom = 87.0
+text = "Max"
+
+[node name="GAIN" type="Node2D" parent="market_item_sell_ui" unique_id=1747715212]
+position = Vector2(180, 49)
+
+[node name="txtGain" type="Label" parent="market_item_sell_ui/GAIN" unique_id=558926036]
+offset_left = 205.0
+offset_top = 243.0
+offset_right = 244.0
+offset_bottom = 266.0
+theme_override_font_sizes/font_size = 12
+text = "Value:
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="txtSellAmount" type="Label" parent="market_item_sell_ui/GAIN" unique_id=396276444]
+offset_left = 250.0
+offset_top = 238.0
+offset_right = 408.0
+offset_bottom = 272.0
+theme_override_font_sizes/font_size = 24
+text = "999999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btnACCEPT" type="Button" parent="market_item_sell_ui" unique_id=1308034022]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 337.0
+offset_right = 584.0
+offset_bottom = 380.0
+text = "ACCEPT
+"
+
+[node name="btnCANCEL" type="Button" parent="market_item_sell_ui" unique_id=1887441059]
+visible = false
+layout_mode = 0
+offset_left = 211.0
+offset_top = 290.0
+offset_right = 281.0
+offset_bottom = 321.0
+text = "Cancel"
+
+[connection signal="timeout" from="TabContainer/BUY/CreditsIndicator/tmrUpdateCredits" to="." method="_on_tmr_update_credits_timeout"]
+[connection signal="timeout" from="TabContainer/SELL/CreditsIndicator/tmrUpdateCredits" to="." method="_on_tmr_update_credits_timeout2"]
+[connection signal="pressed" from="TabContainer/SELL/btnSELL_ALL_ITEMS_IN_LIST" to="." method="_on_btn_sell_all_items_in_list_pressed"]
+[connection signal="build_selling_block" from="market_item_sell_ui" to="." method="_on_market_item_sell_ui_build_selling_block"]
+[connection signal="pressed" from="market_item_sell_ui/QUANTITY/btnSetQty_Minus1" to="market_item_sell_ui" method="_on_btn_set_qty_minus_1_pressed"]
+[connection signal="pressed" from="market_item_sell_ui/QUANTITY/btnSetQty_Plus1" to="market_item_sell_ui" method="_on_btn_set_qty_plus_1_pressed"]
+[connection signal="pressed" from="market_item_sell_ui/btnSetQty_Min" to="market_item_sell_ui" method="_on_btn_set_qty_min_pressed"]
+[connection signal="pressed" from="market_item_sell_ui/btnSetQty_Max" to="market_item_sell_ui" method="_on_btn_set_qty_max_pressed"]
+[connection signal="pressed" from="market_item_sell_ui/btnACCEPT" to="market_item_sell_ui" method="_on_btn_accept_pressed"]
+[connection signal="pressed" from="market_item_sell_ui/btnCANCEL" to="market_item_sell_ui" method="_on_btn_cancel_pressed"]

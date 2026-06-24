@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cpv3g456l4icr"]
+
+[ext_resource type="Texture2D" uid="uid://rpg6xp8c7sel" path="res://assets/Items/Tools/shovel.png" id="1_58uuu"]
+[ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_lewfk"]
+
+[resource]
+script = ExtResource("2_lewfk")
+name = "Shovel"
+description = "Tool for Shoveling"
+icon = ExtResource("1_58uuu")
+cost = 50
+item_type = "tool"
+max_stack = 1

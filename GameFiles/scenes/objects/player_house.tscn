@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bdu5fash6e1gm"]
+
+[ext_resource type="Texture2D" uid="uid://bq6kreu4xsq7d" path="res://assets/AAA-TileSets/Craftland/Craftland Terrain/32x32/CL_Buildings.png" id="1_1nvyd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctmr6"]
+size = Vector2(178, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1nvyd"]
+size = Vector2(56, 20)
+
+[node name="player_house" type="Node2D" unique_id=1189063552]
+
+[node name="house" type="Sprite2D" parent="." unique_id=300303400]
+texture = ExtResource("1_1nvyd")
+region_enabled = true
+region_rect = Rect2(608, 32, 192, 224)
+
+[node name="door" type="Sprite2D" parent="." unique_id=315319033]
+position = Vector2(0, 32)
+texture = ExtResource("1_1nvyd")
+region_enabled = true
+region_rect = Rect2(992, 128, 64, 96)
+
+[node name="wall_collider" type="StaticBody2D" parent="." unique_id=11236260]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_collider" unique_id=1905015702]
+position = Vector2(0, 49.5)
+shape = SubResource("RectangleShape2D_ctmr6")
+
+[node name="entrance" type="Area2D" parent="." unique_id=50635095]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="entrance" unique_id=1194475900]
+position = Vector2(0, 80)
+shape = SubResource("RectangleShape2D_1nvyd")
