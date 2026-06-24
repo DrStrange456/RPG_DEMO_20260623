@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="RPG_DEMO_20260530"
-config/tags=PackedStringArray("most_recent", "v_4.6")
+config/tags=PackedStringArray("most_recent", "v_4.7")
 run/main_scene="uid://cb83dvwlk3om0"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
