@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://lt04e7ajlebf"]
 
 [ext_resource type="Script" uid="uid://bpilfgcxk1mmh" path="res://Inventory/Scripts/inventory_slot_ui.gd" id="1_ncv3l"]
+[ext_resource type="Texture2D" uid="uid://c7tymri5ij2x5" path="res://assets/UI/A-MyFiles/slot_bg_normal.PNG" id="1_taxyh"]
 [ext_resource type="Texture2D" uid="uid://cxpua55dw1rnj" path="res://assets/icons/wood.png" id="2_s2evn"]
 [ext_resource type="FontFile" uid="uid://b7s2fv2laugyl" path="res://assets/fonts/font_pixelmix.ttf" id="3_r4e7a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4w5wu"]
+texture = ExtResource("1_taxyh")
 
 [node name="InventorySlotUI" type="Panel" unique_id=119770590]
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_4w5wu")
 script = ExtResource("1_ncv3l")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1339278297]

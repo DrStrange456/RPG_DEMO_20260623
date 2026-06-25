@@ -13,12 +13,16 @@ animation = &"idle_left"
 animation = &"idle_right"
 
 [resource]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_a53uo")
 blend_point_0/pos = Vector2(0, 1)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_rkpqp")
 blend_point_1/pos = Vector2(0, -1)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_qspuh")
 blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_escyn")
 blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
+blend_point_3/name = &"3"

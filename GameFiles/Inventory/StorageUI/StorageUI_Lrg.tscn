@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://djxjfbrbxfgwd" path="res://Inventory/Scripts/storage_ui_lrg.gd" id="1_70jew"]
 [ext_resource type="Script" uid="uid://1m5aamday5qv" path="res://Inventory/Scripts/inventory_container_ui.gd" id="2_2vj3f"]
 [ext_resource type="Texture2D" uid="uid://r4e4eqyij0hx" path="res://assets/UI/A-MyFiles/StorageUI.PNG" id="2_cflt7"]
+[ext_resource type="Texture2D" uid="uid://hrxw0trmpejx" path="res://assets/UI/A-MyFiles/StorageUI_2.PNG" id="3_33j87"]
 [ext_resource type="PackedScene" uid="uid://lt04e7ajlebf" path="res://Inventory/inventory_slot_ui.tscn" id="3_cflt7"]
 [ext_resource type="Script" uid="uid://cb1voe8d0hcop" path="res://Inventory/StorageUI/large_container.gd" id="4_2vj3f"]
 
@@ -24,18 +25,25 @@ offset_right = 614.0
 offset_bottom = 345.5
 
 [node name="StorageUi" type="Sprite2D" parent="PopupRoot" unique_id=87086849]
+visible = false
 position = Vector2(329.5, 176.5)
 scale = Vector2(0.35714284, 0.2738487)
 texture = ExtResource("2_cflt7")
 metadata/_edit_lock_ = true
 
+[node name="StorageUi2" type="Sprite2D" parent="PopupRoot" unique_id=1141579399]
+position = Vector2(333.375, 175.75)
+scale = Vector2(0.32046026, 0.2776382)
+texture = ExtResource("3_33j87")
+metadata/_edit_lock_ = true
+
 [node name="InventorySlotContainer" type="GridContainer" parent="PopupRoot" unique_id=932542009]
 layout_mode = 0
-offset_left = 84.5
-offset_top = 207.0
-offset_right = 476.5
-offset_bottom = 291.0
-columns = 9
+offset_left = 341.5
+offset_top = 65.0
+offset_right = 557.5
+offset_bottom = 315.5
+columns = 5
 script = ExtResource("2_2vj3f")
 
 [node name="InventorySlotUI" parent="PopupRoot/InventorySlotContainer" unique_id=119770590 instance=ExtResource("3_cflt7")]
@@ -129,11 +137,11 @@ indx = 9
 
 [node name="LargeContainer" type="GridContainer" parent="PopupRoot" unique_id=1872605051]
 layout_mode = 0
-offset_left = 85.5
-offset_top = 70.5
-offset_right = 477.5
-offset_bottom = 198.5
-columns = 9
+offset_left = 107.0
+offset_top = 65.0
+offset_right = 323.0
+offset_bottom = 316.5
+columns = 5
 script = ExtResource("4_2vj3f")
 
 [node name="InventorySlotUI" parent="PopupRoot/LargeContainer" unique_id=206119375 instance=ExtResource("3_cflt7")]
@@ -226,62 +234,63 @@ layout_mode = 2
 indx = 17
 
 [node name="OptionButtons" type="Node2D" parent="PopupRoot" unique_id=1766532277]
-
-[node name="btnSort_Inv" type="Button" parent="PopupRoot/OptionButtons" unique_id=135522976]
-offset_left = 386.5
-offset_top = 179.0
-offset_right = 454.5
-offset_bottom = 199.0
-theme_override_font_sizes/font_size = 8
-text = "Sort Inv"
+position = Vector2(-16.5, 1.5)
 
 [node name="btnSort_Chest" type="Button" parent="PopupRoot/OptionButtons" unique_id=1249055402]
-offset_left = 386.5
-offset_top = 51.5
-offset_right = 454.5
-offset_bottom = 71.5
-theme_override_font_sizes/font_size = 8
-text = "Sort Chest"
-
-[node name="btnTransferAll" type="Button" parent="PopupRoot/OptionButtons" unique_id=460048041]
-self_modulate = Color(2.6933784, 8.539971, 8.539971, 1)
-offset_left = 498.5
-offset_top = 102.0
-offset_right = 558.0
-offset_bottom = 148.5
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 8
+offset_left = 316.5
+offset_top = 40.0
+offset_right = 333.5
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 4
+text = "S"
 
 [node name="btnTransferLike" type="Button" parent="PopupRoot/OptionButtons" unique_id=627353715]
-self_modulate = Color(7.7925534, 4.1170897, 7.7925534, 1)
-offset_left = 498.5
-offset_top = 50.0
-offset_right = 557.5
-offset_bottom = 97.0
+offset_left = 292.0
+offset_top = 40.0
+offset_right = 309.5
+offset_bottom = 55.0
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 4
+text = "L"
+
+[node name="btnTransferAll" type="Button" parent="PopupRoot/OptionButtons" unique_id=460048041]
+offset_left = 267.5
+offset_top = 40.0
+offset_right = 285.5
+offset_bottom = 55.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 4
+text = "A"
+
+[node name="btnSort_Inv" type="Button" parent="PopupRoot/OptionButtons" unique_id=135522976]
+offset_left = 553.5
+offset_top = 40.0
+offset_right = 570.5
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 4
+text = "S"
 
 [node name="btnTransferLike_toStrg" type="Button" parent="PopupRoot/OptionButtons" unique_id=2133591381]
-self_modulate = Color(7.7925534, 4.1170897, 7.7925534, 1)
-offset_left = 494.5
-offset_top = 178.0
-offset_right = 553.5
-offset_bottom = 225.0
+offset_left = 528.0
+offset_top = 40.0
+offset_right = 545.0
+offset_bottom = 55.0
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 4
+text = "L"
 
 [node name="btnTransferAll_toStrg" type="Button" parent="PopupRoot/OptionButtons" unique_id=1202277982]
-self_modulate = Color(2.6933784, 8.539971, 8.539971, 1)
-offset_left = 494.5
-offset_top = 246.0
-offset_right = 554.0
-offset_bottom = 292.5
+offset_left = 502.5
+offset_top = 40.0
+offset_right = 519.5
+offset_bottom = 55.0
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 4
+text = "A"
 
-[connection signal="pressed" from="PopupRoot/OptionButtons/btnSort_Inv" to="." method="_on_btn_sort_inv_pressed"]
 [connection signal="pressed" from="PopupRoot/OptionButtons/btnSort_Chest" to="." method="_on_btn_sort_chest_pressed"]
-[connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferAll" to="." method="_on_btn_transfer_all_pressed"]
 [connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferLike" to="." method="_on_btn_transfer_like_pressed"]
+[connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferAll" to="." method="_on_btn_transfer_all_pressed"]
+[connection signal="pressed" from="PopupRoot/OptionButtons/btnSort_Inv" to="." method="_on_btn_sort_inv_pressed"]
 [connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferLike_toStrg" to="." method="_on_btn_transfer_like_to_strg_pressed"]
 [connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferAll_toStrg" to="." method="_on_btn_transfer_all_to_strg_pressed"]
