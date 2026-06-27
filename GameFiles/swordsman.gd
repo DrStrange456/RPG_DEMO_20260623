@@ -1,56 +1,73 @@
 extends CharacterBody2D
 
 @export var move_speed: float = 150.0
+@export var knockback_decay := 800.0
 
+
+@onready var currentFacingDir = Vector2.DOWN
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var state_machine: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
+@onready var animationState = animation_tree.get("parameters/playback")
 
-var input_direction: Vector2 = Vector2.ZERO
-var facing_direction: Vector2 = Vector2.DOWN
+var state = Enum.State.DEFAULT
+var direction: Vector2
+var last_direction: Vector2
+var can_move: bool = true
+
+var speed := 150
+var speed_bonus := 150
+var knockback_velocity: Vector2
+
+
 
 
 func _ready() -> void:
 	animation_tree.active = true
+	animation_player.active = true
 
 
-func _physics_process(_delta: float) -> void:
-	handle_input()
-	handle_movement()
-	update_animation()
+func _physics_process(delta: float) -> void:
+	match state:
+		Enum.State.DEFAULT:
+			if can_move:
+				get_basic_input(delta)
+				move_action(delta)
+				animate()
+	if direction:
+		last_direction = direction
 
 
-func handle_input() -> void:
-	input_direction = Input.get_vector(
-		"mapped_move_left",
-		"mapped_move_right",
-		"mapped_move_up",
-		"mapped_move_down"
+
+func move_action(delta):
+	animation_tree.advance(delta * 0.25)
+	direction = Input.get_vector("mapped_move_left", "mapped_move_right", "mapped_move_up", "mapped_move_down")
+	currentFacingDir = direction
+	
+	velocity = direction * (speed + speed_bonus)
+	
+	# Slowly reduce knockback
+	knockback_velocity = knockback_velocity.move_toward(
+		Vector2.ZERO,
+		knockback_decay * delta
 	)
 
-	if input_direction != Vector2.ZERO:
-		facing_direction = input_direction.normalized()
-
-
-func handle_movement() -> void:
-	velocity = input_direction * move_speed
+	velocity = velocity + knockback_velocity
 	move_and_slide()
 
+func get_basic_input(delta):
+	pass
 
-func update_animation() -> void:
-	var state: String = ""
-
-	# Determine direction priority (horizontal vs vertical)
-	if abs(facing_direction.x) > abs(facing_direction.y):
-		if facing_direction.x > 0:
-			state = "walk_right" if input_direction != Vector2.ZERO else "idle_right"
+func animate():
+	if direction:
+		animation_tree.set("parameters/Idle/blend_position", currentFacingDir)
+		animation_tree.set("parameters/Walk/blend_position", currentFacingDir)
+		animation_tree.set("parameters/Run/blend_position", currentFacingDir)
+		animation_tree.set("parameters/Swing/blend_position", currentFacingDir)
+		if Input.is_action_pressed("sprinting"):
+			animationState.travel("Run")
+			speed_bonus = 150
 		else:
-			state = "walk_left" if input_direction != Vector2.ZERO else "idle_left"
+			animationState.travel("Walk")
+			speed_bonus = 0
 	else:
-		if facing_direction.y > 0:
-			state = "walk_down" if input_direction != Vector2.ZERO else "idle_down"
-		else:
-			state = "walk_up" if input_direction != Vector2.ZERO else "idle_up"
-
-	# Only change state if needed
-	if state_machine.get_current_node() != state:
-		state_machine.travel(state)
+		animationState.travel('Idle')
