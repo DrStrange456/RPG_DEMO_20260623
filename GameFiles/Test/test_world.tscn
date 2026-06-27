@@ -1,0 +1,467 @@
+[gd_scene format=3 uid="uid://hkjti6o2x7bm"]
+
+[ext_resource type="Texture2D" uid="uid://dbdpxfbll1t3h" path="res://icon.svg" id="1_874eo"]
+[ext_resource type="Script" uid="uid://ckryi5vb5unqj" path="res://swordsman.gd" id="2_1h53d"]
+[ext_resource type="Texture2D" uid="uid://cvfacqaxd7jm4" path="res://assets/characters/craftpix-net-swordsman/Swordsman_lvl3/Parts/Swordsman_lvl3_Idle_body.png" id="3_epnw7"]
+[ext_resource type="Texture2D" uid="uid://bjv5sdj2617mv" path="res://assets/characters/craftpix-net-swordsman/Swordsman_lvl3/Parts/Swordsman_lvl3_Idle_head.png" id="4_1wf4a"]
+[ext_resource type="Texture2D" uid="uid://qsk076dqp6wd" path="res://assets/characters/craftpix-net-swordsman/Swordsman_lvl3/Parts/Swordsman_lvl3_Idle_shadow.png" id="5_6dvhc"]
+[ext_resource type="Texture2D" uid="uid://bcq7a1ldfw351" path="res://assets/characters/craftpix-net-swordsman/Swordsman_lvl3/Parts/Swordsman_lvl3_Idle_sword_back.png" id="6_5d3sk"]
+[ext_resource type="Texture2D" uid="uid://cc45d68je7ecl" path="res://assets/characters/craftpix-net-swordsman/Swordsman_lvl3/Parts/Swordsman_lvl3_Idle_sword.png" id="7_0urw5"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://4c85kg6ufemg" path="res://Test/new_animation_node_state_machine.tres" id="8_1h53d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ws5e"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_epnw7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_segments/body:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite_segments/body:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite_segments/body:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sprite_segments/head:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sprite_segments/head:vframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sprite_segments/head:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sprite_segments/shadow:hframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sprite_segments/shadow:vframes")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("sprite_segments/shadow:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("sprite_segments/sword_back:hframes")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("sprite_segments/sword_back:vframes")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("sprite_segments/sword_back:frame")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("sprite_segments/sword:hframes")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("sprite_segments/sword:vframes")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("sprite_segments/sword:frame")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1wf4a"]
+resource_name = "idle_down"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_segments/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite_segments/head:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite_segments/shadow:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sprite_segments/sword_back:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sprite_segments/sword:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sprite_segments/body:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sprite_segments/body:vframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sprite_segments/head:hframes")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("sprite_segments/head:vframes")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("sprite_segments/shadow:hframes")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("sprite_segments/shadow:vframes")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("sprite_segments/sword_back:hframes")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("sprite_segments/sword_back:vframes")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("sprite_segments/sword:hframes")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("sprite_segments/sword:vframes")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6dvhc"]
+_data = {
+&"RESET": SubResource("Animation_epnw7"),
+&"idle_down": SubResource("Animation_1wf4a")
+}
+
+[node name="test_world" type="Node2D" unique_id=1733384744]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1909160866]
+position = Vector2(0, -1)
+zoom = Vector2(3, 3)
+
+[node name="Layers" type="Node2D" parent="." unique_id=795452122]
+
+[node name="Icon" type="Sprite2D" parent="Layers" unique_id=1768725773]
+position = Vector2(-392, 241)
+scale = Vector2(0.265625, 0.2265625)
+texture = ExtResource("1_874eo")
+
+[node name="Icon2" type="Sprite2D" parent="Layers" unique_id=1174154093]
+position = Vector2(489, 53)
+scale = Vector2(0.265625, 0.2265625)
+texture = ExtResource("1_874eo")
+
+[node name="Icon3" type="Sprite2D" parent="Layers" unique_id=1433447657]
+position = Vector2(226, -277)
+scale = Vector2(0.265625, 0.2265625)
+texture = ExtResource("1_874eo")
+
+[node name="Icon4" type="Sprite2D" parent="Layers" unique_id=1958589964]
+position = Vector2(-148, -82)
+scale = Vector2(0.265625, 0.2265625)
+texture = ExtResource("1_874eo")
+
+[node name="Icon5" type="Sprite2D" parent="Layers" unique_id=702809440]
+position = Vector2(-541, -298)
+scale = Vector2(0.265625, 0.2265625)
+texture = ExtResource("1_874eo")
+
+[node name="swordsman" type="CharacterBody2D" parent="." unique_id=1997142498]
+script = ExtResource("2_1h53d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="swordsman" unique_id=2075559856]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_0ws5e")
+
+[node name="sprite_segments" type="Node2D" parent="swordsman" unique_id=365959684]
+
+[node name="body" type="Sprite2D" parent="swordsman/sprite_segments" unique_id=1182504883]
+texture = ExtResource("3_epnw7")
+hframes = 12
+vframes = 4
+
+[node name="head" type="Sprite2D" parent="swordsman/sprite_segments" unique_id=687210900]
+texture = ExtResource("4_1wf4a")
+hframes = 12
+vframes = 4
+
+[node name="shadow" type="Sprite2D" parent="swordsman/sprite_segments" unique_id=644677456]
+texture = ExtResource("5_6dvhc")
+hframes = 12
+vframes = 4
+
+[node name="sword_back" type="Sprite2D" parent="swordsman/sprite_segments" unique_id=1920411670]
+texture = ExtResource("6_5d3sk")
+hframes = 12
+vframes = 4
+
+[node name="sword" type="Sprite2D" parent="swordsman/sprite_segments" unique_id=1659101125]
+texture = ExtResource("7_0urw5")
+hframes = 12
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="swordsman" unique_id=672716551]
+libraries/ = SubResource("AnimationLibrary_6dvhc")
+
+[node name="AnimationTree" type="AnimationTree" parent="swordsman" unique_id=1599904848]
+active = false
+tree_root = ExtResource("8_1h53d")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Run/blend_position = Vector2(0, 0)
+parameters/Swing/blend_position = Vector2(0, 0)
+parameters/Walk/blend_position = Vector2(0, 0)
