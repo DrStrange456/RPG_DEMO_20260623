@@ -1492,7 +1492,7 @@ tracks/19/keys = {
 
 [sub_resource type="Animation" id="Animation_gjyn2"]
 resource_name = "walk_left"
-length = 0.5
+length = 0.6
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -1738,7 +1738,7 @@ tracks/19/keys = {
 
 [sub_resource type="Animation" id="Animation_llwct"]
 resource_name = "walk_right"
-length = 0.5
+length = 0.6
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -1928,7 +1928,7 @@ tracks/15/path = NodePath("sprite_segments/body:texture")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0.087104),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("3_1h53d")]
@@ -1940,7 +1940,7 @@ tracks/16/path = NodePath("sprite_segments/head:texture")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0.087104),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("4_epnw7")]
@@ -1952,7 +1952,7 @@ tracks/17/path = NodePath("sprite_segments/shadow:texture")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(0.087104),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("5_1wf4a")]
@@ -1964,7 +1964,7 @@ tracks/18/path = NodePath("sprite_segments/sword_back:texture")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(0.087104),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("6_6dvhc")]
@@ -1976,7 +1976,7 @@ tracks/19/path = NodePath("sprite_segments/sword:texture")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
-"times": PackedFloat32Array(0.087104),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("7_5d3sk")]
@@ -1984,7 +1984,7 @@ tracks/19/keys = {
 
 [sub_resource type="Animation" id="Animation_i6n3a"]
 resource_name = "walk_up"
-length = 0.5
+length = 0.6
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -2314,7 +2314,7 @@ libraries/ = SubResource("AnimationLibrary_6dvhc")
 [node name="AnimationTree" type="AnimationTree" parent="swordsman" unique_id=1599904848]
 tree_root = ExtResource("8_1h53d")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(-0.14986378, -0.6275511)
+parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 parameters/Swing/blend_position = Vector2(0, 0)
-parameters/Walk/blend_position = Vector2(0.051771164, 0.5816326)
+parameters/Walk/blend_position = Vector2(0, 0)
