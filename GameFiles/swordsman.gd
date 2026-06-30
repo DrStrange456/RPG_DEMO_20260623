@@ -2,25 +2,23 @@ extends CharacterBody2D
 
 @export var move_speed: float = 150.0
 @export var knockback_decay := 800.0
-@export var SWORD_SPEED_MULTIPLIER = 1.0
-
+@export var SWORD_SPEED_MULTIPLIER := 1.0
 
 @onready var currentFacingDir = Vector2.DOWN
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animationState = animation_tree.get("parameters/playback")
 
-
 var state = Enum.State.DEFAULT
+
 var direction: Vector2
 var last_direction: Vector2
-var can_move: bool = true
+var can_move := true
 
 var speed := 150
-var speed_bonus := 150
+var speed_bonus := 0
+
 var knockback_velocity: Vector2
-
-
 
 
 func _ready() -> void:
@@ -29,65 +27,102 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+
+	if can_move:
+		get_basic_input()
+		move_action(delta)
+
 	match state:
 		Enum.State.DEFAULT:
-			if can_move:
-				get_basic_input(delta)
-				move_action(delta)
-				animate()
+			animate()
+
 		Enum.State.SWORD:
-			animationState.travel('Swing')
 			sword_state(delta)
-	if direction:
+
+	if direction != Vector2.ZERO:
 		last_direction = direction
 
 
-
 func move_action(delta):
+
 	animation_tree.advance(delta * 0.25)
-	direction = Input.get_vector("mapped_move_left", "mapped_move_right", "mapped_move_up", "mapped_move_down")
-	currentFacingDir = direction
-	
+
+	direction = Input.get_vector(
+		"mapped_move_left",
+		"mapped_move_right",
+		"mapped_move_up",
+		"mapped_move_down"
+	)
+
+	if direction != Vector2.ZERO:
+		currentFacingDir = direction
+
+	if Input.is_action_pressed("sprinting"):
+		speed_bonus = 150
+	else:
+		speed_bonus = 0
+
 	velocity = direction * (speed + speed_bonus)
-	
-	# Slowly reduce knockback
+
 	knockback_velocity = knockback_velocity.move_toward(
 		Vector2.ZERO,
 		knockback_decay * delta
 	)
 
-	velocity = velocity + knockback_velocity
+	velocity += knockback_velocity
+
 	move_and_slide()
 
-func get_basic_input(delta):
-	animation_tree.advance(delta * 0.25)
+
+func get_basic_input():
+
 	if Input.is_action_just_pressed("alt_attack"):
 		_attempt_sword()
 
+
 func animate():
-	if direction:
-		animation_tree.set("parameters/Idle/blend_position", currentFacingDir)
-		animation_tree.set("parameters/Walk/blend_position", currentFacingDir)
-		animation_tree.set("parameters/Run/blend_position", currentFacingDir)
-		animation_tree.set("parameters/Swing/blend_position", currentFacingDir)
-		if Input.is_action_pressed("sprinting"):
-			animationState.travel("Run")
-			speed_bonus = 150
-		else:
-			animationState.travel("Walk")
-			speed_bonus = 0
+
+	animation_tree.set("parameters/Idle/blend_position", currentFacingDir)
+	animation_tree.set("parameters/Walk/blend_position", currentFacingDir)
+	animation_tree.set("parameters/Run/blend_position", currentFacingDir)
+	animation_tree.set("parameters/Swing/blend_position", currentFacingDir)
+
+	if direction == Vector2.ZERO:
+		animationState.travel("Idle")
+	elif Input.is_action_pressed("sprinting"):
+		animationState.travel("Run")
 	else:
-		animationState.travel('Idle')
+		animationState.travel("Walk")
 
-## - - - SWINGING - - -
+
+#----------------------------------------------------
+# Sword
+#----------------------------------------------------
+
 func sword_state(delta):
-	animation_tree.advance(delta * SWORD_SPEED_MULTIPLIER)
-	velocity = Vector2.ZERO
-	_init_attack_anim()   # Currently not used
-	await animation_player.animation_finished
 
-func _init_attack_anim()->void:
-#	Use this to setup other variables, such as swing speed
+	animation_tree.advance(delta * SWORD_SPEED_MULTIPLIER)
+
+	animation_tree.set(
+		"parameters/Swing/blend_position",
+		currentFacingDir
+	)
+
+	animationState.travel("Swing")
+
+
+func _attempt_sword():
+
+	if state == Enum.State.SWORD:
+		return
+
+	state = Enum.State.SWORD
+
+	_init_attack_anim()
+
+
+func _init_attack_anim() -> void:
+
 	match currentFacingDir:
 		Vector2.UP:
 			pass
@@ -98,11 +133,7 @@ func _init_attack_anim()->void:
 		Vector2.RIGHT:
 			pass
 
-func _attempt_sword():
-	state = Enum.State.SWORD
 
-func _attack_anim_done()->void:
-	# when animation frames advanced artificially, the player still waits for duration to end.
-	#  this can be used to signal when the frames have completed.  
-	#  Usage: has to be added as a method track in player.
+func _attack_anim_done():
+
 	state = Enum.State.DEFAULT
