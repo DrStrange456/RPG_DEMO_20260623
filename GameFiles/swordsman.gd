@@ -1,52 +1,83 @@
 extends CharacterBody2D
 
 @export var move_speed: float = 150.0
-@export var knockback_decay := 800.0
-@export var SWORD_SPEED_MULTIPLIER := 1.0
+@export var sprint_bonus: float = 150.0
+@export var knockback_decay: float = 800.0
 
-@onready var currentFacingDir = Vector2.DOWN
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var animation_tree: AnimationTree = $AnimationTree
-@onready var animationState = animation_tree.get("parameters/playback")
+enum State {
+	DEFAULT,
+	SWORD
+}
 
-var state = Enum.State.DEFAULT
+var state: State = State.DEFAULT
+var previous_state: State = State.DEFAULT
 
-var direction: Vector2
-var last_direction: Vector2
-var can_move := true
+var direction: Vector2 = Vector2.ZERO
+var last_direction: Vector2 = Vector2.DOWN
+var current_facing_dir: Vector2 = Vector2.DOWN
 
-var speed := 150
-var speed_bonus := 0
+var knockback_velocity: Vector2 = Vector2.ZERO
 
-var knockback_velocity: Vector2
-
+var animation_player: AnimationPlayer
+var animation_tree: AnimationTree
+var animation_state
 
 func _ready() -> void:
+	animation_player = $AnimationPlayer
+	animation_tree = $AnimationTree
+
 	animation_tree.active = true
 	animation_player.active = true
 
+	animation_state = animation_tree.get("parameters/playback")
+
 
 func _physics_process(delta: float) -> void:
-
-	if can_move:
-		get_basic_input()
-		move_action(delta)
+	_handle_state_transition()
 
 	match state:
-		Enum.State.DEFAULT:
-			animate()
+		State.DEFAULT:
+			_process_default_state(delta)
 
-		Enum.State.SWORD:
-			sword_state(delta)
+		State.SWORD:
+			_process_sword_state(delta)
 
-	if direction != Vector2.ZERO:
-		last_direction = direction
+	move_and_slide()
 
 
-func move_action(delta):
+# ----------------------------------------------------
+# STATE HANDLING
+# ----------------------------------------------------
 
-	animation_tree.advance(delta * 0.25)
+func _handle_state_transition() -> void:
+	if state != previous_state:
+		_on_state_enter(previous_state, state)
+		previous_state = state
 
+
+func _on_state_enter(_old_state: State, new_state: State) -> void:
+	match new_state:
+		State.SWORD:
+			# Lock facing direction at attack start
+			if direction != Vector2.ZERO:
+				current_facing_dir = direction
+			else:
+				current_facing_dir = last_direction
+
+			_play_sword_animation()
+
+
+# ----------------------------------------------------
+# DEFAULT STATE
+# ----------------------------------------------------
+
+func _process_default_state(delta: float) -> void:
+	get_input()
+	_move(delta)
+	_animate()
+
+
+func get_input() -> void:
 	direction = Input.get_vector(
 		"mapped_move_left",
 		"mapped_move_right",
@@ -55,85 +86,74 @@ func move_action(delta):
 	)
 
 	if direction != Vector2.ZERO:
-		currentFacingDir = direction
+		last_direction = direction
+		current_facing_dir = direction
+
+	if Input.is_action_just_pressed("alt_attack"):
+		_attempt_sword()
+
+
+func _move(delta: float) -> void:
+	var speed := move_speed
 
 	if Input.is_action_pressed("sprinting"):
-		speed_bonus = 150
-	else:
-		speed_bonus = 0
+		speed += sprint_bonus
 
-	velocity = direction * (speed + speed_bonus)
+	var input_velocity = direction * speed
 
 	knockback_velocity = knockback_velocity.move_toward(
 		Vector2.ZERO,
 		knockback_decay * delta
 	)
 
-	velocity += knockback_velocity
-
-	move_and_slide()
+	velocity = input_velocity + knockback_velocity
 
 
-func get_basic_input():
-
-	if Input.is_action_just_pressed("alt_attack"):
-		_attempt_sword()
-
-
-func animate():
-
-	animation_tree.set("parameters/Idle/blend_position", currentFacingDir)
-	animation_tree.set("parameters/Walk/blend_position", currentFacingDir)
-	animation_tree.set("parameters/Run/blend_position", currentFacingDir)
-	animation_tree.set("parameters/Swing/blend_position", currentFacingDir)
+func _animate() -> void:
+	animation_tree.set("parameters/Idle/blend_position", current_facing_dir)
+	animation_tree.set("parameters/Walk/blend_position", current_facing_dir)
+	animation_tree.set("parameters/Run/blend_position", current_facing_dir)
+	animation_tree.set("parameters/Swing/blend_position", current_facing_dir)
 
 	if direction == Vector2.ZERO:
-		animationState.travel("Idle")
+		animation_state.travel("Idle")
 	elif Input.is_action_pressed("sprinting"):
-		animationState.travel("Run")
+		animation_state.travel("Run")
 	else:
-		animationState.travel("Walk")
+		animation_state.travel("Walk")
 
 
-#----------------------------------------------------
-# Sword
-#----------------------------------------------------
+# ----------------------------------------------------
+# SWORD STATE
+# ----------------------------------------------------
 
-func sword_state(delta):
+func _process_sword_state(_delta: float) -> void:
+	# No movement input during attack (intentional lock)
+	#velocity = Vector2.ZERO + knockback_velocity
+	velocity = direction * move_speed + knockback_velocity
 
-	animation_tree.advance(delta * SWORD_SPEED_MULTIPLIER)
-
-	animation_tree.set(
-		"parameters/Swing/blend_position",
-		currentFacingDir
-	)
-
-	animationState.travel("Swing")
+	# Only direction affects animation blending
+	animation_tree.set("parameters/Swing/blend_position", current_facing_dir)
+	animation_tree.set("parameters/RunningSwing/blend_position", current_facing_dir)
 
 
-func _attempt_sword():
-
-	if state == Enum.State.SWORD:
+func _attempt_sword() -> void:
+	if state == State.SWORD:
 		return
 
-	state = Enum.State.SWORD
-
-	_init_attack_anim()
+	state = State.SWORD
 
 
-func _init_attack_anim() -> void:
-
-	match currentFacingDir:
-		Vector2.UP:
-			pass
-		Vector2.LEFT:
-			pass
-		Vector2.DOWN:
-			pass
-		Vector2.RIGHT:
-			pass
+func _play_sword_animation() -> void:
+	if Input.is_action_pressed("sprinting"):
+		animation_state.travel("RunningSwing")
+	else:
+		animation_state.travel("Swing")
 
 
-func _attack_anim_done():
+# ----------------------------------------------------
+# ANIMATION CALLBACK
+# ----------------------------------------------------
 
-	state = Enum.State.DEFAULT
+func _attack_anim_done() -> void:
+	state = State.DEFAULT

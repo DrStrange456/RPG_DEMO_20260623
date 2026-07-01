@@ -277,6 +277,7 @@ tracks/19/keys = {
 
 [sub_resource type="Animation" id="Animation_nlxfw"]
 resource_name = "RunningSwing_down"
+length = 0.8
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -517,10 +518,25 @@ tracks/19/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/20/type = "method"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath(".")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_attack_anim_done"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_b0blv"]
 resource_name = "RunningSwing_left"
+length = 0.8
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -761,10 +777,25 @@ tracks/19/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [8, 9, 10, 11, 12, 13, 14, 15]
+}
+tracks/20/type = "method"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath(".")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_attack_anim_done"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_f4jwq"]
 resource_name = "RunningSwing_right"
+length = 0.8
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1005,10 +1036,25 @@ tracks/19/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [16, 17, 18, 19, 20, 21, 22, 23]
+}
+tracks/20/type = "method"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath(".")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_attack_anim_done"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_2edi4"]
 resource_name = "RunningSwing_up"
+length = 0.8
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1249,6 +1295,20 @@ tracks/19/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [24, 25, 26, 27, 28, 29, 30, 31]
+}
+tracks/20/type = "method"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath(".")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_attack_anim_done"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_1wf4a"]
@@ -5268,7 +5328,7 @@ _data = {
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1909160866]
 position = Vector2(0, -1)
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="Layers" type="Node2D" parent="." unique_id=795452122]
 
