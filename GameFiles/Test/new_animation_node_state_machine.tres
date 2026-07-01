@@ -102,8 +102,6 @@ blend_point_3/name = &"3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_enyc6"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qoats"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qfoq3"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1aso5"]
@@ -111,8 +109,6 @@ blend_point_3/name = &"3"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xmyak"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_spovt"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2bw6e"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4qfu"]
 
@@ -131,5 +127,5 @@ states/Swing/node = SubResource("AnimationNodeBlendSpace2D_ym66v")
 states/Swing/position = Vector2(540.08, -19.039843)
 states/Walk/node = ExtResource("2_1aso5")
 states/Walk/position = Vector2(643, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ldh67"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_uxmtc"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ym66v"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_utk1y"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_dnocp"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_6pag1"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_mq78p"), "Idle", "Swing", SubResource("AnimationNodeStateMachineTransition_tju18"), "Swing", "Idle", SubResource("AnimationNodeStateMachineTransition_enyc6"), "Swing", "Walk", SubResource("AnimationNodeStateMachineTransition_qoats"), "Walk", "Swing", SubResource("AnimationNodeStateMachineTransition_qfoq3"), "Run", "RunningSwing", SubResource("AnimationNodeStateMachineTransition_1aso5"), "RunningSwing", "Run", SubResource("AnimationNodeStateMachineTransition_xmyak"), "Walk", "RunningSwing", SubResource("AnimationNodeStateMachineTransition_spovt"), "RunningSwing", "Walk", SubResource("AnimationNodeStateMachineTransition_2bw6e"), "Swing", "RunningSwing", SubResource("AnimationNodeStateMachineTransition_p4qfu"), "RunningSwing", "Swing", SubResource("AnimationNodeStateMachineTransition_nd4vj")]
-graph_offset = Vector2(85.77809, -60.41571)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ldh67"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_uxmtc"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ym66v"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_utk1y"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_dnocp"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_6pag1"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_mq78p"), "Idle", "Swing", SubResource("AnimationNodeStateMachineTransition_tju18"), "Swing", "Idle", SubResource("AnimationNodeStateMachineTransition_enyc6"), "Walk", "Swing", SubResource("AnimationNodeStateMachineTransition_qfoq3"), "Run", "RunningSwing", SubResource("AnimationNodeStateMachineTransition_1aso5"), "RunningSwing", "Run", SubResource("AnimationNodeStateMachineTransition_xmyak"), "Walk", "RunningSwing", SubResource("AnimationNodeStateMachineTransition_spovt"), "Swing", "RunningSwing", SubResource("AnimationNodeStateMachineTransition_p4qfu"), "RunningSwing", "Swing", SubResource("AnimationNodeStateMachineTransition_nd4vj")]
+graph_offset = Vector2(85.77809, -203.0128)
