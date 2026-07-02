@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died
+
 const EnemyDeathEffect = preload("res://assets/characters/Common/enemy_death_effect.tscn")
 
 @export_category("Custom Variables")
@@ -119,6 +121,7 @@ func dice_roll(target : int, out_of : int):
 
 
 func _on_stats_no_health():
+	died.emit()
 	queue_free() 
 	var enemyDeathEffect = EnemyDeathEffect.instantiate()
 	get_parent().add_child(enemyDeathEffect)

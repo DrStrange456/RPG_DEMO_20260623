@@ -119,9 +119,9 @@ func move_action(delta):
 
 func get_basic_input(delta):
 	animation_tree.advance(delta * 0.25)
-	if Input.is_action_just_pressed("alt_attack"):
+	if Input.is_action_just_pressed("button_cross"):
 		_attempt_sword()
-	if Input.is_action_just_released("button_cross"):
+	if Input.is_action_just_released("alt_attack"):
 		if state == Enum.State.DEFAULT:
 			if current_crop:
 				harvest_receiver.receive_crop(current_crop)
@@ -145,23 +145,6 @@ func animate():
 
 
 func update_interaction_target():
-	# This is for activating the E.  Not needed as it creates dependency.
-	
-	#if reticleComp.is_IA_colliding():
-		#var collider = reticleComp.IA().get_collider()
-#
-		## If you hit the Area2D, go up to the parent (Market)
-		#if collider is Area2D:
-			#var interactable = collider.get_parent()
-			#
-			#if interactable.has_method("interact"):
-				#current_interactable = interactable
-				#interactable.interact_enabled(self)
-				#return
-
-	# fallback if nothing valid hit
-	#current_interactable = null
-	#Events.emit_signal("hide_shop_icon")
 	pass
 
 func _attempt_hoe():
