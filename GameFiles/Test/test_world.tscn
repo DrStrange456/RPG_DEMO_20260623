@@ -3259,7 +3259,6 @@ position = Vector2(558, 329)
 [node name="WaveManager" parent="." unique_id=2027768831 instance=ExtResource("3_qvuqy")]
 spawn_points_path = NodePath("../SpawnPoints")
 enemy_container_path = NodePath("../EnemyContainer")
-ui_path = NodePath("../CanvasLayer")
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=651792990]
 
@@ -3309,10 +3308,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Time: 30"
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1055242229]
+[node name="WaveTimerBar" type="ProgressBar" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1055242229]
 layout_mode = 2
 step = 1.0
-value = 50.0
 show_percentage = false
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=2038738986]
@@ -3351,6 +3349,7 @@ scale = Vector2(0.265625, 0.2265625)
 texture = ExtResource("1_874eo")
 
 [node name="Layers2" type="Node2D" parent="." unique_id=605610689]
+visible = false
 
 [node name="TileMap_UnderGround" type="TileMapLayer" parent="Layers2" unique_id=76018304]
 position = Vector2(-413, 58)
