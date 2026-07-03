@@ -8,31 +8,30 @@ signal enemy_count_changed(count)
 signal timer_updated(time_left, duration)
 signal round_message(text)
 
-@export var spawn_points_path: NodePath
+@export var spawn_areas_path: NodePath
 @export var enemy_container_path: NodePath
+@export var spawn_delay := 0.25
 
-@onready var spawn_points: Node = get_node(spawn_points_path)
+@onready var spawn_areas: Node = get_node(spawn_areas_path)
 @onready var enemy_container: Node = get_node(enemy_container_path)
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var wave_timer: Timer = $WaveTimer
 @onready var next_wave_timer: Timer = $NextWaveTimer
 
-@export var spawn_delay := 0.25
 
 var spawn_queue: Array[PackedScene] = []
 
 var current_wave := -1
 var enemies_alive := 0
 
-# STATE FLAGS (kept but now strictly controlled)
 var wave_running := false
 var wave_active := false
 
 
 const WAVES = [
 	{
-		"time_limit": 5.0,
+		"time_limit":30.0,
 		"delay": 3.0,
 		"enemies": [
 			{"scene": preload("res://characters/bat/bat.tscn"), "count": 5},
@@ -70,15 +69,16 @@ func start():
 	_start_next_wave()
 
 
-# ------------------------
-# START WAVE
-# ------------------------
+# ---------------------------------------------------
+# WAVE START
+# ---------------------------------------------------
 func _start_next_wave():
 
 	current_wave += 1
 
 	if current_wave >= WAVES.size():
 		wave_running = false
+		wave_active = false
 		all_waves_completed.emit()
 		return
 
@@ -86,7 +86,6 @@ func _start_next_wave():
 
 	enemies_alive = 0
 
-	# FIX: consistent state start
 	wave_active = true
 	wave_running = true
 
@@ -99,9 +98,9 @@ func _start_next_wave():
 	wave_timer.start(wave.time_limit)
 
 
-# ------------------------
-# TIMER UPDATE
-# ------------------------
+# ---------------------------------------------------
+# TIMER UI UPDATE
+# ---------------------------------------------------
 func _process(_delta):
 
 	if not wave_running:
@@ -113,9 +112,9 @@ func _process(_delta):
 	)
 
 
-# ------------------------
-# SPAWN SYSTEM
-# ------------------------
+# ---------------------------------------------------
+# SPAWNING SYSTEM
+# ---------------------------------------------------
 func _spawn_wave(wave):
 
 	spawn_queue.clear()
@@ -147,13 +146,7 @@ func spawn_enemy(enemy_scene: PackedScene):
 
 	var enemy = enemy_scene.instantiate()
 
-	var markers := spawn_points.get_children()
-	if markers.is_empty():
-		push_error("WaveManager: No spawn points found!")
-		return
-
-	var marker: Marker2D = markers.pick_random()
-	enemy.global_position = marker.global_position
+	enemy.global_position = get_random_spawn_position()
 
 	enemy_container.add_child(enemy)
 
@@ -164,12 +157,11 @@ func spawn_enemy(enemy_scene: PackedScene):
 		enemy.died.connect(enemy_died)
 
 
-# ------------------------
+# ---------------------------------------------------
 # ENEMY DEATH
-# ------------------------
+# ---------------------------------------------------
 func enemy_died():
 
-	# HARD GUARD: prevents post-wave cleanup corruption
 	if not wave_active:
 		return
 
@@ -182,11 +174,11 @@ func enemy_died():
 		_finish_wave(false)
 
 
-# ------------------------
+# ---------------------------------------------------
 # WAVE END
-# ------------------------
+# ---------------------------------------------------
 func _on_wave_timeout():
-	_finish_wave(true) # failure
+	_finish_wave(true)
 
 
 func _finish_wave(failed := false):
@@ -194,7 +186,6 @@ func _finish_wave(failed := false):
 	if not wave_active:
 		return
 
-	# LOCK IMMEDIATELY to prevent late signals
 	wave_active = false
 	wave_running = false
 
@@ -206,19 +197,16 @@ func _finish_wave(failed := false):
 		enemies_alive = 0
 		enemy_count_changed.emit(0)
 
-	if failed:
-		round_message.emit("Wave Failed")
-	else:
-		round_message.emit("Victory!")
+	round_message.emit("Wave Failed" if failed else "Victory!")
 
 	wave_completed.emit(current_wave + 1)
 
 	next_wave_timer.start(WAVES[current_wave].delay)
 
 
-# ------------------------
+# ---------------------------------------------------
 # CLEANUP
-# ------------------------
+# ---------------------------------------------------
 func _kill_all_enemies():
 
 	var enemies = enemy_container.get_children()
@@ -229,3 +217,44 @@ func _kill_all_enemies():
 				e.die()
 			else:
 				e.queue_free()
+
+
+# ---------------------------------------------------
+# SPAWN AREA LOGIC
+# ---------------------------------------------------
+func get_random_spawn_position() -> Vector2:
+
+	var areas = spawn_areas.get_children()
+
+	if areas.is_empty():
+		push_error("No spawn areas found!")
+		return Vector2.ZERO
+
+	var area: Area2D = areas.pick_random()
+
+	var shape: CollisionShape2D = area.get_node("CollisionShape2D")
+
+	if shape.shape is RectangleShape2D:
+
+		var rect := shape.shape as RectangleShape2D
+		var half := rect.size * 0.5
+
+		var local_pos = Vector2(
+			randf_range(-half.x, half.x),
+			randf_range(-half.y, half.y)
+		)
+
+		return area.to_global(local_pos)
+
+	elif shape.shape is CircleShape2D:
+
+		var circle := shape.shape as CircleShape2D
+
+		var angle = randf() * TAU
+		var radius = sqrt(randf()) * circle.radius
+
+		var local_pos = Vector2.RIGHT.rotated(angle) * radius
+
+		return area.to_global(local_pos)
+
+	return area.global_position

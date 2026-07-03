@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://d057cdpboy6im" path="res://characters/female_farmer1/female_farmer1.tscn" id="2_u7dqb"]
 [ext_resource type="PackedScene" uid="uid://b4y4uu1wyq4dd" path="res://Test/wave_manager.tscn" id="3_qvuqy"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kghiy"]
+size = Vector2(116, 188)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3d6c0"]
 texture = ExtResource("2_451im")
 texture_region_size = Vector2i(32, 32)
@@ -3257,21 +3260,50 @@ script = ExtResource("1_jkqne")
 position = Vector2(558, 329)
 
 [node name="WaveManager" parent="." unique_id=2027768831 instance=ExtResource("3_qvuqy")]
-spawn_points_path = NodePath("../SpawnPoints")
+spawn_areas_path = NodePath("../SpawnPoints")
 enemy_container_path = NodePath("../EnemyContainer")
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=651792990]
 
-[node name="Marker2D" type="Marker2D" parent="SpawnPoints" unique_id=1436199555]
+[node name="Area2D" type="Area2D" parent="SpawnPoints" unique_id=602979427]
+position = Vector2(273, 142)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D" unique_id=606376775]
+position = Vector2(48, 84)
+shape = SubResource("RectangleShape2D_kghiy")
+
+[node name="Area2D2" type="Area2D" parent="SpawnPoints" unique_id=1680484195]
+position = Vector2(274, 319)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D2" unique_id=1599191793]
+position = Vector2(48, 110.5)
+shape = SubResource("RectangleShape2D_kghiy")
+
+[node name="Area2D3" type="Area2D" parent="SpawnPoints" unique_id=686780506]
+position = Vector2(810, 228)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D3" unique_id=1723967561]
+shape = SubResource("RectangleShape2D_kghiy")
+
+[node name="Area2D4" type="Area2D" parent="SpawnPoints" unique_id=696580921]
+position = Vector2(768, 321)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D4" unique_id=2064643475]
+position = Vector2(48, 110.5)
+shape = SubResource("RectangleShape2D_kghiy")
+
+[node name="SpawnPoints_old" type="Node2D" parent="." unique_id=49852852]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints_old" unique_id=514348471]
 position = Vector2(375, 180)
 
-[node name="Marker2D2" type="Marker2D" parent="SpawnPoints" unique_id=1136204774]
+[node name="Marker2D2" type="Marker2D" parent="SpawnPoints_old" unique_id=987274157]
 position = Vector2(477, 182)
 
-[node name="Marker2D3" type="Marker2D" parent="SpawnPoints" unique_id=1951121080]
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints_old" unique_id=1603172782]
 position = Vector2(607, 180)
 
-[node name="Marker2D4" type="Marker2D" parent="SpawnPoints" unique_id=1284229634]
+[node name="Marker2D4" type="Marker2D" parent="SpawnPoints_old" unique_id=50623668]
 position = Vector2(738, 176)
 
 [node name="EnemyContainer" type="Node2D" parent="." unique_id=1602150907]
