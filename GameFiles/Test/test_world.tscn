@@ -3257,6 +3257,10 @@ sources/0 = SubResource("TileSetAtlasSource_3d6c0")
 [node name="test_world" type="Node2D" unique_id=1733384744]
 script = ExtResource("1_jkqne")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1909160866]
+position = Vector2(562, 326)
+zoom = Vector2(1.5, 1.5)
+
 [node name="female_farmer1" parent="." unique_id=543434268 instance=ExtResource("2_u7dqb")]
 position = Vector2(558, 329)
 
@@ -3293,29 +3297,10 @@ position = Vector2(768, 321)
 position = Vector2(48, 110.5)
 shape = SubResource("RectangleShape2D_kghiy")
 
-[node name="SpawnPoints_old" type="Node2D" parent="." unique_id=49852852]
-
-[node name="Marker2D" type="Marker2D" parent="SpawnPoints_old" unique_id=514348471]
-position = Vector2(375, 180)
-
-[node name="Marker2D2" type="Marker2D" parent="SpawnPoints_old" unique_id=987274157]
-position = Vector2(477, 182)
-
-[node name="Marker2D3" type="Marker2D" parent="SpawnPoints_old" unique_id=1603172782]
-position = Vector2(607, 180)
-
-[node name="Marker2D4" type="Marker2D" parent="SpawnPoints_old" unique_id=50623668]
-position = Vector2(738, 176)
-
 [node name="EnemyContainer" type="Node2D" parent="." unique_id=1602150907]
 
-[node name="mud_man" parent="EnemyContainer" unique_id=516840309 node_paths=PackedStringArray("target") instance=ExtResource("4_874eo")]
-position = Vector2(389, 501)
-target = NodePath("../../female_farmer1")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1909160866]
-position = Vector2(562, 326)
-zoom = Vector2(1.5, 1.5)
+[node name="mud_man" parent="EnemyContainer" unique_id=516840309 instance=ExtResource("4_874eo")]
+position = Vector2(480, 371)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2059524805]
 script = ExtResource("2_qvuqy")
