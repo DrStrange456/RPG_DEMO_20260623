@@ -1,0 +1,175 @@
+[gd_scene load_steps=22 format=3 uid="uid://ooa22efg7flm"]
+
+[ext_resource type="Script" uid="uid://bcao4ltb4t0j1" path="res://Entities/Slime/Slime.gd" id="1_i5sbu"]
+[ext_resource type="Material" uid="uid://dkalwr5esmowg" path="res://Shaders/blink_anim_shader.tres" id="2_e274v"]
+[ext_resource type="Texture2D" uid="uid://c36id3gddnk7r" path="res://ArtAssets/Characters/Enemy_Slime/slime_sprite_sheet.png" id="3_r4c2w"]
+[ext_resource type="Script" uid="uid://blwepfcoacxp4" path="res://Entities/Slime/Hurtbox.gd" id="4_bbesl"]
+[ext_resource type="Script" uid="uid://njnspc0n5dbd" path="res://Entities/Common/PlayerDetectionZone.gd" id="5_8xty1"]
+[ext_resource type="Script" uid="uid://dkjthn5i84it8" path="res://Entities/Common/SoftCollision.gd" id="6_3vvjc"]
+[ext_resource type="Script" uid="uid://1qyjdnllmpw8" path="res://Entities/Common/WanderController.gd" id="7_kwfch"]
+[ext_resource type="PackedScene" uid="uid://c34e5vupe262j" path="res://Utilities/ValidationSquare.tscn" id="8_jctrw"]
+[ext_resource type="Script" uid="uid://kue2k0ns3n3k" path="res://Entities/Common/stats.gd" id="9_0bk64"]
+[ext_resource type="PackedScene" uid="uid://by2xix82kku0m" path="res://Components/damage_component.tscn" id="10_wjvcu"]
+[ext_resource type="PackedScene" uid="uid://cvlkpb7mgo7d0" path="res://Components/blink_animation_player_component.tscn" id="11_xc0e4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j0f1b"]
+radius = 7.07107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_08qxo"]
+radius = 18.2483
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_btchh"]
+radius = 18.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5cwl0"]
+radius = 62.0081
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xklkn"]
+radius = 18.25
+
+[sub_resource type="Animation" id="Animation_hua65"]
+resource_name = "Idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0]
+}
+
+[sub_resource type="Animation" id="Animation_u0lji"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4rnnm"]
+_data = {
+&"Idle": SubResource("Animation_hua65"),
+&"RESET": SubResource("Animation_u0lji")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fx2sf"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sxlc3"]
+states/Idle/node = SubResource("AnimationNodeAnimation_fx2sf")
+states/Idle/position = Vector2(451, 100)
+
+[node name="BigSlime" type="CharacterBody2D" groups=["enemy", "slime_big"]]
+collision_layer = 20
+collision_mask = 0
+script = ExtResource("1_i5sbu")
+
+[node name="WorldCollider" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_j0f1b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_e274v")
+position = Vector2(0, -5)
+scale = Vector2(3, 3)
+texture = ExtResource("3_r4c2w")
+hframes = 8
+
+[node name="Hurtbox" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, 9)
+collision_layer = 40
+collision_mask = 64
+script = ExtResource("4_bbesl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_08qxo")
+
+[node name="ShieldContactbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 8192
+collision_mask = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldContactbox"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_btchh")
+
+[node name="PlayerDetectionZone" type="Area2D" parent="."]
+visible = false
+position = Vector2(1, 8)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_8xty1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionZone"]
+position = Vector2(-1, -14)
+shape = SubResource("CircleShape2D_5cwl0")
+
+[node name="SoftCollision" type="Area2D" parent="."]
+visible = false
+collision_layer = 512
+collision_mask = 512
+script = ExtResource("6_3vvjc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_xklkn")
+
+[node name="WanderController" type="Node2D" parent="."]
+visible = false
+script = ExtResource("7_kwfch")
+
+[node name="Timer" type="Timer" parent="WanderController"]
+one_shot = true
+autostart = true
+
+[node name="ValSqr1" parent="." instance=ExtResource("8_jctrw")]
+visible = false
+position = Vector2(-8, 0)
+
+[node name="ValSqr2" parent="." instance=ExtResource("8_jctrw")]
+visible = false
+position = Vector2(8, 0)
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("9_0bk64")
+max_health = 20
+
+[node name="Damage_Component" parent="." instance=ExtResource("10_wjvcu")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4rnnm")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4rnnm")
+}
+tree_root = SubResource("AnimationNodeStateMachine_sxlc3")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="BlinkAnimationPlayer" parent="." instance=ExtResource("11_xc0e4")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="ShieldContactbox" to="." method="_on_shield_contactbox_area_entered"]
+[connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_body_exited"]
+[connection signal="timeout" from="WanderController/Timer" to="WanderController" method="_on_timer_timeout"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

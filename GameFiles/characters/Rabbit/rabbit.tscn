@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqd41nr70frqg"]
+
+[ext_resource type="Texture2D" uid="uid://c748oidxw854y" path="res://ArtAssets/Critters/rabbit.png" id="1_fc62v"]
+[ext_resource type="Script" uid="uid://dl3alcorxcw" path="res://Entities/Rabbit/rabbit.gd" id="1_ntc2m"]
+[ext_resource type="Script" uid="uid://njnspc0n5dbd" path="res://Entities/Common/PlayerDetectionZone.gd" id="3_aai7r"]
+[ext_resource type="Script" uid="uid://1qyjdnllmpw8" path="res://Entities/Common/WanderController.gd" id="4_3syde"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fwpho"]
+radius = 4.12311
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nwg8y"]
+radius = 138.004
+
+[node name="rabbit" type="CharacterBody2D"]
+script = ExtResource("1_ntc2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 3)
+scale = Vector2(0.506944, 0.472222)
+texture = ExtResource("1_fc62v")
+hframes = 4
+vframes = 8
+frame = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_fwpho")
+
+[node name="PlayerDetectionZone" type="Area2D" parent="."]
+position = Vector2(1, 8)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_aai7r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionZone"]
+visible = false
+position = Vector2(-1, -8)
+shape = SubResource("CircleShape2D_nwg8y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="WanderController" type="Node2D" parent="."]
+visible = false
+script = ExtResource("4_3syde")
+
+[node name="Timer" type="Timer" parent="WanderController"]
+one_shot = true
+autostart = true
+
+[node name="txtDIR" type="Label" parent="."]
+visible = false
+offset_left = 31.0
+offset_top = -32.0
+offset_right = 113.0
+offset_bottom = -9.0
+
+[node name="txtSTATE" type="Label" parent="."]
+visible = false
+offset_left = 31.0
+offset_top = -7.0
+offset_right = 113.0
+offset_bottom = 16.0
+
+[connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_body_exited"]
+[connection signal="timeout" from="WanderController/Timer" to="WanderController" method="_on_timer_timeout"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://crmm7v0o1okda"]
+
+[ext_resource type="Script" uid="uid://doirudthvbqdq" path="res://Entities/Rabbit_Hole/rabbit_hole.gd" id="1_1hgwt"]
+[ext_resource type="Texture2D" uid="uid://br1c0k5cb4dkg" path="res://ArtAssets/TileSets/Photo 2.png" id="1_2i2va"]
+[ext_resource type="PackedScene" uid="uid://cqd41nr70frqg" path="res://Entities/Rabbit/rabbit.tscn" id="2_t4d7l"]
+
+[node name="rabbit_hole" type="Node2D"]
+script = ExtResource("1_1hgwt")
+
+[node name="bush" type="Sprite2D" parent="."]
+position = Vector2(194, 142)
+texture = ExtResource("1_2i2va")
+region_enabled = true
+region_rect = Rect2(115.417, 210.894, 26.5725, 25.1362)
+
+[node name="rabbit" parent="." instance=ExtResource("2_t4d7l")]
+position = Vector2(109, 164)
+scale = Vector2(0.5, 0.5)
+FRICTION = 100
+WANDER_TARGET_RANGE = 8
