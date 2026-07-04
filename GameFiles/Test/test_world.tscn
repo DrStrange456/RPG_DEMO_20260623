@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dc2ojcgj0opkx" path="res://Test/canvas_layer.gd" id="2_qvuqy"]
 [ext_resource type="PackedScene" uid="uid://d057cdpboy6im" path="res://characters/female_farmer1/female_farmer1.tscn" id="2_u7dqb"]
 [ext_resource type="PackedScene" uid="uid://b4y4uu1wyq4dd" path="res://Test/wave_manager.tscn" id="3_qvuqy"]
+[ext_resource type="PackedScene" uid="uid://cmyn6xbsc3ihm" path="res://characters/mud_man/mud_man.tscn" id="4_874eo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kghiy"]
 size = Vector2(116, 188)
@@ -3307,6 +3308,10 @@ position = Vector2(607, 180)
 position = Vector2(738, 176)
 
 [node name="EnemyContainer" type="Node2D" parent="." unique_id=1602150907]
+
+[node name="mud_man" parent="EnemyContainer" unique_id=516840309 node_paths=PackedStringArray("target") instance=ExtResource("4_874eo")]
+position = Vector2(389, 501)
+target = NodePath("../../female_farmer1")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1909160866]
 position = Vector2(562, 326)

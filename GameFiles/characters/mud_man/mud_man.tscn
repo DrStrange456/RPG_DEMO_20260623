@@ -1,10 +1,114 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmyn6xbsc3ihm"]
+[gd_scene format=3 uid="uid://cmyn6xbsc3ihm"]
 
-[ext_resource type="Texture2D" uid="uid://cwa1hgeydnee3" path="res://ArtAssets/SDV/mud_monster.png" id="1_v1vsr"]
+[ext_resource type="Texture2D" uid="uid://c6ib6wkb0k38b" path="res://assets/characters/mud_man/mud_monster.png" id="1_v1vsr"]
+
+[sub_resource type="GDScript" id="GDScript_d8s5b"]
+script/source = "extends CharacterBody2D
+
+@export var move_speed: float = 60.0
+@export var detection_range: float = 200.0
+@export var target: Node2D
+
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var detect_area: Area2D = $Area2D
+
+enum State {
+	SLEEP,
+	ARISING,
+	CHASE
+}
+
+var state: State = State.SLEEP
+var player: Node2D = null
+
+
+func _ready():
+	detect_area.body_entered.connect(_on_body_entered)
+	detect_area.body_exited.connect(_on_body_exited)
+	
+	anim.animation_finished.connect(_on_animation_player_animation_finished)
+	
+	# start asleep visually
+	#anim.play(\"idle_sleep\")
+	#anim.play(\"RESET\")
+
+
+# -----------------------
+# STATE MACHINE UPDATE
+# -----------------------
+func _physics_process(delta):
+	match state:
+		State.SLEEP:
+			velocity = Vector2.ZERO
+
+		State.ARISING:
+			velocity = Vector2.ZERO
+
+		State.CHASE:
+			_chase_player(delta)
+
+	move_and_slide()
+
+
+# -----------------------
+# CHASE LOGIC
+# -----------------------
+func _chase_player(_delta):
+	if player == null:
+		state = State.SLEEP
+		return
+
+	var dir: Vector2 = (player.global_position - global_position).normalized()
+	velocity = dir * move_speed
+
+	_play_walk_animation(dir)
+
+
+# -----------------------
+# ANIMATION CONTROL
+# -----------------------
+func _play_walk_animation(dir: Vector2):
+	if abs(dir.x) > abs(dir.y):
+		if dir.x > 0:
+			anim.play(\"walk_right\")
+		else:
+			anim.play(\"walk_left\")
+	else:
+		if dir.y > 0:
+			anim.play(\"walk_down\")
+		else:
+			anim.play(\"walk_up\")
+
+
+# -----------------------
+# DETECTION
+# -----------------------
+func _on_body_entered(body):
+	if body.is_in_group(\"player\"):
+		player = body
+		
+		if state == State.SLEEP:
+			state = State.ARISING
+			anim.play(\"arise\")
+
+
+func _on_body_exited(body):
+	if body == player:
+		player = null
+		state = State.SLEEP
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == \"arise\":
+		state = State.CHASE
+"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yacxf"]
 radius = 5.0
 height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kghiy"]
+radius = 200.0
 
 [sub_resource type="Animation" id="Animation_6cgu5"]
 length = 0.001
@@ -23,8 +127,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_and2o"]
 resource_name = "arise"
-length = 1.6
-step = 0.2
+length = 0.8
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -32,16 +136,30 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [16, 17, 18, 19, 20, 21, 22, 23]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [null],
+"method": &"_on_animation_player_animation_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_n3561"]
 resource_name = "walk_down"
 length = 0.8
-loop_mode = 2
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -59,7 +177,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_c5co0"]
 resource_name = "walk_left"
 length = 0.8
-loop_mode = 2
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -77,7 +195,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_8jp4x"]
 resource_name = "walk_right"
 length = 0.8
-loop_mode = 2
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -95,7 +213,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_14p7t"]
 resource_name = "walk_up"
 length = 0.8
-loop_mode = 2
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -120,20 +238,25 @@ _data = {
 &"walk_up": SubResource("Animation_14p7t")
 }
 
-[node name="mud_man" type="CharacterBody2D"]
+[node name="mud_man" type="CharacterBody2D" unique_id=516840309]
+script = SubResource("GDScript_d8s5b")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1031790749]
 position = Vector2(0, -7)
 texture = ExtResource("1_v1vsr")
 hframes = 4
 vframes = 6
 frame = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=779098133]
+visible = false
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_yacxf")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_b417h")
-}
+[node name="Area2D" type="Area2D" parent="." unique_id=1645944598]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=800909770]
+shape = SubResource("CircleShape2D_kghiy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1431523042]
+libraries/ = SubResource("AnimationLibrary_b417h")
