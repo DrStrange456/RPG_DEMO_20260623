@@ -72,7 +72,7 @@ radius = 67.0
 collision_layer = 24
 collision_mask = 4
 script = ExtResource("1_p1f2h")
-KNOCKBACK_FORCE = 300
+KNOCKBACK_FORCE = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1330958409]
 sprite_frames = SubResource("SpriteFrames_l7bpj")
