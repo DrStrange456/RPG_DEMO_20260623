@@ -3311,7 +3311,7 @@ tile_set = SubResource("TileSet_jkqne")
 metadata/_edit_lock_ = true
 
 [node name="female_farmer1" parent="." unique_id=543434268 instance=ExtResource("2_u7dqb")]
-position = Vector2(558, 329)
+position = Vector2(726, 333)
 
 [node name="WaveManager" parent="." unique_id=2027768831 instance=ExtResource("3_qvuqy")]
 spawn_areas_path = NodePath("../SpawnPoints")
@@ -3320,36 +3320,40 @@ enemy_container_path = NodePath("../EnemyContainer")
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=651792990]
 
 [node name="Area2D" type="Area2D" parent="SpawnPoints" unique_id=602979427]
-position = Vector2(273, 142)
+position = Vector2(201, 219)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D" unique_id=606376775]
 position = Vector2(48, 84)
 shape = SubResource("RectangleShape2D_kghiy")
+metadata/_edit_lock_ = true
 
 [node name="Area2D2" type="Area2D" parent="SpawnPoints" unique_id=1680484195]
-position = Vector2(274, 319)
+position = Vector2(212, 211)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D2" unique_id=1599191793]
 position = Vector2(48, 110.5)
 shape = SubResource("RectangleShape2D_kghiy")
+metadata/_edit_lock_ = true
 
 [node name="Area2D3" type="Area2D" parent="SpawnPoints" unique_id=686780506]
-position = Vector2(810, 228)
+position = Vector2(276, 336)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D3" unique_id=1723967561]
 shape = SubResource("RectangleShape2D_kghiy")
+metadata/_edit_lock_ = true
 
 [node name="Area2D4" type="Area2D" parent="SpawnPoints" unique_id=696580921]
-position = Vector2(768, 321)
+position = Vector2(236, 246)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D4" unique_id=2064643475]
 position = Vector2(48, 110.5)
 shape = SubResource("RectangleShape2D_kghiy")
+metadata/_edit_lock_ = true
 
 [node name="EnemyContainer" type="Node2D" parent="." unique_id=1602150907]
 
 [node name="mud_man" parent="EnemyContainer" unique_id=516840309 instance=ExtResource("4_874eo")]
-position = Vector2(480, 371)
+position = Vector2(208, 514)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2059524805]
 script = ExtResource("2_qvuqy")
