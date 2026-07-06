@@ -869,7 +869,7 @@ script = ExtResource("3_enyc6")
 visible = false
 z_index = -1
 rotation = -1.1780972
-polygon = PackedVector2Array(0, 0, -27.170528, -65.59545, -49.01535, -29.487225, -45.270103, 18.751492, -14.032639, 52.355377, 26.40516, 63.747696)
+polygon = PackedVector2Array(0, 0, 3.9900036, -68.761024, -27.170528, -65.59545, -61.698288, -33.975292, -68.722565, 14.394731, -57.62474, 41.187233, -21.292347, 66.18636, 26.40516, 63.747696, 51.442757, 45.80002)
 
 [node name="weapon" type="Sprite2D" parent="Components/Weapon_Hit_Box" unique_id=67349676]
 visible = false
