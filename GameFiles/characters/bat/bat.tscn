@@ -106,7 +106,7 @@ script = ExtResource("6_ngejy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision" unique_id=793787655]
 shape = SubResource("CircleShape2D_tk6yk")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=515234590]
+[node name="Hitbox" type="Area2D" parent="." unique_id=515234590 groups=["enemy"]]
 visible = false
 collision_layer = 8
 collision_mask = 0

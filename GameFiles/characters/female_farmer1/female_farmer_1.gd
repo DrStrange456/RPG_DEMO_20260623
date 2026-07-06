@@ -276,7 +276,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	
 	CURRENT_HEALTH -= 1
 	damage_component.entity_is_hit(area)
-	var enemy: CharacterBody2D = area.get_parent()
+	#var enemy: CharacterBody2D = area.get_parent()
+	var enemy: Node2D = area.get_parent()
 	apply_knockback(enemy.global_position, 300)
 	start_invincibility()
 func apply_knockback(from_position: Vector2, force: float):

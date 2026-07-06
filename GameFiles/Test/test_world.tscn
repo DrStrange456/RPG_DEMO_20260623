@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d057cdpboy6im" path="res://characters/female_farmer1/female_farmer1.tscn" id="2_u7dqb"]
 [ext_resource type="PackedScene" uid="uid://b4y4uu1wyq4dd" path="res://Test/wave_manager.tscn" id="3_qvuqy"]
 [ext_resource type="PackedScene" uid="uid://cmyn6xbsc3ihm" path="res://characters/mud_man/mud_man.tscn" id="4_874eo"]
+[ext_resource type="PackedScene" uid="uid://7wr7y06ddii6" path="res://characters/bat/bat.tscn" id="7_1h53d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3d6c0"]
 texture = ExtResource("2_451im")
@@ -3354,6 +3355,26 @@ metadata/_edit_lock_ = true
 
 [node name="mud_man" parent="EnemyContainer" unique_id=516840309 instance=ExtResource("4_874eo")]
 position = Vector2(208, 514)
+
+[node name="bat" parent="EnemyContainer" unique_id=145084458 instance=ExtResource("7_1h53d")]
+position = Vector2(503, 338)
+KNOCKBACK_FORCE = 100
+
+[node name="bat2" parent="EnemyContainer" unique_id=1834980311 instance=ExtResource("7_1h53d")]
+position = Vector2(486, 444)
+KNOCKBACK_FORCE = 100
+
+[node name="bat3" parent="EnemyContainer" unique_id=1067123589 instance=ExtResource("7_1h53d")]
+position = Vector2(536, 469)
+KNOCKBACK_FORCE = 100
+
+[node name="bat4" parent="EnemyContainer" unique_id=1305797816 instance=ExtResource("7_1h53d")]
+position = Vector2(393, 328)
+KNOCKBACK_FORCE = 100
+
+[node name="bat5" parent="EnemyContainer" unique_id=1862122614 instance=ExtResource("7_1h53d")]
+position = Vector2(393, 328)
+KNOCKBACK_FORCE = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2059524805]
 script = ExtResource("2_qvuqy")
