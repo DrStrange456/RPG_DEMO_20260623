@@ -16,6 +16,7 @@ var pos
 var speed := 150
 var speed_bonus := 150
 
+@onready var weapon_hit_box: Area2D = $Components/Weapon_Hit_Box
 
 var knockback_velocity: Vector2
 @export var knockback_decay := 800.0
@@ -50,6 +51,9 @@ var is_invincible := false
 @export var invincibility_duration := 2.0
 
 func _ready() -> void:
+	weapon_hit_box.monitoring = false
+	weapon_hit_box.monitorable = false
+	
 	animation_tree.active = true
 	animation_player.active = true
 	reticleComp.visible = true
@@ -176,6 +180,11 @@ func seed_state(_delta):
 func sword_state(delta):
 	animation_tree.advance(delta * SWORD_SPEED_MULTIPLIER)
 	velocity = Vector2.ZERO
+	
+	# turn hitbox ON
+	weapon_hit_box.monitoring = true
+	weapon_hit_box.monitorable = true
+	
 	_init_attack_anim()   # Currently not used
 	await animation_player.animation_finished
 
@@ -199,6 +208,9 @@ func _attack_anim_done()->void:
 	#  Usage: has to be added as a method track in player.
 	#weapon.texture = null
 	state = Enum.State.DEFAULT
+	
+	weapon_hit_box.monitoring = false
+	weapon_hit_box.monitorable = false
 
 
 

@@ -42,8 +42,8 @@ const WAVES = [
 		"time_limit": 60.0,
 		"delay": 3.0,
 		"enemies": [
-			{"scene": preload("res://characters/bat/bat.tscn"), "count": 8},
-			{"scene": preload("res://characters/bat/bat.tscn"), "count": 2},
+			{"scene": preload("res://characters/bat/bat.tscn"), "count": 30},
+			{"scene": preload("res://characters/bat/bat.tscn"), "count": 20},
 		]
 	},
 	#{
