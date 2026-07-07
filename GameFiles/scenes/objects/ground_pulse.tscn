@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://daoimltun6vnf"]
+
+[sub_resource type="GDScript" id="GDScript_s7fdd"]
+script/source = "extends Area2D
+
+@export var speed := 450.0
+@export var damage := 20
+
+var direction := Vector2.RIGHT
+
+func _ready():
+	body_entered.connect(_on_body_entered)
+	area_entered.connect(_on_area_entered)
+
+func _physics_process(delta):
+	position += direction * speed * delta
+	#print(position)
+
+func _on_body_entered(body):
+	# Hit a wall or rock
+	queue_free()
+
+func _on_area_entered(area):
+	# Hit an enemy hurtbox
+	if area.has_method(\"take_damage\"):
+		area.take_damage(damage)
+
+	queue_free()
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7h1s5"]
+radius = 3.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xdk8s"]
+load_path = "res://.godot/imported/Rocks.png-329faec01994177f9758c34471e0cb93.ctex"
+
+[node name="GroundPulse" type="Area2D" unique_id=2121746863]
+script = SubResource("GDScript_s7fdd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1617781332]
+shape = SubResource("CircleShape2D_7h1s5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=257748311]
+texture = SubResource("CompressedTexture2D_xdk8s")
+region_enabled = true
+region_rect = Rect2(37, 167, 6, 4)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1658012765]

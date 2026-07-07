@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c48qotv2msfup" path="res://assets/characters/farmer_female1/Farmer_Young_Female.png" id="1_iifkd"]
 [ext_resource type="Script" uid="uid://vs33tko1a3yr" path="res://characters/female_farmer1/female_farmer_1.gd" id="1_ygsxb"]
+[ext_resource type="PackedScene" uid="uid://daoimltun6vnf" path="res://scenes/objects/ground_pulse.tscn" id="2_utk1y"]
 [ext_resource type="Script" uid="uid://tk47tw4s33mt" path="res://characters/female_farmer1/weapon_hit_box.gd" id="3_enyc6"]
 [ext_resource type="Texture2D" uid="uid://c6hxcn5qf32ew" path="res://assets/Items/Weapons/sword.png" id="3_tju18"]
 [ext_resource type="PackedScene" uid="uid://pqmkej5kc7fm" path="res://components/reticle_component.tscn" id="3_uxmtc"]
@@ -839,6 +840,7 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_ygsxb")
 SWORD_SPEED_MULTIPLIER = 3.0
+ground_pulse_scene = ExtResource("2_utk1y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1689967668]
 visible = false

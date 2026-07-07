@@ -6,8 +6,7 @@
 [ext_resource type="Script" uid="uid://dc2ojcgj0opkx" path="res://Test/canvas_layer.gd" id="2_qvuqy"]
 [ext_resource type="PackedScene" uid="uid://d057cdpboy6im" path="res://characters/female_farmer1/female_farmer1.tscn" id="2_u7dqb"]
 [ext_resource type="PackedScene" uid="uid://b4y4uu1wyq4dd" path="res://Test/wave_manager.tscn" id="3_qvuqy"]
-[ext_resource type="PackedScene" uid="uid://cmyn6xbsc3ihm" path="res://characters/mud_man/mud_man.tscn" id="4_874eo"]
-[ext_resource type="PackedScene" uid="uid://7wr7y06ddii6" path="res://characters/bat/bat.tscn" id="7_1h53d"]
+[ext_resource type="PackedScene" uid="uid://hav20xcwuu1k" path="res://scenes/objects/rock.tscn" id="6_874eo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3d6c0"]
 texture = ExtResource("2_451im")
@@ -3262,6 +3261,10 @@ script = ExtResource("1_jkqne")
 position = Vector2(562, 326)
 zoom = Vector2(1.5, 1.5)
 
+[node name="Camera2D2" type="Camera2D" parent="." unique_id=2097999021]
+position = Vector2(562, 274)
+zoom = Vector2(1.5, 1.5)
+
 [node name="Layers" type="Node2D" parent="." unique_id=795452122]
 visible = false
 
@@ -3313,6 +3316,10 @@ metadata/_edit_lock_ = true
 
 [node name="female_farmer1" parent="." unique_id=543434268 instance=ExtResource("2_u7dqb")]
 position = Vector2(726, 333)
+MAX_HEALTH = null
+CURRENT_HEALTH = null
+knockback_decay = null
+invincibility_duration = null
 
 [node name="WaveManager" parent="." unique_id=2027768831 instance=ExtResource("3_qvuqy")]
 spawn_areas_path = NodePath("../SpawnPoints")
@@ -3321,7 +3328,7 @@ enemy_container_path = NodePath("../EnemyContainer")
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=651792990]
 
 [node name="Area2D" type="Area2D" parent="SpawnPoints" unique_id=602979427]
-position = Vector2(201, 219)
+position = Vector2(-172, 213)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D" unique_id=606376775]
 position = Vector2(48, 84)
@@ -3329,7 +3336,7 @@ shape = SubResource("RectangleShape2D_kghiy")
 metadata/_edit_lock_ = true
 
 [node name="Area2D2" type="Area2D" parent="SpawnPoints" unique_id=1680484195]
-position = Vector2(212, 211)
+position = Vector2(-161, 205)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D2" unique_id=1599191793]
 position = Vector2(48, 110.5)
@@ -3337,14 +3344,14 @@ shape = SubResource("RectangleShape2D_kghiy")
 metadata/_edit_lock_ = true
 
 [node name="Area2D3" type="Area2D" parent="SpawnPoints" unique_id=686780506]
-position = Vector2(276, 336)
+position = Vector2(-97, 330)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D3" unique_id=1723967561]
 shape = SubResource("RectangleShape2D_kghiy")
 metadata/_edit_lock_ = true
 
 [node name="Area2D4" type="Area2D" parent="SpawnPoints" unique_id=696580921]
-position = Vector2(236, 246)
+position = Vector2(-137, 240)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/Area2D4" unique_id=2064643475]
 position = Vector2(48, 110.5)
@@ -3353,28 +3360,77 @@ metadata/_edit_lock_ = true
 
 [node name="EnemyContainer" type="Node2D" parent="." unique_id=1602150907]
 
-[node name="mud_man" parent="EnemyContainer" unique_id=516840309 instance=ExtResource("4_874eo")]
-position = Vector2(208, 514)
+[node name="rock" parent="EnemyContainer" unique_id=1776728779 instance=ExtResource("6_874eo")]
+position = Vector2(619.5, 323)
 
-[node name="bat" parent="EnemyContainer" unique_id=145084458 instance=ExtResource("7_1h53d")]
-position = Vector2(503, 338)
-KNOCKBACK_FORCE = 100
+[node name="rock2" parent="EnemyContainer" unique_id=179255516 instance=ExtResource("6_874eo")]
+position = Vector2(619.5, 357)
 
-[node name="bat2" parent="EnemyContainer" unique_id=1834980311 instance=ExtResource("7_1h53d")]
-position = Vector2(486, 444)
-KNOCKBACK_FORCE = 100
+[node name="rock3" parent="EnemyContainer" unique_id=1430428652 instance=ExtResource("6_874eo")]
+position = Vector2(619.5, 340)
 
-[node name="bat3" parent="EnemyContainer" unique_id=1067123589 instance=ExtResource("7_1h53d")]
-position = Vector2(536, 469)
-KNOCKBACK_FORCE = 100
+[node name="rock4" parent="EnemyContainer" unique_id=1892433692 instance=ExtResource("6_874eo")]
+position = Vector2(599, 323)
 
-[node name="bat4" parent="EnemyContainer" unique_id=1305797816 instance=ExtResource("7_1h53d")]
-position = Vector2(393, 328)
-KNOCKBACK_FORCE = 100
+[node name="rock5" parent="EnemyContainer" unique_id=449475448 instance=ExtResource("6_874eo")]
+position = Vector2(599, 357)
 
-[node name="bat5" parent="EnemyContainer" unique_id=1862122614 instance=ExtResource("7_1h53d")]
-position = Vector2(393, 328)
-KNOCKBACK_FORCE = 100
+[node name="rock6" parent="EnemyContainer" unique_id=240835655 instance=ExtResource("6_874eo")]
+position = Vector2(599, 340)
+
+[node name="rock7" parent="EnemyContainer" unique_id=83677634 instance=ExtResource("6_874eo")]
+position = Vector2(577.5, 323)
+
+[node name="rock8" parent="EnemyContainer" unique_id=230115406 instance=ExtResource("6_874eo")]
+position = Vector2(577.5, 357)
+
+[node name="rock9" parent="EnemyContainer" unique_id=514258527 instance=ExtResource("6_874eo")]
+position = Vector2(577.5, 340)
+
+[node name="rock10" parent="EnemyContainer" unique_id=2104104227 instance=ExtResource("6_874eo")]
+position = Vector2(557, 323)
+
+[node name="rock11" parent="EnemyContainer" unique_id=401794512 instance=ExtResource("6_874eo")]
+position = Vector2(557, 357)
+
+[node name="rock12" parent="EnemyContainer" unique_id=240761864 instance=ExtResource("6_874eo")]
+position = Vector2(557, 340)
+
+[node name="rock13" parent="EnemyContainer" unique_id=944602936 instance=ExtResource("6_874eo")]
+position = Vector2(619.5, 271)
+
+[node name="rock14" parent="EnemyContainer" unique_id=995881456 instance=ExtResource("6_874eo")]
+position = Vector2(619.5, 305)
+
+[node name="rock15" parent="EnemyContainer" unique_id=968583117 instance=ExtResource("6_874eo")]
+position = Vector2(619.5, 288)
+
+[node name="rock16" parent="EnemyContainer" unique_id=671440843 instance=ExtResource("6_874eo")]
+position = Vector2(599, 271)
+
+[node name="rock17" parent="EnemyContainer" unique_id=868864685 instance=ExtResource("6_874eo")]
+position = Vector2(599, 305)
+
+[node name="rock18" parent="EnemyContainer" unique_id=424962353 instance=ExtResource("6_874eo")]
+position = Vector2(599, 288)
+
+[node name="rock19" parent="EnemyContainer" unique_id=1769772908 instance=ExtResource("6_874eo")]
+position = Vector2(577.5, 271)
+
+[node name="rock20" parent="EnemyContainer" unique_id=511525603 instance=ExtResource("6_874eo")]
+position = Vector2(577.5, 305)
+
+[node name="rock21" parent="EnemyContainer" unique_id=1281557912 instance=ExtResource("6_874eo")]
+position = Vector2(577.5, 288)
+
+[node name="rock22" parent="EnemyContainer" unique_id=238224423 instance=ExtResource("6_874eo")]
+position = Vector2(557, 271)
+
+[node name="rock23" parent="EnemyContainer" unique_id=828068639 instance=ExtResource("6_874eo")]
+position = Vector2(557, 305)
+
+[node name="rock24" parent="EnemyContainer" unique_id=643888183 instance=ExtResource("6_874eo")]
+position = Vector2(557, 288)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2059524805]
 script = ExtResource("2_qvuqy")

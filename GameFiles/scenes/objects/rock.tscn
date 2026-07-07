@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://hav20xcwuu1k"]
+
+[ext_resource type="Texture2D" uid="uid://ctcumtnt7oamm" path="res://assets/AAA-TileSets/Rocks.png" id="1_2dker"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kghiy"]
+radius = 8.0
+
+[node name="rock" type="StaticBody2D" unique_id=1776728779]
+collision_layer = 524288
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2106977081]
+shape = SubResource("CircleShape2D_kghiy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=71934387]
+texture = ExtResource("1_2dker")
+region_enabled = true
+region_rect = Rect2(176, 17, 16, 14)

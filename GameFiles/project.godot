@@ -137,6 +137,7 @@ open_pause={
 2d_physics/layer_5="enemy hit"
 2d_physics/layer_6="player hurt"
 2d_physics/layer_7="enemy hurt"
+2d_physics/layer_20="rock hit"
 
 [physics]
 

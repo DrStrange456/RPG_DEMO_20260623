@@ -28,10 +28,8 @@ var knockback_velocity: Vector2
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animationState = animation_tree.get("parameters/playback")
 
-
 @onready var dirt = _get_Handle_Node("Plantable")
 @onready var soil_hoed = _get_Handle_Node("hoed")
-
 
 var hoe =        _loadAbility("hoe") as Hoe_Ability
 var seeding =    _loadAbility("seeding") as Seed_Sowing_Ability
@@ -49,6 +47,8 @@ var current_crop = null
 
 var is_invincible := false
 @export var invincibility_duration := 2.0
+
+@export var ground_pulse_scene : PackedScene
 
 func _ready() -> void:
 	weapon_hit_box.monitoring = false
@@ -184,6 +184,8 @@ func sword_state(delta):
 	# turn hitbox ON
 	weapon_hit_box.monitoring = true
 	weapon_hit_box.monitorable = true
+	
+	shoot_fireball()
 	
 	_init_attack_anim()   # Currently not used
 	await animation_player.animation_finished
@@ -363,6 +365,20 @@ func is_hit_location_valid(tm: TileMap, hitLoc: Vector2)->bool:
 		tmp_pos_id = tm.get_cell_atlas_coords(0,tm.local_to_map(hitLoc)) 
 		return (tmp_pos_id[1] > -1)
 	return false
+
+
+func shoot_fireball():
+	#print("Shooting fireball")
+	#print(ground_pulse_scene)
+	#print(ground_pulse_scene.global_position)
+	
+	var fireball = ground_pulse_scene.instantiate()
+	get_tree().current_scene.add_child(fireball)
+	fireball.global_position = global_position
+	fireball.direction = currentFacingDir
+	fireball.rotation = currentFacingDir.angle()
+
+
 
 
 
