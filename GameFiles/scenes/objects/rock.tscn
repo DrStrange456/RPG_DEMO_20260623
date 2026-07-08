@@ -2,12 +2,55 @@
 
 [ext_resource type="Texture2D" uid="uid://ctcumtnt7oamm" path="res://assets/AAA-TileSets/Rocks.png" id="1_2dker"]
 
+[sub_resource type="GDScript" id="GDScript_7h1s5"]
+script/source = "extends StaticBody2D
+
+@export_category(\"Rock Stats\")
+@export var max_health: int = 50
+
+var current_health: int
+
+
+func _ready():
+	current_health = max_health
+
+
+func take_damage(amount: int):
+	current_health -= amount
+	
+	shake()
+	
+	if current_health <= 0:
+		destroy()
+
+
+func destroy():
+	print(\"Rock destroyed\")
+	queue_free()
+
+func shake():
+	var tween = create_tween()
+	tween.tween_property(
+		self,
+		\"position:x\",
+		position.x + 3,
+		0.05
+	)
+	tween.tween_property(
+		self,
+		\"position:x\",
+		position.x,
+		0.05
+	)
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_kghiy"]
 radius = 8.0
 
 [node name="rock" type="StaticBody2D" unique_id=1776728779]
 collision_layer = 524288
 collision_mask = 0
+script = SubResource("GDScript_7h1s5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2106977081]
 shape = SubResource("CircleShape2D_kghiy")

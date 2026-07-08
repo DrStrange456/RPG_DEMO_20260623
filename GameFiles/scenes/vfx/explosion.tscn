@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bvj2cf3dtyjsr"]
+
+[sub_resource type="GDScript" id="GDScript_kghiy"]
+script/source = "extends Area2D
+
+@export var damage := 20
+@export var lifetime := 0.15
+
+var hit_bodies := []
+
+
+func _ready():
+	body_entered.connect(_on_body_entered)
+
+	# Wait one physics frame so collision monitoring is ready
+	await get_tree().physics_frame
+
+	for body in get_overlapping_bodies():
+		deal_damage(body)
+
+	# Remove explosion after lifetime
+	await get_tree().create_timer(lifetime).timeout
+	queue_free()
+
+
+func _on_body_entered(body):
+	deal_damage(body)
+
+
+func deal_damage(body):
+	if body in hit_bodies:
+		return
+
+	hit_bodies.append(body)
+
+	if body.has_method(\"take_damage\"):
+		body.take_damage(damage)
+
+
+#@export var damage := 20
+#
+#func _ready():
+	#body_entered.connect(_on_body_entered)
+#
+	## Damage anything already inside when created
+	#for body in get_overlapping_bodies():
+		#deal_damage(body)
+#
+#
+#func _on_body_entered(body):
+	#deal_damage(body)
+#
+#
+#func deal_damage(body):
+	#if body.has_method(\"take_damage\"):
+		#body.take_damage(damage)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kghiy"]
+radius = 30.0
+
+[node name="explosion" type="Area2D" unique_id=1493555097]
+collision_layer = 0
+collision_mask = 524288
+script = SubResource("GDScript_kghiy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1215822181]
+shape = SubResource("CircleShape2D_kghiy")

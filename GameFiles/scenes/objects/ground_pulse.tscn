@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://daoimltun6vnf"]
 
+[ext_resource type="PackedScene" uid="uid://bvj2cf3dtyjsr" path="res://scenes/vfx/explosion.tscn" id="1_xdk8s"]
+
 [sub_resource type="GDScript" id="GDScript_s7fdd"]
 script/source = "extends Area2D
 
 @export var speed := 450.0
 @export var damage := 20
+@export var explosion_scene: PackedScene
 
 var direction := Vector2.RIGHT
+
+func set_direction(new_direction: Vector2):
+	direction = new_direction.normalized()
+	#print(\"Fireball received direction:\", direction)
 
 func _ready():
 	body_entered.connect(_on_body_entered)
@@ -14,11 +21,17 @@ func _ready():
 
 func _physics_process(delta):
 	position += direction * speed * delta
-	#print(position)
 
 func _on_body_entered(body):
-	# Hit a wall or rock
-	queue_free()
+	if body.has_method(\"take_damage\"):
+		
+		# If you just want one damage point
+		body.take_damage(damage)
+		
+		# or if you want AOE damage
+		#call_deferred(\"spawn_explosion\")
+		
+		queue_free()
 
 func _on_area_entered(area):
 	# Hit an enemy hurtbox
@@ -29,6 +42,17 @@ func _on_area_entered(area):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
+
+func spawn_explosion():
+
+	if explosion_scene:
+		var explosion = explosion_scene.instantiate()
+		explosion.global_position = global_position
+		
+		get_tree().current_scene.call_deferred(
+			\"add_child\",
+			explosion
+		)
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7h1s5"]
@@ -38,7 +62,10 @@ radius = 3.0
 load_path = "res://.godot/imported/Rocks.png-329faec01994177f9758c34471e0cb93.ctex"
 
 [node name="GroundPulse" type="Area2D" unique_id=2121746863]
+collision_layer = 0
+collision_mask = 524288
 script = SubResource("GDScript_s7fdd")
+explosion_scene = ExtResource("1_xdk8s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1617781332]
 shape = SubResource("CircleShape2D_7h1s5")
@@ -49,3 +76,5 @@ region_enabled = true
 region_rect = Rect2(37, 167, 6, 4)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1658012765]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

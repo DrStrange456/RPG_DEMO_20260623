@@ -39,7 +39,7 @@ var listPlantedLocations: Array = crop_list_array
 
 var state = Enum.State.DEFAULT
 
-var direction: Vector2
+var direction: Vector2 = Vector2.DOWN
 var last_direction: Vector2
 var can_move: bool = true
 var current_interactable
@@ -62,6 +62,8 @@ func _ready() -> void:
 	print("Time to playable: ",
 		Time.get_ticks_msec() - StartupTimer.launch_time,
 		" ms")
+	
+	print("Shooting with:", currentFacingDir)
 
 func _process(_delta: float) -> void:
 	update_interaction_target()
@@ -98,9 +100,18 @@ func _physics_process(delta: float) -> void:
 
 func move_action(delta):
 	animation_tree.advance(delta * 0.25)
-	direction = Input.get_vector("mapped_move_left", "mapped_move_right", "mapped_move_up", "mapped_move_down")
-	currentFacingDir = direction
-	match direction:
+	
+	direction = Input.get_vector(
+		"mapped_move_left",
+		"mapped_move_right",
+		"mapped_move_up",
+		"mapped_move_down"
+	)
+
+	if direction != Vector2.ZERO:
+		currentFacingDir = direction.normalized()
+	
+	match currentFacingDir:
 		Vector2.UP:
 			reticleComp.setReticle_FacingDir("up")
 		Vector2.RIGHT:
@@ -372,9 +383,14 @@ func shoot_fireball():
 	#print(ground_pulse_scene)
 	#print(ground_pulse_scene.global_position)
 	
+	var spawn_distance := 28.0
+	
 	var fireball = ground_pulse_scene.instantiate()
 	get_tree().current_scene.add_child(fireball)
-	fireball.global_position = global_position
+	
+	fireball.global_position = global_position + currentFacingDir.normalized() * spawn_distance
+	fireball.set_direction(currentFacingDir)
+	
 	fireball.direction = currentFacingDir
 	fireball.rotation = currentFacingDir.angle()
 
