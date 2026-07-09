@@ -17,6 +17,7 @@ var speed := 150
 var speed_bonus := 150
 
 @onready var weapon_hit_box: Area2D = $Components/Weapon_Hit_Box
+@onready var pulse: GroundPulse_Component = $Components/GroundPulse_Component
 
 var knockback_velocity: Vector2
 @export var knockback_decay := 800.0
@@ -33,6 +34,8 @@ var knockback_velocity: Vector2
 
 var hoe =        _loadAbility("hoe") as Hoe_Ability
 var seeding =    _loadAbility("seeding") as Seed_Sowing_Ability
+
+
 
 var crop_list_array = []
 var listPlantedLocations: Array = crop_list_array
@@ -196,7 +199,8 @@ func sword_state(delta):
 	weapon_hit_box.monitoring = true
 	weapon_hit_box.monitorable = true
 	
-	shoot_fireball()
+	#shoot_fireball()
+	pulse.cast(currentFacingDir)
 	
 	_init_attack_anim()   # Currently not used
 	await animation_player.animation_finished
@@ -379,18 +383,11 @@ func is_hit_location_valid(tm: TileMap, hitLoc: Vector2)->bool:
 
 
 func shoot_fireball():
-	#print("Shooting fireball")
-	#print(ground_pulse_scene)
-	#print(ground_pulse_scene.global_position)
-	
 	var spawn_distance := 28.0
-	
 	var fireball = ground_pulse_scene.instantiate()
 	get_tree().current_scene.add_child(fireball)
-	
 	fireball.global_position = global_position + currentFacingDir.normalized() * spawn_distance
 	fireball.set_direction(currentFacingDir)
-	
 	fireball.direction = currentFacingDir
 	fireball.rotation = currentFacingDir.angle()
 

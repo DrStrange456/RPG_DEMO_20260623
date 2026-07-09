@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://vkuwwgtps1ph"]
+
+[ext_resource type="Script" uid="uid://div83ippohbgi" path="res://components/fireball_component.gd" id="1_624n3"]
+
+[node name="GroundPulse_Component" type="Node2D" unique_id=632032734]
+script = ExtResource("1_624n3")
