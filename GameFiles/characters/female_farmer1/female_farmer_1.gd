@@ -382,14 +382,14 @@ func is_hit_location_valid(tm: TileMap, hitLoc: Vector2)->bool:
 	return false
 
 
-func shoot_fireball():
-	var spawn_distance := 28.0
-	var fireball = ground_pulse_scene.instantiate()
-	get_tree().current_scene.add_child(fireball)
-	fireball.global_position = global_position + currentFacingDir.normalized() * spawn_distance
-	fireball.set_direction(currentFacingDir)
-	fireball.direction = currentFacingDir
-	fireball.rotation = currentFacingDir.angle()
+#func shoot_fireball():
+	#var spawn_distance := 28.0
+	#var fireball = ground_pulse_scene.instantiate()
+	#get_tree().current_scene.add_child(fireball)
+	#fireball.global_position = global_position + currentFacingDir.normalized() * spawn_distance
+	#fireball.set_direction(currentFacingDir)
+	#fireball.direction = currentFacingDir
+	#fireball.rotation = currentFacingDir.angle()
 
 
 
