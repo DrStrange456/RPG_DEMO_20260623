@@ -887,7 +887,8 @@ visible = false
 visible = false
 
 [node name="GroundPulse_Component" parent="Components" unique_id=632032734 instance=ExtResource("9_dnocp")]
-cooldown = 0.01
+projectile_scene = ExtResource("2_utk1y")
+cooldown = 1.0
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=2041995713]
 active = false

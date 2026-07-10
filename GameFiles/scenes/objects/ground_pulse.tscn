@@ -65,6 +65,7 @@ load_path = "res://.godot/imported/Rocks.png-329faec01994177f9758c34471e0cb93.ct
 collision_layer = 0
 collision_mask = 524288
 script = SubResource("GDScript_s7fdd")
+damage = 45
 explosion_scene = ExtResource("1_xdk8s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1617781332]
