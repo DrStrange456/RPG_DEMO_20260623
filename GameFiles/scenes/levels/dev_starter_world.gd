@@ -8,11 +8,13 @@ extends Node2D
 #@onready var btn_item: Button = $UI/btnITEM
 
 @onready var female_farmer_1: CharacterBody2D = $World/Objects/female_farmer1
+@onready var select_attack: Button = $UI/HUD/Node2D/selectATTACK
 
 
 
 
-#func _ready() -> void:
+func _ready() -> void:
+	select_attack.grab_focus()
 	#Events.connect("hide_buttons_and_tod", Callable(_hide_ui))
 	#Events.connect("show_buttons_and_tod", Callable(_show_ui))
 

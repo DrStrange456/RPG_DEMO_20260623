@@ -2,14 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://d057cdpboy6im" path="res://characters/female_farmer1/female_farmer1.tscn" id="1_iswvf"]
 [ext_resource type="Script" uid="uid://omrcmajpcgdp" path="res://scenes/levels/dev_starter_world.gd" id="1_wa1is"]
+[ext_resource type="Texture2D" uid="uid://vuvecp6phrhq" path="res://assets/icons/firesword.png" id="2_6lsie"]
+[ext_resource type="Texture2D" uid="uid://doh4x4l0an27y" path="res://assets/icons/hoe.png" id="3_ialmi"]
 [ext_resource type="PackedScene" uid="uid://bdu5fash6e1gm" path="res://scenes/objects/player_house.tscn" id="3_ibmid"]
 [ext_resource type="Texture2D" uid="uid://d3p4m5ch3sonw" path="res://assets/AAA-TileSets/Craftland/Craftland Terrain/32x32/CL_MainLev.png" id="3_kpaqn"]
 [ext_resource type="PackedScene" uid="uid://bedigkxthgwn4" path="res://scenes/UI/time_of_day_ui.tscn" id="3_wa1is"]
+[ext_resource type="Texture2D" uid="uid://byevwe77nv8a7" path="res://assets/plants/icons/pumpkin.png" id="4_kcg0s"]
+[ext_resource type="Texture2D" uid="uid://dxwlpocot6fhd" path="res://assets/plants/icons/straw.png" id="5_6lsie"]
 [ext_resource type="Texture2D" uid="uid://bsmvgrg8cnvlm" path="res://assets/Items/Weapons/sword_lv2.png" id="5_q502d"]
 [ext_resource type="PackedScene" uid="uid://dsk1yqfu1rouu" path="res://Test/Inventory.tscn" id="6_4fb74"]
 [ext_resource type="Texture2D" uid="uid://bqfr3d1jskt6c" path="res://assets/Items/Tools/axe_lv1.png" id="6_cxtfx"]
+[ext_resource type="Texture2D" uid="uid://deud8m5ps87c2" path="res://assets/icons/axe_lv1.png" id="6_eiiqc"]
 [ext_resource type="PackedScene" uid="uid://24ichay8ppfd" path="res://scenes/levels/new_general_store.tscn" id="7_00lgd"]
 [ext_resource type="Texture2D" uid="uid://cg4pwmht6unge" path="res://assets/icons/seeds_carrot.png" id="7_4fb74"]
+[ext_resource type="Texture2D" uid="uid://wk8qvqb6srop" path="res://assets/icons/pick.png" id="7_mfxfj"]
 [ext_resource type="PackedScene" uid="uid://bqp6d0hamxsxv" path="res://scenes/UI/pause_ui.tscn" id="8_32xvi"]
 [ext_resource type="PackedScene" uid="uid://ckohoujmbd77p" path="res://Inventory/StorageUI/StorageUI_Sm.tscn" id="9_penqq"]
 [ext_resource type="PackedScene" uid="uid://my2eogdfe71c" path="res://Inventory/StorageUI/StorageUI_Lrg.tscn" id="10_nfebl"]
@@ -3272,6 +3278,65 @@ script = ExtResource("1_wa1is")
 
 [node name="HUD" type="Node2D" parent="UI" unique_id=260367078]
 
+[node name="Node2D" type="Control" parent="UI/HUD" unique_id=1153663465]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="selectATTACK" type="Button" parent="UI/HUD/Node2D" unique_id=1837830564]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 138.0
+offset_right = 53.0
+offset_bottom = 178.0
+icon = ExtResource("2_6lsie")
+
+[node name="selectHOE" type="Button" parent="UI/HUD/Node2D" unique_id=185634065]
+self_modulate = Color(2.201223, 2.201223, 2.201223, 1)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 185.8
+offset_right = 53.0
+offset_bottom = 225.8
+icon = ExtResource("3_ialmi")
+
+[node name="selectPLANT" type="Button" parent="UI/HUD/Node2D" unique_id=520153646]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 329.2
+offset_right = 52.0
+offset_bottom = 364.2
+icon = ExtResource("4_kcg0s")
+icon_alignment = 1
+expand_icon = true
+
+[node name="selectHARVEST" type="Button" parent="UI/HUD/Node2D" unique_id=585706850]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 372.0
+offset_right = 52.0
+offset_bottom = 408.0
+icon = ExtResource("5_6lsie")
+icon_alignment = 1
+expand_icon = true
+
+[node name="selectCHOP" type="Button" parent="UI/HUD/Node2D" unique_id=420277328]
+self_modulate = Color(1.4643909, 1.4643909, 1.4643909, 1)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 233.6
+offset_right = 53.0
+offset_bottom = 273.6
+icon = ExtResource("6_eiiqc")
+
+[node name="selectPICK" type="Button" parent="UI/HUD/Node2D" unique_id=318742723]
+self_modulate = Color(1.6095817, 1.6095817, 1.6095817, 1)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 281.4
+offset_right = 53.0
+offset_bottom = 321.4
+icon = ExtResource("7_mfxfj")
+
 [node name="btnWEAPON" type="Button" parent="UI/HUD" unique_id=1089754095]
 custom_minimum_size = Vector2(40, 40)
 offset_left = 64.0
@@ -3444,15 +3509,19 @@ flicker_speed = 3.318
 
 [node name="bat" parent="World/Enemies" unique_id=145084458 instance=ExtResource("10_q502d")]
 position = Vector2(1313, 627)
+KNOCKBACK_FORCE = 100
 
 [node name="bat2" parent="World/Enemies" unique_id=306164911 instance=ExtResource("10_q502d")]
 position = Vector2(1385, 473)
+KNOCKBACK_FORCE = 100
 
 [node name="bat3" parent="World/Enemies" unique_id=1121141817 instance=ExtResource("10_q502d")]
 position = Vector2(1148, 594)
+KNOCKBACK_FORCE = 100
 
 [node name="bat4" parent="World/Enemies" unique_id=186448685 instance=ExtResource("10_q502d")]
 position = Vector2(1293, 412)
+KNOCKBACK_FORCE = 100
 
 [node name="Crops" type="Node2D" parent="World" unique_id=1544415318]
 
