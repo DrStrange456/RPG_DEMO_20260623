@@ -3,12 +3,18 @@ extends popup_ui
 @onready var inventory_container_ui: GridContainer = $PopupRoot/InventorySlotContainer
 @onready var small_container: TestContainer = $PopupRoot/SmallContainer
 @onready var test_container: TestContainer = $PopupRoot/SmallContainer
-#@onready var large_container: TestContainerLarge = $LargeContainer
 
 
 var inventory : Array[OptiInventorySlot] = []
 
-
+var slot_contents: Dictionary = {
+		0: ["res://resources/crop_carrot.tres", 51, true],
+		1: ["res://resources/crop_tomato.tres", 52, true],
+		2: ["res://resources/seeds_strawberry.tres", 53, true],
+		3: ["res://resources/seeds_turnip.tres", 54, true],
+		4: [null, 0, true],
+		5: [null, 0, true],
+}
 
 
 func initialize():

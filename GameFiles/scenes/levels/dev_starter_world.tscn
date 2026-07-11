@@ -28,6 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://ha26rhnl07n" path="res://assets/misc/player_can_plant_here.png" id="19_mfxfj"]
 [ext_resource type="Texture2D" uid="uid://b0o78bl2yg7fx" path="res://assets/misc/dirt_paths.png" id="20_vqsjl"]
 [ext_resource type="PackedScene" uid="uid://dnr1orx43cgci" path="res://scenes/objects/static_tree_medium.tscn" id="24_ialmi"]
+[ext_resource type="PackedScene" uid="uid://dbxpeimdhh4j6" path="res://scenes/objects/grass.tscn" id="27_vqsjl"]
+[ext_resource type="PackedScene" uid="uid://dl45jv4exe6i6" path="res://assets/Landscape/rock_nodes_lvl_1.tscn" id="28_gc2y0"]
+[ext_resource type="PackedScene" uid="uid://hav20xcwuu1k" path="res://scenes/objects/rock.tscn" id="28_mfxfj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0n0ph"]
 texture = ExtResource("3_kpaqn")
@@ -3574,6 +3577,7 @@ script = ExtResource("1_wa1is")
 [node name="UI" type="CanvasLayer" parent="." unique_id=190749311]
 
 [node name="HUD" type="Node2D" parent="UI" unique_id=260367078]
+visible = false
 
 [node name="tool_selector" type="Control" parent="UI/HUD" unique_id=1153663465]
 layout_mode = 3
@@ -3767,7 +3771,7 @@ tile_set = SubResource("TileSet_chvwi")
 [node name="Storage_Bin" type="Node2D" parent="World" unique_id=1626639135]
 
 [node name="chest_small" parent="World/Storage_Bin" unique_id=1869348280 instance=ExtResource("11_4fb74")]
-position = Vector2(1281, 58)
+position = Vector2(660, 58)
 
 [node name="chest_large" parent="World/Storage_Bin" unique_id=1534628734 instance=ExtResource("17_gh451")]
 position = Vector2(1113, 312)
@@ -3777,7 +3781,7 @@ y_sort_enabled = true
 
 [node name="female_farmer1" parent="World/Objects" unique_id=543434268 instance=ExtResource("1_iswvf")]
 y_sort_enabled = true
-position = Vector2(576, 82)
+position = Vector2(1490, 51)
 
 [node name="Camera2D" type="Camera2D" parent="World/Objects/female_farmer1" unique_id=465719586]
 zoom = Vector2(2, 2)
@@ -3823,9 +3827,67 @@ position = Vector2(1525, -51)
 [node name="static_tree_medium7" parent="World/Objects/TreesAndBushes" unique_id=653532129 instance=ExtResource("24_ialmi")]
 position = Vector2(1624, -11)
 
-[node name="Lights" type="Node2D" parent="World/Objects" unique_id=1031448209]
+[node name="_Grass" type="Node2D" parent="World/Objects" unique_id=1763093049]
 
-[node name="Torch" parent="World/Objects/Lights" unique_id=1172075036 instance=ExtResource("17_spa7a")]
+[node name="Grass" parent="World/Objects/_Grass" unique_id=2097157904 instance=ExtResource("27_vqsjl")]
+position = Vector2(1584, 149)
+
+[node name="Grass2" parent="World/Objects/_Grass" unique_id=376251200 instance=ExtResource("27_vqsjl")]
+position = Vector2(1610, 168)
+
+[node name="Grass7" parent="World/Objects/_Grass" unique_id=455697064 instance=ExtResource("27_vqsjl")]
+position = Vector2(1592, 196)
+
+[node name="Grass8" parent="World/Objects/_Grass" unique_id=2104761534 instance=ExtResource("27_vqsjl")]
+position = Vector2(1626, 178)
+
+[node name="Grass9" parent="World/Objects/_Grass" unique_id=1851777476 instance=ExtResource("27_vqsjl")]
+position = Vector2(1494, 179)
+
+[node name="Grass3" parent="World/Objects/_Grass" unique_id=887501539 instance=ExtResource("27_vqsjl")]
+position = Vector2(1565, 205)
+
+[node name="Grass4" parent="World/Objects/_Grass" unique_id=523001932 instance=ExtResource("27_vqsjl")]
+position = Vector2(1506, 168)
+
+[node name="Grass5" parent="World/Objects/_Grass" unique_id=2075227110 instance=ExtResource("27_vqsjl")]
+position = Vector2(1519, 195)
+
+[node name="Grass6" parent="World/Objects/_Grass" unique_id=300885050 instance=ExtResource("27_vqsjl")]
+position = Vector2(1484, 203)
+
+[node name="_Rocks" type="Node2D" parent="World/Objects" unique_id=155471668]
+
+[node name="RockNodes_Lvl_1" parent="World/Objects/_Rocks" unique_id=1988782626 instance=ExtResource("28_gc2y0")]
+position = Vector2(1389, 43)
+
+[node name="RockNodes_Lvl_2" parent="World/Objects/_Rocks" unique_id=1850478317 instance=ExtResource("28_gc2y0")]
+position = Vector2(1388, 62)
+
+[node name="RockNodes_Lvl_3" parent="World/Objects/_Rocks" unique_id=1387582332 instance=ExtResource("28_gc2y0")]
+position = Vector2(1362, 52)
+
+[node name="rock" parent="World/Objects/_Rocks" unique_id=1776728779 instance=ExtResource("28_mfxfj")]
+position = Vector2(1313.5, 186)
+
+[node name="rock2" parent="World/Objects/_Rocks" unique_id=554592132 instance=ExtResource("28_mfxfj")]
+position = Vector2(1313.5, 220)
+
+[node name="rock3" parent="World/Objects/_Rocks" unique_id=1003675926 instance=ExtResource("28_mfxfj")]
+position = Vector2(1313.5, 203)
+
+[node name="rock4" parent="World/Objects/_Rocks" unique_id=1961893534 instance=ExtResource("28_mfxfj")]
+position = Vector2(1293, 186)
+
+[node name="rock5" parent="World/Objects/_Rocks" unique_id=1320357136 instance=ExtResource("28_mfxfj")]
+position = Vector2(1293, 220)
+
+[node name="rock6" parent="World/Objects/_Rocks" unique_id=1523177545 instance=ExtResource("28_mfxfj")]
+position = Vector2(1293, 203)
+
+[node name="_Lights" type="Node2D" parent="World/Objects" unique_id=1031448209]
+
+[node name="Torch" parent="World/Objects/_Lights" unique_id=1172075036 instance=ExtResource("17_spa7a")]
 position = Vector2(970, 344)
 energy = 0.843
 txtr_scale = 1.094
@@ -3835,7 +3897,7 @@ scale_variation = 0.141
 flicker_speed = 3.318
 metadata/_edit_lock_ = true
 
-[node name="Torch2" parent="World/Objects/Lights" unique_id=1201524723 instance=ExtResource("17_spa7a")]
+[node name="Torch2" parent="World/Objects/_Lights" unique_id=1201524723 instance=ExtResource("17_spa7a")]
 position = Vector2(974, 623)
 energy = 0.843
 txtr_scale = 1.094
@@ -3845,7 +3907,7 @@ scale_variation = 0.141
 flicker_speed = 3.318
 metadata/_edit_lock_ = true
 
-[node name="Torch3" parent="World/Objects/Lights" unique_id=923727560 instance=ExtResource("17_spa7a")]
+[node name="Torch3" parent="World/Objects/_Lights" unique_id=923727560 instance=ExtResource("17_spa7a")]
 position = Vector2(1246, 736)
 energy = 0.843
 txtr_scale = 1.094
@@ -3855,7 +3917,7 @@ scale_variation = 0.141
 flicker_speed = 3.318
 metadata/_edit_lock_ = true
 
-[node name="Torch4" parent="World/Objects/Lights" unique_id=1392190842 instance=ExtResource("17_spa7a")]
+[node name="Torch4" parent="World/Objects/_Lights" unique_id=1392190842 instance=ExtResource("17_spa7a")]
 position = Vector2(1551, 610)
 energy = 0.843
 txtr_scale = 1.094
@@ -3865,7 +3927,7 @@ scale_variation = 0.141
 flicker_speed = 3.318
 metadata/_edit_lock_ = true
 
-[node name="Torch5" parent="World/Objects/Lights" unique_id=1846419152 instance=ExtResource("17_spa7a")]
+[node name="Torch5" parent="World/Objects/_Lights" unique_id=1846419152 instance=ExtResource("17_spa7a")]
 position = Vector2(1285, 286)
 energy = 0.843
 txtr_scale = 1.094
@@ -3875,7 +3937,7 @@ scale_variation = 0.141
 flicker_speed = 3.318
 metadata/_edit_lock_ = true
 
-[node name="Torch6" parent="World/Objects/Lights" unique_id=287994479 instance=ExtResource("17_spa7a")]
+[node name="Torch6" parent="World/Objects/_Lights" unique_id=287994479 instance=ExtResource("17_spa7a")]
 position = Vector2(1541, 358)
 energy = 0.843
 txtr_scale = 1.094

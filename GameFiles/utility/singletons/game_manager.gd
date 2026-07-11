@@ -4,6 +4,12 @@ extends Node
 	#print("Game Manager ready at: ", Time.get_ticks_msec())
 
 
+const FACING_RIGHT = "RIGHT"
+const FACING_LEFT = "LEFT"
+const FACING_UP = "UP"
+const FACING_DOWN = "DOWN"
+
+
 var world_scene = preload("res://scenes/levels/dev_starter_world.tscn")
 var house_scene = preload("res://scenes/levels/dev_house.tscn")
 
@@ -24,14 +30,10 @@ var gl_DATE: String
 
 
 var PLAYER_MONEY = 85
-
 var ACTIVE_MENU
-
 var selected_weapon
 var selected_tool
 var selected_item = preload("res://resources/seeds_strawberry.tres")
-
-
 var current_state = Enum.UIState.NONE
 
 
@@ -137,6 +139,17 @@ func _get_player_ref():
 	var plyr
 	plyr = get_tree().get_first_node_in_group("player")
 	return plyr
-	
+
+
+func convDir_from_Vector(dir):
+	match dir:
+		Vector2(1,0): return FACING_RIGHT
+		Vector2(-1,0): return FACING_LEFT
+		Vector2(0,-1): return FACING_UP
+		Vector2(0,1): return FACING_DOWN
+
+
+
+
 
 # BOTTOM

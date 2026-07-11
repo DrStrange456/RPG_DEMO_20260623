@@ -34,17 +34,17 @@ var seeding =    _loadAbility("seeding") as Seed_Sowing_Ability
 
 var crop_list_array = []
 var listPlantedLocations: Array = crop_list_array
-var state = Enum.State.DEFAULT
+
 var direction: Vector2 = Vector2.DOWN
+var knockback_velocity: Vector2
+var state = Enum.State.DEFAULT
 var last_direction: Vector2
+var is_invincible := false
 var can_move: bool = true
 var current_interactable
 var current_crop = null
-var is_invincible := false
-var speed := 150
 var speed_bonus := 150
-var knockback_velocity: Vector2
-
+var speed := 150
 
 
 
@@ -169,9 +169,9 @@ func _execute_primary_action():
 		"selectHOE":
 			_attempt_hoe()
 		"selectCHOP":
-			pass
+			_attempt_chop()
 		"selectPICK":
-			pass
+			_attempt_pick()
 		"selectPLANT":
 			_attempt_seed()
 		"selectHARVEST":
@@ -198,6 +198,12 @@ func _attempt_seed():
 
 func _attempt_sword():
 	state = Enum.State.SWORD
+
+func _attempt_pick():
+	performAction_PickAxe()
+
+func _attempt_chop():
+	pass
 
 
 
@@ -255,6 +261,16 @@ func _attack_anim_done()->void:
 	weapon_hit_box.monitorable = false
 
 
+## - Rock Crushing
+func performAction_PickAxe():
+	await get_tree().process_frame
+	pickRock_action_initiated(1)  # signal_name, damage_value
+
+func pickRock_action_initiated(dam):
+	var SpawnsDir = find_anywhere("_Rocks")
+	for N in SpawnsDir.get_children():
+		if N.is_in_group("rocks"):
+			N.take_damage(dam)
 
 
 

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dcvhcjyx0xu06"]
+
+[ext_resource type="AudioStream" uid="uid://b7f8ifujebg86" path="res://Audio/SFX/hammer.wav" id="4_sw7ee"]
+
+[sub_resource type="Resource" id="Resource_tpgj0"]
+metadata/__load_path__ = "res://Scene_Objects/Interactables/rock_nodes_lvl_2.gd"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7w0fo"]
+radius = 8.0
+
+[sub_resource type="Resource" id="Resource_jfmp4"]
+metadata/__load_path__ = "res://Art_Assets/Items/rock_blue.png"
+
+[sub_resource type="Resource" id="Resource_tl27o"]
+metadata/__load_path__ = "res://Scene_Objects/Interactables/rock_PlayerDetectionZone.gd"
+
+[node name="RockNodes_Lvl_2" type="StaticBody2D" groups=["rocks"]]
+script = SubResource("Resource_tpgj0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_7w0fo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("Resource_jfmp4")
+
+[node name="rock_PlayerDetectionZone" type="Node2D" parent="."]
+visible = false
+script = SubResource("Resource_tl27o")
+
+[node name="rc_DOWN" type="RayCast2D" parent="rock_PlayerDetectionZone"]
+target_position = Vector2(0, 16)
+collision_mask = 2
+
+[node name="rc_UP" type="RayCast2D" parent="rock_PlayerDetectionZone"]
+target_position = Vector2(0, -16)
+collision_mask = 2
+
+[node name="rc_LEFT" type="RayCast2D" parent="rock_PlayerDetectionZone"]
+target_position = Vector2(16, 0)
+collision_mask = 2
+
+[node name="rc_RIGHT" type="RayCast2D" parent="rock_PlayerDetectionZone"]
+target_position = Vector2(-16, 0)
+collision_mask = 2
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sw7ee")
+
+[connection signal="player_detected" from="rock_PlayerDetectionZone" to="." method="_on_rock_player_detection_zone_player_detected"]

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dsth1dvtmtwq7"]
+
+[ext_resource type="AudioStream" uid="uid://b7f8ifujebg86" path="res://Audio/SFX/hammer.wav" id="4_7bt45"]
+[ext_resource type="AudioStream" uid="uid://77taa882dv5u" path="res://Audio/SFX/hoe.wav" id="5_xhen8"]
+
+[sub_resource type="Resource" id="Resource_ow1ti"]
+metadata/__load_path__ = "res://Scene_Objects/Interactables/rock_nodes_lvl_3.gd"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7w0fo"]
+radius = 8.0
+
+[sub_resource type="Resource" id="Resource_jdcya"]
+metadata/__load_path__ = "res://Art_Assets/Items/rock_red.png"
+
+[sub_resource type="Resource" id="Resource_fwp2u"]
+metadata/__load_path__ = "res://Scene_Objects/Interactables/rock_PlayerDetectionZone.gd"
+
+[node name="RockNodes_Lvl_3" type="StaticBody2D" groups=["rocks"]]
+collision_layer = 1280
+collision_mask = 0
+script = SubResource("Resource_ow1ti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_7w0fo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("Resource_jdcya")
+
+[node name="rock_PlayerDetectionZone" type="Node2D" parent="."]
+visible = false
+script = SubResource("Resource_fwp2u")
+
+[node name="rc_DOWN" type="RayCast2D" parent="rock_PlayerDetectionZone"]
+target_position = Vector2(0, 16)
+collision_mask = 2
+
+[node name="rc_UP" type="RayCast2D" parent="rock_PlayerDetectionZone"]
+target_position = Vector2(0, -16)
+collision_mask = 2
+
+[node name="rc_LEFT" type="RayCast2D" parent="rock_PlayerDetectionZone"]
+target_position = Vector2(16, 0)
+collision_mask = 2
+
+[node name="rc_RIGHT" type="RayCast2D" parent="rock_PlayerDetectionZone"]
+target_position = Vector2(-16, 0)
+collision_mask = 2
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7bt45")
+
+[node name="SoundEffect2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_xhen8")
+
+[connection signal="player_detected" from="rock_PlayerDetectionZone" to="." method="_on_rock_player_detection_zone_player_detected"]

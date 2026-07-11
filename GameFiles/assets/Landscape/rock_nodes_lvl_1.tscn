@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dl45jv4exe6i6"]
+
+[ext_resource type="Script" uid="uid://dahvttoosgjxj" path="res://assets/Landscape/rock_nodes_lvl_1.gd" id="1_w0wh3"]
+[ext_resource type="Texture2D" uid="uid://bbh6ff5hpmq25" path="res://assets/Landscape/rock_gray.png" id="2_nindx"]
+[ext_resource type="Script" uid="uid://dv544xc4c5b4e" path="res://assets/Landscape/rock_PlayerDetectionZone.gd" id="3_fgjk8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xip4g"]
+radius = 7.07107
+
+[node name="RockNodes_Lvl_1" type="StaticBody2D" unique_id=617174523 groups=["rocks"]]
+collision_layer = 525569
+collision_mask = 0
+script = ExtResource("1_w0wh3")
+hitPoints = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=666097404]
+visible = false
+position = Vector2(0, -6)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_xip4g")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1864773145]
+y_sort_enabled = true
+position = Vector2(0, -13)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nindx")
+offset = Vector2(0, 15)
+
+[node name="rock_PlayerDetectionZone" type="Node2D" parent="." unique_id=1040934666]
+visible = false
+position = Vector2(0, -5)
+script = ExtResource("3_fgjk8")
+
+[node name="rc_DOWN" type="RayCast2D" parent="rock_PlayerDetectionZone" unique_id=298359024]
+target_position = Vector2(0, 16)
+collision_mask = 2
+
+[node name="rc_UP" type="RayCast2D" parent="rock_PlayerDetectionZone" unique_id=520759635]
+target_position = Vector2(0, -16)
+collision_mask = 2
+
+[node name="rc_LEFT" type="RayCast2D" parent="rock_PlayerDetectionZone" unique_id=697055392]
+target_position = Vector2(16, 0)
+collision_mask = 2
+
+[node name="rc_RIGHT" type="RayCast2D" parent="rock_PlayerDetectionZone" unique_id=973592606]
+target_position = Vector2(-16, 0)
+collision_mask = 2
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="." unique_id=1276349984]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=417002170]
+
+[connection signal="player_detected" from="rock_PlayerDetectionZone" to="." method="_on_rock_player_detection_zone_player_detected"]
