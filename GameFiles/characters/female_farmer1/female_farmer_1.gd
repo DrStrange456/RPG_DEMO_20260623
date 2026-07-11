@@ -138,12 +138,15 @@ func move_action(delta):
 func get_basic_input(delta):
 	animation_tree.advance(delta * 0.25)
 	if Input.is_action_just_pressed("button_cross"):
-		_attempt_sword()
-	if Input.is_action_just_released("alt_attack"):
-		if state == Enum.State.DEFAULT:
-			if current_crop:
-				harvest_receiver.receive_crop(current_crop)
-
+		#_attempt_sword()
+		_execute_primary_action()
+		#get_viewport().set_input_as_handled()
+	if Input.is_action_just_released("button_square"):
+		#if state == Enum.State.DEFAULT:
+			#if current_crop:
+				#harvest_receiver.receive_crop(current_crop)
+		_execute_secondary_action()
+	
 func animate():
 	if direction:
 		animation_tree.set("parameters/Idle/blend_position", currentFacingDir)
@@ -158,6 +161,33 @@ func animate():
 			speed_bonus = 0
 	else:
 		animationState.travel('Idle')
+
+
+## - - - ACTIONS - - -
+func _execute_primary_action():
+	#_attempt_sword()
+	var root_scene = get_tree().current_scene
+	var current_button = root_scene._get_selected_button()
+	match current_button.name:
+		"selectATTACK":
+			_attempt_sword()
+		"selectHOE":
+			pass
+		"selectCHOP":
+			pass
+		"selectPICK":
+			pass
+		"selectPLANT":
+			pass
+		"selectHARVEST":
+			pass
+
+
+func _execute_secondary_action():
+	# Harvest Crops
+	if state == Enum.State.DEFAULT:
+		if current_crop:
+			harvest_receiver.receive_crop(current_crop)
 
 
 

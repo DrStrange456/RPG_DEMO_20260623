@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dnr1orx43cgci"]
+
+[ext_resource type="Script" path="res://scenes/objects/static_tree_medium.gd" id="1_da1gp"]
+[ext_resource type="Texture2D" uid="uid://iymmh37k4wai" path="res://assets/AAA-TileSets/landscape_detailed.PNG" id="1_ofme8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_da1gp"]
+radius = 6.0
+
+[node name="static_tree_medium" type="StaticBody2D" unique_id=192549769]
+script = ExtResource("1_da1gp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1332735078]
+position = Vector2(1, -40)
+texture = ExtResource("1_ofme8")
+region_enabled = true
+region_rect = Rect2(0, 240, 64, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404749093]
+visible = false
+shape = SubResource("CircleShape2D_da1gp")
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=427085763]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2" unique_id=727560243]
+polygon = PackedVector2Array(-4, -14, -22, -24, 0, -81, 20, -23, 4, -14)
+
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d_2_body_exited"]

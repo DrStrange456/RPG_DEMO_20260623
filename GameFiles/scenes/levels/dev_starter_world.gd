@@ -8,15 +8,29 @@ extends Node2D
 #@onready var btn_item: Button = $UI/btnITEM
 
 @onready var female_farmer_1: CharacterBody2D = $World/Objects/female_farmer1
-@onready var select_attack: Button = $UI/HUD/Node2D/selectATTACK
+#@onready var select_attack: Button = $UI/HUD/Node2D/selectATTACK
+@onready var tool_selector: Control = $UI/HUD/tool_selector
+@onready var button_group := ButtonGroup.new()
 
 
 
 
-func _ready() -> void:
-	select_attack.grab_focus()
-	#Events.connect("hide_buttons_and_tod", Callable(_hide_ui))
-	#Events.connect("show_buttons_and_tod", Callable(_show_ui))
+func _ready():
+	for button in tool_selector.get_children():
+		if button is Button:
+			button.toggle_mode = true
+			button.button_group = button_group
+
+	# Select the first button if desired
+	button_group.get_buttons()[2].button_pressed = true
+
+#func _ready() -> void:
+	#select_attack.grab_focus()
+	##Events.connect("hide_buttons_and_tod", Callable(_hide_ui))
+	##Events.connect("show_buttons_and_tod", Callable(_show_ui))
+
+
+
 
 #
 #### UI
@@ -32,6 +46,9 @@ func _ready() -> void:
 	#btn_tool.visible = true
 	#btn_item.visible = true
 
+
+func _get_selected_button() -> BaseButton:
+	return button_group.get_pressed_button()
 
 
 func _on_btn_weapon_pressed() -> void:

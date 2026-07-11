@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bnkp1ls4ltgmc" path="res://scenes/objects/market.tscn" id="11_cxtfx"]
 [ext_resource type="PackedScene" uid="uid://bducrb47y028v" path="res://scenes/objects/storage_containers/chest_large.tscn" id="17_gh451"]
 [ext_resource type="PackedScene" uid="uid://c3a3cja5v55je" path="res://scenes/objects/torch.tscn" id="17_spa7a"]
+[ext_resource type="PackedScene" uid="uid://dnr1orx43cgci" path="res://scenes/objects/static_tree_medium.tscn" id="24_ialmi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0n0ph"]
 texture = ExtResource("3_kpaqn")
@@ -3278,66 +3279,73 @@ script = ExtResource("1_wa1is")
 
 [node name="HUD" type="Node2D" parent="UI" unique_id=260367078]
 
-[node name="Node2D" type="Control" parent="UI/HUD" unique_id=1153663465]
+[node name="tool_selector" type="Control" parent="UI/HUD" unique_id=1153663465]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="selectATTACK" type="Button" parent="UI/HUD/Node2D" unique_id=1837830564]
+[node name="selectATTACK" type="Button" parent="UI/HUD/tool_selector" unique_id=1837830564]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 138.0
 offset_right = 53.0
 offset_bottom = 178.0
+toggle_mode = true
 icon = ExtResource("2_6lsie")
 
-[node name="selectHOE" type="Button" parent="UI/HUD/Node2D" unique_id=185634065]
+[node name="selectHOE" type="Button" parent="UI/HUD/tool_selector" unique_id=185634065]
 self_modulate = Color(2.201223, 2.201223, 2.201223, 1)
 layout_mode = 0
 offset_left = 13.0
 offset_top = 185.8
 offset_right = 53.0
 offset_bottom = 225.8
+toggle_mode = true
 icon = ExtResource("3_ialmi")
 
-[node name="selectPLANT" type="Button" parent="UI/HUD/Node2D" unique_id=520153646]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 329.2
-offset_right = 52.0
-offset_bottom = 364.2
-icon = ExtResource("4_kcg0s")
-icon_alignment = 1
-expand_icon = true
-
-[node name="selectHARVEST" type="Button" parent="UI/HUD/Node2D" unique_id=585706850]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 372.0
-offset_right = 52.0
-offset_bottom = 408.0
-icon = ExtResource("5_6lsie")
-icon_alignment = 1
-expand_icon = true
-
-[node name="selectCHOP" type="Button" parent="UI/HUD/Node2D" unique_id=420277328]
+[node name="selectCHOP" type="Button" parent="UI/HUD/tool_selector" unique_id=420277328]
 self_modulate = Color(1.4643909, 1.4643909, 1.4643909, 1)
 layout_mode = 0
 offset_left = 13.0
 offset_top = 233.6
 offset_right = 53.0
 offset_bottom = 273.6
+toggle_mode = true
 icon = ExtResource("6_eiiqc")
 
-[node name="selectPICK" type="Button" parent="UI/HUD/Node2D" unique_id=318742723]
+[node name="selectPICK" type="Button" parent="UI/HUD/tool_selector" unique_id=318742723]
 self_modulate = Color(1.6095817, 1.6095817, 1.6095817, 1)
 layout_mode = 0
 offset_left = 13.0
 offset_top = 281.4
 offset_right = 53.0
 offset_bottom = 321.4
+toggle_mode = true
 icon = ExtResource("7_mfxfj")
 
+[node name="selectPLANT" type="Button" parent="UI/HUD/tool_selector" unique_id=520153646]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 329.2
+offset_right = 52.0
+offset_bottom = 364.2
+toggle_mode = true
+icon = ExtResource("4_kcg0s")
+icon_alignment = 1
+expand_icon = true
+
+[node name="selectHARVEST" type="Button" parent="UI/HUD/tool_selector" unique_id=585706850]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 372.0
+offset_right = 52.0
+offset_bottom = 408.0
+toggle_mode = true
+icon = ExtResource("5_6lsie")
+icon_alignment = 1
+expand_icon = true
+
 [node name="btnWEAPON" type="Button" parent="UI/HUD" unique_id=1089754095]
+visible = false
 custom_minimum_size = Vector2(40, 40)
 offset_left = 64.0
 offset_top = 528.0
@@ -3348,6 +3356,7 @@ icon = ExtResource("5_q502d")
 metadata/_edit_lock_ = true
 
 [node name="btnTOOL" type="Button" parent="UI/HUD" unique_id=741349137]
+visible = false
 custom_minimum_size = Vector2(40, 40)
 offset_left = 160.0
 offset_top = 528.0
@@ -3358,6 +3367,7 @@ icon = ExtResource("6_cxtfx")
 metadata/_edit_lock_ = true
 
 [node name="btnITEM" type="Button" parent="UI/HUD" unique_id=187490153]
+visible = false
 custom_minimum_size = Vector2(40, 40)
 offset_left = 256.0
 offset_top = 528.0
@@ -3459,6 +3469,7 @@ flicker_enabled = true
 energy_variation = 0.0
 scale_variation = 0.141
 flicker_speed = 3.318
+metadata/_edit_lock_ = true
 
 [node name="Torch2" parent="World/Objects" unique_id=1201524723 instance=ExtResource("17_spa7a")]
 position = Vector2(974, 623)
@@ -3468,6 +3479,7 @@ flicker_enabled = true
 energy_variation = 0.0
 scale_variation = 0.141
 flicker_speed = 3.318
+metadata/_edit_lock_ = true
 
 [node name="Torch3" parent="World/Objects" unique_id=923727560 instance=ExtResource("17_spa7a")]
 position = Vector2(1246, 736)
@@ -3477,6 +3489,7 @@ flicker_enabled = true
 energy_variation = 0.0
 scale_variation = 0.141
 flicker_speed = 3.318
+metadata/_edit_lock_ = true
 
 [node name="Torch4" parent="World/Objects" unique_id=1392190842 instance=ExtResource("17_spa7a")]
 position = Vector2(1551, 610)
@@ -3486,6 +3499,7 @@ flicker_enabled = true
 energy_variation = 0.0
 scale_variation = 0.141
 flicker_speed = 3.318
+metadata/_edit_lock_ = true
 
 [node name="Torch5" parent="World/Objects" unique_id=1846419152 instance=ExtResource("17_spa7a")]
 position = Vector2(1285, 286)
@@ -3495,6 +3509,7 @@ flicker_enabled = true
 energy_variation = 0.0
 scale_variation = 0.141
 flicker_speed = 3.318
+metadata/_edit_lock_ = true
 
 [node name="Torch6" parent="World/Objects" unique_id=287994479 instance=ExtResource("17_spa7a")]
 position = Vector2(1541, 358)
@@ -3504,6 +3519,28 @@ flicker_enabled = true
 energy_variation = 0.0
 scale_variation = 0.141
 flicker_speed = 3.318
+metadata/_edit_lock_ = true
+
+[node name="static_tree_medium" parent="World/Objects" unique_id=192549769 instance=ExtResource("24_ialmi")]
+position = Vector2(632, 276)
+
+[node name="static_tree_medium2" parent="World/Objects" unique_id=598278388 instance=ExtResource("24_ialmi")]
+position = Vector2(499, 349)
+
+[node name="static_tree_medium3" parent="World/Objects" unique_id=671350429 instance=ExtResource("24_ialmi")]
+position = Vector2(702, 452)
+
+[node name="static_tree_medium4" parent="World/Objects" unique_id=1908697937 instance=ExtResource("24_ialmi")]
+position = Vector2(673, 473)
+
+[node name="static_tree_medium5" parent="World/Objects" unique_id=1980065752 instance=ExtResource("24_ialmi")]
+position = Vector2(513, 400)
+
+[node name="static_tree_medium6" parent="World/Objects" unique_id=1743830067 instance=ExtResource("24_ialmi")]
+position = Vector2(566, 532)
+
+[node name="static_tree_medium7" parent="World/Objects" unique_id=653532129 instance=ExtResource("24_ialmi")]
+position = Vector2(385, 463)
 
 [node name="Enemies" type="Node2D" parent="World" unique_id=729729922]
 

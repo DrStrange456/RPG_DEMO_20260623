@@ -3316,10 +3316,6 @@ metadata/_edit_lock_ = true
 
 [node name="female_farmer1" parent="." unique_id=543434268 instance=ExtResource("2_u7dqb")]
 position = Vector2(726, 333)
-MAX_HEALTH = null
-CURRENT_HEALTH = null
-knockback_decay = null
-invincibility_duration = null
 
 [node name="WaveManager" parent="." unique_id=2027768831 instance=ExtResource("3_qvuqy")]
 spawn_areas_path = NodePath("../SpawnPoints")
