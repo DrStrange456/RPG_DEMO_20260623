@@ -14,7 +14,6 @@ extends Node2D
 
 
 func _take_damage(val):
-	# From explosives
 	makeHit(val)
 
 func entity_is_hit(dam) -> void:

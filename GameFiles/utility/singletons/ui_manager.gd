@@ -2,8 +2,8 @@ class_name UIManager
 extends Node
 
 
-#@onready var storage_ui_small: Control = $UI/WindowContainer/StorageUI_Small
-#@onready var storage_ui_large: Control = $UI/WindowContainer/StorageUI_Large
+#@onready var storage_ui_small: Control = $UI/UI_MENUs/StorageUI_Small
+#@onready var storage_ui_large: Control = $UI/UI_MENUs/StorageUI_Large
 
 
 var inv_scene = preload("res://scenes/UI/PlayerInventory_UI.tscn")
@@ -11,6 +11,7 @@ var pause_scene = preload("res://scenes/UI/pause_ui.tscn")
 var gen_str_scene = preload("res://scenes/levels/new_general_store.tscn")
 #var gen_str_scene = preload("res://scenes/UI/general_store.tscn")
 
+@onready var txt_player_health: Label = find_anywhere("txtPlayerHealth")
 
 
 
@@ -40,6 +41,8 @@ func _ready():
 	Events.connect("try_interact_sm_chest", Callable(open_small_chest))
 	Events.connect("try_interact_lg_chest", Callable(open_large_chest))
 	Events.connect("try_interact_merchant", Callable(open_merchant))
+	
+	Events.connect("health_changed", Callable(update_health_values))
 
 
 
@@ -61,12 +64,14 @@ func _unhandled_input(event):
 
 
 
+func update_health_values(curr,mx):
+	txt_player_health.text = "%d / %d" % [curr, mx]
 
 
 func open_inventory():
 	close_current_window()
 	
-	var window_container: Node2D = find_anywhere("WindowContainer")
+	var window_container: Node2D = find_anywhere("UI_MENUs")
 	
 	current_window = inv_scene.instantiate()
 	window_container.add_child(current_window)
@@ -108,7 +113,7 @@ func open_inventory():
 func open_pause():
 	close_current_window()
 	
-	var window_container: Node2D = find_anywhere("WindowContainer")
+	var window_container: Node2D = find_anywhere("UI_MENUs")
 	
 	current_window = pause_scene.instantiate()
 	window_container.add_child(current_window)
@@ -182,7 +187,7 @@ func open_character():
 func open_general_store():
 	close_current_window()
 	
-	var window_container: Node2D = find_anywhere("WindowContainer")
+	var window_container: Node2D = find_anywhere("UI_MENUs")
 	
 	current_window = gen_str_scene.instantiate()
 	window_container.add_child(current_window)

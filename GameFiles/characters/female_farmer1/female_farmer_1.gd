@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+
+
 #region Reticle
 @onready var reticleComp: Node2D = $Components/Reticle_Component
 var isReticleVisible: bool = false
@@ -12,46 +14,39 @@ var pos
 @export var CURRENT_HEALTH : int = 100
 @export_category("General")
 @export var SWORD_SPEED_MULTIPLIER = 1.0
-
-var speed := 150
-var speed_bonus := 150
+@export var knockback_decay := 800.0
+@export var invincibility_duration := 2.0
+@export var ground_pulse_scene : PackedScene
 
 @onready var weapon_hit_box: Area2D = $Components/Weapon_Hit_Box
 @onready var pulse: GroundPulse_Component = $Components/GroundPulse_Component
-
-var knockback_velocity: Vector2
-@export var knockback_decay := 800.0
-
 @onready var damage_component = $Components/Damage_Component
 @onready var harvest_receiver: Node = $Components/harvest_receiver
 @onready var currentFacingDir = Vector2.DOWN
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animationState = animation_tree.get("parameters/playback")
-
-@onready var dirt = _get_Handle_Node("Plantable")
-@onready var soil_hoed = _get_Handle_Node("hoed")
+@onready var dirt = _get_Handle_Node("Grid_Plantable")
+@onready var soil_hoed = _get_Handle_Node("Grid_Hoed")
 
 var hoe =        _loadAbility("hoe") as Hoe_Ability
 var seeding =    _loadAbility("seeding") as Seed_Sowing_Ability
 
-
-
 var crop_list_array = []
 var listPlantedLocations: Array = crop_list_array
-
 var state = Enum.State.DEFAULT
-
 var direction: Vector2 = Vector2.DOWN
 var last_direction: Vector2
 var can_move: bool = true
 var current_interactable
 var current_crop = null
-
 var is_invincible := false
-@export var invincibility_duration := 2.0
+var speed := 150
+var speed_bonus := 150
+var knockback_velocity: Vector2
 
-@export var ground_pulse_scene : PackedScene
+
+
 
 func _ready() -> void:
 	weapon_hit_box.monitoring = false
@@ -172,15 +167,15 @@ func _execute_primary_action():
 		"selectATTACK":
 			_attempt_sword()
 		"selectHOE":
-			pass
+			_attempt_hoe()
 		"selectCHOP":
 			pass
 		"selectPICK":
 			pass
 		"selectPLANT":
-			pass
+			_attempt_seed()
 		"selectHARVEST":
-			pass
+			_execute_secondary_action()
 
 
 func _execute_secondary_action():
@@ -339,6 +334,9 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var enemy: Node2D = area.get_parent()
 	apply_knockback(enemy.global_position, 300)
 	start_invincibility()
+	
+	Events.emit_signal("health_changed",CURRENT_HEALTH,MAX_HEALTH)
+
 func apply_knockback(from_position: Vector2, force: float):
 	var kb_direction = (global_position - from_position).normalized()
 	knockback_velocity = kb_direction * force

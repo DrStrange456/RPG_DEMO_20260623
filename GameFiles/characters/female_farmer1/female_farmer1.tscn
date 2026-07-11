@@ -854,6 +854,7 @@ hframes = 6
 vframes = 12
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=562992719]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
@@ -887,6 +888,7 @@ visible = false
 visible = false
 
 [node name="GroundPulse_Component" parent="Components" unique_id=632032734 instance=ExtResource("9_dnocp")]
+isEnabled = false
 projectile_scene = ExtResource("2_utk1y")
 cooldown = 1.0
 

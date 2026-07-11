@@ -1,51 +1,22 @@
 extends Node2D
 
-#@onready var pause_screen: Control = $UI/PauseScreen
-#@onready var general_store: Control = $UI/general_store
-#@onready var time_of_day_ui: Control = $UI/TimeOfDayUI
-#@onready var btn_weapon: Button = $UI/btnWEAPON
-#@onready var btn_tool: Button = $UI/btnTOOL
-#@onready var btn_item: Button = $UI/btnITEM
-
 @onready var female_farmer_1: CharacterBody2D = $World/Objects/female_farmer1
-#@onready var select_attack: Button = $UI/HUD/Node2D/selectATTACK
 @onready var tool_selector: Control = $UI/HUD/tool_selector
 @onready var button_group := ButtonGroup.new()
+@onready var hud: Node2D = $UI/HUD
 
 
 
 
 func _ready():
+	hud.visible = true
 	for button in tool_selector.get_children():
 		if button is Button:
 			button.toggle_mode = true
 			button.button_group = button_group
 
 	# Select the first button if desired
-	button_group.get_buttons()[2].button_pressed = true
-
-#func _ready() -> void:
-	#select_attack.grab_focus()
-	##Events.connect("hide_buttons_and_tod", Callable(_hide_ui))
-	##Events.connect("show_buttons_and_tod", Callable(_show_ui))
-
-
-
-
-#
-#### UI
-#func _hide_ui():
-	#time_of_day_ui.visible = false
-	#btn_weapon.visible = false
-	#btn_tool.visible = false
-	#btn_item.visible = false
-#
-#func _show_ui():
-	#time_of_day_ui.visible = true
-	#btn_weapon.visible = true
-	#btn_tool.visible = true
-	#btn_item.visible = true
-
+	button_group.get_buttons()[1].button_pressed = true
 
 func _get_selected_button() -> BaseButton:
 	return button_group.get_pressed_button()
@@ -69,8 +40,6 @@ func _on_btn_item_pressed() -> void:
 
 func _on_chest_small_activate_clicked() -> void:
 	GameManager._on_pause_opened()
-	#dev_chest.visible = true
-	#dev_chest._reset_inventory()
 
 func _on_chest_large_activate_clicked() -> void:
 	pass # Replace with function body.

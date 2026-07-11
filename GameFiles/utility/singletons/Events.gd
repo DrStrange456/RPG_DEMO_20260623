@@ -9,6 +9,8 @@ extends Node
 # Sample connect:
 # Events.connect("<signal_name>", Callable(<function_to_run>))
 
+signal health_changed(current,maximum)
+
 signal try_interact_sm_chest
 signal try_interact_lg_chest
 signal try_interact_merchant
