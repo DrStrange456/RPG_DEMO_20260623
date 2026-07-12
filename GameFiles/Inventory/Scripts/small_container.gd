@@ -24,13 +24,38 @@ func _load_slots_from_save():
 	
 	bind_inventory(inventory)
 	
-	# Hard coded slot contents (STORAGE_TEST) for dev
-	for k in GameManager.STORAGE_TEST.size():
-		_set_slot(k)
-		storage_slots[k].set_item(load(GameManager.STORAGE_TEST[k][0]) if GameManager.STORAGE_TEST[k][0] else null)
-		storage_slots[k].set_quantity(GameManager.STORAGE_TEST[k][1])
+	load_storage_from_dictionary(storage_slots)
 	
+	## Hard coded slot contents (STORAGE_TEST) for dev
+	#for k in GameManager.STORAGE_TEST.size():
+		#_set_slot(k)
+		#storage_slots[k].set_item(null)
+		#storage_slots[k].set_quantity(0)
+		#
+		##storage_slots[k].set_item(load(GameManager.STORAGE_TEST[k][0]) if GameManager.STORAGE_TEST[k][0] else null)
+		##storage_slots[k].set_quantity(GameManager.STORAGE_TEST[k][1])
+	#
+	#bind_storage(storage_slots)
+
+
+func load_storage_from_dictionary(dict):
+	# Hard coded slot contents (STORAGE_TEST) for dev
+	for k in preset_container_count:
+		var test1 = null
+		var test2 = null
+		
+		if dict is Dictionary:
+			test2 = dict[k][0]
+		if dict is Array:
+			test1 = dict[k].item
+		
+		if test1 or test2:
+			_set_slot(k)
+			storage_slots[k].set_item(load(dict[k][0]) if dict[k][0] else null)
+			storage_slots[k].set_quantity(dict[k][1])
 	bind_storage(storage_slots)
+
+
 
 
 func bind_inventory(inv):
