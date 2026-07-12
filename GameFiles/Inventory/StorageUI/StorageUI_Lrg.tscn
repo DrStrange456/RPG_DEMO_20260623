@@ -238,54 +238,54 @@ position = Vector2(-16.5, 1.5)
 
 [node name="btnSort_Chest" type="Button" parent="PopupRoot/OptionButtons" unique_id=1249055402]
 offset_left = 316.5
-offset_top = 40.0
+offset_top = 34.5
 offset_right = 333.5
-offset_bottom = 55.0
-theme_override_font_sizes/font_size = 4
+offset_bottom = 59.5
+theme_override_font_sizes/font_size = 12
 text = "S"
 
 [node name="btnTransferLike" type="Button" parent="PopupRoot/OptionButtons" unique_id=627353715]
 offset_left = 292.0
-offset_top = 40.0
+offset_top = 34.5
 offset_right = 309.5
-offset_bottom = 55.0
+offset_bottom = 59.5
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 4
+theme_override_font_sizes/font_size = 12
 text = "L"
 
 [node name="btnTransferAll" type="Button" parent="PopupRoot/OptionButtons" unique_id=460048041]
 offset_left = 267.5
-offset_top = 40.0
+offset_top = 34.5
 offset_right = 285.5
-offset_bottom = 55.0
+offset_bottom = 59.5
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 4
+theme_override_font_sizes/font_size = 12
 text = "A"
 
 [node name="btnSort_Inv" type="Button" parent="PopupRoot/OptionButtons" unique_id=135522976]
 offset_left = 553.5
-offset_top = 40.0
+offset_top = 34.5
 offset_right = 570.5
-offset_bottom = 55.0
-theme_override_font_sizes/font_size = 4
+offset_bottom = 59.5
+theme_override_font_sizes/font_size = 12
 text = "S"
 
 [node name="btnTransferLike_toStrg" type="Button" parent="PopupRoot/OptionButtons" unique_id=2133591381]
 offset_left = 528.0
-offset_top = 40.0
+offset_top = 34.5
 offset_right = 545.0
-offset_bottom = 55.0
+offset_bottom = 59.5
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 4
+theme_override_font_sizes/font_size = 12
 text = "L"
 
 [node name="btnTransferAll_toStrg" type="Button" parent="PopupRoot/OptionButtons" unique_id=1202277982]
 offset_left = 502.5
-offset_top = 40.0
+offset_top = 34.5
 offset_right = 519.5
-offset_bottom = 55.0
+offset_bottom = 59.5
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 4
+theme_override_font_sizes/font_size = 12
 text = "A"
 
 [connection signal="pressed" from="PopupRoot/OptionButtons/btnSort_Chest" to="." method="_on_btn_sort_chest_pressed"]

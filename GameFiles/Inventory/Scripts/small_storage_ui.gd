@@ -29,19 +29,10 @@ func _load_strg_slots_from_save():
 		# - UI
 		var ui = $PopupRoot/InventorySlotContainer
 		ui._set_slot(j)
-	
-	#var ui_slots = small_container.get_children()
-	##var inv_cont = $PopupRoot/InventorySlotContainer
-	#for k in ui_slots.size():
-		#ui_slots._set_slot(k)
-		#ui_slots[k].set_item(load(slot_contents[k][0]) if slot_contents[k][0] else null)
-		#ui_slots[k].set_quantity(slot_contents[k][1])
-	#bind_storage(ui_slots)
 
 
 func initialize():
 	#_load_slots_from_save()
-	#_load_strg_slots_from_save()
 	small_container.load_storage_from_dictionary(slot_contents)
 
 func bind_inventory(inv):

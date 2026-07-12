@@ -8,10 +8,32 @@ extends popup_ui
 var inventory : Array[OptiInventorySlot] = []
 
 
+var slot_contents: Dictionary = {
+		0: ["res://resources/crop_carrot.tres", 90, true],
+		1: ["res://resources/crop_tomato.tres", 90, true],
+		2: ["res://resources/crop_strawberry.tres", 90, true],
+		3: ["res://resources/crop_turnip.tres", 90, true],
+		4: [null, 0, true],
+		5: [null, 0, true],
+		6: [null, 0, true],
+		7: [null, 0, true],
+		8: [null, 0, true],
+		9: [null, 0, true],
+		10: [null, 0, true],
+		11: [null, 0, true],
+		12: [null, 0, true],
+		13: [null, 0, true],
+		14: [null, 0, true],
+		15: [null, 0, true],
+		16: [null, 0, true],
+		17: [null, 0, true],
+}
 
 
 func initialize():
-	_load_slots_from_save()
+	#_load_slots_from_save()
+	large_container.load_storage_from_dictionary(slot_contents)
+
 
 
 func bind_inventory(inv):
