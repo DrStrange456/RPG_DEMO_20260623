@@ -54,3 +54,16 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 # Bottom
+
+@onready var control: Control = $UI/HUD/debug_selector/toggle_buttons/Control
+@onready var toggle_buttons: Button = $UI/HUD/debug_selector/toggle_buttons
+
+
+func _on_toggle_buttons_pressed() -> void:
+	var tmp_chk = control.visible
+	if tmp_chk:
+		control.visible = false
+		toggle_buttons.text = ">"
+	else:
+		control.visible = true
+		toggle_buttons.text = "<"
