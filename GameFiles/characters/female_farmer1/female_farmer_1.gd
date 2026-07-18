@@ -207,11 +207,16 @@ func _attempt_chop():
 
 
 
+func _manual_hoe_action(cell_pos,ret_hit_loc):
+	hoe.hoe_tile_no_reticle(cell_pos, soil_hoed, ret_hit_loc)
+
+
 ## - - - HOEING - - -
 func hoe_state():
 	velocity = Vector2.ZERO
 	if _isValid_Floor_Location():
 		hoe.hoe_tile(pos, soil_hoed, reticleComp)
+		#print(pos, soil_hoed, reticleComp)
 	state = Enum.State.DEFAULT
 
 

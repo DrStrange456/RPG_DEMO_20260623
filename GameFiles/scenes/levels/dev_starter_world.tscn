@@ -3736,7 +3736,7 @@ offset_right = 40.0
 offset_bottom = 111.929474
 mouse_filter = 2
 
-[node name="Button" type="Button" parent="UI/HUD/debug_selector/toggle_buttons/Control" unique_id=377893185]
+[node name="btnCROPS" type="Button" parent="UI/HUD/debug_selector/toggle_buttons/Control" unique_id=377893185]
 custom_minimum_size = Vector2(30, 31)
 layout_mode = 0
 offset_left = 32.0
@@ -3746,7 +3746,7 @@ offset_bottom = 80.0
 rotation = -1.5707964
 text = "Crops"
 
-[node name="Button2" type="Button" parent="UI/HUD/debug_selector/toggle_buttons/Control" unique_id=302022604]
+[node name="btnENEMIES" type="Button" parent="UI/HUD/debug_selector/toggle_buttons/Control" unique_id=302022604]
 custom_minimum_size = Vector2(30, 31)
 layout_mode = 0
 offset_left = 72.0
@@ -3756,7 +3756,7 @@ offset_bottom = 80.0
 rotation = -1.5707964
 text = "Enemies"
 
-[node name="Button3" type="Button" parent="UI/HUD/debug_selector/toggle_buttons/Control" unique_id=902235396]
+[node name="btnROCKS" type="Button" parent="UI/HUD/debug_selector/toggle_buttons/Control" unique_id=902235396]
 custom_minimum_size = Vector2(30, 31)
 layout_mode = 0
 offset_left = 112.0
@@ -3766,7 +3766,7 @@ offset_bottom = 80.0
 rotation = -1.5707964
 text = "Rocks"
 
-[node name="Button4" type="Button" parent="UI/HUD/debug_selector/toggle_buttons/Control" unique_id=2015428163]
+[node name="btnTREES" type="Button" parent="UI/HUD/debug_selector/toggle_buttons/Control" unique_id=2015428163]
 custom_minimum_size = Vector2(30, 31)
 layout_mode = 0
 offset_left = 152.0
@@ -4042,4 +4042,5 @@ KNOCKBACK_FORCE = 100
 [connection signal="pressed" from="UI/HUD/btnTOOL" to="." method="_on_btn_tool_pressed"]
 [connection signal="pressed" from="UI/HUD/btnITEM" to="." method="_on_btn_item_pressed"]
 [connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons" to="." method="_on_toggle_buttons_pressed"]
+[connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons/Control/btnCROPS" to="." method="_on_btn_crops_pressed"]
 [connection signal="body_entered" from="World/Objects/player_house/Area2D" to="." method="_on_area_2d_body_entered"]
