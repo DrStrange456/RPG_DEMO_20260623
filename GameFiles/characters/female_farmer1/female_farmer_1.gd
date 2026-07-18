@@ -286,12 +286,16 @@ func pickRock_action_initiated(dam):
 func _free_crop_location(pos):
 	#GameManager.glPlayerRef.crop_list_array
 	#print(soil_hoed.local_to_map(pos))
-	#FIXME: need tmp to be in decimal format for it to remove correctly
-	var tmp = (soil_hoed.local_to_map(pos)).int_array.map(func(element): return float(element))
+	# FIXME: need tmp to be in decimal format for it to remove correctly
+	var tmp = to_float_vector(soil_hoed.local_to_map(pos))
 	print(tmp)
 	print(GameManager.glPlayerRef.crop_list_array)
-	GameManager.glPlayerRef.crop_list_array.erase(soil_hoed.local_to_map(pos))
+	GameManager.glPlayerRef.crop_list_array.erase(tmp)
 	print(GameManager.glPlayerRef.crop_list_array)
+
+func to_float_vector(v: Vector2) -> Vector2:
+	return Vector2(float(v.x), float(v.y))
+
 
 ### - Reticle
 func _place_reticle_correctly()->void:
