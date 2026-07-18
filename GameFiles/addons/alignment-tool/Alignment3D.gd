@@ -111,4 +111,3 @@ func get_selected_nodes_3d():
 		if node is Node3D:
 			nodes.append(node)
 	return nodes
-

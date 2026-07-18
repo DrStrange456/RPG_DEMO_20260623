@@ -6,7 +6,7 @@ extends rock_base
 #const EnemyDeathEffect = preload("res://Entities/Common/enemy_death_effect.tscn")
 
 @onready var rock_type1 = preload("res://assets/Landscape/rock_gray.png")
-@onready var rock_type2 = preload("res://Assets/Landscape/rock_gray2.png")
+@onready var rock_type2 = preload("res://assets/Landscape/rock_gray2.png")
 
 @onready var ScnMgr
 

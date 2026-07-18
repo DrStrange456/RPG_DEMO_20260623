@@ -210,8 +210,8 @@ func _attempt_chop():
 func _manual_hoe_action(cell_pos,ret_hit_loc):
 	hoe.hoe_tile_no_reticle(cell_pos, soil_hoed, ret_hit_loc)
 
-func _manual_seeding_action(loc):
-	seeding._debug_place_crop(GameManager.selected_item,loc)
+func _manual_seeding_action(loc,vec):
+	seeding._debug_place_crop(GameManager.selected_item,loc,vec)
 	#seeding._debug_place_crop(GameManager.selected_item,Vector2(32,2))
 
 ## - - - HOEING - - -
@@ -311,9 +311,22 @@ func _isValid_Hoed_Location() -> bool:
 	if soil_hoed:
 		return is_hit_location_valid_tml(soil_hoed,reticleComp.getHitLocation())
 	return false
+func _isValid_Hoed_Location_byValue(val:Vector2) -> bool:
+	if soil_hoed:
+		return is_hit_location_valid_tml(soil_hoed,val)
+	return false
 func _is_space_available() -> bool:
 	if pos:
+		print(pos)
+		print(listPlantedLocations.has(dirt.map_to_local(pos)))
 		var space_occupied = listPlantedLocations.has(dirt.map_to_local(pos))
+		return !space_occupied
+	else: return false
+func _is_space_available_byValue(val:Vector2) -> bool:
+	if val:
+		print(dirt.map_to_local(val))
+		print(listPlantedLocations.has(val))
+		var space_occupied = listPlantedLocations.has(val)
 		return !space_occupied
 	else: return false
 func set_Mode_to_Default():

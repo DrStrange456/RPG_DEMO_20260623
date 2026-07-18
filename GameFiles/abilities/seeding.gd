@@ -28,20 +28,24 @@ func _player_planting(itm: Resource):
 		var tmpIsHoed = GameManager.glPlayerRef._isValid_Hoed_Location()
 		var tmpIsSpaceAvailable = GameManager.glPlayerRef._is_space_available()
 		if tmpIsHoed and tmpIsSpaceAvailable:
-			#var tmpName = InventoryAPI._translate_seed_nm_to_plant_nm(seed_name)
 			print(itm)
 			print(GameManager.glPlayerRef.dirt.map_to_local(GameManager.glPlayerRef.pos))
 			_place_crop(itm,GameManager.glPlayerRef.dirt.map_to_local(GameManager.glPlayerRef.pos))
 	
 	GameManager.glPlayerRef.set_Mode_to_Default()
 
-func _debug_place_crop(itm,loc):
-	var plant_res = PlantResource.new()
-	plant_res.setup(itm.enum_seed_value,itm.enum_seed_item_value)
-	var plant = GameManager.glPlantScene.instantiate()
-	var objects_fldr = find_anywhere("Crops")
-	plant.setup(loc, objects_fldr, plant_res, plant_death)
-	GameManager.glPlayerRef.crop_list_array.append(loc)
+func _debug_place_crop(itm,loc,loc_coord):
+	#Is location valid
+	GameManager.glDebugSpawnLocation = loc
+	var tmpIsHoed = GameManager.glPlayerRef._isValid_Hoed_Location_byValue(loc_coord)
+	var tmpIsSpaceAvailable = GameManager.glPlayerRef._is_space_available_byValue(loc)
+	if tmpIsHoed and tmpIsSpaceAvailable:
+		var plant_res = PlantResource.new()
+		plant_res.setup(itm.enum_seed_value,itm.enum_seed_item_value)
+		var plant = GameManager.glPlantScene.instantiate()
+		var objects_fldr = find_anywhere("Crops")
+		plant.setup(loc, objects_fldr, plant_res, plant_death)
+		GameManager.glPlayerRef.crop_list_array.append(loc)
 
 
 func _place_crop(itm: Resource,_loc: Vector2):

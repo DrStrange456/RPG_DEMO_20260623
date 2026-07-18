@@ -16,6 +16,7 @@ var house_scene = preload("res://scenes/levels/dev_house.tscn")
 
 
 @onready var glPlayerRef = get_tree().get_first_node_in_group("player")
+@onready var glDebugSpawnLocation
 
 var glPlantScene = preload("res://utility/misc/plant.tscn")
 var glSlotPrev = preload("res://scenes/objects/slot_preview.tscn")

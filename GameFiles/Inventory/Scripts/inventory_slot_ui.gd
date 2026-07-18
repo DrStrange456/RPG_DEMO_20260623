@@ -11,7 +11,8 @@ var slot : OptiInventorySlot
 func bind_slot(s: OptiInventorySlot):
 
 	slot = s
-	slot.changed.connect(update_ui)
+	if !slot.changed.is_connected(update_ui):
+		slot.changed.connect(update_ui)
 
 	update_ui()
 
