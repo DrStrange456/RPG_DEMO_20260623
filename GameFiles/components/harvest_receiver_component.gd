@@ -17,7 +17,10 @@ func receive_crop(crop):
 
 	# Remove crop from world
 	crop.queue_free()
-
+	
+	# Remove crop from list on player tracker
+	GameManager.glPlayerRef._free_crop_location(crop.global_position)
+	
 	# Show popup
 	await show_crop_popup(crop_texture)
 
