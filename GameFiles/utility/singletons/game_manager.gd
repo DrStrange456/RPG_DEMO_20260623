@@ -4,6 +4,7 @@ extends Node
 	#print("Game Manager ready at: ", Time.get_ticks_msec())
 
 
+
 const FACING_RIGHT = "RIGHT"
 const FACING_LEFT = "LEFT"
 const FACING_UP = "UP"

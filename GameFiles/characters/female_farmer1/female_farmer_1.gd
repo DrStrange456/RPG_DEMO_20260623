@@ -210,6 +210,9 @@ func _attempt_chop():
 func _manual_hoe_action(cell_pos,ret_hit_loc):
 	hoe.hoe_tile_no_reticle(cell_pos, soil_hoed, ret_hit_loc)
 
+func _manual_seeding_action(loc):
+	seeding._debug_place_crop(GameManager.selected_item,loc)
+	#seeding._debug_place_crop(GameManager.selected_item,Vector2(32,2))
 
 ## - - - HOEING - - -
 func hoe_state():

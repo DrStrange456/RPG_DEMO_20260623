@@ -119,6 +119,7 @@ func debug_hoe_land():
 		var first: Vector2 = pair[0]
 		var second: Vector2 = pair[1]
 		female_farmer_1._manual_hoe_action(first,second)
+		female_farmer_1._manual_seeding_action(first)
 
 
 func debug_plant_crops():
