@@ -129,7 +129,7 @@ func _on_stats_no_health():
 	#emit_signal("enemy_death", self)
 
 func _on_hurtbox_area_entered(area):
-	print("Bat Hurtbox entered")
+	#print("Bat Hurtbox entered")
 	
 	if is_instance_valid(self) && self.is_in_group("enemy"):
 		stats.health -= area.damage

@@ -37,11 +37,19 @@ scale = Vector2(0.80038023, 0.7847222)
 texture = ExtResource("4_y8qm2")
 metadata/_edit_lock_ = true
 
-[node name="Resources" type="Sprite2D" parent="PopupRoot" unique_id=1469223888]
-position = Vector2(725, 456.00003)
+[node name="ColorRect" type="ColorRect" parent="PopupRoot" unique_id=1731641771]
+layout_mode = 0
+offset_left = 623.0
+offset_top = 366.0
+offset_right = 833.0
+offset_bottom = 549.0
+color = Color(0.043137256, 0.05490196, 0.06666667, 1)
+metadata/_edit_lock_ = true
+
+[node name="Resources" type="Sprite2D" parent="PopupRoot/ColorRect" unique_id=1469223888]
+position = Vector2(102, 90.00003)
 scale = Vector2(0.62560385, 0.5385852)
 texture = ExtResource("5_pugri")
-metadata/_edit_lock_ = true
 
 [node name="Buttons" type="Node2D" parent="PopupRoot" unique_id=745872755]
 

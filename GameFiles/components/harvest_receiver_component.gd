@@ -31,8 +31,6 @@ func receive_crop(crop):
 	#inventory_component.add_item(crop_item_data, 1)
 	#print("debug")
 
-#TODO: Remove from "crop_list_array" in Player script
-
 
 func show_crop_popup(texture: Texture2D) -> void:
 	var popup = popup_scene.instantiate()

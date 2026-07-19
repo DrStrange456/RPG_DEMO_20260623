@@ -57,11 +57,11 @@ func _ready() -> void:
 	reticleComp.visible = true
 	reticleComp.init_detectors_toFalse()
 	
-	print("Time to playable: ",
-		Time.get_ticks_msec() - StartupTimer.launch_time,
-		" ms")
-	
-	print("Shooting with:", currentFacingDir)
+	#print("Time to playable: ",
+		#Time.get_ticks_msec() - StartupTimer.launch_time,
+		#" ms")
+	#
+	#print("Shooting with:", currentFacingDir)
 
 func _process(_delta: float) -> void:
 	update_interaction_target()
@@ -212,7 +212,6 @@ func _manual_hoe_action(cell_pos,ret_hit_loc):
 
 func _manual_seeding_action(loc,vec):
 	seeding._debug_place_crop(GameManager.selected_item,loc,vec)
-	#seeding._debug_place_crop(GameManager.selected_item,Vector2(32,2))
 
 ## - - - HOEING - - -
 func hoe_state():
@@ -283,16 +282,10 @@ func pickRock_action_initiated(dam):
 
 
 
-func _free_crop_location(pos):
-	#GameManager.glPlayerRef.crop_list_array
-	#print(soil_hoed.local_to_map(pos))
-	# FIXME: need tmp to be in decimal format for it to remove correctly
-	var tmp = to_float_vector(soil_hoed.local_to_map(pos))
-	print(tmp)
-	print(GameManager.glPlayerRef.crop_list_array)
+func _free_crop_location(posi):
+	var tmp = to_float_vector(soil_hoed.local_to_map(posi))
 	GameManager.glPlayerRef.crop_list_array.erase(tmp)
-	print(GameManager.glPlayerRef.crop_list_array)
-
+	
 func to_float_vector(v: Vector2) -> Vector2:
 	return Vector2(float(v.x), float(v.y))
 
@@ -331,15 +324,15 @@ func _isValid_Hoed_Location_byValue(val:Vector2) -> bool:
 	return false
 func _is_space_available() -> bool:
 	if pos:
-		print(pos)
-		print(listPlantedLocations.has(dirt.map_to_local(pos)))
+		#print(pos)
+		#print(listPlantedLocations.has(dirt.map_to_local(pos)))
 		var space_occupied = listPlantedLocations.has(dirt.map_to_local(pos))
 		return !space_occupied
 	else: return false
 func _is_space_available_byValue(val:Vector2) -> bool:
 	if val:
-		print(dirt.map_to_local(val))
-		print(listPlantedLocations.has(val))
+		#print(dirt.map_to_local(val))
+		#print(listPlantedLocations.has(val))
 		var space_occupied = listPlantedLocations.has(val)
 		return !space_occupied
 	else: return false

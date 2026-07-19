@@ -3730,6 +3730,7 @@ mouse_default_cursor_shape = 2
 text = ">"
 
 [node name="Control" type="Control" parent="UI/HUD/debug_selector/toggle_buttons" unique_id=176696864]
+visible = false
 anchors_preset = 0
 offset_top = 71.929474
 offset_right = 40.0
@@ -4038,9 +4039,15 @@ KNOCKBACK_FORCE = 100
 
 [node name="Crops" type="Node2D" parent="World" unique_id=1544415318]
 
+[connection signal="pressed" from="UI/HUD/tool_selector/selectATTACK" to="." method="_on_selector_button_pressed" flags=18]
+[connection signal="pressed" from="UI/HUD/tool_selector/selectHOE" to="." method="_on_selector_button_pressed" flags=18]
+[connection signal="pressed" from="UI/HUD/tool_selector/selectCHOP" to="." method="_on_selector_button_pressed" flags=18]
+[connection signal="pressed" from="UI/HUD/tool_selector/selectPICK" to="." method="_on_selector_button_pressed" flags=18]
+[connection signal="pressed" from="UI/HUD/tool_selector/selectPLANT" to="." method="_on_selector_button_pressed" flags=18]
+[connection signal="pressed" from="UI/HUD/tool_selector/selectHARVEST" to="." method="_on_selector_button_pressed" flags=18]
 [connection signal="pressed" from="UI/HUD/btnWEAPON" to="." method="_on_btn_weapon_pressed"]
 [connection signal="pressed" from="UI/HUD/btnTOOL" to="." method="_on_btn_tool_pressed"]
 [connection signal="pressed" from="UI/HUD/btnITEM" to="." method="_on_btn_item_pressed"]
 [connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons" to="." method="_on_toggle_buttons_pressed"]
-[connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons/Control/btnCROPS" to="." method="_on_btn_crops_pressed"]
+[connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons/Control/btnCROPS" to="." method="_on_btn_crops_pressed" flags=18]
 [connection signal="body_entered" from="World/Objects/player_house/Area2D" to="." method="_on_area_2d_body_entered"]

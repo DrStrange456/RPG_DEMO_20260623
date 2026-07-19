@@ -69,14 +69,14 @@ func _on_toggle_buttons_pressed() -> void:
 		toggle_buttons.text = "<"
 
 
-func _on_btn_crops_pressed() -> void:
-	debug_hoe_land()
-	debug_plant_crops()
+func _on_btn_crops_pressed(button: Button):
+	debug_setup_crops()
+	button.release_focus()
 
 
 
 
-func debug_hoe_land():
+func debug_setup_crops():
 	var spawn_point_pairs = []
 	spawn_point_pairs.append([Vector2(32,2),Vector2(523.9481, 43.94793)])
 	spawn_point_pairs.append([Vector2(31,2),Vector2(496.3224, 36.32233)])
@@ -126,12 +126,15 @@ func debug_hoe_land():
 		female_farmer_1._manual_seeding_action(first,second)
 
 
-func debug_plant_crops():
-	pass
 
 
 
-
+func _on_selector_button_pressed(button: Button):
+	button.release_focus()
 
 
 # Bottom
+
+
+func _on_select_hoe_pressed() -> void:
+	pass # Replace with function body.

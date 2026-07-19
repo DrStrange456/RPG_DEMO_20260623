@@ -22,9 +22,11 @@ collision_mask = 0
 script = ExtResource("1_fvfks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=51041967]
+visible = false
 shape = SubResource("CapsuleShape2D_fvfks")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=49505874]
+visible = false
 collision_layer = 0
 collision_mask = 18
 
@@ -32,6 +34,7 @@ collision_mask = 18
 shape = SubResource("CircleShape2D_fvfks")
 
 [node name="Interactionbox" type="Area2D" parent="." unique_id=1439992051]
+visible = false
 collision_layer = 32768
 collision_mask = 0
 

@@ -28,8 +28,8 @@ func _player_planting(itm: Resource):
 		var tmpIsHoed = GameManager.glPlayerRef._isValid_Hoed_Location()
 		var tmpIsSpaceAvailable = GameManager.glPlayerRef._is_space_available()
 		if tmpIsHoed and tmpIsSpaceAvailable:
-			print(itm)
-			print(GameManager.glPlayerRef.dirt.map_to_local(GameManager.glPlayerRef.pos))
+			#print(itm)
+			#print(GameManager.glPlayerRef.dirt.map_to_local(GameManager.glPlayerRef.pos))
 			_place_crop(itm,GameManager.glPlayerRef.dirt.map_to_local(GameManager.glPlayerRef.pos))
 	
 	GameManager.glPlayerRef.set_Mode_to_Default()
@@ -49,7 +49,7 @@ func _debug_place_crop(itm,loc,loc_coord):
 
 
 func _place_crop(itm: Resource,_loc: Vector2):
-	print("Planting")
+	#print("Planting")
 	var plant_res = PlantResource.new()
 	plant_res.setup(itm.enum_seed_value,itm.enum_seed_item_value)
 	var plant = GameManager.glPlantScene.instantiate()
