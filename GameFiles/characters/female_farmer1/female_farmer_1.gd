@@ -291,6 +291,8 @@ func to_float_vector(v: Vector2) -> Vector2:
 
 
 ### - Reticle
+func _mapGlobal_toLocal(loc)->Vector2:
+	return to_float_vector(soil_hoed.local_to_map(loc))
 func _place_reticle_correctly()->void:
 	# Map reticle to grid coordinate and place
 	pos = dirt.local_to_map(reticleComp.getHitLocation())

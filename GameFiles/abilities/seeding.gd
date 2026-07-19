@@ -48,14 +48,18 @@ func _debug_place_crop(itm,loc,loc_coord):
 		GameManager.glPlayerRef.crop_list_array.append(loc)
 
 
-func _place_crop(itm: Resource,_loc: Vector2):
-	#print("Planting")
-	var plant_res = PlantResource.new()
-	plant_res.setup(itm.enum_seed_value,itm.enum_seed_item_value)
-	var plant = GameManager.glPlantScene.instantiate()
-	var objects_fldr = find_anywhere("Crops")
-	plant.setup(GameManager.glPlayerRef.pos, objects_fldr, plant_res, plant_death)
-	GameManager.glPlayerRef.crop_list_array.append(GameManager.glPlayerRef.pos)
+func _place_crop(itm: Resource,loc: Vector2):
+	var loc_coord = GameManager.glPlayerRef._mapGlobal_toLocal(loc)
+	var tmpIsHoed = GameManager.glPlayerRef._isValid_Hoed_Location_byValue(loc)
+	#var tmpIsHoed = GameManager.glPlayerRef._isValid_Hoed_Location_byValue(loc_coord)
+	var tmpIsSpaceAvailable = GameManager.glPlayerRef._is_space_available_byValue(loc)
+	if tmpIsHoed and tmpIsSpaceAvailable:
+		var plant_res = PlantResource.new()
+		plant_res.setup(itm.enum_seed_value,itm.enum_seed_item_value)
+		var plant = GameManager.glPlantScene.instantiate()
+		var objects_fldr = find_anywhere("Crops")
+		plant.setup(GameManager.glPlayerRef.pos, objects_fldr, plant_res, plant_death)
+		GameManager.glPlayerRef.crop_list_array.append(GameManager.glPlayerRef.pos)
 
 
 func plant_death(coord: Vector2i):
