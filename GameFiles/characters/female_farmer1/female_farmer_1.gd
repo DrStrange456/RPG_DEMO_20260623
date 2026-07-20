@@ -289,10 +289,14 @@ func _free_crop_location(posi):
 func to_float_vector(v: Vector2) -> Vector2:
 	return Vector2(float(v.x), float(v.y))
 
+func to_int_vector(v: Vector2) -> Vector2:
+	return Vector2(int(v.x), int(v.y))
+
 
 ### - Reticle
 func _mapGlobal_toLocal(loc)->Vector2:
 	return to_float_vector(soil_hoed.local_to_map(loc))
+
 func _place_reticle_correctly()->void:
 	# Map reticle to grid coordinate and place
 	pos = dirt.local_to_map(reticleComp.getHitLocation())
@@ -335,7 +339,9 @@ func _is_space_available_byValue(val:Vector2) -> bool:
 	if val:
 		#print(dirt.map_to_local(val))
 		#print(listPlantedLocations.has(val))
-		var space_occupied = listPlantedLocations.has(val)
+		# FIXME: this check fails due to number types
+		var val_dec = to_int_vector(val)
+		var space_occupied = listPlantedLocations.has(val_dec)
 		return !space_occupied
 	else: return false
 func set_Mode_to_Default():

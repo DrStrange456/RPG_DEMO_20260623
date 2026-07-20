@@ -40,7 +40,6 @@ func rock_died():
 	enemyDeathEffect.global_position = global_position
 	
 	#Drop Loot
-	#TODO: add dispersal effect to make it appear like loot is dropped
 	var loot_chances = randf_range(0.0, 100)
 	if loot_chances <= 15:
 		var newObject = lootTemplate.instantiate()

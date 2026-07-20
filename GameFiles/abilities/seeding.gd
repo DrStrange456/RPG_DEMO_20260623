@@ -52,7 +52,8 @@ func _place_crop(itm: Resource,loc: Vector2):
 	var loc_coord = GameManager.glPlayerRef._mapGlobal_toLocal(loc)
 	var tmpIsHoed = GameManager.glPlayerRef._isValid_Hoed_Location_byValue(loc)
 	#var tmpIsHoed = GameManager.glPlayerRef._isValid_Hoed_Location_byValue(loc_coord)
-	var tmpIsSpaceAvailable = GameManager.glPlayerRef._is_space_available_byValue(loc)
+	#var tmpIsSpaceAvailable = GameManager.glPlayerRef._is_space_available_byValue(loc)
+	var tmpIsSpaceAvailable = GameManager.glPlayerRef._is_space_available_byValue(loc_coord)
 	if tmpIsHoed and tmpIsSpaceAvailable:
 		var plant_res = PlantResource.new()
 		plant_res.setup(itm.enum_seed_value,itm.enum_seed_item_value)
