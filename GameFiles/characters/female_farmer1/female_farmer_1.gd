@@ -335,13 +335,9 @@ func _is_space_available() -> bool:
 		var space_occupied = listPlantedLocations.has(dirt.map_to_local(pos))
 		return !space_occupied
 	else: return false
-func _is_space_available_byValue(val:Vector2) -> bool:
+func _is_space_available_byValue(val) -> bool:
 	if val:
-		#print(dirt.map_to_local(val))
-		#print(listPlantedLocations.has(val))
-		# FIXME: this check fails due to number types
-		var val_dec = to_int_vector(val)
-		var space_occupied = listPlantedLocations.has(val_dec)
+		var space_occupied = listPlantedLocations.has(Vector2i(val))
 		return !space_occupied
 	else: return false
 func set_Mode_to_Default():
