@@ -284,7 +284,8 @@ func pickRock_action_initiated(dam):
 
 func _free_crop_location(posi):
 	var tmp = to_float_vector(soil_hoed.local_to_map(posi))
-	GameManager.glPlayerRef.crop_list_array.erase(tmp)
+	GameManager.glPlayerRef.crop_list_array.erase(Vector2i(tmp))
+	print(GameManager.glPlayerRef.crop_list_array)
 	
 func to_float_vector(v: Vector2) -> Vector2:
 	return Vector2(float(v.x), float(v.y))

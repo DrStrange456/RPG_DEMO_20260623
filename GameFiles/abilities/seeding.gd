@@ -45,7 +45,7 @@ func _debug_place_crop(itm,loc,loc_coord):
 		var plant = GameManager.glPlantScene.instantiate()
 		var objects_fldr = find_anywhere("Crops")
 		plant.setup(loc, objects_fldr, plant_res, plant_death)
-		GameManager.glPlayerRef.crop_list_array.append(loc)
+		GameManager.glPlayerRef.crop_list_array.append(Vector2i(loc))
 
 
 func _place_crop(itm: Resource,loc: Vector2):
