@@ -62,6 +62,7 @@ func toggle_popup() -> void:
 
 
 func open_popup() -> void:
+	get_tree().paused = true
 	is_open = true
 
 	kill_tweens()
@@ -113,6 +114,7 @@ func open_popup() -> void:
 
 
 func close_popup() -> void:
+	get_tree().paused = false
 	is_open = false
 
 	kill_tweens()

@@ -3783,6 +3783,7 @@ text = "Trees"
 visible = false
 
 [node name="pause_ui" parent="UI/UI_MENUs" unique_id=252582373 instance=ExtResource("8_32xvi")]
+process_mode = 3
 visible = false
 
 [node name="new_general_store" parent="UI/UI_MENUs" unique_id=933798175 instance=ExtResource("7_00lgd")]
