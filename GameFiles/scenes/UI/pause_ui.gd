@@ -19,8 +19,6 @@ func _on_btn_settings_pressed() -> void:
 
 
 func _on_btn_quit_pressed() -> void:
-	#get_tree().quit()
-	#self.visible = false
 	close_popup()
 
 
