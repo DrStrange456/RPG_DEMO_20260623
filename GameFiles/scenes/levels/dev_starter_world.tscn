@@ -3878,6 +3878,7 @@ position = Vector2(0.5, 101)
 shape = SubResource("RectangleShape2D_cxtfx")
 
 [node name="TreesAndBushes" type="Node2D" parent="World/Objects" unique_id=2026677695]
+y_sort_enabled = true
 
 [node name="static_tree_medium" parent="World/Objects/TreesAndBushes" unique_id=192549769 instance=ExtResource("24_ialmi")]
 position = Vector2(1704, -10)
@@ -3901,6 +3902,7 @@ position = Vector2(1525, -51)
 position = Vector2(1624, -11)
 
 [node name="_Grass" type="Node2D" parent="World/Objects" unique_id=1763093049]
+y_sort_enabled = true
 
 [node name="Grass" parent="World/Objects/_Grass" unique_id=2097157904 instance=ExtResource("27_vqsjl")]
 position = Vector2(1584, 149)
@@ -3930,6 +3932,7 @@ position = Vector2(1519, 195)
 position = Vector2(1484, 203)
 
 [node name="_Rocks" type="Node2D" parent="World/Objects" unique_id=155471668]
+y_sort_enabled = true
 
 [node name="RockNodes_Lvl_1" parent="World/Objects/_Rocks" unique_id=1988782626 instance=ExtResource("28_gc2y0")]
 position = Vector2(1389, 43)
@@ -3959,6 +3962,7 @@ position = Vector2(1293, 220)
 position = Vector2(1293, 203)
 
 [node name="_Lights" type="Node2D" parent="World/Objects" unique_id=1031448209]
+y_sort_enabled = true
 
 [node name="Torch" parent="World/Objects/_Lights" unique_id=1172075036 instance=ExtResource("17_spa7a")]
 position = Vector2(970, 344)
