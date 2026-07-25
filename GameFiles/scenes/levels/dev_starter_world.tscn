@@ -29,8 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://b0o78bl2yg7fx" path="res://assets/misc/dirt_paths.png" id="20_vqsjl"]
 [ext_resource type="PackedScene" uid="uid://dnr1orx43cgci" path="res://scenes/objects/static_tree_medium.tscn" id="24_ialmi"]
 [ext_resource type="PackedScene" uid="uid://dbxpeimdhh4j6" path="res://scenes/objects/grass.tscn" id="27_vqsjl"]
-[ext_resource type="PackedScene" uid="uid://dl45jv4exe6i6" path="res://assets/Landscape/rock_nodes_lvl_1.tscn" id="28_gc2y0"]
-[ext_resource type="PackedScene" uid="uid://hav20xcwuu1k" path="res://scenes/objects/rock.tscn" id="28_mfxfj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0n0ph"]
 texture = ExtResource("3_kpaqn")
@@ -3854,7 +3852,7 @@ y_sort_enabled = true
 
 [node name="female_farmer1" parent="World/Objects" unique_id=543434268 instance=ExtResource("1_iswvf")]
 y_sort_enabled = true
-position = Vector2(615, 849)
+position = Vector2(1972, 772)
 
 [node name="Camera2D" type="Camera2D" parent="World/Objects/female_farmer1" unique_id=465719586]
 zoom = Vector2(2, 2)
@@ -3877,28 +3875,28 @@ visible = false
 position = Vector2(0.5, 101)
 shape = SubResource("RectangleShape2D_cxtfx")
 
-[node name="TreesAndBushes" type="Node2D" parent="World/Objects" unique_id=2026677695]
+[node name="_TreesAndBushes" type="Node2D" parent="World/Objects" unique_id=2026677695]
 y_sort_enabled = true
 
-[node name="static_tree_medium" parent="World/Objects/TreesAndBushes" unique_id=192549769 instance=ExtResource("24_ialmi")]
+[node name="static_tree_medium" parent="World/Objects/_TreesAndBushes" unique_id=192549769 instance=ExtResource("24_ialmi")]
 position = Vector2(1704, -10)
 
-[node name="static_tree_medium2" parent="World/Objects/TreesAndBushes" unique_id=598278388 instance=ExtResource("24_ialmi")]
+[node name="static_tree_medium2" parent="World/Objects/_TreesAndBushes" unique_id=598278388 instance=ExtResource("24_ialmi")]
 position = Vector2(1600, 82)
 
-[node name="static_tree_medium3" parent="World/Objects/TreesAndBushes" unique_id=671350429 instance=ExtResource("24_ialmi")]
+[node name="static_tree_medium3" parent="World/Objects/_TreesAndBushes" unique_id=671350429 instance=ExtResource("24_ialmi")]
 position = Vector2(1404, -8)
 
-[node name="static_tree_medium4" parent="World/Objects/TreesAndBushes" unique_id=1908697937 instance=ExtResource("24_ialmi")]
+[node name="static_tree_medium4" parent="World/Objects/_TreesAndBushes" unique_id=1908697937 instance=ExtResource("24_ialmi")]
 position = Vector2(1375, 13)
 
-[node name="static_tree_medium5" parent="World/Objects/TreesAndBushes" unique_id=1980065752 instance=ExtResource("24_ialmi")]
+[node name="static_tree_medium5" parent="World/Objects/_TreesAndBushes" unique_id=1980065752 instance=ExtResource("24_ialmi")]
 position = Vector2(1723, 38)
 
-[node name="static_tree_medium6" parent="World/Objects/TreesAndBushes" unique_id=1743830067 instance=ExtResource("24_ialmi")]
+[node name="static_tree_medium6" parent="World/Objects/_TreesAndBushes" unique_id=1743830067 instance=ExtResource("24_ialmi")]
 position = Vector2(1525, -51)
 
-[node name="static_tree_medium7" parent="World/Objects/TreesAndBushes" unique_id=653532129 instance=ExtResource("24_ialmi")]
+[node name="static_tree_medium7" parent="World/Objects/_TreesAndBushes" unique_id=653532129 instance=ExtResource("24_ialmi")]
 position = Vector2(1624, -11)
 
 [node name="_Grass" type="Node2D" parent="World/Objects" unique_id=1763093049]
@@ -3933,33 +3931,6 @@ position = Vector2(1484, 203)
 
 [node name="_Rocks" type="Node2D" parent="World/Objects" unique_id=155471668]
 y_sort_enabled = true
-
-[node name="RockNodes_Lvl_1" parent="World/Objects/_Rocks" unique_id=1988782626 instance=ExtResource("28_gc2y0")]
-position = Vector2(1389, 43)
-
-[node name="RockNodes_Lvl_2" parent="World/Objects/_Rocks" unique_id=1850478317 instance=ExtResource("28_gc2y0")]
-position = Vector2(1388, 62)
-
-[node name="RockNodes_Lvl_3" parent="World/Objects/_Rocks" unique_id=1387582332 instance=ExtResource("28_gc2y0")]
-position = Vector2(1362, 52)
-
-[node name="rock" parent="World/Objects/_Rocks" unique_id=1776728779 instance=ExtResource("28_mfxfj")]
-position = Vector2(1313.5, 186)
-
-[node name="rock2" parent="World/Objects/_Rocks" unique_id=554592132 instance=ExtResource("28_mfxfj")]
-position = Vector2(1313.5, 220)
-
-[node name="rock3" parent="World/Objects/_Rocks" unique_id=1003675926 instance=ExtResource("28_mfxfj")]
-position = Vector2(1313.5, 203)
-
-[node name="rock4" parent="World/Objects/_Rocks" unique_id=1961893534 instance=ExtResource("28_mfxfj")]
-position = Vector2(1293, 186)
-
-[node name="rock5" parent="World/Objects/_Rocks" unique_id=1320357136 instance=ExtResource("28_mfxfj")]
-position = Vector2(1293, 220)
-
-[node name="rock6" parent="World/Objects/_Rocks" unique_id=1523177545 instance=ExtResource("28_mfxfj")]
-position = Vector2(1293, 203)
 
 [node name="_Lights" type="Node2D" parent="World/Objects" unique_id=1031448209]
 y_sort_enabled = true
@@ -4055,5 +4026,6 @@ KNOCKBACK_FORCE = 100
 [connection signal="pressed" from="UI/HUD/btnITEM" to="." method="_on_btn_item_pressed"]
 [connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons" to="." method="_on_toggle_buttons_pressed"]
 [connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons/Control/btnCROPS" to="." method="_on_btn_crops_pressed" flags=18]
+[connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons/Control/btnROCKS" to="." method="_on_btn_rocks_pressed" flags=18]
 [connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons/Control/btnTREES" to="." method="_on_btn_trees_pressed" flags=18]
 [connection signal="body_entered" from="World/Objects/player_house/Area2D" to="." method="_on_area_2d_body_entered"]

@@ -160,7 +160,6 @@ func animate():
 
 ## - - - ACTIONS - - -
 func _execute_primary_action():
-	#_attempt_sword()
 	var root_scene = get_tree().current_scene
 	var current_button = root_scene._get_selected_button()
 	match current_button.name:

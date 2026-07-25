@@ -53,6 +53,7 @@ collision_mask = 0
 script = SubResource("GDScript_7h1s5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2106977081]
+visible = false
 shape = SubResource("CircleShape2D_kghiy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=71934387]
