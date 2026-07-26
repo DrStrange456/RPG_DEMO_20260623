@@ -202,7 +202,7 @@ func _attempt_pick():
 	performAction_PickAxe()
 
 func _attempt_chop():
-	pass
+	performAction_AxeSwing()
 
 
 
@@ -277,6 +277,21 @@ func pickRock_action_initiated(dam):
 	for N in SpawnsDir.get_children():
 		if N.is_in_group("rocks"):
 			N.take_damage(dam)
+
+func chopTree_action_initiated(dam):
+	if reticleComp.is_TREE_DET_colliding():
+		var target = reticleComp.TREE_DET_Collider()
+		var target_parent = target.get_parent()
+		if target_parent.has_method("take_damage"):
+			if target_parent.is_in_group("trees"):
+				target_parent.take_damage(dam, self.global_position)
+
+
+
+## - Axe Swing
+func performAction_AxeSwing():
+	await get_tree().process_frame
+	chopTree_action_initiated(1)  # signal_name, damage_value
 
 
 

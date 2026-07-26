@@ -14,7 +14,6 @@ var current_health: int
 func _ready():
 	current_health = max_health
 
-
 func take_damage(amount: int):
 	current_health -= amount
 	
@@ -22,7 +21,6 @@ func take_damage(amount: int):
 	
 	if current_health <= 0:
 		destroy()
-
 
 func destroy():
 	print(\"Rock destroyed\")
@@ -47,7 +45,7 @@ func shake():
 [sub_resource type="CircleShape2D" id="CircleShape2D_kghiy"]
 radius = 8.0
 
-[node name="rock" type="StaticBody2D" unique_id=1776728779]
+[node name="rock" type="StaticBody2D" unique_id=1776728779 groups=["rocks"]]
 collision_layer = 524288
 collision_mask = 0
 script = SubResource("GDScript_7h1s5")

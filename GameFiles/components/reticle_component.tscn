@@ -37,3 +37,9 @@ position = Vector2(0, -3)
 target_position = Vector2(24, 0)
 collision_mask = 18
 collide_with_areas = true
+
+[node name="rcTREE_DET" type="RayCast2D" parent="RayCast_Pivot" unique_id=1537211644]
+position = Vector2(0, -3)
+target_position = Vector2(24, 0)
+collision_mask = 1048576
+collide_with_areas = true

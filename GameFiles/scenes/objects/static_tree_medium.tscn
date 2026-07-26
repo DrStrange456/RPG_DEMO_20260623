@@ -6,7 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_da1gp"]
 radius = 6.0
 
-[node name="static_tree_medium" type="StaticBody2D" unique_id=192549769]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ws5e"]
+
+[node name="static_tree_medium" type="StaticBody2D" unique_id=192549769 groups=["trees"]]
 y_sort_enabled = true
 script = ExtResource("1_da1gp")
 
@@ -28,5 +30,14 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2" unique_id=727560243]
 polygon = PackedVector2Array(-4, -14, -22, -24, 0, -81, 20, -23, 4, -14)
 
+[node name="HurtBox_Tree" type="Area2D" parent="." unique_id=813634754]
+collision_layer = 1048576
+collision_mask = 1048576
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox_Tree" unique_id=1517149525]
+shape = SubResource("CircleShape2D_0ws5e")
+
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d_2_body_exited"]
+[connection signal="area_entered" from="HurtBox_Tree" to="." method="_on_hurt_box_tree_area_entered" flags=18]
+[connection signal="body_entered" from="HurtBox_Tree" to="." method="_on_hurt_box_tree_body_entered" flags=18]

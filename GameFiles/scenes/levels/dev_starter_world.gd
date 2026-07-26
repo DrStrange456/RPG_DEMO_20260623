@@ -31,7 +31,7 @@ func _ready():
 	button_group.get_buttons()[0].button_pressed = true
 	#print(button_group.get_buttons())
 	
-	#debug_setup_trees()
+	debug_setup_trees()
 	#print(get_global_positions(rocks))
 
 
