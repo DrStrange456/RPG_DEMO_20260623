@@ -273,10 +273,16 @@ func performAction_PickAxe():
 	pickRock_action_initiated(1)  # signal_name, damage_value
 
 func pickRock_action_initiated(dam):
-	var SpawnsDir = find_anywhere("_Rocks")
-	for N in SpawnsDir.get_children():
-		if N.is_in_group("rocks"):
-			N.take_damage(dam)
+	#var SpawnsDir = find_anywhere("_Rocks")
+	#for N in SpawnsDir.get_children():
+		#if N.is_in_group("rocks"):
+			#N.take_damage(dam)
+	if reticleComp.is_ROCK_DET_colliding():
+		var target = reticleComp.TREE_DET_Collider()
+		var target_parent = target.get_parent()
+		if target_parent.has_method("take_damage"):
+			if target_parent.is_in_group("rocks"):
+				target_parent.take_damage(dam, self.global_position)
 
 func chopTree_action_initiated(dam):
 	if reticleComp.is_TREE_DET_colliding():

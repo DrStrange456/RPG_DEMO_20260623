@@ -14,10 +14,19 @@ var current_health: int
 func _ready():
 	current_health = max_health
 
-func take_damage(amount: int):
+#func take_damage(amount: int):
+	#current_health -= amount
+	#
+	#shake()
+	#
+	#if current_health <= 0:
+		#destroy()
+
+func take_damage(amount: int, attacker_position: Vector2):
 	current_health -= amount
 	
-	shake()
+	var dir: float = sign(global_position.x - attacker_position.x)
+	shake(dir)
 	
 	if current_health <= 0:
 		destroy()
@@ -26,14 +35,35 @@ func destroy():
 	print(\"Rock destroyed\")
 	queue_free()
 
-func shake():
-	var tween = create_tween()
+#func shake():
+	#var tween = create_tween()
+	#tween.tween_property(
+		#self,
+		#\"position:x\",
+		#position.x + 3,
+		#0.05
+	#)
+	#tween.tween_property(
+		#self,
+		#\"position:x\",
+		#position.x,
+		#0.05
+	#)
+
+func shake(hit_direction: float = 1.0) -> void:
+	var shake_amount := 3.0 * hit_direction
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+
 	tween.tween_property(
 		self,
 		\"position:x\",
-		position.x + 3,
+		position.x + shake_amount,
 		0.05
 	)
+
 	tween.tween_property(
 		self,
 		\"position:x\",

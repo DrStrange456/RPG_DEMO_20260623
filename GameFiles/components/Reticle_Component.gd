@@ -14,6 +14,11 @@ const DOWN: Vector2 = Vector2(0,16)
 @onready var rc_crop_det_3: RayCast2D = $RayCast_Pivot/rcCROP_DET3
 @onready var rc_ia_det_4: RayCast2D = $RayCast_Pivot/rcIA_DET4
 @onready var rc_tree_det: RayCast2D = $RayCast_Pivot/rcTREE_DET
+@onready var rc_rock_det: RayCast2D = $RayCast_Pivot/rcROCK_DET
+
+
+
+
 
 @onready var crops_detected_flag: bool = false
 var rcDET_CROP = [rc_crop_det_1,rc_crop_det_2,rc_crop_det_3]
@@ -52,6 +57,17 @@ func are_any_rays_colliding(rays: Array)->bool:
 
 ## PICKUP ZONE
 
+
+
+
+
+
+## ROCK DET ZONE
+func is_ROCK_DET_colliding():
+	return rc_rock_det.is_colliding()
+
+func ROCK_DET_Collider():
+	return rc_rock_det.get_collider()
 
 
 ## TREE DET ZONE

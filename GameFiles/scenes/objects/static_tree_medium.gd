@@ -46,10 +46,3 @@ func _on_area_2d_2_body_exited(_body: Node2D) -> void:
 
 func _reset_modulation():
 	modulate.a = 1.0
-
-
-func hit_by_axe():
-	print("Tree chopped!")
-
-	sway_tree()
-	
