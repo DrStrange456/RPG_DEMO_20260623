@@ -75,10 +75,13 @@ func shake(hit_direction: float = 1.0) -> void:
 [sub_resource type="CircleShape2D" id="CircleShape2D_kghiy"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2dker"]
+
 [node name="rock" type="StaticBody2D" unique_id=1776728779 groups=["rocks"]]
-collision_layer = 524288
+collision_layer = 0
 collision_mask = 0
 script = SubResource("GDScript_7h1s5")
+max_health = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2106977081]
 visible = false
@@ -88,3 +91,13 @@ shape = SubResource("CircleShape2D_kghiy")
 texture = ExtResource("1_2dker")
 region_enabled = true
 region_rect = Rect2(176, 17, 16, 14)
+
+[node name="HurtBox_Rock" type="Area2D" parent="." unique_id=1122661828]
+visible = false
+collision_layer = 524288
+collision_mask = 1048576
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox_Rock" unique_id=1807289569]
+shape = SubResource("CircleShape2D_2dker")
+
+[connection signal="body_entered" from="HurtBox_Rock" to="." method="_on_hurt_box_rock_body_entered" flags=18]

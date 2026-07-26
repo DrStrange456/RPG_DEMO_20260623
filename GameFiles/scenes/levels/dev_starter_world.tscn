@@ -3852,7 +3852,7 @@ y_sort_enabled = true
 
 [node name="female_farmer1" parent="World/Objects" unique_id=543434268 instance=ExtResource("1_iswvf")]
 y_sort_enabled = true
-position = Vector2(569, 869)
+position = Vector2(2017, 757)
 
 [node name="Camera2D" type="Camera2D" parent="World/Objects/female_farmer1" unique_id=465719586]
 zoom = Vector2(2, 2)
