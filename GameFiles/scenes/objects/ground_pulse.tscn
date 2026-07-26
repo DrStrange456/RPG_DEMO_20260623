@@ -6,7 +6,7 @@
 script/source = "extends Area2D
 
 @export var speed := 250.0
-@export var damage := 350
+@export var damage := 250
 @export var explosion_scene: PackedScene
 
 var direction := Vector2.RIGHT
