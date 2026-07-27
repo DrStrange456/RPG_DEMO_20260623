@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cg4pwmht6unge" path="res://assets/icons/seeds_carrot.png" id="7_4fb74"]
 [ext_resource type="Texture2D" uid="uid://wk8qvqb6srop" path="res://assets/icons/pick.png" id="7_mfxfj"]
 [ext_resource type="PackedScene" uid="uid://bqp6d0hamxsxv" path="res://scenes/UI/pause_ui.tscn" id="8_32xvi"]
+[ext_resource type="PackedScene" uid="uid://bcknoubobah0i" path="res://scenes/machines/seed_maker.tscn" id="8_vqsjl"]
 [ext_resource type="PackedScene" uid="uid://ckohoujmbd77p" path="res://Inventory/StorageUI/StorageUI_Sm.tscn" id="9_penqq"]
 [ext_resource type="PackedScene" uid="uid://my2eogdfe71c" path="res://Inventory/StorageUI/StorageUI_Lrg.tscn" id="10_nfebl"]
 [ext_resource type="PackedScene" uid="uid://7wr7y06ddii6" path="res://characters/bat/bat.tscn" id="10_q502d"]
@@ -3646,6 +3647,9 @@ toggle_mode = true
 icon = ExtResource("5_6lsie")
 icon_alignment = 1
 expand_icon = true
+
+[node name="SeedMaker" parent="UI/HUD/tool_selector" unique_id=268325805 instance=ExtResource("8_vqsjl")]
+position = Vector2(593, 44)
 
 [node name="btnWEAPON" type="Button" parent="UI/HUD" unique_id=1089754095]
 visible = false

@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://bplv0md1e681q"]
+
+[ext_resource type="Script" uid="uid://covl72y2rlqst" path="res://scenes/machines/seed_maker_ui.gd" id="1_evt67"]
+[ext_resource type="Texture2D" uid="uid://b84t0ymbwvlwj" path="res://assets/AAA-TileSets/Craftland/Craftland Terrain/32x32/CL_Crops_Mining.png" id="2_avlg0"]
+
+[node name="seed_maker_ui" type="Control" unique_id=886915031]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_evt67")
+
+[node name="Panel" type="Panel" parent="." unique_id=1867956193]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -147.0
+offset_right = 331.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="panel_left" type="Node2D" parent="Panel" unique_id=83697124]
+
+[node name="slot_in" type="Panel" parent="Panel/panel_left" unique_id=1722359902]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = 52.0
+offset_right = 168.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/panel_left/slot_in" unique_id=268656877]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/panel_left/slot_in/CenterContainer" unique_id=521549712]
+scale = Vector2(1.28125, 1.2499999)
+texture = ExtResource("2_avlg0")
+centered = false
+region_enabled = true
+region_rect = Rect2(1088, 480, 32, 32)
+
+[node name="slot_out" type="Panel" parent="Panel/panel_left" unique_id=1366213773]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = 170.0
+offset_right = 168.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/panel_left/slot_out" unique_id=1768809174]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/panel_left/slot_out/CenterContainer" unique_id=1818559428]
+scale = Vector2(1.28125, 1.2499999)
+texture = ExtResource("2_avlg0")
+centered = false
+region_enabled = true
+region_rect = Rect2(1088, 480, 32, 32)
+
+[node name="Label" type="Label" parent="Panel/panel_left" unique_id=325336251]
+offset_left = 128.0
+offset_top = 99.0
+offset_right = 168.0
+offset_bottom = 122.0
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/panel_left" unique_id=215691672]
+offset_left = 128.0
+offset_top = 217.0
+offset_right = 168.0
+offset_bottom = 240.0
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="panel_right" type="Node2D" parent="Panel" unique_id=567271296]
+
+[node name="GridContainer" type="GridContainer" parent="Panel/panel_right" unique_id=207175013]
+offset_left = 365.0
+offset_top = 37.0
+offset_right = 581.0
+offset_bottom = 253.0
+columns = 5
+
+[node name="slot" type="Panel" parent="Panel/panel_right/GridContainer" unique_id=313266662]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/panel_right/GridContainer/slot" unique_id=715783230]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/panel_right/GridContainer/slot/CenterContainer" unique_id=1900772350]
+scale = Vector2(1.28125, 1.2499999)
+texture = ExtResource("2_avlg0")
+centered = false
+region_enabled = true
+region_rect = Rect2(1088, 480, 32, 32)
+
+[node name="Label" type="Label" parent="Panel/panel_right/GridContainer/slot" unique_id=621825448]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 29.0
+offset_right = 39.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 8
+text = "5"
+
+[node name="slot2" type="Panel" parent="Panel/panel_right/GridContainer" unique_id=306648075]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/panel_right/GridContainer/slot2" unique_id=1836853538]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/panel_right/GridContainer/slot2/CenterContainer" unique_id=1763871437]
+scale = Vector2(1.28125, 1.2499999)
+texture = ExtResource("2_avlg0")
+centered = false
+region_enabled = true
+region_rect = Rect2(1088, 96, 32, 32)
+
+[node name="Label" type="Label" parent="Panel/panel_right/GridContainer/slot2" unique_id=308331265]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 29.0
+offset_right = 39.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 8
+text = "15"
+
+[node name="slot3" type="Panel" parent="Panel/panel_right/GridContainer" unique_id=1607073364]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/panel_right/GridContainer/slot3" unique_id=1937111263]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/panel_right/GridContainer/slot3/CenterContainer" unique_id=1001003602]
+scale = Vector2(1.28125, 1.2499999)
+texture = ExtResource("2_avlg0")
+centered = false
+region_enabled = true
+region_rect = Rect2(1376, 288, 32, 32)
+
+[node name="Label" type="Label" parent="Panel/panel_right/GridContainer/slot3" unique_id=686378785]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 29.0
+offset_right = 39.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 8
+text = "99"
+
+[node name="Button" type="Button" parent="Panel" unique_id=2071166680]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 90.0
+offset_right = 318.0
+offset_bottom = 124.0
+text = "ADD"
+
+[node name="Button2" type="Button" parent="Panel" unique_id=639312460]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 267.0
+offset_right = 39.0
+offset_bottom = 289.0
+theme_override_font_sizes/font_size = 10
+text = "reset"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]
