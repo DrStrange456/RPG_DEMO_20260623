@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bducrb47y028v" path="res://scenes/objects/storage_containers/chest_large.tscn" id="17_gh451"]
 [ext_resource type="PackedScene" uid="uid://c3a3cja5v55je" path="res://scenes/objects/torch.tscn" id="17_spa7a"]
 [ext_resource type="Texture2D" uid="uid://b55s4bi44flkb" path="res://assets/AAA-TileSets/Grass_custom.png" id="18_eiiqc"]
+[ext_resource type="PackedScene" uid="uid://bplv0md1e681q" path="res://scenes/machines/seed_maker_ui.tscn" id="18_gc2y0"]
 [ext_resource type="Texture2D" uid="uid://ha26rhnl07n" path="res://assets/misc/player_can_plant_here.png" id="19_mfxfj"]
 [ext_resource type="Texture2D" uid="uid://b0o78bl2yg7fx" path="res://assets/misc/dirt_paths.png" id="20_vqsjl"]
 [ext_resource type="PackedScene" uid="uid://dnr1orx43cgci" path="res://scenes/objects/static_tree_medium.tscn" id="24_ialmi"]
@@ -3799,6 +3800,13 @@ toggle_action = ""
 [node name="StorageUI_Large" parent="UI/UI_MENUs" unique_id=1675507972 instance=ExtResource("10_nfebl")]
 visible = false
 toggle_action = ""
+
+[node name="seed_maker_ui" parent="UI/UI_MENUs" unique_id=886915031 instance=ExtResource("18_gc2y0")]
+visible = false
+offset_left = 584.0
+offset_top = 303.0
+offset_right = 584.0
+offset_bottom = 303.0
 
 [node name="World" type="Node2D" parent="." unique_id=1837297623]
 

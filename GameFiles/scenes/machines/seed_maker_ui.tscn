@@ -76,7 +76,6 @@ offset_bottom = 40.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel/panel_left/slot_out/CenterContainer" unique_id=1818559428]
 scale = Vector2(1.28125, 1.2499999)
-texture = ExtResource("2_avlg0")
 centered = false
 region_enabled = true
 region_rect = Rect2(1088, 480, 32, 32)
@@ -183,7 +182,7 @@ offset_bottom = 41.0
 theme_override_font_sizes/font_size = 8
 text = "99"
 
-[node name="Button" type="Button" parent="Panel" unique_id=2071166680]
+[node name="btnADD" type="Button" parent="Panel" unique_id=2071166680]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 90.0
@@ -191,7 +190,7 @@ offset_right = 318.0
 offset_bottom = 124.0
 text = "ADD"
 
-[node name="Button2" type="Button" parent="Panel" unique_id=639312460]
+[node name="btnRESET" type="Button" parent="Panel" unique_id=639312460]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 267.0
@@ -200,5 +199,12 @@ offset_bottom = 289.0
 theme_override_font_sizes/font_size = 10
 text = "reset"
 
-[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]
+[node name="ProgressBar" type="ProgressBar" parent="Panel" unique_id=38053609]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 129.0
+offset_right = 207.0
+offset_bottom = 156.0
+
+[connection signal="pressed" from="Panel/btnADD" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/btnRESET" to="." method="_on_button_2_pressed"]

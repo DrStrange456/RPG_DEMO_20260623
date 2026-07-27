@@ -1,11 +1,12 @@
 extends StaticBody2D
 
+@export var ui_scene: PackedScene
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var ui_instance
 
+func interact():
+	if ui_instance == null:
+		ui_instance = ui_scene.instantiate()
+		get_tree().current_scene.add_child(ui_instance)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	ui_instance.open(self)
