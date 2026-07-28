@@ -3799,6 +3799,7 @@ visible = false
 toggle_action = ""
 
 [node name="seed_maker_ui" parent="UI/UI_MENUs" unique_id=886915031 instance=ExtResource("18_gc2y0")]
+process_mode = 3
 visible = false
 offset_left = -285.0
 offset_top = -161.0
