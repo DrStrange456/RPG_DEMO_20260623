@@ -3649,9 +3649,6 @@ icon = ExtResource("5_6lsie")
 icon_alignment = 1
 expand_icon = true
 
-[node name="SeedMaker" parent="UI/HUD/tool_selector" unique_id=268325805 instance=ExtResource("8_vqsjl")]
-position = Vector2(593, 44)
-
 [node name="btnWEAPON" type="Button" parent="UI/HUD" unique_id=1089754095]
 visible = false
 custom_minimum_size = Vector2(40, 40)
@@ -3803,10 +3800,11 @@ toggle_action = ""
 
 [node name="seed_maker_ui" parent="UI/UI_MENUs" unique_id=886915031 instance=ExtResource("18_gc2y0")]
 visible = false
-offset_left = 584.0
-offset_top = 303.0
-offset_right = 584.0
-offset_bottom = 303.0
+offset_left = -285.0
+offset_top = -161.0
+offset_right = -285.0
+offset_bottom = -161.0
+toggle_action = ""
 
 [node name="World" type="Node2D" parent="." unique_id=1837297623]
 
@@ -3864,7 +3862,7 @@ y_sort_enabled = true
 
 [node name="female_farmer1" parent="World/Objects" unique_id=543434268 instance=ExtResource("1_iswvf")]
 y_sort_enabled = true
-position = Vector2(2017, 757)
+position = Vector2(596, 145)
 
 [node name="Camera2D" type="Camera2D" parent="World/Objects/female_farmer1" unique_id=465719586]
 zoom = Vector2(2, 2)
@@ -3872,6 +3870,9 @@ metadata/_edit_lock_ = true
 
 [node name="market" parent="World/Objects" unique_id=1932922336 instance=ExtResource("11_cxtfx")]
 position = Vector2(1144, -40)
+
+[node name="SeedMaker" parent="World/Objects" unique_id=268325805 instance=ExtResource("8_vqsjl")]
+position = Vector2(593, 44)
 
 [node name="player_house" parent="World/Objects" unique_id=1189063552 instance=ExtResource("3_ibmid")]
 y_sort_enabled = true

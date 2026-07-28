@@ -23,6 +23,7 @@ var inventory_open := false
 var small_storage_open: bool = false
 var large_storage_open: bool = false
 var merch_open: bool = false
+var smaker_open: bool = false
 var current_tween: Tween
 
 var active_sell_ui: bool
@@ -43,6 +44,8 @@ func _ready():
 	Events.connect("try_interact_merchant", Callable(open_merchant))
 	
 	Events.connect("health_changed", Callable(update_health_values))
+	
+	Events.connect("try_interact_seed_maker", Callable(open_seed_maker_ui))
 
 
 
@@ -60,6 +63,7 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("activate"):
 		#open_general_store()
 		pass
+
 
 
 
@@ -259,6 +263,19 @@ func open_merchant():
 		merch.open_popup()
 		merch_open = true
 		get_tree().paused = true
+
+func open_seed_maker_ui():
+	if smaker_open:
+		var smaker = find_anywhere("seed_maker_ui")
+		smaker.close_popup()
+		smaker_open = false
+		get_tree().paused = false
+	else:
+		var smaker = find_anywhere("seed_maker_ui")
+		smaker.open_popup()
+		smaker_open = true
+		get_tree().paused = true
+
 
 
 

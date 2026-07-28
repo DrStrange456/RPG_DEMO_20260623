@@ -2,19 +2,37 @@
 
 [ext_resource type="Texture2D" uid="uid://dwf8v2kwrro46" path="res://assets/AAA-TileSets/Craftland/Craftland Terrain/32x32/CL_Crafting.png" id="1_v8w26"]
 [ext_resource type="Script" uid="uid://dqnjy2an8dh7q" path="res://scenes/machines/seed_maker.gd" id="1_yp20k"]
+[ext_resource type="Texture2D" uid="uid://bqo1be8nelocu" path="res://assets/icons/Letter_E.png" id="3_awgmr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kghiy"]
 size = Vector2(43, 45)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0dd31"]
+radius = 22.5
 
 [node name="SeedMaker" type="StaticBody2D" unique_id=268325805]
 script = ExtResource("1_yp20k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1986945803]
-position = Vector2(5.5, -3.5)
+visible = false
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_kghiy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=701881806]
-position = Vector2(0, -18)
+position = Vector2(-6, -18)
 texture = ExtResource("1_v8w26")
 region_enabled = true
 region_rect = Rect2(0, 276, 52, 76)
+
+[node name="imgIcon" type="Sprite2D" parent="." unique_id=1029894322]
+position = Vector2(0, -52)
+texture = ExtResource("3_awgmr")
+
+[node name="Interaction_Collider" type="Area2D" parent="." unique_id=1483920954]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction_Collider" unique_id=457040812]
+shape = SubResource("CircleShape2D_0dd31")
+
+[connection signal="body_entered" from="Interaction_Collider" to="." method="_on_interaction_collider_body_entered"]
+[connection signal="body_exited" from="Interaction_Collider" to="." method="_on_interaction_collider_body_exited"]

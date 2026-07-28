@@ -11,6 +11,7 @@ extends Node
 
 signal health_changed(current,maximum)
 
+signal try_interact_seed_maker
 signal try_interact_sm_chest
 signal try_interact_lg_chest
 signal try_interact_merchant

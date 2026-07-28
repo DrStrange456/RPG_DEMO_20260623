@@ -1,10 +1,10 @@
-extends Control
+extends popup_ui
 
-@onready var slot_in: Panel = $Panel/panel_left/slot_in
-@onready var slot_in_label: Label = $Panel/panel_left/Label
-@onready var slot_out: Panel = $Panel/panel_left/slot_out
-@onready var slot_out_label: Label = $Panel/panel_left/Label2
-@onready var grid_container: GridContainer = $Panel/panel_right/GridContainer
+@onready var slot_in: Panel = $PopupRoot/Panel/panel_left/slot_in
+@onready var slot_in_label: Label = $PopupRoot/Panel/panel_left/Label
+@onready var slot_out: Panel = $PopupRoot/Panel/panel_left/slot_out
+@onready var slot_out_label: Label = $PopupRoot/Panel/panel_left/Label2
+@onready var grid_container: GridContainer = $PopupRoot/Panel/panel_right/GridContainer
 
 
 
