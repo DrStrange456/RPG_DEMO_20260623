@@ -12,6 +12,7 @@ radius = 22.5
 
 [node name="SeedMaker" type="StaticBody2D" unique_id=268325805]
 script = ExtResource("1_yp20k")
+id = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1986945803]
 visible = false

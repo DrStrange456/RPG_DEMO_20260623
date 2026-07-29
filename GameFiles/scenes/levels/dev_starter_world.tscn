@@ -3798,13 +3798,13 @@ toggle_action = ""
 visible = false
 toggle_action = ""
 
-[node name="seed_maker_ui" parent="UI/UI_MENUs" unique_id=886915031 instance=ExtResource("18_gc2y0")]
+[node name="seed_maker_ui" parent="UI/UI_MENUs" unique_id=886915031 node_paths=PackedStringArray("machine_obj") instance=ExtResource("18_gc2y0")]
 process_mode = 3
-visible = false
-offset_left = -285.0
-offset_top = -161.0
-offset_right = -285.0
-offset_bottom = -161.0
+offset_left = 87.0
+offset_top = 117.0
+offset_right = 87.0
+offset_bottom = 117.0
+machine_obj = NodePath("../../../World/Objects/SeedMaker")
 toggle_action = ""
 
 [node name="World" type="Node2D" parent="." unique_id=1837297623]

@@ -5,6 +5,43 @@ extends StaticBody2D
 var player_within_range: bool = false
 var plyr
 
+enum State {
+	IDLE,
+	PROCESSING,
+	FINISHED
+}
+
+var state = State.IDLE
+
+var input_crop
+var output_seed
+var output_amount
+
+@onready var timer = $Timer
+
+
+func start_processing(crop):
+
+	if state != State.IDLE:
+		return
+	
+	input_crop = crop
+	state = State.PROCESSING
+	
+	timer.start(15)
+
+func _on_timer_timeout():
+	
+	print("outputting seed pack")
+	#output_seed = recipes[input_crop.id].seed
+	output_amount = randi_range(1,3)
+	
+	state = State.FINISHED
+
+
+
+
+
 
 func _ready():
 	interact_icon.visible = false
@@ -16,13 +53,11 @@ func _input(_event: InputEvent) -> void:
 			Events.emit_signal("try_interact_seed_maker")
 			get_viewport().set_input_as_handled()  # Mark event as handled
 
-
 func _on_interaction_collider_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		interact_icon.visible = true
 		player_within_range = true
 		plyr = body
-
 
 func _on_interaction_collider_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
