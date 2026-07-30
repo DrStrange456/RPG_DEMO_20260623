@@ -31,7 +31,7 @@ func start_processing(crop):
 	input_crop = crop
 	state = State.PROCESSING
 	
-	timer.start(15)
+	timer.start(3)
 
 func _on_timer_timeout():
 	
@@ -42,9 +42,13 @@ func _on_timer_timeout():
 	
 	state = State.FINISHED
 
+func collect():
+	print("collecting seed:")
+	state = State.IDLE
 
-
-
+func add_seeds():
+	# Try to add seeds to inventory
+	pass
 
 
 func _ready():

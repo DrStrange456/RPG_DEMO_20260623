@@ -11,6 +11,7 @@ size = Vector2(43, 45)
 radius = 22.5
 
 [node name="SeedMaker" type="StaticBody2D" unique_id=268325805]
+process_mode = 3
 script = ExtResource("1_yp20k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1986945803]
@@ -35,6 +36,8 @@ visible = false
 shape = SubResource("CircleShape2D_0dd31")
 
 [node name="Timer" type="Timer" parent="." unique_id=530959038]
+one_shot = true
 
 [connection signal="body_entered" from="Interaction_Collider" to="." method="_on_interaction_collider_body_entered"]
 [connection signal="body_exited" from="Interaction_Collider" to="." method="_on_interaction_collider_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

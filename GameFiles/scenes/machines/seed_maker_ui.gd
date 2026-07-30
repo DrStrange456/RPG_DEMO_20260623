@@ -26,17 +26,12 @@ func _process(delta):
 	
 	progress_bar.visible = machine_obj.state == machine_obj.State.PROCESSING
 	
-	#print(machine_obj.timer.wait_time)
-	
-	
 	if machine_obj.state == machine_obj.State.PROCESSING:
 		progress_bar.value = (
 			(machine_obj.timer.wait_time - machine_obj.timer.time_left)
 			/ machine_obj.timer.wait_time
 		) * 100
 		
-		print(machine_obj.timer.time_left)
-	
 	btn_collect.visible = machine_obj.state == machine_obj.State.FINISHED
 
 
@@ -47,6 +42,13 @@ func _on_button_pressed() -> void:
 
 func _on_btn_collect_pressed() -> void:
 	machine_obj.collect()
+	machine_obj.add_seeds()
+
+
+# TODO: take icon from selected resource and put in slot_in
+# TODO: when it finishes, take icon and put in slot_out
+# TODO: Add error checking and logic validation steps
+
 
 
 
