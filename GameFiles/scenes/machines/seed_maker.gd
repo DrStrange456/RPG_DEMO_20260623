@@ -5,6 +5,9 @@ extends StaticBody2D
 var player_within_range: bool = false
 var plyr
 
+var output_object = preload("res://resources/seeds_carrot.tres")
+
+
 enum State {
 	IDLE,
 	PROCESSING,
@@ -34,6 +37,7 @@ func _on_timer_timeout():
 	
 	print("outputting seed pack")
 	#output_seed = recipes[input_crop.id].seed
+	output_seed = output_object
 	output_amount = randi_range(1,3)
 	
 	state = State.FINISHED

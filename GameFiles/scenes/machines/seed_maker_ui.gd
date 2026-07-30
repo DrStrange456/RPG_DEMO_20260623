@@ -14,8 +14,6 @@ extends popup_ui
 var selected_crop = preload("res://resources/crop_carrot.tres")
 
 
-var machine
-
 
 func _ready() -> void:
 	slot_in_label.text = ""
@@ -23,25 +21,34 @@ func _ready() -> void:
 
 func _process(delta):
 	
-	if machine == null:
+	if machine_obj == null:
 		return
 	
-	progress_bar.visible = machine.state == machine.State.PROCESSING
+	progress_bar.visible = machine_obj.state == machine_obj.State.PROCESSING
 	
-	if machine.state == machine.State.PROCESSING:
+	#print(machine_obj.timer.wait_time)
+	
+	
+	if machine_obj.state == machine_obj.State.PROCESSING:
 		progress_bar.value = (
-			(machine.timer.wait_time - machine.timer.time_left)
-			/ machine.timer.wait_time
+			(machine_obj.timer.wait_time - machine_obj.timer.time_left)
+			/ machine_obj.timer.wait_time
 		) * 100
+		
+		print(machine_obj.timer.time_left)
 	
-	btn_collect.visible = machine.state == machine.State.FINISHED
+	btn_collect.visible = machine_obj.state == machine_obj.State.FINISHED
 
 
 
 
 func _on_button_pressed() -> void:
-	machine.start_processing(selected_crop)
-	#_move_selected_to_in()
+	machine_obj.start_processing(selected_crop)
+
+func _on_btn_collect_pressed() -> void:
+	machine_obj.collect()
+
+
 
 func _on_button_2_pressed() -> void:
 	_reset()
@@ -63,7 +70,3 @@ func _reset():
 	dest_slot.texture = null
 	slot_in_label.text = ""
 	slot_out_label.text = ""
-
-
-func _on_btn_collect_pressed() -> void:
-	machine.collect()

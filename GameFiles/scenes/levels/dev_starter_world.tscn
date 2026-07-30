@@ -3800,6 +3800,7 @@ toggle_action = ""
 
 [node name="seed_maker_ui" parent="UI/UI_MENUs" unique_id=886915031 node_paths=PackedStringArray("machine_obj") instance=ExtResource("18_gc2y0")]
 process_mode = 3
+visible = false
 offset_left = 87.0
 offset_top = 117.0
 offset_right = 87.0
