@@ -13,14 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_evt67")
-toggle_action = null
-pop_in_duration = null
-settle_duration = null
-anticipation_duration = null
-pop_out_duration = null
-idle_float_amount = null
-idle_scale_amount = null
-idle_duration = null
 
 [node name="PopupRoot" type="Control" parent="." unique_id=1019756860]
 anchors_preset = 0
