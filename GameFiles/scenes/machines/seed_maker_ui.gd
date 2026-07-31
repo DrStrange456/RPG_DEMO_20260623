@@ -10,7 +10,7 @@ extends popup_ui
 
 # Temporary until inventory integration
 var selected_crop = preload("res://resources/crop_carrot.tres")
-var selected_amount := 1
+var selected_amount := 2
 
 
 func _ready() -> void:

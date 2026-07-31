@@ -7,7 +7,7 @@ signal seeds_collected
 signal state_changed
 
 @export var id: int
-@export var process_time := 10.0
+@export var process_time := 3.0
 
 @onready var interact_icon: Sprite2D = $imgIcon
 @onready var timer: Timer = $Timer
