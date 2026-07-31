@@ -4,9 +4,9 @@ extends popup_ui
 
 
 @onready var slot_in: Panel = $PopupRoot/Panel/panel_left/slot_in
-@onready var slot_in_label: Label = $PopupRoot/Panel/panel_left/Label
+#@onready var slot_in_label: Label = $PopupRoot/Panel/panel_left/Label
 @onready var slot_out: Panel = $PopupRoot/Panel/panel_left/slot_out
-@onready var slot_out_label: Label = $PopupRoot/Panel/panel_left/Label2
+#@onready var slot_out_label: Label = $PopupRoot/Panel/panel_left/Label2
 @onready var grid_container: GridContainer = $PopupRoot/Panel/panel_right/GridContainer
 @onready var progress_bar: ProgressBar = $PopupRoot/Panel/ProgressBar
 @onready var btn_collect: Button = $PopupRoot/Panel/btnCOLLECT
@@ -15,9 +15,9 @@ var selected_crop = preload("res://resources/crop_carrot.tres")
 
 
 
-func _ready() -> void:
-	slot_in_label.text = ""
-	slot_out_label.text = ""
+#func _ready() -> void:
+	#slot_in_label.text = ""
+	#slot_out_label.text = ""
 
 func _process(delta):
 	
@@ -70,5 +70,5 @@ func _reset():
 	src_slot.texture = null
 	var dest_slot   = slot_out.get_child(0).get_child(0)
 	dest_slot.texture = null
-	slot_in_label.text = ""
-	slot_out_label.text = ""
+	#slot_in_label.text = ""
+	#slot_out_label.text = ""

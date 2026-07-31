@@ -31,14 +31,13 @@ func start_processing(crop):
 	input_crop = crop
 	state = State.PROCESSING
 	
-	timer.start(3)
+	timer.start(2)
 
 func _on_timer_timeout():
-	
-	print("outputting seed pack")
 	#output_seed = recipes[input_crop.id].seed
 	output_seed = output_object
 	output_amount = randi_range(1,3)
+	print("outputting seed pack: ", output_amount)
 	
 	state = State.FINISHED
 
