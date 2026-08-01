@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cmlvf84iy7yq2"]
+
+[ext_resource type="Script" uid="uid://b0co518gx15mp" path="res://scenes/machines/crop_slot.gd" id="1_f8q5t"]
+
+[node name="CropSlot" type="Button" unique_id=1699438776]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 2
+script = ExtResource("1_f8q5t")
+
+[node name="Panel" type="Panel" parent="." unique_id=1338766184]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=826077203]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=289251646]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

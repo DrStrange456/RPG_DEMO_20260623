@@ -4,13 +4,32 @@ extends popup_ui
 
 @onready var slot_in: Panel = $PopupRoot/Panel/panel_left/slot_in
 @onready var slot_out: Panel = $PopupRoot/Panel/panel_left/slot_out
-@onready var grid_container: GridContainer = $PopupRoot/Panel/panel_right/GridContainer
+@onready var grid_container: GridContainer = $PopupRoot/Panel/panel_right/Panel/GridContainer
 @onready var progress_bar: ProgressBar = $PopupRoot/Panel/ProgressBar
 @onready var btn_collect: Button = $PopupRoot/Panel/btnCOLLECT
 
+
+var crop_slot_scene = preload("res://scenes/machines/crop_slot.tscn")
+
 # Temporary until inventory integration
 var selected_crop = preload("res://resources/crop_carrot.tres")
+var selected_crop2 = preload("res://resources/crop_strawberry.tres")
 var selected_amount := 2
+
+var selected_slot: CropSlot = null
+
+var crops_array: Array = [
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	}
+]
+
+
 
 
 func _ready() -> void:
@@ -27,6 +46,9 @@ func _ready() -> void:
 	machine_obj.state_changed.connect(update_ui)
 
 	update_ui()
+	
+	
+	populate_grid(crops_array)
 
 
 func _process(_delta: float) -> void:
@@ -113,6 +135,35 @@ func _reset() -> void:
 
 	var output_texture = slot_out.get_child(0).get_child(0)
 	output_texture.texture = null
+
+
+
+
+
+func populate_grid(crops):
+	for child in grid_container.get_children():
+		child.queue_free()
+
+	for crop in crops:
+
+		var slot = crop_slot_scene.instantiate()
+
+		slot.setup(crop.resource, crop.amount)
+
+		slot.selected.connect(_on_crop_slot_selected)
+
+		grid_container.add_child(slot)
+
+func _on_crop_slot_selected(slot):
+
+	if selected_slot:
+		selected_slot.set_selected(false)
+
+	selected_slot = slot
+	selected_slot.set_selected(true)
+
+	selected_crop = slot.crop_resource
+	selected_amount = slot.crop_count
 
 
 

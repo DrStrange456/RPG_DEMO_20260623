@@ -106,87 +106,20 @@ text = "5"
 
 [node name="panel_right" type="Node2D" parent="PopupRoot/Panel" unique_id=567271296]
 
-[node name="GridContainer" type="GridContainer" parent="PopupRoot/Panel/panel_right" unique_id=207175013]
-offset_left = 365.0
-offset_top = 37.0
-offset_right = 581.0
-offset_bottom = 253.0
+[node name="Panel" type="Panel" parent="PopupRoot/Panel/panel_right" unique_id=1390521129]
+offset_left = 355.33334
+offset_top = 29.333334
+offset_right = 568.6667
+offset_bottom = 204.0
+mouse_filter = 1
+
+[node name="GridContainer" type="GridContainer" parent="PopupRoot/Panel/panel_right/Panel" unique_id=207175013]
+layout_mode = 0
+offset_left = 9.6666565
+offset_top = 7.666666
+offset_right = 225.66666
+offset_bottom = 223.66667
 columns = 5
-
-[node name="slot" type="Panel" parent="PopupRoot/Panel/panel_right/GridContainer" unique_id=313266662]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="PopupRoot/Panel/panel_right/GridContainer/slot" unique_id=715783230]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Sprite2D" type="Sprite2D" parent="PopupRoot/Panel/panel_right/GridContainer/slot/CenterContainer" unique_id=1900772350]
-scale = Vector2(1.28125, 1.2499999)
-texture = ExtResource("2_avlg0")
-centered = false
-region_enabled = true
-region_rect = Rect2(1088, 480, 32, 32)
-
-[node name="Label" type="Label" parent="PopupRoot/Panel/panel_right/GridContainer/slot" unique_id=621825448]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 29.0
-offset_right = 39.0
-offset_bottom = 41.0
-theme_override_font_sizes/font_size = 8
-text = "5"
-
-[node name="slot2" type="Panel" parent="PopupRoot/Panel/panel_right/GridContainer" unique_id=306648075]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="PopupRoot/Panel/panel_right/GridContainer/slot2" unique_id=1836853538]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Sprite2D" type="Sprite2D" parent="PopupRoot/Panel/panel_right/GridContainer/slot2/CenterContainer" unique_id=1763871437]
-scale = Vector2(1.28125, 1.2499999)
-texture = ExtResource("2_avlg0")
-centered = false
-region_enabled = true
-region_rect = Rect2(1088, 96, 32, 32)
-
-[node name="Label" type="Label" parent="PopupRoot/Panel/panel_right/GridContainer/slot2" unique_id=308331265]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 29.0
-offset_right = 39.0
-offset_bottom = 41.0
-theme_override_font_sizes/font_size = 8
-text = "15"
-
-[node name="slot3" type="Panel" parent="PopupRoot/Panel/panel_right/GridContainer" unique_id=1607073364]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="PopupRoot/Panel/panel_right/GridContainer/slot3" unique_id=1937111263]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Sprite2D" type="Sprite2D" parent="PopupRoot/Panel/panel_right/GridContainer/slot3/CenterContainer" unique_id=1001003602]
-scale = Vector2(1.28125, 1.2499999)
-texture = ExtResource("2_avlg0")
-centered = false
-region_enabled = true
-region_rect = Rect2(1376, 288, 32, 32)
-
-[node name="Label" type="Label" parent="PopupRoot/Panel/panel_right/GridContainer/slot3" unique_id=686378785]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 29.0
-offset_right = 39.0
-offset_bottom = 41.0
-theme_override_font_sizes/font_size = 8
-text = "99"
 
 [node name="btnADD" type="Button" parent="PopupRoot/Panel" unique_id=2071166680]
 layout_mode = 0
