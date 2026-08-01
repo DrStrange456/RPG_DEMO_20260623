@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://rext8ofchpth" path="res://assets/icons/carrot.png" id="1_n5voe"]
 [ext_resource type="Script" uid="uid://rx6f5gml5ce0" path="res://Inventory/Scripts/item.gd" id="2_ksbvb"]
+[ext_resource type="Resource" uid="uid://ge4rx0fbrga0" path="res://resources/seeds_carrot.tres" id="3_w0orh"]
 
 [resource]
 script = ExtResource("2_ksbvb")
@@ -10,5 +11,6 @@ description = "Foraged from loot drop"
 icon = ExtResource("1_n5voe")
 cost = 3
 item_type = "crop"
+to_seed = ExtResource("3_w0orh")
 enum_seed_value = 1
 enum_seed_item_value = 1

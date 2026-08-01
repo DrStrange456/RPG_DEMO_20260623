@@ -13,10 +13,10 @@ var crop_count := 0
 func setup(crop, amount):
 	icon_rect = $Panel/TextureRect
 	count_label = $Panel/Label
-
+	
 	crop_resource = crop
 	crop_count = amount
-
+	
 	icon_rect.texture = crop.icon
 	count_label.text = str(amount)
 

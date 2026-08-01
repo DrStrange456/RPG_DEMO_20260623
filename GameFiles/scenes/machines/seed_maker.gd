@@ -54,7 +54,7 @@ func start_processing(crop, amount: int) -> void:
 		return
 
 	input_crop = crop
-	output_seed = output_object
+	output_seed = crop.to_seed
 
 	crops_remaining = amount
 	seeds_ready = 0
@@ -90,6 +90,7 @@ func _on_timer_timeout() -> void:
 		timer.start(process_time)
 	else:
 		print("Processing complete.")
+		input_crop = null
 		emit_signal("processing_finished")
 
 

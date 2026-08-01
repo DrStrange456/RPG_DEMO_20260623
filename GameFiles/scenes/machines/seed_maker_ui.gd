@@ -4,9 +4,16 @@ extends popup_ui
 
 @onready var slot_in: Panel = $PopupRoot/Panel/panel_left/slot_in
 @onready var slot_out: Panel = $PopupRoot/Panel/panel_left/slot_out
-@onready var grid_container: GridContainer = $PopupRoot/Panel/panel_right/Panel/GridContainer
+@onready var grid_container: GridContainer = $PopupRoot/Panel/panel_right/Panel/ScrollContainer/GridContainer
 @onready var progress_bar: ProgressBar = $PopupRoot/Panel/ProgressBar
 @onready var btn_collect: Button = $PopupRoot/Panel/btnCOLLECT
+
+@onready var crop_in_icon: TextureRect = $PopupRoot/Panel/panel_left/slot_in/CenterContainer/crop_in_rect
+@onready var seed_out_icon: TextureRect = $PopupRoot/Panel/panel_left/slot_out/CenterContainer/seed_out_rect
+@onready var crop_in_amt: Label = $PopupRoot/Panel/panel_left/slot_in/Label
+@onready var seed_out_amt: Label = $PopupRoot/Panel/panel_left/slot_out/Label
+
+
 
 
 var crop_slot_scene = preload("res://scenes/machines/crop_slot.tscn")
@@ -26,13 +33,121 @@ var crops_array: Array = [
 	{
 		"resource": selected_crop2,
 		"amount": 4
-	}
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
+	{
+		"resource": selected_crop,
+		"amount": 12
+	},
+	{
+		"resource": selected_crop2,
+		"amount": 4
+	},
 ]
 
 
 
 
 func _ready() -> void:
+	crop_in_icon.texture = null
+	seed_out_icon.texture = null
+	crop_in_amt.text = ""
+	seed_out_amt.text = ""
 
 	if machine_obj == null:
 		push_error("Seed Maker UI: machine_obj is not assigned.")
@@ -46,8 +161,6 @@ func _ready() -> void:
 	machine_obj.state_changed.connect(update_ui)
 
 	update_ui()
-	
-	
 	populate_grid(crops_array)
 
 
@@ -79,12 +192,14 @@ func update_ui() -> void:
 	# lbl_remaining.text = str(machine_obj.crops_remaining)
 	# lbl_ready.text = str(machine_obj.seeds_ready)
 
-
+## Add button
 func _on_button_pressed() -> void:
-
+	
+	crop_in_icon.texture = selected_crop.icon
+	crop_in_amt.text = str(selected_amount)
 	machine_obj.start_processing(selected_crop, selected_amount)
 
-
+## Collect button
 func _on_btn_collect_pressed() -> void:
 
 	machine_obj.collect()
@@ -93,21 +208,27 @@ func _on_btn_collect_pressed() -> void:
 func update_input_slot() -> void:
 
 	var texture_rect = slot_in.get_child(0).get_child(0)
+	var crop_num = crop_in_amt
 
 	if machine_obj.input_crop:
 		texture_rect.texture = machine_obj.input_crop.icon
+		crop_num.text = str(machine_obj.crops_remaining)
 	else:
 		texture_rect.texture = null
+		crop_num.text = ""
 
 
 func update_output_slot() -> void:
 
 	var texture_rect = slot_out.get_child(0).get_child(0)
+	var seed_num = seed_out_amt
 
 	if machine_obj.output_seed:
 		texture_rect.texture = machine_obj.output_seed.icon
+		seed_num.text = str(machine_obj.seeds_ready)
 	else:
 		texture_rect.texture = null
+		seed_num.text = ""
 
 
 func _move_selected_to_in() -> void:

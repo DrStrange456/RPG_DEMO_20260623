@@ -8,6 +8,8 @@ class_name Item extends Resource
 @export var item_type: String = "Generic"
 @export var max_stack: int = 99  # Default to 99, or 1 for non-stackable
 
+@export var to_seed: Resource
+
 @export_category("enums")
 @export var enum_seed_value: Enum.Seed
 @export var enum_seed_item_value: Enum.Item

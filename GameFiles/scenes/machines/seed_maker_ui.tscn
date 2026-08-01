@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://bplv0md1e681q"]
 
 [ext_resource type="Script" uid="uid://covl72y2rlqst" path="res://scenes/machines/seed_maker_ui.gd" id="1_evt67"]
-[ext_resource type="Texture2D" uid="uid://b84t0ymbwvlwj" path="res://assets/AAA-TileSets/Craftland/Craftland Terrain/32x32/CL_Crops_Mining.png" id="2_avlg0"]
-[ext_resource type="Texture2D" uid="uid://upaw38buubl0" path="res://assets/icons/seeds_strawberry.png" id="3_avlg0"]
 
 [node name="seed_maker_ui" type="Control" unique_id=886915031]
 layout_mode = 3
@@ -54,12 +52,8 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PopupRoot/Panel/panel_left/slot_in/CenterContainer" unique_id=521549712]
-scale = Vector2(1.28125, 1.2499999)
-texture = ExtResource("2_avlg0")
-centered = false
-region_enabled = true
-region_rect = Rect2(1088, 480, 32, 32)
+[node name="crop_in_rect" type="TextureRect" parent="PopupRoot/Panel/panel_left/slot_in/CenterContainer" unique_id=1730131293]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="PopupRoot/Panel/panel_left/slot_in" unique_id=1631593401]
 layout_mode = 0
@@ -89,11 +83,8 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PopupRoot/Panel/panel_left/slot_out/CenterContainer" unique_id=1818559428]
-scale = Vector2(1.28125, 1.2499999)
-texture = ExtResource("3_avlg0")
-centered = false
-region_rect = Rect2(1088, 480, 32, 32)
+[node name="seed_out_rect" type="TextureRect" parent="PopupRoot/Panel/panel_left/slot_out/CenterContainer" unique_id=510727907]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="PopupRoot/Panel/panel_left/slot_out" unique_id=104488130]
 layout_mode = 0
@@ -109,16 +100,17 @@ text = "5"
 [node name="Panel" type="Panel" parent="PopupRoot/Panel/panel_right" unique_id=1390521129]
 offset_left = 355.33334
 offset_top = 29.333334
-offset_right = 568.6667
-offset_bottom = 204.0
+offset_right = 622.6667
+offset_bottom = 268.6667
 mouse_filter = 1
 
-[node name="GridContainer" type="GridContainer" parent="PopupRoot/Panel/panel_right/Panel" unique_id=207175013]
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupRoot/Panel/panel_right/Panel" unique_id=871147446]
 layout_mode = 0
-offset_left = 9.6666565
-offset_top = 7.666666
-offset_right = 225.66666
-offset_bottom = 223.66667
+offset_right = 266.00003
+offset_bottom = 236.00002
+
+[node name="GridContainer" type="GridContainer" parent="PopupRoot/Panel/panel_right/Panel/ScrollContainer" unique_id=207175013]
+layout_mode = 2
 columns = 5
 
 [node name="btnADD" type="Button" parent="PopupRoot/Panel" unique_id=2071166680]
