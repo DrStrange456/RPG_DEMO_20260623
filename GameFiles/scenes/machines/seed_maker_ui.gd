@@ -165,7 +165,6 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-
 	if machine_obj == null:
 		return
 
@@ -179,7 +178,10 @@ func _process(_delta: float) -> void:
 	else:
 		progress_bar.visible = false
 		progress_bar.value = 0
-
+	
+	crop_in_amt.visible = false if crop_in_amt.text == "0" else true
+	seed_out_amt.visible = false if seed_out_amt.text == "0" else true
+	progress_bar.visible = false if progress_bar.value == progress_bar.max_value else true
 
 func update_ui() -> void:
 
@@ -229,6 +231,7 @@ func update_output_slot() -> void:
 	else:
 		texture_rect.texture = null
 		seed_num.text = ""
+
 
 
 func _move_selected_to_in() -> void:

@@ -40,17 +40,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 128.0
-offset_top = 52.0
-offset_right = 168.0
-offset_bottom = 92.0
+offset_left = 106.66666
+offset_top = 28.0
+offset_right = 146.66666
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 
 [node name="CenterContainer" type="CenterContainer" parent="PopupRoot/Panel/panel_left/slot_in" unique_id=268656877]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_lock_ = true
 
 [node name="crop_in_rect" type="TextureRect" parent="PopupRoot/Panel/panel_left/slot_in/CenterContainer" unique_id=1730131293]
 layout_mode = 2
@@ -71,17 +73,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 128.0
+offset_left = 106.66666
 offset_top = 170.0
-offset_right = 168.0
+offset_right = 146.66666
 offset_bottom = 210.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 
 [node name="CenterContainer" type="CenterContainer" parent="PopupRoot/Panel/panel_left/slot_out" unique_id=1768809174]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_lock_ = true
 
 [node name="seed_out_rect" type="TextureRect" parent="PopupRoot/Panel/panel_left/slot_out/CenterContainer" unique_id=510727907]
 layout_mode = 2
@@ -115,18 +119,18 @@ columns = 5
 
 [node name="btnADD" type="Button" parent="PopupRoot/Panel" unique_id=2071166680]
 layout_mode = 0
-offset_left = 224.66667
-offset_top = 58.333332
-offset_right = 310.6667
-offset_bottom = 92.33333
+offset_left = 228.0
+offset_top = 48.0
+offset_right = 314.0
+offset_bottom = 82.0
 text = "ADD"
 
 [node name="btnCOLLECT" type="Button" parent="PopupRoot/Panel" unique_id=1279682059]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 180.33334
-offset_right = 83.0
-offset_bottom = 202.33336
+offset_left = 18.666668
+offset_top = 192.0
+offset_right = 96.33334
+offset_bottom = 228.00002
 theme_override_font_sizes/font_size = 10
 text = "COLLECT"
 
