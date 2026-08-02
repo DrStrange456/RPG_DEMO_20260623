@@ -100,7 +100,7 @@ func collect() -> void:
 		print("Nothing to collect.")
 		return
 
-	# TODO:
+	# TODO: should only pickup if can fit all into storage.
 	var left_over: int = StorageManager.try_add_item_to_inventory(GameManager.PLAYER_INVENTORY_TEST, output_seed.name, seeds_ready)
 
 	print("Collected ", seeds_ready, " seed packs.")

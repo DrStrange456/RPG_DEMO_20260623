@@ -3806,6 +3806,7 @@ offset_top = 117.0
 offset_right = 87.0
 offset_bottom = 117.0
 machine_obj = NodePath("../../../World/Objects/SeedMaker")
+toggle_action = ""
 
 [node name="World" type="Node2D" parent="." unique_id=1837297623]
 

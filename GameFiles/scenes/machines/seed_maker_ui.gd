@@ -202,6 +202,8 @@ func open_ui():
 ## Add button
 func _on_button_pressed() -> void:
 	
+	# FIXME: if successfully added, remove crop from inv
+	
 	crop_in_icon.texture = selected_crop.icon
 	crop_in_amt.text = str(selected_amount)
 	machine_obj.start_processing(selected_crop, selected_amount)
@@ -327,9 +329,6 @@ func populate_crop_grid():
 			continue
 
 		# Only allow crops to appear
-		# FIXME: itemtype comparison needs fixing
-		var tmp1 = item.item_type
-		var tmp2 = Enum.ItemType.keys()[Enum.ItemType.crop]
 		if item.item_type != Enum.ItemType.keys()[Enum.ItemType.crop]:
 			continue
 
