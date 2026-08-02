@@ -328,7 +328,9 @@ func populate_crop_grid():
 
 		# Only allow crops to appear
 		# FIXME: itemtype comparison needs fixing
-		if item.item_type != Enum.ItemType.keys()[Enum.ItemType.CROP]:
+		var tmp1 = item.item_type
+		var tmp2 = Enum.ItemType.keys()[Enum.ItemType.crop]
+		if item.item_type != Enum.ItemType.keys()[Enum.ItemType.crop]:
 			continue
 
 		var crop_slot = crop_slot_scene.instantiate()

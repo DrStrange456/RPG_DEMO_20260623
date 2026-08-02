@@ -14,7 +14,7 @@ enum SlotType {INVENTORY,STORAGE}
 enum InvActionStates {DEFAULT,MOVE,SWAP,COMBINE,SPLIT}
 enum MenuStates {DEFAULT,MAIN_INVENTORY}
 
-enum ItemType {CROP,WEAPON,TOOL}
+enum ItemType {crop,weapon,tool}
 
 enum UIState {
 	NONE,

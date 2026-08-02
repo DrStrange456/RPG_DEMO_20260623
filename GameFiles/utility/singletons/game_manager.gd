@@ -41,7 +41,7 @@ var current_state = Enum.UIState.NONE
 
 var PLAYER_INVENTORY_TEST: Dictionary = {
 		0: ["res://resources/seeds_turnip.tres", 98, true],
-		1: ["res://resources/seeds_strawberry.tres", 99, true],
+		1: ["res://resources/crop_strawberry.tres", 99, true],
 		2: ["res://resources/weapon_sword_fire.tres", 1, true],
 		3: [null, 0, true],
 		#3: ["res://resources/weapon_sword2.tres", 1, true],
@@ -54,7 +54,7 @@ var PLAYER_INVENTORY_TEST: Dictionary = {
 		9: [null, 0, true],
 		#10: [null, 0, true],
 		#11: [null, 0, true],
-		#12: [null, 0, true],
+		#12: ["res://resources/crop_strawberry.tres", 1, true],
 		#13: [null, 0, true],
 		#14: [null, 0, true],
 		#15: [null, 0, true],
