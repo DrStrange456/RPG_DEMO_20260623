@@ -101,7 +101,7 @@ func collect() -> void:
 		return
 
 	# TODO:
-	# Inventory.add_item(output_seed, seeds_ready)
+	var left_over: int = StorageManager.try_add_item_to_inventory(GameManager.PLAYER_INVENTORY_TEST, output_seed.name, seeds_ready)
 
 	print("Collected ", seeds_ready, " seed packs.")
 
