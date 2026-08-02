@@ -16,7 +16,7 @@ var player_within_range := false
 var plyr
 
 # TODO: Replace with your recipe lookup.
-var output_object = preload("res://resources/seeds_carrot.tres")
+#var output_object = preload("res://resources/seeds_carrot.tres")
 
 enum State {
 	IDLE,

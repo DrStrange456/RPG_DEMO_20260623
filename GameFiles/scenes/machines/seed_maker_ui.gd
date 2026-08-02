@@ -161,7 +161,8 @@ func _ready() -> void:
 	machine_obj.state_changed.connect(update_ui)
 
 	update_ui()
-	populate_grid(crops_array)
+	populate_crop_grid()
+	#populate_grid(crops_array)
 
 
 func _process(_delta: float) -> void:
@@ -181,7 +182,7 @@ func _process(_delta: float) -> void:
 	
 	crop_in_amt.visible = false if crop_in_amt.text == "0" else true
 	seed_out_amt.visible = false if seed_out_amt.text == "0" else true
-	progress_bar.visible = false if progress_bar.value == progress_bar.max_value else true
+	
 
 func update_ui() -> void:
 
@@ -289,6 +290,48 @@ func _on_crop_slot_selected(slot):
 	selected_crop = slot.crop_resource
 	selected_amount = slot.crop_count
 
+
+
+
+func populate_crop_grid():
+
+	# Clear existing slots
+	for child in grid_container.get_children():
+		child.queue_free()
+
+	selected_slot = null
+	selected_crop = null
+
+	for slot in GameManager.PLAYER_INVENTORY_TEST.values():
+
+		var resource_path = slot[0]
+		var quantity = slot[1]
+		var enabled = slot[2]
+
+		if resource_path == null:
+			continue
+
+		if quantity <= 0:
+			continue
+
+		if !enabled:
+			continue
+
+		var item = load(resource_path)
+
+		if item == null:
+			continue
+
+		# Only allow crops to appear
+		if item.item_type != Enum.ItemType.keys()[Enum.ItemType.CROP]:
+			continue
+
+		var crop_slot = crop_slot_scene.instantiate()
+
+		crop_slot.setup(item, quantity)
+		crop_slot.selected.connect(_on_crop_slot_selected)
+
+		grid_container.add_child(crop_slot)
 
 
 # Bottom
