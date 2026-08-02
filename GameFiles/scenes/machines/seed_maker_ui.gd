@@ -195,6 +195,10 @@ func update_ui() -> void:
 	# lbl_remaining.text = str(machine_obj.crops_remaining)
 	# lbl_ready.text = str(machine_obj.seeds_ready)
 
+func open_ui():
+	populate_crop_grid()
+	update_ui()
+
 ## Add button
 func _on_button_pressed() -> void:
 	
@@ -323,6 +327,7 @@ func populate_crop_grid():
 			continue
 
 		# Only allow crops to appear
+		# FIXME: itemtype comparison needs fixing
 		if item.item_type != Enum.ItemType.keys()[Enum.ItemType.CROP]:
 			continue
 

@@ -273,6 +273,7 @@ func open_seed_maker_ui():
 	else:
 		var smaker = find_anywhere("seed_maker_ui")
 		smaker.open_popup()
+		smaker.open_ui()
 		smaker_open = true
 		get_tree().paused = true
 
