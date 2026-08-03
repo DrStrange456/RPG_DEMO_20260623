@@ -3780,6 +3780,7 @@ text = "Trees"
 [node name="UI_MENUs" type="Node2D" parent="UI" unique_id=1620460392]
 
 [node name="Inventory_Main" parent="UI/UI_MENUs" unique_id=1189859649 instance=ExtResource("6_4fb74")]
+process_mode = 3
 visible = false
 
 [node name="pause_ui" parent="UI/UI_MENUs" unique_id=252582373 instance=ExtResource("8_32xvi")]

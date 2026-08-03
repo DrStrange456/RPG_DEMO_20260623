@@ -75,6 +75,7 @@ func open_popup() -> void:
 	popup.modulate.a = 0.0
 
 	active_tween = create_tween()
+	active_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
 	#
 	# POP
@@ -163,6 +164,7 @@ func close_popup() -> void:
 
 func start_idle() -> void:
 	idle_tween = create_tween()
+	idle_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	idle_tween.set_loops()
 
 	#
