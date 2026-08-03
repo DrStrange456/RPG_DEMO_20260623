@@ -5,7 +5,8 @@ extends popup_ui
 var inventory : Array[OptiInventorySlot] = []
 
 
-
+# FIXME:  Modulate on tween not moving to fully visible when shown and freezes. 
+#  Appears to be issue with tween not completing.
 
 func initialize():
 	main_inventory_container_ui = find_anywhere("MainInventoryController")
