@@ -3855,10 +3855,10 @@ metadata/_edit_lock_ = true
 [node name="Storage_Bin" type="Node2D" parent="World" unique_id=1626639135]
 
 [node name="chest_small" parent="World/Storage_Bin" unique_id=1869348280 instance=ExtResource("11_4fb74")]
-position = Vector2(660, 58)
+position = Vector2(1171, 312)
 
 [node name="chest_large" parent="World/Storage_Bin" unique_id=1534628734 instance=ExtResource("17_gh451")]
-position = Vector2(1113, 312)
+position = Vector2(666, 60)
 
 [node name="Objects" type="Node2D" parent="World" unique_id=268187486]
 y_sort_enabled = true

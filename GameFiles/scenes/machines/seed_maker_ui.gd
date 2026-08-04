@@ -198,7 +198,7 @@ func populate_crop_grid():
 		if resource_path == null:
 			continue
 
-		if quantity <= 0:
+		if int(quantity) <= 0:
 			continue
 
 		if !enabled:
