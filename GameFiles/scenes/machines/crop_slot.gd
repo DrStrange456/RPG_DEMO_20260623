@@ -8,14 +8,16 @@ signal selected(slot)
 
 var crop_resource
 var crop_count := 0
+var inventory_slot_num
 
 
-func setup(crop, amount):
+func setup(crop, amount, indx):
 	icon_rect = $Panel/TextureRect
 	count_label = $Panel/Label
 	
 	crop_resource = crop
 	crop_count = amount
+	inventory_slot_num = indx
 	
 	icon_rect.texture = crop.icon
 	count_label.text = str(amount)

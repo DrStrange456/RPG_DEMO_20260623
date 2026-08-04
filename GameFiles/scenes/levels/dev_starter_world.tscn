@@ -4044,4 +4044,5 @@ KNOCKBACK_FORCE = 100
 [connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons/Control/btnCROPS" to="." method="_on_btn_crops_pressed" flags=18]
 [connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons/Control/btnROCKS" to="." method="_on_btn_rocks_pressed" flags=18]
 [connection signal="pressed" from="UI/HUD/debug_selector/toggle_buttons/Control/btnTREES" to="." method="_on_btn_trees_pressed" flags=18]
+[connection signal="visibility_changed" from="UI/UI_MENUs/Inventory_Main" to="." method="_on_inventory_main_visibility_changed" flags=18]
 [connection signal="body_entered" from="World/Objects/player_house/Area2D" to="." method="_on_area_2d_body_entered"]

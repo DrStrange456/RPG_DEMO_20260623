@@ -22,124 +22,9 @@ var crop_slot_scene = preload("res://scenes/machines/crop_slot.tscn")
 var selected_crop = preload("res://resources/crop_carrot.tres")
 var selected_crop2 = preload("res://resources/crop_strawberry.tres")
 var selected_amount := 2
+var selected_inv_indx_ptr
 
 var selected_slot: CropSlot = null
-
-var crops_array: Array = [
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-	{
-		"resource": selected_crop,
-		"amount": 12
-	},
-	{
-		"resource": selected_crop2,
-		"amount": 4
-	},
-]
-
 
 
 
@@ -201,12 +86,17 @@ func open_ui():
 
 ## Add button
 func _on_button_pressed() -> void:
-	
-	# FIXME: if successfully added, remove crop from inv
+	var ptr_to_inventory_slot = selected_inv_indx_ptr
+	var tmp_selected_crop = selected_crop
+	var tmp_selected_amount = selected_amount
 	
 	crop_in_icon.texture = selected_crop.icon
 	crop_in_amt.text = str(selected_amount)
-	machine_obj.start_processing(selected_crop, selected_amount)
+	
+	# Remove crop from inventory
+	StorageManager._remove_from_inventory_NoUI(ptr_to_inventory_slot)
+	populate_crop_grid()
+	machine_obj.start_processing(tmp_selected_crop, tmp_selected_amount)
 
 ## Collect button
 func _on_btn_collect_pressed() -> void:
@@ -271,19 +161,6 @@ func _reset() -> void:
 
 
 
-func populate_grid(crops):
-	for child in grid_container.get_children():
-		child.queue_free()
-
-	for crop in crops:
-
-		var slot = crop_slot_scene.instantiate()
-
-		slot.setup(crop.resource, crop.amount)
-
-		slot.selected.connect(_on_crop_slot_selected)
-
-		grid_container.add_child(slot)
 
 func _on_crop_slot_selected(slot):
 
@@ -295,6 +172,7 @@ func _on_crop_slot_selected(slot):
 
 	selected_crop = slot.crop_resource
 	selected_amount = slot.crop_count
+	selected_inv_indx_ptr = slot.inventory_slot_num
 
 
 
@@ -308,7 +186,10 @@ func populate_crop_grid():
 	selected_slot = null
 	selected_crop = null
 
-	for slot in GameManager.PLAYER_INVENTORY_TEST.values():
+
+	for slot_index in GameManager.PLAYER_INVENTORY_TEST.keys():
+
+		var slot = GameManager.PLAYER_INVENTORY_TEST[slot_index]
 
 		var resource_path = slot[0]
 		var quantity = slot[1]
@@ -328,16 +209,43 @@ func populate_crop_grid():
 		if item == null:
 			continue
 
-		# Only allow crops to appear
+	# Only allow crops to appear
 		if item.item_type != Enum.ItemType.keys()[Enum.ItemType.crop]:
 			continue
 
 		var crop_slot = crop_slot_scene.instantiate()
 
-		crop_slot.setup(item, quantity)
+		crop_slot.setup(item, quantity, slot_index)
 		crop_slot.selected.connect(_on_crop_slot_selected)
 
 		grid_container.add_child(crop_slot)
+
+
+func find_anywhere(name1: String) -> Node:
+	var tree := get_tree()
+	
+	# 1. Try to get autoloads
+	var autoloads = ProjectSettings.get_setting("application/config/autoloads")
+	if autoloads != null:
+		for autoload_name in autoloads.keys():
+			var singleton = tree.get_first_node_in_group(autoload_name)
+			if singleton:
+				if singleton.name == name1:
+					return singleton
+				var found = singleton.find_child(name1, true)
+				if found:
+					return found
+
+	# 2. Try current scene
+	if tree:
+		if tree.current_scene:
+			var found = tree.current_scene.find_child(name1, true)
+			if found:
+				return found
+
+	# 3. Try the root (includes autoloads + main viewport)
+	return tree.root.find_child(name1, true, false)
+
 
 
 # Bottom

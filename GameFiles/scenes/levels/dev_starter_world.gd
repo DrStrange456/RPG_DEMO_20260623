@@ -29,7 +29,6 @@ func _ready():
 
 	# Select the first button if desired
 	button_group.get_buttons()[0].button_pressed = true
-	#print(button_group.get_buttons())
 	
 	debug_setup_trees()
 	#print(get_global_positions(rocks))
@@ -193,3 +192,7 @@ func _on_btn_rocks_pressed(button: Button) -> void:
 
 
 # Bottom
+
+
+func _on_inventory_main_visibility_changed(source: CanvasItem) -> void:
+	source._refresh_inventory_items_signal()

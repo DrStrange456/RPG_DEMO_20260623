@@ -34,6 +34,19 @@ func _load_slots_from_save(grid_container: GridContainer):
 				inventory[j].set_item(load(GameManager.PLAYER_INVENTORY_TEST[j][0]))
 				inventory[j].set_quantity(GameManager.PLAYER_INVENTORY_TEST[j][1])
 
+func _save_slots_to_dictionary():
+	for i in inventory.size():
+		var slot = inventory[i]
+
+		if slot.item == null or slot.quantity <= 0:
+			GameManager.PLAYER_INVENTORY_TEST[i] = [null, 0, true]
+		else:
+			GameManager.PLAYER_INVENTORY_TEST[i] = [
+				slot.item.resource_path,
+				slot.quantity,
+				slot.enabled
+			]
+
 func _refresh_inventory_items(grid_container: GridContainer):
 	_load_slots_from_save(grid_container)
 

@@ -124,6 +124,12 @@ func handle_click_StrgToInv_single_item(SRC: InvSlotUI,gcGRID_STRG: GridContaine
 
 
 ### SUPPORT FUNCTIONS
+func _remove_from_inventory_NoUI(intSlotIndex: int):
+	# - - Remove from Data only.  No need to worry about UI
+	# DATA
+	ptrINVENTORY[intSlotIndex][0] = null
+	ptrINVENTORY[intSlotIndex][1] = 0
+
 func _remove_from_inventory(gcGRID: GridContainer, intSlotIndex: int):
 	# - - Remove from Data then remove from UI
 	# DATA
