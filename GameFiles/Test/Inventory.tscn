@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dmjs7ak4h3hio" path="res://assets/UI/A-MyFiles/Inventory_bg.png" id="1_bjtgy"]
 [ext_resource type="Script" uid="uid://uyoyf613x4sm" path="res://Test/inventory.gd" id="1_h3kjg"]
 [ext_resource type="Script" uid="uid://culwm761ctewy" path="res://Inventory/Scripts/main_inventory_controller.gd" id="2_ge5fo"]
+[ext_resource type="Texture2D" uid="uid://dusxfq8xctrik" path="res://assets/UI/01-NEW/IMG_1147.PNG" id="3_7pj5c"]
 [ext_resource type="PackedScene" uid="uid://lt04e7ajlebf" path="res://Inventory/inventory_slot_ui.tscn" id="3_h3kjg"]
 [ext_resource type="Texture2D" uid="uid://ditoo2epdbb8u" path="res://assets/UI/Pause/Table.png" id="4_ge5fo"]
 
@@ -33,15 +34,29 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="InventoryBg" type="Sprite2D" parent="PopupRoot" unique_id=679374705]
+visible = false
 position = Vector2(583, 322)
 texture = ExtResource("1_bjtgy")
 
+[node name="InventoryBg2" type="Sprite2D" parent="PopupRoot" unique_id=1174238323]
+position = Vector2(587.5, 333.5)
+scale = Vector2(1.4874716, 1.4570707)
+texture = ExtResource("3_7pj5c")
+
+[node name="Label" type="Label" parent="PopupRoot" unique_id=666650710]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 54.0
+offset_right = 630.0
+offset_bottom = 77.0
+text = "INVENTORY"
+
 [node name="MainInventoryController" type="GridContainer" parent="PopupRoot" unique_id=1234608783]
 layout_mode = 0
-offset_left = 423.00003
-offset_top = 103.0
-offset_right = 639.0
-offset_bottom = 187.0
+offset_left = 431.00003
+offset_top = 126.0
+offset_right = 647.0
+offset_bottom = 210.0
 scale = Vector2(1.5, 1.5)
 mouse_filter = 2
 columns = 5
@@ -111,10 +126,10 @@ position = Vector2(461, 266)
 scale = Vector2(1.5, 1.5)
 
 [node name="btnSort_Inv" type="Button" parent="PopupRoot/OptionButtons" unique_id=35797042]
-offset_left = 112.0
-offset_top = 181.33334
-offset_right = 192.0
-offset_bottom = 212.33334
+offset_left = 214.66666
+offset_top = 192.66666
+offset_right = 276.66666
+offset_bottom = 215.66666
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_h3kjg")
