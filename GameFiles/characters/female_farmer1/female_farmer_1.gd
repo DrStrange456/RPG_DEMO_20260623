@@ -175,6 +175,8 @@ func _execute_primary_action():
 			_attempt_seed()
 		"selectHARVEST":
 			_execute_secondary_action()
+		"selectPICKUP":
+			_attempt_handle_object()
 
 
 func _execute_secondary_action():
@@ -204,6 +206,8 @@ func _attempt_pick():
 func _attempt_chop():
 	performAction_AxeSwing()
 
+func _attempt_handle_object():
+	pass
 
 
 func _manual_hoe_action(cell_pos,ret_hit_loc):

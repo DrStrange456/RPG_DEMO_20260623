@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cq3xxjqkwjdrc"]
+
+[ext_resource type="Texture2D" uid="uid://dwf8v2kwrro46" path="res://assets/AAA-TileSets/Craftland/Craftland Terrain/32x32/CL_Crafting.png" id="1_h0v4q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kghiy"]
+radius = 16.03122
+
+[node name="barrel_basic" type="StaticBody2D" unique_id=1682772852]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1680650728]
+visible = false
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_kghiy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=64299520]
+texture = ExtResource("1_h0v4q")
+region_enabled = true
+region_rect = Rect2(704, 64, 32, 56)
