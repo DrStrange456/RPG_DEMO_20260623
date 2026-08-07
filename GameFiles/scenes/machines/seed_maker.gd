@@ -136,6 +136,7 @@ func update_machine_state() -> void:
 func _ready():
 	interact_icon.visible = false
 
+# TODO: put this input into storage ui to see if you can close on 'E' press
 func _input(_event: InputEvent) -> void:
 	if plyr and player_within_range:
 		if Input.is_action_just_pressed("activate"):

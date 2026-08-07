@@ -41,10 +41,8 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Events.connect("try_interact_sm_chest", Callable(open_small_chest))
 	Events.connect("try_interact_lg_chest", Callable(open_large_chest))
-	Events.connect("try_interact_merchant", Callable(open_merchant))
-	
-	Events.connect("health_changed", Callable(update_health_values))
-	
+	Events.connect("try_interact_merchant", Callable(open_merchant))	
+	Events.connect("health_changed", Callable(update_health_values))	
 	Events.connect("try_interact_seed_maker", Callable(open_seed_maker_ui))
 
 
