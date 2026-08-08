@@ -13,7 +13,6 @@ func initialize():
 
 
 func bind_inventory(inv,gc: GridContainer):
-	#var ui_slots = main_inventory_container_ui.get_children()
 	var ui_slots = gc.get_children()
 	for i in ui_slots.size():
 		ui_slots[i].bind_slot(inv[i])
@@ -63,7 +62,7 @@ func _on_btn_sort_inv_pressed() -> void:
 
 
 
-
+# Functions
 func find_anywhere(name1: String) -> Node:
 	var tree := get_tree()
 	
