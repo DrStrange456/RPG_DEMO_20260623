@@ -27,7 +27,7 @@ func receive_crop(crop):
 	# Add to inventory AFTER animation
 	#var tmp = crop.res
 	#StorageManager.get_resource_by_name(crop)
-	StorageManager.try_add_item_to_inventory(GameManager.PLAYER_INVENTORY_TEST,tmp_name,1)
+	StorageManager.try_add_item_to_inventory(GameManager.PLAYER_INVENTORY_TEST_LARGE,tmp_name,1)
 	#inventory_component.add_item(crop_item_data, 1)
 	#print("debug")
 

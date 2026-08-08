@@ -19,29 +19,29 @@ func bind_inventory(inv,gc: GridContainer):
 		ui_slots[i].bind_slot(inv[i])
 
 func _load_slots_from_save(grid_container: GridContainer):
-	inventory.resize(GameManager.PLAYER_INVENTORY_TEST.size())
+	inventory.resize(GameManager.PLAYER_INVENTORY_TEST_LARGE.size())
 	for i in inventory.size():
 		inventory[i] = OptiInventorySlot.new()
 	
 	bind_inventory(inventory,grid_container)
 	
-	for j in GameManager.PLAYER_INVENTORY_TEST:
+	for j in GameManager.PLAYER_INVENTORY_TEST_LARGE:
 		for i in grid_container.get_child_count():
 			grid_container._set_slot(i)
-		if GameManager.PLAYER_INVENTORY_TEST[j][0] != null:
-			if int(GameManager.PLAYER_INVENTORY_TEST[j][1]) > 0:
+		if GameManager.PLAYER_INVENTORY_TEST_LARGE[j][0] != null:
+			if int(GameManager.PLAYER_INVENTORY_TEST_LARGE[j][1]) > 0:
 				inventory[j].indx = j
-				inventory[j].set_item(load(GameManager.PLAYER_INVENTORY_TEST[j][0]))
-				inventory[j].set_quantity(GameManager.PLAYER_INVENTORY_TEST[j][1])
+				inventory[j].set_item(load(GameManager.PLAYER_INVENTORY_TEST_LARGE[j][0]))
+				inventory[j].set_quantity(GameManager.PLAYER_INVENTORY_TEST_LARGE[j][1])
 
-func _save_slots_to_dictionary():
+func _save_slots_to_dictionary(STORED_INV: Dictionary):
 	for i in inventory.size():
 		var slot = inventory[i]
 
 		if slot.item == null or slot.quantity <= 0:
-			GameManager.PLAYER_INVENTORY_TEST[i] = [null, 0, true]
+			STORED_INV[i] = [null, 0, true]
 		else:
-			GameManager.PLAYER_INVENTORY_TEST[i] = [
+			STORED_INV[i] = [
 				slot.item.resource_path,
 				slot.quantity,
 				slot.enabled

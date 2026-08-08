@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _load_slots_from_save():
 	print("loading small container contents")
-	inventory.resize(GameManager.PLAYER_INVENTORY_TEST.size())
+	inventory.resize(GameManager.PLAYER_INVENTORY_TEST_LARGE.size())
 	for i in inventory.size():
 		inventory[i] = OptiInventorySlot.new()
 	storage_slots.resize(preset_container_count)

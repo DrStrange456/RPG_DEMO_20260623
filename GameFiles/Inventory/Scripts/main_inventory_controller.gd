@@ -1,7 +1,7 @@
 @icon("res://assets/icons/inv_Icons/InventoryContainer.svg")
 extends GridContainer
 
-@onready var ptrINVENTORY = GameManager.PLAYER_INVENTORY_TEST # For Debugging
+@onready var ptrINVENTORY = GameManager.PLAYER_INVENTORY_TEST_LARGE # For Debugging
 
 var slotPreview = GameManager.glSlotPrev
 

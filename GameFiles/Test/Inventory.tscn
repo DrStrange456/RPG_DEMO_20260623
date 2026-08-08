@@ -121,6 +121,96 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 9
 
+[node name="InventorySlotUI11" parent="PopupRoot/MainInventoryController" unique_id=1831529298 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI12" parent="PopupRoot/MainInventoryController" unique_id=1301778798 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI13" parent="PopupRoot/MainInventoryController" unique_id=472574369 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI14" parent="PopupRoot/MainInventoryController" unique_id=1731677296 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI15" parent="PopupRoot/MainInventoryController" unique_id=1892911622 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI16" parent="PopupRoot/MainInventoryController" unique_id=1181344883 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI17" parent="PopupRoot/MainInventoryController" unique_id=1429666588 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI18" parent="PopupRoot/MainInventoryController" unique_id=1408028053 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI19" parent="PopupRoot/MainInventoryController" unique_id=1745834571 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI20" parent="PopupRoot/MainInventoryController" unique_id=991327837 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI21" parent="PopupRoot/MainInventoryController" unique_id=981518768 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI22" parent="PopupRoot/MainInventoryController" unique_id=1323849869 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI23" parent="PopupRoot/MainInventoryController" unique_id=1303880053 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI24" parent="PopupRoot/MainInventoryController" unique_id=27897989 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI25" parent="PopupRoot/MainInventoryController" unique_id=1593022129 instance=ExtResource("3_h3kjg")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
 [node name="OptionButtons" type="Node2D" parent="PopupRoot" unique_id=1661034079]
 position = Vector2(461, 266)
 scale = Vector2(1.5, 1.5)

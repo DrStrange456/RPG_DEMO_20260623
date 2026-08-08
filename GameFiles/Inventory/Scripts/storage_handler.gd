@@ -2,7 +2,7 @@ class_name storage_click_event_manager
 extends Node
 
 
-@onready var ptrINVENTORY = GameManager.PLAYER_INVENTORY_TEST # For Debugging
+@onready var ptrINVENTORY = GameManager.PLAYER_INVENTORY_TEST_LARGE # For Debugging
 var ITEM_REGISTRY: Dictionary = {}
 var leftover_delta: int = 0
 
@@ -61,7 +61,7 @@ func move_single_item_to_storage(ctx):
 	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index
 	
-	ptrINVENTORY = GameManager.PLAYER_INVENTORY_TEST
+	ptrINVENTORY = GameManager.PLAYER_INVENTORY_TEST_LARGE
 	if ptrINVENTORY[intSlotIndex][0] != null:
 		if int(ptrINVENTORY[intSlotIndex][1]) == 1:
 			# only 1 left in slot

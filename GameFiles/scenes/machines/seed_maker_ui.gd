@@ -187,9 +187,9 @@ func populate_crop_grid():
 	selected_crop = null
 
 
-	for slot_index in GameManager.PLAYER_INVENTORY_TEST.keys():
+	for slot_index in GameManager.PLAYER_INVENTORY_TEST_LARGE.keys():
 
-		var slot = GameManager.PLAYER_INVENTORY_TEST[slot_index]
+		var slot = GameManager.PLAYER_INVENTORY_TEST_LARGE[slot_index]
 
 		var resource_path = slot[0]
 		var quantity = slot[1]

@@ -114,7 +114,7 @@ func _on_btn_transfer_all_to_strg_pressed() -> void:
 		GameManager.PLAYER_INVENTORY_TEST_LARGE,
 		test_container.get_children())
 	# FIXME: Not saving resulting inventory
-	_save_slots_to_dictionary()
+	#GameManager._save_inventory(GameManager.PLAYER_INVENTORY_TEST_LARGE)
 	_refresh_inventory_items()
 
 
@@ -136,19 +136,31 @@ func _on_btn_transfer_all_to_strg_pressed() -> void:
 	#_refresh_inventory_items()
 #
 
-func _save_slots_to_dictionary():
-	for i in inventory.size():
-		var slot = inventory[i]
-
-		if slot.item == null or slot.quantity <= 0:
-			GameManager.PLAYER_INVENTORY_TEST[i] = [null, 0, true]
-		else:
-			GameManager.PLAYER_INVENTORY_TEST[i] = [
-				slot.item.resource_path,
-				slot.quantity,
-				slot.enabled
-			]
-
+#func _save_slots_to_dictionary():
+	#for i in inventory.size():
+		#var slot = inventory[i]
+#
+		#if slot.item == null or slot.quantity <= 0:
+			#GameManager.PLAYER_INVENTORY_TEST[i] = [null, 0, true]
+		#else:
+			#GameManager.PLAYER_INVENTORY_TEST[i] = [
+				#slot.item.resource_path,
+				#slot.quantity,
+				#slot.enabled
+			#]
+#
+#func _save_slots_to_dictionary_lrg():
+	#for i in inventory.size():
+		#var slot = inventory[i]
+#
+		#if slot.item == null or slot.quantity <= 0:
+			#GameManager.PLAYER_INVENTORY_TEST_LARGE[i] = [null, 0, true]
+		#else:
+			#GameManager.PLAYER_INVENTORY_TEST_LARGE[i] = [
+				#slot.item.resource_path,
+				#slot.quantity,
+				#slot.enabled
+			#]
 
 ### - Context Menu Options
 func _on_btn_move_pressed() -> void:
