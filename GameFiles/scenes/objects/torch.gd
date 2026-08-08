@@ -130,6 +130,16 @@ func _process(delta: float) -> void:
 		point_light_2d.texture_scale = txtr_scale
 
 
+func _input(_event: InputEvent) -> void:
+	if plyr and player_within_range:
+		if Input.is_action_just_pressed("activate"):
+			toggle_light = !toggle_light
+			#UiManager.active_ui = self
+			#Events.emit_signal("try_interact_lg_chest")
+			get_viewport().set_input_as_handled()  # Mark event as handled
+
+
+
 func _on_flicker_timer_timeout() -> void:
 	if !flicker_enabled:
 		return

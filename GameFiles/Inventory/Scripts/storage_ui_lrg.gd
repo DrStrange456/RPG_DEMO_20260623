@@ -30,6 +30,8 @@ var slot_contents: Dictionary = {
 }
 
 
+
+
 func initialize():
 	#_load_slots_from_save()
 	large_container.load_storage_from_dictionary(slot_contents)

@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://b0o78bl2yg7fx" path="res://assets/misc/dirt_paths.png" id="20_vqsjl"]
 [ext_resource type="PackedScene" uid="uid://dnr1orx43cgci" path="res://scenes/objects/static_tree_medium.tscn" id="24_ialmi"]
 [ext_resource type="PackedScene" uid="uid://dbxpeimdhh4j6" path="res://scenes/objects/grass.tscn" id="27_vqsjl"]
+[ext_resource type="PackedScene" uid="uid://cq3xxjqkwjdrc" path="res://scenes/objects/barrel_basic.tscn" id="32_8muhm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0n0ph"]
 texture = ExtResource("3_kpaqn")
@@ -3868,9 +3869,11 @@ metadata/_edit_lock_ = true
 [node name="Storage_Bin" type="Node2D" parent="World" unique_id=1626639135]
 
 [node name="chest_small" parent="World/Storage_Bin" unique_id=1869348280 instance=ExtResource("11_4fb74")]
+process_mode = 3
 position = Vector2(1171, 312)
 
 [node name="chest_large" parent="World/Storage_Bin" unique_id=1534628734 instance=ExtResource("17_gh451")]
+process_mode = 3
 position = Vector2(666, 60)
 
 [node name="Objects" type="Node2D" parent="World" unique_id=268187486]
@@ -4023,6 +4026,9 @@ energy_variation = 0.0
 scale_variation = 0.141
 flicker_speed = 3.318
 metadata/_edit_lock_ = true
+
+[node name="barrel_basic" parent="World/Objects" unique_id=1682772852 instance=ExtResource("32_8muhm")]
+position = Vector2(569, 219)
 
 [node name="Enemies" type="Node2D" parent="World" unique_id=729729922]
 
