@@ -2,7 +2,9 @@ class_name storage_click_event_manager
 extends Node
 
 
+#@onready var large_container: TestContainerLarge = $PopupRoot/LargeContainer
 @onready var ptrINVENTORY = GmMgr.PLAYER_INVENTORY_TEST_LARGE # For Debugging
+#@onready var ptrLARGE_STORAGE = GmMgr.STORAGE_TEST_LARGE # For Debugging
 var ITEM_REGISTRY: Dictionary = {}
 var leftover_delta: int = 0
 
@@ -233,6 +235,8 @@ func transfer_inventory_slot_to_container(inventory: Dictionary, container: Arra
 		ptrINVENTORY[slot_index][0] = null
 	if remaining > 0:
 		leftover_delta = remaining
+	# --- update inventory dictionary (DATA) ---
+	
 
 func _transfer_storage_to_inv(SRC: InvSlotUI,gcGRID_DEST: GridContainer,_slotIndex: int):
 	var item = SRC.slot.item
@@ -546,6 +550,12 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 
 				quantity -= add_amount
 
+				# FIXME: Only updates UI.  Need Data updated
+				# Update Data here  
+				var tmp = find_anywhere("LargeStrgContainer")
+				var tmp2 = storage_to_dictionary(tmp)
+				GmMgr._save_large_container(tmp2)
+				
 				if quantity <= 0:
 					return 0
 
@@ -564,7 +574,7 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 			if quantity <= 0:
 				return 0
 
-	# Update Data here  # FIXME: Only updates UI.  Need Data updated
+	
 	
 
 	return quantity
@@ -934,7 +944,21 @@ func load_resources_from_folder(path: String) -> Array:
 
 	return resources
 
+func storage_to_dictionary(storage: TestContainerLarge) -> Dictionary:
+	var result: Dictionary = {}
 
+	for i in storage.storage_slots.size():
+		var slot: OptiInventorySlot = storage.storage_slots[i]
 
+		if slot.item == null or slot.quantity <= 0:
+			result[i] = [null, 0, slot.enabled]
+		else:
+			result[i] = [
+				slot.item.resource_path,
+				slot.quantity,
+				slot.enabled
+			]
+
+	return result
 
 # bottom

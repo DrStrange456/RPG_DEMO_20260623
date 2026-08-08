@@ -2,8 +2,8 @@ extends popup_ui
 
 
 @onready var inventory_container_ui: GridContainer = $PopupRoot/InventorySlotContainer
-@onready var large_container: TestContainerLarge = $PopupRoot/LargeContainer
-@onready var test_container: TestContainerLarge = $PopupRoot/LargeContainer
+@onready var large_container: TestContainerLarge = $PopupRoot/LargeStrgContainer
+@onready var test_container: TestContainerLarge = $PopupRoot/LargeStrgContainer
 
 var inventory : Array[OptiInventorySlot] = []
 

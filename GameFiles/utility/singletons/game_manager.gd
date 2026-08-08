@@ -98,6 +98,24 @@ func _save_inventory(slots: Dictionary):
 	inventory_main._save_slots_to_dictionary(slots)
 
 
+# FIXME: Not saving to Global
+func _save_large_container(slots: Dictionary):
+	for i in STORAGE_TEST_LARGE.size():
+		var slot = STORAGE_TEST_LARGE[i]
+
+		if slot.item == null or slot.quantity <= 0:
+			slots[i] = [null, 0, true]
+		else:
+			slots[i] = [
+				slot.item.resource_path,
+				slot.quantity,
+				slot.enabled
+			]
+
+
+
+
+
 ### - FUNCTIONS
 func _on_pause_opened():
 	get_tree().paused = true

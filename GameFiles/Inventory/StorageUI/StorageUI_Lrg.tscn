@@ -187,7 +187,7 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 24
 
-[node name="LargeContainer" type="GridContainer" parent="PopupRoot" unique_id=1872605051]
+[node name="LargeStrgContainer" type="GridContainer" parent="PopupRoot" unique_id=1872605051]
 layout_mode = 0
 offset_left = 107.0
 offset_top = 65.0
@@ -196,150 +196,150 @@ offset_bottom = 316.5
 columns = 5
 script = ExtResource("4_2vj3f")
 
-[node name="InventorySlotUI" parent="PopupRoot/LargeContainer" unique_id=206119375 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI" parent="PopupRoot/LargeStrgContainer" unique_id=206119375 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="InventorySlotUI2" parent="PopupRoot/LargeContainer" unique_id=377496725 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI2" parent="PopupRoot/LargeStrgContainer" unique_id=377496725 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 1
 
-[node name="InventorySlotUI3" parent="PopupRoot/LargeContainer" unique_id=1816834079 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI3" parent="PopupRoot/LargeStrgContainer" unique_id=1816834079 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 2
 
-[node name="InventorySlotUI4" parent="PopupRoot/LargeContainer" unique_id=1973705277 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI4" parent="PopupRoot/LargeStrgContainer" unique_id=1973705277 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 3
 
-[node name="InventorySlotUI5" parent="PopupRoot/LargeContainer" unique_id=1726031109 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI5" parent="PopupRoot/LargeStrgContainer" unique_id=1726031109 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 4
 
-[node name="InventorySlotUI6" parent="PopupRoot/LargeContainer" unique_id=1599074605 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI6" parent="PopupRoot/LargeStrgContainer" unique_id=1599074605 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 5
 
-[node name="InventorySlotUI7" parent="PopupRoot/LargeContainer" unique_id=1792177811 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI7" parent="PopupRoot/LargeStrgContainer" unique_id=1792177811 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 6
 
-[node name="InventorySlotUI8" parent="PopupRoot/LargeContainer" unique_id=2044031794 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI8" parent="PopupRoot/LargeStrgContainer" unique_id=2044031794 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 7
 
-[node name="InventorySlotUI9" parent="PopupRoot/LargeContainer" unique_id=1864553670 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI9" parent="PopupRoot/LargeStrgContainer" unique_id=1864553670 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 8
 
-[node name="InventorySlotUI10" parent="PopupRoot/LargeContainer" unique_id=565738470 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI10" parent="PopupRoot/LargeStrgContainer" unique_id=565738470 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 9
 
-[node name="InventorySlotUI11" parent="PopupRoot/LargeContainer" unique_id=131655583 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI11" parent="PopupRoot/LargeStrgContainer" unique_id=131655583 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 10
 
-[node name="InventorySlotUI12" parent="PopupRoot/LargeContainer" unique_id=1896874841 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI12" parent="PopupRoot/LargeStrgContainer" unique_id=1896874841 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 11
 
-[node name="InventorySlotUI13" parent="PopupRoot/LargeContainer" unique_id=1029770748 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI13" parent="PopupRoot/LargeStrgContainer" unique_id=1029770748 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 12
 
-[node name="InventorySlotUI14" parent="PopupRoot/LargeContainer" unique_id=55437992 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI14" parent="PopupRoot/LargeStrgContainer" unique_id=55437992 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 13
 
-[node name="InventorySlotUI15" parent="PopupRoot/LargeContainer" unique_id=2048964473 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI15" parent="PopupRoot/LargeStrgContainer" unique_id=2048964473 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 14
 
-[node name="InventorySlotUI16" parent="PopupRoot/LargeContainer" unique_id=1173926199 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI16" parent="PopupRoot/LargeStrgContainer" unique_id=1173926199 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 15
 
-[node name="InventorySlotUI17" parent="PopupRoot/LargeContainer" unique_id=472991372 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI17" parent="PopupRoot/LargeStrgContainer" unique_id=472991372 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 16
 
-[node name="InventorySlotUI18" parent="PopupRoot/LargeContainer" unique_id=569308992 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI18" parent="PopupRoot/LargeStrgContainer" unique_id=569308992 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 17
 
-[node name="InventorySlotUI19" parent="PopupRoot/LargeContainer" unique_id=461648644 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI19" parent="PopupRoot/LargeStrgContainer" unique_id=461648644 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 18
 
-[node name="InventorySlotUI20" parent="PopupRoot/LargeContainer" unique_id=793230571 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI20" parent="PopupRoot/LargeStrgContainer" unique_id=793230571 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 19
 
-[node name="InventorySlotUI21" parent="PopupRoot/LargeContainer" unique_id=1278115447 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI21" parent="PopupRoot/LargeStrgContainer" unique_id=1278115447 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 20
 
-[node name="InventorySlotUI22" parent="PopupRoot/LargeContainer" unique_id=2146163114 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI22" parent="PopupRoot/LargeStrgContainer" unique_id=2146163114 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 21
 
-[node name="InventorySlotUI23" parent="PopupRoot/LargeContainer" unique_id=1041600158 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI23" parent="PopupRoot/LargeStrgContainer" unique_id=1041600158 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 22
 
-[node name="InventorySlotUI24" parent="PopupRoot/LargeContainer" unique_id=1581164756 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI24" parent="PopupRoot/LargeStrgContainer" unique_id=1581164756 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 23
 
-[node name="InventorySlotUI25" parent="PopupRoot/LargeContainer" unique_id=1611194073 instance=ExtResource("3_cflt7")]
+[node name="InventorySlotUI25" parent="PopupRoot/LargeStrgContainer" unique_id=1611194073 instance=ExtResource("3_cflt7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2

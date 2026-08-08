@@ -51,6 +51,19 @@ func load_storage_from_dictionary(dict):
 			storage_slots[k].set_quantity(dict[k][1])
 	bind_storage(storage_slots)
 
+#func save_storage_to_dictionary(slots: Dictionary):
+	#var invtry = GmMgr.PLAYER_INVENTORY_TEST_LARGE
+	#for i in invtry.size():
+		#var slot = invtry[i]
+#
+		#if slot.item == null or slot.quantity <= 0:
+			#slots[i] = [null, 0, true]
+		#else:
+			#slots[i] = [
+				#slot.item.resource_path,
+				#slot.quantity,
+				#slot.enabled
+			#]
 
 func bind_inventory(inv):
 	var ui_slots = inventory_slot_container.get_children()
