@@ -564,6 +564,9 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 			if quantity <= 0:
 				return 0
 
+	# Update Data here  # FIXME: Only updates UI.  Need Data updated
+	
+
 	return quantity
 
 func is_space_avail_in_inventory(item_name: String, amount: int, inventory: Dictionary)->bool:

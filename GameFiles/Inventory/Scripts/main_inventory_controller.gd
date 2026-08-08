@@ -84,7 +84,7 @@ func _is_slot_stack_full(slot: InvSlotUI)->bool:
 
 func check_isSlot_Empty(slot: InvSlotUI)->bool:
 	var idx = slot.indx
-	var itm = GmMgr.PLAYER_INVENTORY_TEST[idx][0]
+	var itm = GmMgr.PLAYER_INVENTORY_TEST_LARGE[idx][0]
 	return itm == null
 
 func is_SlotItem_diff(itm_Slot: InvSlotUI, holding)->bool:

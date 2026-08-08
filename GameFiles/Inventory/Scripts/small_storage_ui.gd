@@ -60,11 +60,11 @@ func _load_slots_from_save():
 	# load data and ui
 	for j in GmMgr.PLAYER_INVENTORY_TEST:
 		# - DATA
-		if GmMgr.PLAYER_INVENTORY_TEST[j][0] != null:
-			if int(GmMgr.PLAYER_INVENTORY_TEST[j][1]) > 0:
+		if GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][0] != null:
+			if int(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][1]) > 0:
 				inventory[j].indx = j
-				inventory[j].set_item(load(GmMgr.PLAYER_INVENTORY_TEST[j][0]))
-				inventory[j].set_quantity(GmMgr.PLAYER_INVENTORY_TEST[j][1])
+				inventory[j].set_item(load(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][0]))
+				inventory[j].set_quantity(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][1])
 		# - UI
 		var ui = $PopupRoot/InventorySlotContainer
 		ui._set_slot(j)

@@ -121,20 +121,20 @@ func sell_item_clicked(slot: Control):
 					items_to_be_sold.erase(m)
 		else:
 			# show sell quantity text
-			var null_check = GmMgr.PLAYER_INVENTORY_TEST[slot.get_index()][0]
+			var null_check = GmMgr.PLAYER_INVENTORY_TEST_LARGE[slot.get_index()][0]
 			if null_check:  # continue if returns not null value
 				open_sell_menu(slot)
 
 func open_sell_menu(slot: Control):
 	#open UI
 	#var nm
-	#var tmpPATH = GmMgr.PLAYER_INVENTORY_TEST[slot.get_index()][0]
+	#var tmpPATH = GmMgr.PLAYER_INVENTORY_TEST_LARGE[slot.get_index()][0]
 	#if tmpPATH is String:
 		#nm = load(tmpPATH)
 	#else:
 		#nm = load(tmpPATH.resource_path)
-	var nm = GmMgr.PLAYER_INVENTORY_TEST[slot.get_index()][0]    # Name
-	var qnty = GmMgr.PLAYER_INVENTORY_TEST[slot.get_index()][1]  # Quantity
+	var nm = GmMgr.PLAYER_INVENTORY_TEST_LARGE[slot.get_index()][0]    # Name
+	var qnty = GmMgr.PLAYER_INVENTORY_TEST_LARGE[slot.get_index()][1]  # Quantity
 	
 	if nm:
 		market_item_sell_ui.visible = true
@@ -202,16 +202,16 @@ func commence_selling():
 	var value_amt = 0
 	for ware_item in items_to_be_sold:
 		var qty_sold = ware_item.sellQty
-		var qty_inv = GmMgr.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][1]
+		var qty_inv = GmMgr.PLAYER_INVENTORY_TEST_LARGE[ware_item.invSlotNum][1]
 		if qty_sold == int(qty_inv):
 			#pass
 			# remove whole slot
-			GmMgr.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][0] = null
-			GmMgr.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][1] = 0
+			GmMgr.PLAYER_INVENTORY_TEST_LARGE[ware_item.invSlotNum][0] = null
+			GmMgr.PLAYER_INVENTORY_TEST_LARGE[ware_item.invSlotNum][1] = 0
 		else:
 			## deduct qty from slot
 			#1pass
-			GmMgr.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][1] -= qty_sold
+			GmMgr.PLAYER_INVENTORY_TEST_LARGE[ware_item.invSlotNum][1] -= qty_sold
 		value_amt += int(calc_net_gain(ware_item.ItemName,qty_sold))
 	## update money
 	GmMgr.PLAYER_MONEY += value_amt

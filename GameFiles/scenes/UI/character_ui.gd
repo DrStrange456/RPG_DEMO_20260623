@@ -62,9 +62,9 @@ func load_item_type(typ):
 #	first get count
 	var countMatches: int = 0
 	for j in GmMgr.PLAYER_INVENTORY_TEST:
-		if GmMgr.PLAYER_INVENTORY_TEST[j][0] != null:
-			if int(GmMgr.PLAYER_INVENTORY_TEST[j][1]) > 0:
-				var tmpItm: Resource = load(GmMgr.PLAYER_INVENTORY_TEST[j][0])
+		if GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][0] != null:
+			if int(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][1]) > 0:
+				var tmpItm: Resource = load(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][0])
 				if tmpItm.item_type == typ:
 					
 					# UI
@@ -84,10 +84,10 @@ func load_item_type(typ):
 #	populate the grid with only seeds
 	var indx = 0
 	for j in GmMgr.PLAYER_INVENTORY_TEST:
-		if GmMgr.PLAYER_INVENTORY_TEST[j][0] != null:
-			if int(GmMgr.PLAYER_INVENTORY_TEST[j][1]) > 0:
-				var tmpItm: Resource = load(GmMgr.PLAYER_INVENTORY_TEST[j][0])
-				var tmpItm_qty: int = int(GmMgr.PLAYER_INVENTORY_TEST[j][1])
+		if GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][0] != null:
+			if int(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][1]) > 0:
+				var tmpItm: Resource = load(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][0])
+				var tmpItm_qty: int = int(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][1])
 				if tmpItm.item_type == typ:
 					inventory[indx].indx = indx
 					inventory[indx].set_item(tmpItm)

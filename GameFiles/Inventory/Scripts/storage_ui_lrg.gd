@@ -40,7 +40,6 @@ var slot_contents: Dictionary = {
 
 
 func initialize():
-	#_load_slots_from_save()
 	large_container.load_storage_from_dictionary(slot_contents)
 
 
@@ -77,14 +76,6 @@ func _load_slots_from_save():
 func _refresh_inventory_items():
 	_load_slots_from_save()
 
-#func _input(_event: InputEvent) -> void:
-	#if visible:
-		#if Input.is_action_pressed("ui_cancel"):
-			#self.visible = false
-			#UiManager.active_ui = null
-			#UiManager.open_large_chest()
-			#get_viewport().set_input_as_handled()  # Mark event as handled
-
 func open_ui():
 	_load_slots_from_save()
 
@@ -120,8 +111,6 @@ func _on_btn_transfer_all_to_strg_pressed() -> void:
 	StorageManager.move_all_to_container(
 		GmMgr.PLAYER_INVENTORY_TEST_LARGE,
 		test_container.get_children())
-	# FIXME: Not saving resulting inventory
-	#GmMgr._save_inventory(GmMgr.PLAYER_INVENTORY_TEST_LARGE)
 	_refresh_inventory_items()
 
 
@@ -148,9 +137,9 @@ func _on_btn_transfer_all_to_strg_pressed() -> void:
 		#var slot = inventory[i]
 #
 		#if slot.item == null or slot.quantity <= 0:
-			#GmMgr.PLAYER_INVENTORY_TEST[i] = [null, 0, true]
+			#GmMgr.PLAYER_INVENTORY_TEST_LARGE[i] = [null, 0, true]
 		#else:
-			#GmMgr.PLAYER_INVENTORY_TEST[i] = [
+			#GmMgr.PLAYER_INVENTORY_TEST_LARGE[i] = [
 				#slot.item.resource_path,
 				#slot.quantity,
 				#slot.enabled
