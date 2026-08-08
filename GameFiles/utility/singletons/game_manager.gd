@@ -131,6 +131,13 @@ var STORAGE_TEST_LARGE: Dictionary = {
 		15: [null, 0, true],
 		16: ["res://resources/crop_carrot.tres", 98, true],
 		17: [null, 0, true],
+		18: [null, 0, true],
+		19: [null, 0, true],
+		20: [null, 0, true],
+		21: [null, 0, true],
+		22: [null, 0, true],
+		23: [null, 0, true],
+		24: [null, 0, true],
 }
 
 

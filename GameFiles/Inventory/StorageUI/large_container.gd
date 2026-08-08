@@ -8,7 +8,7 @@ class_name TestContainerLarge extends GridContainer
 var inventory : Array[OptiInventorySlot] = []
 var storage_slots : Array[OptiInventorySlot] = []
 
-var preset_container_count = 18
+var preset_container_count = 25
 
 func _ready() -> void:
 	_load_slots_from_save()
