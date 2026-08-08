@@ -506,6 +506,8 @@ func try_add_item_to_inventory(inventory: Dictionary, item_name: String, quantit
 				var add = min(space, quantity)
 				slot[1] = str(int(slot[1]) + int(add))
 				quantity -= int(add)
+				
+				_save_lrgContainer_contents()
 				if quantity <= 0:
 					return 0
 
@@ -525,6 +527,7 @@ func try_add_item_to_inventory(inventory: Dictionary, item_name: String, quantit
 			]
 			quantity -= stack_size
 
+	_save_lrgContainer_contents()
 	return quantity
 
 func try_add_item_to_container(container: Array, item_name: String, quantity: int) -> int:
@@ -550,11 +553,7 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 
 				quantity -= add_amount
 
-				# FIXME: Only updates UI.  Need Data updated
-				# Update Data here  
-				var tmp = find_anywhere("LargeStrgContainer")
-				var tmp2 = storage_to_dictionary(tmp)
-				GmMgr._save_large_container(tmp2)
+				_save_lrgContainer_contents()
 				
 				if quantity <= 0:
 					return 0
@@ -571,6 +570,8 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 
 			quantity -= stack_size
 
+			_save_lrgContainer_contents()
+			
 			if quantity <= 0:
 				return 0
 
@@ -960,5 +961,14 @@ func storage_to_dictionary(storage: TestContainerLarge) -> Dictionary:
 			]
 
 	return result
+
+
+
+
+
+func _save_lrgContainer_contents():
+	var tmp = find_anywhere("LargeStrgContainer")
+	var tmp2 = storage_to_dictionary(tmp)
+	GmMgr._save_large_container(tmp2)
 
 # bottom

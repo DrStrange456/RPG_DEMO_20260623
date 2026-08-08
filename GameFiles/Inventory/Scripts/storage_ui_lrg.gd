@@ -88,7 +88,7 @@ func _on_btn_sort_inv_pressed() -> void:
 	_refresh_inventory_items()
 
 
-
+# FIXME: Move from storage to inv not saving
 func _on_btn_transfer_all_pressed() -> void:
 	StorageManager.move_all_to_inventory(
 		test_container.get_children(),
