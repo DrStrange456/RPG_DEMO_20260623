@@ -247,6 +247,7 @@ func open_large_chest():
 	else:
 		var lrg_chest = find_anywhere("StorageUI_Large")
 		lrg_chest.open_popup()
+		lrg_chest.open_ui()
 		large_storage_open = true
 		get_tree().paused = true
 
