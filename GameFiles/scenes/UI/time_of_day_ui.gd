@@ -16,8 +16,8 @@ func set_daytime(day: int, hour: int, minute: int) -> void:
 	time_label_background.text = time_label.text
 	
 	# Update Global TIME/DATE variables
-	GameManager.gl_TIME = time_label.text
-	GameManager.gl_DATE = day_label.text
+	GmMgr.gl_TIME = time_label.text
+	GmMgr.gl_DATE = day_label.text
 
 func _amfm_hour(hour:int) -> String:
 	if hour == 0:

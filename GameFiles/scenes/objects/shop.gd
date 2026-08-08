@@ -15,14 +15,14 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if plyr and player_within_range:
 		if Input.is_action_just_pressed("ui_cancel"):
-			GameManager.glPlayerRef._attempt_exit_store()
+			GmMgr.glPlayerRef._attempt_exit_store()
 			get_viewport().set_input_as_handled()  # Mark event as handled
 		
 		if Input.is_action_just_pressed("activate"):
 			var gen_str = FuncLibrary.find_anywhere("general_store")
 			gen_str.visible = true
 			UiManager.active_ui = gen_str
-			GameManager.glPlayerRef.state = Enum.State.SHOP
+			GmMgr.glPlayerRef.state = Enum.State.SHOP
 			get_viewport().set_input_as_handled()  # Mark event as handled
 
 

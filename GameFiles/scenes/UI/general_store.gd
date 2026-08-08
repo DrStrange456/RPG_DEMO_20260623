@@ -83,7 +83,7 @@ func _load_merch_item(itm,qty,loc: Vector2)->void:
 	merch_list.add_child(merch)
 
 func _on_tmr_update_credits_timeout() -> void:
-	txt_money.text = str(GameManager.PLAYER_MONEY)
+	txt_money.text = str(GmMgr.PLAYER_MONEY)
 
 
 
@@ -95,7 +95,7 @@ func reset_sell_qty_labels():
 		sell_quantity_container[i].get_child(0).self_modulate.a = 0
 
 func _on_tmr_update_credits_timeout2() -> void:
-	txt_money_2.text = str(GameManager.PLAYER_MONEY)
+	txt_money_2.text = str(GmMgr.PLAYER_MONEY)
 
 func initialize_sell_slots():
 	var slots_inv_sell2 = $TabContainer/SELL/SellQuantityGrid.get_children()
@@ -121,20 +121,20 @@ func sell_item_clicked(slot: Control):
 					items_to_be_sold.erase(m)
 		else:
 			# show sell quantity text
-			var null_check = GameManager.PLAYER_INVENTORY_TEST[slot.get_index()][0]
+			var null_check = GmMgr.PLAYER_INVENTORY_TEST[slot.get_index()][0]
 			if null_check:  # continue if returns not null value
 				open_sell_menu(slot)
 
 func open_sell_menu(slot: Control):
 	#open UI
 	#var nm
-	#var tmpPATH = GameManager.PLAYER_INVENTORY_TEST[slot.get_index()][0]
+	#var tmpPATH = GmMgr.PLAYER_INVENTORY_TEST[slot.get_index()][0]
 	#if tmpPATH is String:
 		#nm = load(tmpPATH)
 	#else:
 		#nm = load(tmpPATH.resource_path)
-	var nm = GameManager.PLAYER_INVENTORY_TEST[slot.get_index()][0]    # Name
-	var qnty = GameManager.PLAYER_INVENTORY_TEST[slot.get_index()][1]  # Quantity
+	var nm = GmMgr.PLAYER_INVENTORY_TEST[slot.get_index()][0]    # Name
+	var qnty = GmMgr.PLAYER_INVENTORY_TEST[slot.get_index()][1]  # Quantity
 	
 	if nm:
 		market_item_sell_ui.visible = true
@@ -202,22 +202,22 @@ func commence_selling():
 	var value_amt = 0
 	for ware_item in items_to_be_sold:
 		var qty_sold = ware_item.sellQty
-		var qty_inv = GameManager.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][1]
+		var qty_inv = GmMgr.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][1]
 		if qty_sold == int(qty_inv):
 			#pass
 			# remove whole slot
-			GameManager.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][0] = null
-			GameManager.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][1] = 0
+			GmMgr.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][0] = null
+			GmMgr.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][1] = 0
 		else:
 			## deduct qty from slot
 			#1pass
-			GameManager.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][1] -= qty_sold
+			GmMgr.PLAYER_INVENTORY_TEST[ware_item.invSlotNum][1] -= qty_sold
 		value_amt += int(calc_net_gain(ware_item.ItemName,qty_sold))
 	## update money
-	GameManager.PLAYER_MONEY += value_amt
+	GmMgr.PLAYER_MONEY += value_amt
 	txt_sell_amount.text = "0"
 	items_to_be_sold = []
-	txt_money.text = str(GameManager.PLAYER_MONEY)
+	txt_money.text = str(GmMgr.PLAYER_MONEY)
 	# update UI and refresh inventory
 	_reset_seller_ui()
 	## update buying inventory stock list

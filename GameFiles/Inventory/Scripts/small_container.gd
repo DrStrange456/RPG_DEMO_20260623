@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _load_slots_from_save():
 	print("loading small container contents")
-	inventory.resize(GameManager.PLAYER_INVENTORY_TEST_LARGE.size())
+	inventory.resize(GmMgr.PLAYER_INVENTORY_TEST_LARGE.size())
 	for i in inventory.size():
 		inventory[i] = OptiInventorySlot.new()
 	storage_slots.resize(preset_container_count)
@@ -27,13 +27,13 @@ func _load_slots_from_save():
 	load_storage_from_dictionary(storage_slots)
 	
 	## Hard coded slot contents (STORAGE_TEST) for dev
-	#for k in GameManager.STORAGE_TEST.size():
+	#for k in GmMgr.STORAGE_TEST.size():
 		#_set_slot(k)
 		#storage_slots[k].set_item(null)
 		#storage_slots[k].set_quantity(0)
 		#
-		##storage_slots[k].set_item(load(GameManager.STORAGE_TEST[k][0]) if GameManager.STORAGE_TEST[k][0] else null)
-		##storage_slots[k].set_quantity(GameManager.STORAGE_TEST[k][1])
+		##storage_slots[k].set_item(load(GmMgr.STORAGE_TEST[k][0]) if GmMgr.STORAGE_TEST[k][0] else null)
+		##storage_slots[k].set_quantity(GmMgr.STORAGE_TEST[k][1])
 	#
 	#bind_storage(storage_slots)
 

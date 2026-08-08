@@ -49,9 +49,9 @@ func _on_panel_gui_input(event):
 			_attempt_purchase(qty)
 
 func _attempt_purchase(amt):
-	if GameManager.PLAYER_MONEY >= abs(amt):
+	if GmMgr.PLAYER_MONEY >= abs(amt):
 		if _spc_avail(nm,qty):
-			GameManager.PLAYER_MONEY = int(GameManager.PLAYER_MONEY) - amt
+			GmMgr.PLAYER_MONEY = int(GmMgr.PLAYER_MONEY) - amt
 			_add_to_inv(nm,qty)
 			Events.emit_signal("refresh_market_inv_ui")
 			AudioController.play_sound("sfx_buy_success")
@@ -66,9 +66,9 @@ func _attempt_purchase(amt):
 
 
 func _spc_avail(nam,qnty)->bool:
-	return StorageManager.is_space_avail_in_inventory(nam,qnty,GameManager.PLAYER_INVENTORY_TEST)
+	return StorageManager.is_space_avail_in_inventory(nam,qnty,GmMgr.PLAYER_INVENTORY_TEST)
 
 func _add_to_inv(nam,qnty):
-	StorageManager.try_add_item_to_inventory(GameManager.PLAYER_INVENTORY_TEST,nam,qnty)
+	StorageManager.try_add_item_to_inventory(GmMgr.PLAYER_INVENTORY_TEST,nam,qnty)
 
 # BOTTOM 

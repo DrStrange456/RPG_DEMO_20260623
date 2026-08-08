@@ -55,14 +55,14 @@ func _on_btn_item_pressed() -> void:
 
 
 func _on_chest_small_activate_clicked() -> void:
-	GameManager._on_pause_opened()
+	GmMgr._on_pause_opened()
 
 func _on_chest_large_activate_clicked() -> void:
 	pass # Replace with function body.
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		get_tree().change_scene_to_packed(GameManager.house_scene)
+		get_tree().change_scene_to_packed(GmMgr.house_scene)
 
 
 

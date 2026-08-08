@@ -50,7 +50,7 @@ func _reset_inventory():
 
 func _load_slots_from_save():
 	# build out inventory data structure
-	inventory.resize(GameManager.PLAYER_INVENTORY_TEST.size())
+	inventory.resize(GmMgr.PLAYER_INVENTORY_TEST.size())
 	for i in inventory.size():
 		inventory[i] = OptiInventorySlot.new()
 	
@@ -58,13 +58,13 @@ func _load_slots_from_save():
 	bind_inventory(inventory)
 	
 	# load data and ui
-	for j in GameManager.PLAYER_INVENTORY_TEST:
+	for j in GmMgr.PLAYER_INVENTORY_TEST:
 		# - DATA
-		if GameManager.PLAYER_INVENTORY_TEST[j][0] != null:
-			if int(GameManager.PLAYER_INVENTORY_TEST[j][1]) > 0:
+		if GmMgr.PLAYER_INVENTORY_TEST[j][0] != null:
+			if int(GmMgr.PLAYER_INVENTORY_TEST[j][1]) > 0:
 				inventory[j].indx = j
-				inventory[j].set_item(load(GameManager.PLAYER_INVENTORY_TEST[j][0]))
-				inventory[j].set_quantity(GameManager.PLAYER_INVENTORY_TEST[j][1])
+				inventory[j].set_item(load(GmMgr.PLAYER_INVENTORY_TEST[j][0]))
+				inventory[j].set_quantity(GmMgr.PLAYER_INVENTORY_TEST[j][1])
 		# - UI
 		var ui = $PopupRoot/InventorySlotContainer
 		ui._set_slot(j)
@@ -88,7 +88,7 @@ func _on_btn_sort_chest_pressed() -> void:
 	StorageManager.sort_and_combine_inventory_Strg(test_container)
 
 func _on_btn_sort_inv_pressed() -> void:
-	StorageManager.sort_and_combine_inventory_Inv(GameManager.PLAYER_INVENTORY_TEST)
+	StorageManager.sort_and_combine_inventory_Inv(GmMgr.PLAYER_INVENTORY_TEST)
 	_refresh_inventory_items()
 
 
@@ -96,24 +96,24 @@ func _on_btn_sort_inv_pressed() -> void:
 func _on_btn_transfer_all_pressed() -> void:
 	StorageManager.move_all_to_inventory(
 		test_container.get_children(),
-		GameManager.PLAYER_INVENTORY_TEST)
+		GmMgr.PLAYER_INVENTORY_TEST)
 	_refresh_inventory_items()
 
 func _on_btn_transfer_like_pressed() -> void:
 	StorageManager.collect_similar_from_chest(
 		test_container.get_children(),
-		GameManager.PLAYER_INVENTORY_TEST)
+		GmMgr.PLAYER_INVENTORY_TEST)
 	_refresh_inventory_items()
 
 func _on_btn_transfer_like_to_strg_pressed() -> void:
 	StorageManager.collect_similar_to_chest(
 		test_container.get_children(),
-		GameManager.PLAYER_INVENTORY_TEST)
+		GmMgr.PLAYER_INVENTORY_TEST)
 	_refresh_inventory_items()
 
 func _on_btn_transfer_all_to_strg_pressed() -> void:
 	StorageManager.move_all_to_container(
-		GameManager.PLAYER_INVENTORY_TEST,
+		GmMgr.PLAYER_INVENTORY_TEST,
 		test_container.get_children())
 	_refresh_inventory_items()
 

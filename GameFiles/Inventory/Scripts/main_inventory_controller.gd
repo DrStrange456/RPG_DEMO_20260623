@@ -1,9 +1,9 @@
 @icon("res://assets/icons/inv_Icons/InventoryContainer.svg")
 extends GridContainer
 
-@onready var ptrINVENTORY = GameManager.PLAYER_INVENTORY_TEST_LARGE # For Debugging
+@onready var ptrINVENTORY = GmMgr.PLAYER_INVENTORY_TEST_LARGE # For Debugging
 
-var slotPreview = GameManager.glSlotPrev
+var slotPreview = GmMgr.glSlotPrev
 
 var holding_item
 var holding_item_resource
@@ -84,7 +84,7 @@ func _is_slot_stack_full(slot: InvSlotUI)->bool:
 
 func check_isSlot_Empty(slot: InvSlotUI)->bool:
 	var idx = slot.indx
-	var itm = GameManager.PLAYER_INVENTORY_TEST[idx][0]
+	var itm = GmMgr.PLAYER_INVENTORY_TEST[idx][0]
 	return itm == null
 
 func is_SlotItem_diff(itm_Slot: InvSlotUI, holding)->bool:

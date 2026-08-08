@@ -7,7 +7,6 @@ extends popup_ui
 @onready var grid_container: GridContainer = $PopupRoot/Panel/panel_right/Panel/ScrollContainer/GridContainer
 @onready var progress_bar: ProgressBar = $PopupRoot/Panel/ProgressBar
 @onready var btn_collect: Button = $PopupRoot/Panel/btnCOLLECT
-
 @onready var crop_in_icon: TextureRect = $PopupRoot/Panel/panel_left/slot_in/CenterContainer/crop_in_rect
 @onready var seed_out_icon: TextureRect = $PopupRoot/Panel/panel_left/slot_out/CenterContainer/seed_out_rect
 @onready var crop_in_amt: Label = $PopupRoot/Panel/panel_left/slot_in/Label
@@ -187,9 +186,9 @@ func populate_crop_grid():
 	selected_crop = null
 
 
-	for slot_index in GameManager.PLAYER_INVENTORY_TEST_LARGE.keys():
+	for slot_index in GmMgr.PLAYER_INVENTORY_TEST_LARGE.keys():
 
-		var slot = GameManager.PLAYER_INVENTORY_TEST_LARGE[slot_index]
+		var slot = GmMgr.PLAYER_INVENTORY_TEST_LARGE[slot_index]
 
 		var resource_path = slot[0]
 		var quantity = slot[1]

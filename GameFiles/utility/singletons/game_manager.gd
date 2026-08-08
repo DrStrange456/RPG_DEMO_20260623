@@ -55,12 +55,12 @@ var PLAYER_INVENTORY_TEST_LARGE: Dictionary = {
 		15: [null, 0, true],
 		16: [null, 0, true],
 		17: [null, 0, true],
-		18: [null, 0, true],
-		19: [null, 0, true],
-		20: [null, 0, true],
-		21: [null, 0, true],
+		18: ["res://resources/crop_strawberry.tres", 3, true],
+		19: ["res://resources/crop_carrot.tres", 2, true],
+		20: ["res://resources/crop_tomato.tres", 1, true],
+		21: ["res://resources/crop_turnip.tres", 2, true],
 		22: [null, 0, true],
-		23: [null, 0, true],
+		23: ["res://resources/crop_strawberry.tres", 50, true],
 		24: [null, 0, true],
 }
 

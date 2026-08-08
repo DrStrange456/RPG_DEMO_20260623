@@ -214,7 +214,7 @@ func _manual_hoe_action(cell_pos,ret_hit_loc):
 	hoe.hoe_tile_no_reticle(cell_pos, soil_hoed, ret_hit_loc)
 
 func _manual_seeding_action(loc,vec):
-	seeding._debug_place_crop(GameManager.selected_item,loc,vec)
+	seeding._debug_place_crop(GmMgr.selected_item,loc,vec)
 
 ## - - - HOEING - - -
 func hoe_state():
@@ -305,8 +305,8 @@ func chopTree_action_initiated(dam):
 
 func _free_crop_location(posi):
 	var tmp = to_float_vector(soil_hoed.local_to_map(posi))
-	GameManager.glPlayerRef.crop_list_array.erase(Vector2i(tmp))
-	print(GameManager.glPlayerRef.crop_list_array)
+	GmMgr.glPlayerRef.crop_list_array.erase(Vector2i(tmp))
+	print(GmMgr.glPlayerRef.crop_list_array)
 	
 func to_float_vector(v: Vector2) -> Vector2:
 	return Vector2(float(v.x), float(v.y))

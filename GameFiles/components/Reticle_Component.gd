@@ -48,11 +48,11 @@ func does_player_see_crops():
 func are_any_rays_colliding(rays: Array)->bool:
 	for ray in rays:
 		if ray is RayCast2D and ray.is_colliding():
-			GameManager.glPlayerRef.plant_detected(ray.get_collider())
+			GmMgr.glPlayerRef.plant_detected(ray.get_collider())
 			return true
-	if is_instance_valid(GameManager.glPlayerRef):
-		if GameManager.glPlayerRef.plants_detected():
-			GameManager.glPlayerRef.plant_not_detected()
+	if is_instance_valid(GmMgr.glPlayerRef):
+		if GmMgr.glPlayerRef.plants_detected():
+			GmMgr.glPlayerRef.plant_not_detected()
 	return false
 
 ## PICKUP ZONE

@@ -19,23 +19,23 @@ func bind_inventory(inv,gc: GridContainer):
 		ui_slots[i].bind_slot(inv[i])
 
 func _load_slots_from_save(grid_container: GridContainer):
-	inventory.resize(GameManager.PLAYER_INVENTORY_TEST_LARGE.size())
+	inventory.resize(GmMgr.PLAYER_INVENTORY_TEST_LARGE.size())
 	for i in inventory.size():
 		inventory[i] = OptiInventorySlot.new()
 	
 	bind_inventory(inventory,grid_container)
 	
-	for j in GameManager.PLAYER_INVENTORY_TEST_LARGE:
+	for j in GmMgr.PLAYER_INVENTORY_TEST_LARGE:
 		for i in grid_container.get_child_count():
 			grid_container._set_slot(i)
-		if GameManager.PLAYER_INVENTORY_TEST_LARGE[j][0] != null:
-			if int(GameManager.PLAYER_INVENTORY_TEST_LARGE[j][1]) > 0:
+		if GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][0] != null:
+			if int(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][1]) > 0:
 				inventory[j].indx = j
-				inventory[j].set_item(load(GameManager.PLAYER_INVENTORY_TEST_LARGE[j][0]))
-				inventory[j].set_quantity(GameManager.PLAYER_INVENTORY_TEST_LARGE[j][1])
+				inventory[j].set_item(load(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][0]))
+				inventory[j].set_quantity(GmMgr.PLAYER_INVENTORY_TEST_LARGE[j][1])
 
 func _on_btn_sort_inv_pressed() -> void:
-	StorageManager.sort_and_combine_inventory_Inv(GameManager.PLAYER_INVENTORY_TEST)
+	StorageManager.sort_and_combine_inventory_Inv(GmMgr.PLAYER_INVENTORY_TEST)
 	AudioController.play_sound("sfx_slots_reorder")
 	_refresh_inventory_items(main_inventory_container_ui)
 

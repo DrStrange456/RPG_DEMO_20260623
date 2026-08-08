@@ -7,7 +7,7 @@ extends Control
 
 
 
-#var slot = GameManager.glSlot
+#var slot = GmMgr.glSlot
 var inventory : Array[OptiInventorySlot] = []
 var button_pressed: String = ""
 
@@ -31,13 +31,13 @@ func _slot_gui_input(event: InputEvent, invSlot: InvSlotUI):
 			
 			match button_pressed:
 				"seed_Pack":
-					GameManager.selected_item = invSlot.slot.item
+					GmMgr.selected_item = invSlot.slot.item
 					btn_seed.icon = invSlot.slot.item.icon
 				"tool":
-					GameManager.selected_tool = invSlot.slot.item
+					GmMgr.selected_tool = invSlot.slot.item
 					btn_hoe.icon = invSlot.slot.item.icon
 				"weapon":
-					GameManager.selected_weapon = invSlot.slot.item
+					GmMgr.selected_weapon = invSlot.slot.item
 					btn_sword.icon = invSlot.slot.item.icon
 
 func _on_btn_seed_pressed() -> void:
@@ -61,14 +61,14 @@ func load_item_type(typ):
 	
 #	first get count
 	var countMatches: int = 0
-	for j in GameManager.PLAYER_INVENTORY_TEST:
-		if GameManager.PLAYER_INVENTORY_TEST[j][0] != null:
-			if int(GameManager.PLAYER_INVENTORY_TEST[j][1]) > 0:
-				var tmpItm: Resource = load(GameManager.PLAYER_INVENTORY_TEST[j][0])
+	for j in GmMgr.PLAYER_INVENTORY_TEST:
+		if GmMgr.PLAYER_INVENTORY_TEST[j][0] != null:
+			if int(GmMgr.PLAYER_INVENTORY_TEST[j][1]) > 0:
+				var tmpItm: Resource = load(GmMgr.PLAYER_INVENTORY_TEST[j][0])
 				if tmpItm.item_type == typ:
 					
 					# UI
-					var newNode = GameManager.glSlotUI.instantiate()
+					var newNode = GmMgr.glSlotUI.instantiate()
 					newNode.custom_minimum_size = Vector2(40,40)
 					newNode.size = Vector2(40,40)
 					grid_container.add_child(newNode)
@@ -83,11 +83,11 @@ func load_item_type(typ):
 	
 #	populate the grid with only seeds
 	var indx = 0
-	for j in GameManager.PLAYER_INVENTORY_TEST:
-		if GameManager.PLAYER_INVENTORY_TEST[j][0] != null:
-			if int(GameManager.PLAYER_INVENTORY_TEST[j][1]) > 0:
-				var tmpItm: Resource = load(GameManager.PLAYER_INVENTORY_TEST[j][0])
-				var tmpItm_qty: int = int(GameManager.PLAYER_INVENTORY_TEST[j][1])
+	for j in GmMgr.PLAYER_INVENTORY_TEST:
+		if GmMgr.PLAYER_INVENTORY_TEST[j][0] != null:
+			if int(GmMgr.PLAYER_INVENTORY_TEST[j][1]) > 0:
+				var tmpItm: Resource = load(GmMgr.PLAYER_INVENTORY_TEST[j][0])
+				var tmpItm_qty: int = int(GmMgr.PLAYER_INVENTORY_TEST[j][1])
 				if tmpItm.item_type == typ:
 					inventory[indx].indx = indx
 					inventory[indx].set_item(tmpItm)

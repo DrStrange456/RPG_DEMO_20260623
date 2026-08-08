@@ -11,7 +11,7 @@ var plyr_is_facing_me: bool = false
 
 func is_player_looking_at_me() -> bool:
 	if plyr:
-		#print(GameManager.convDir_from_Vector(plyr.last_direction))
-		return side_detected_on == GameManager.convDir_from_Vector(plyr.last_direction)
+		#print(GmMgr.convDir_from_Vector(plyr.last_direction))
+		return side_detected_on == GmMgr.convDir_from_Vector(plyr.last_direction)
 	else:
 		return false

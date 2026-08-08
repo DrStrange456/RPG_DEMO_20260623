@@ -11,7 +11,7 @@ signal build_selling_block(nm,qty)
 
 @onready var slot_node: Control
 
-var SlotClass = GameManager.glSlot
+var SlotClass = GmMgr.glSlot
 
 func _ready():
 	txt_quantity.text = "1"

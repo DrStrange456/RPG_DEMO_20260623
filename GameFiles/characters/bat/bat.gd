@@ -17,7 +17,7 @@ enum entityState {
 	CHASE
 }
 
-@onready var plyr = GameManager.glPlayerRef
+@onready var plyr = GmMgr.glPlayerRef
 #@onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 
 var knockback = Vector2.ZERO

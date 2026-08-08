@@ -19,7 +19,7 @@ func receive_crop(crop):
 	crop.queue_free()
 	
 	# Remove crop from list on player tracker
-	GameManager.glPlayerRef._free_crop_location(crop.global_position)
+	GmMgr.glPlayerRef._free_crop_location(crop.global_position)
 	
 	# Show popup
 	await show_crop_popup(crop_texture)
@@ -27,14 +27,14 @@ func receive_crop(crop):
 	# Add to inventory AFTER animation
 	#var tmp = crop.res
 	#StorageManager.get_resource_by_name(crop)
-	StorageManager.try_add_item_to_inventory(GameManager.PLAYER_INVENTORY_TEST_LARGE,tmp_name,1)
+	StorageManager.try_add_item_to_inventory(GmMgr.PLAYER_INVENTORY_TEST_LARGE,tmp_name,1)
 	#inventory_component.add_item(crop_item_data, 1)
 	#print("debug")
 
 
 func show_crop_popup(texture: Texture2D) -> void:
 	var popup = popup_scene.instantiate()
-	GameManager.glPlayerRef.add_child(popup)
-	popup.global_position = GameManager.glPlayerRef.global_position + Vector2(0, -32)
+	GmMgr.glPlayerRef.add_child(popup)
+	popup.global_position = GmMgr.glPlayerRef.global_position + Vector2(0, -32)
 	popup.setup(texture)
 	await popup.play_popup()
