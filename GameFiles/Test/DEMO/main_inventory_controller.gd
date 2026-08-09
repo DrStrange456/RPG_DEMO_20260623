@@ -28,6 +28,7 @@ func _slot_gui_input(event: InputEvent, slot: InvSlotUI):
 			pick_just_one_from_slot(event,slot)  # HANDLE RIGHT CLICKS
 
 
+## LEFT CLICK
 func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 	if holding_item != null:  # Holding Item with Mouse
 		if check_isSlot_Empty(slot):
@@ -40,6 +41,7 @@ func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 	else:  
 		Left_Click_Not_Holding(slot)
 
+## RIGHT CLICK
 func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 	if !check_isSlot_Empty(slot):
 		if holding_item != null:  # Holding Item with Mouse
@@ -49,6 +51,12 @@ func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 				Right_Click_Holding_Same_Item(slot)
 		else:
 			Right_Click_Not_Holding(slot)
+
+
+
+
+
+
 
 
 
@@ -70,7 +78,7 @@ func _is_slot_stack_full(slot: InvSlotUI)->bool:
 
 func check_isSlot_Empty(slot: InvSlotUI)->bool:
 	var idx = slot.indx
-	var itm = GmMgr.PLAYER_INVENTORY_TEST_LARGE[idx][0]
+	var itm = ptrINVENTORY[idx][0]
 	return itm == null
 
 func is_SlotItem_diff(itm_Slot: InvSlotUI, holding)->bool:
