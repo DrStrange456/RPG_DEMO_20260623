@@ -14,6 +14,15 @@ func _ready() -> void:
 	ptrINVENTORY = $"../../..".PLAYER_INVENTORY_TEST_LARGE
 
 
+func _process(_delta: float) -> void:
+	if holding_item != null:  # Set item holding to mouse pos
+		_update_mouse_holding_item_position()
+
+func _update_mouse_holding_item_position():
+	holding_item.position = get_local_mouse_position() - Vector2(20,20)
+
+
+
 func _set_slot(indx):
 	var ic_children = get_children()
 	var slot_for_update: InvSlotUI = ic_children[indx]
@@ -154,7 +163,7 @@ func move_item_to_mouse_holding(obj_Slot):
 	holding_item = _pin_item_to_mouse(obj_Slot)
 
 func _pin_item_to_mouse(slot):
-	if slot:
+	if slot.slot.item:
 		# unparent item obj and attach to mouse, 
 		# must add back to scene tree so added to current (InvController) node
 		var itm_preview = slotPreview.instantiate()

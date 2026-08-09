@@ -44,53 +44,64 @@ mouse_default_cursor_shape = 2
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 1
 
 [node name="InventorySlotUI3" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=1005915027 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 2
 
 [node name="InventorySlotUI4" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=426421984 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 3
 
 [node name="InventorySlotUI5" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=1661119112 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 4
 
 [node name="InventorySlotUI6" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=1576653114 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 5
 
 [node name="InventorySlotUI7" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=1319829161 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 6
 
 [node name="InventorySlotUI8" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=1291423644 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 7
 
 [node name="InventorySlotUI9" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=653079800 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 8
 
 [node name="InventorySlotUI10" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=26927742 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 9
 
 [node name="InventorySlotUI11" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=349471608 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 10
 
 [node name="InventorySlotUI12" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=307808155 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+indx = 11
