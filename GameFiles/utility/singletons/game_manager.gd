@@ -98,7 +98,6 @@ func _save_inventory(slots: Dictionary):
 	inventory_main._save_slots_to_dictionary(slots)
 
 
-# FIXME: Not saving to Global
 func _save_large_container(slots: Dictionary):
 	for i in STORAGE_TEST_LARGE.size():
 		var slot = STORAGE_TEST_LARGE[i]

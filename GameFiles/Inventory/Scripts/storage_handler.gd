@@ -653,10 +653,20 @@ func move_all_to_inventory(container: Array, inventory: Dictionary):
 				qty
 			)
 
+		# Update UI, Update Data
 		if remaining == 0:
 			slot.slot.clear()
+			
+			var tmp = GmMgr.STORAGE_TEST_LARGE[slot.indx]
+			tmp[0] = null
+			tmp[1] = 0
+			tmp[2] = true
+			
 		else:
 			slot.slot.set_quantity(remaining)
+			
+			var tmp = GmMgr.STORAGE_TEST_LARGE[slot.indx]
+			tmp[1] = remaining
 
 
 ### - Transfer Like Items to Inventory
