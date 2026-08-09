@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://bq6y5tkdcdrb6"]
+
+[ext_resource type="Script" uid="uid://ct33s3411wpi2" path="res://Test/DEMO/demo_inventory.gd" id="1_joxkd"]
+[ext_resource type="PackedScene" uid="uid://lt04e7ajlebf" path="res://Inventory/inventory_slot_ui.tscn" id="2_e4kdm"]
+[ext_resource type="Script" uid="uid://bj0l0obrd6482" path="res://Test/DEMO/inventory_ui_demo.gd" id="2_iaol0"]
+[ext_resource type="Script" uid="uid://23840ksd6x1d" path="res://Test/DEMO/main_inventory_controller.gd" id="3_rvloh"]
+
+[node name="Demo_Inventory" type="Node2D" unique_id=698582733]
+script = ExtResource("1_joxkd")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=461653155]
+position = Vector2(352, 154)
+zoom = Vector2(2, 2)
+
+[node name="InventoryUI_Demo" type="Control" parent="." unique_id=1051440927]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_iaol0")
+
+[node name="Panel" type="Panel" parent="InventoryUI_Demo" unique_id=607423246]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 62.0
+offset_right = 364.0
+offset_bottom = 240.0
+
+[node name="MainInventoryController" type="GridContainer" parent="InventoryUI_Demo/Panel" unique_id=639879210]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 23.0
+offset_right = 197.0
+offset_bottom = 151.0
+columns = 4
+script = ExtResource("3_rvloh")
+
+[node name="InventorySlotUI" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=119770590 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI2" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=362341516 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI3" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=1005915027 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI4" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=426421984 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI5" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=1661119112 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI6" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=1576653114 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI7" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=1319829161 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI8" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=1291423644 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI9" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=653079800 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI10" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=26927742 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI11" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=349471608 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI12" parent="InventoryUI_Demo/Panel/MainInventoryController" unique_id=307808155 instance=ExtResource("2_e4kdm")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
