@@ -47,6 +47,7 @@ func load_storage_from_dictionary(dict):
 		if dict is Array:
 			test1 = dict[k].item
 		
+		print(dict[k])
 		if test1 or test2:
 			_set_slot(k)
 			storage_slots[k].set_item(load(dict[k][0]) if dict[k][0] else null)
