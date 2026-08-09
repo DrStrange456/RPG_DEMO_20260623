@@ -508,6 +508,8 @@ func try_add_item_to_inventory(inventory: Dictionary, item_name: String, quantit
 				quantity -= int(add)
 				
 				_save_lrgContainer_contents()
+				_save_invContainer_contents()
+				
 				if quantity <= 0:
 					return 0
 
@@ -528,6 +530,7 @@ func try_add_item_to_inventory(inventory: Dictionary, item_name: String, quantit
 			quantity -= stack_size
 
 	_save_lrgContainer_contents()
+	_save_invContainer_contents()
 	return quantity
 
 func try_add_item_to_container(container: Array, item_name: String, quantity: int) -> int:
@@ -554,6 +557,7 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 				quantity -= add_amount
 
 				_save_lrgContainer_contents()
+				_save_invContainer_contents()
 				
 				if quantity <= 0:
 					return 0
@@ -571,6 +575,7 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 			quantity -= stack_size
 
 			_save_lrgContainer_contents()
+			_save_invContainer_contents()
 			
 			if quantity <= 0:
 				return 0
@@ -629,6 +634,7 @@ func get_resource_by_name(nm: String) -> Resource:
 
 
 ### - Transfer All Items to Inventory
+# DEBUG: STOP HERE!!
 func move_all_to_inventory(container: Array, inventory: Dictionary):
 
 	for slot in container:
@@ -962,9 +968,51 @@ func storage_to_dictionary(storage: TestContainerLarge) -> Dictionary:
 
 	return result
 
+#func inventory_to_dictionary(storage: GridContainer) -> Dictionary:
+	#var result: Dictionary = {}
+#
+	#for i in storage.range():
+		#var slot: OptiInventorySlot = storage[i]
+#
+		#if slot.item == null or slot.quantity <= 0:
+			#result[i] = [null, 0, slot.enabled]
+		#else:
+			#result[i] = [
+				#slot.item.resource_path,
+				#slot.quantity,
+				#slot.enabled
+			#]
+#
+	#return result
+
+
+func inventory_to_dictionary(container: GridContainer) -> Dictionary:
+	var result: Dictionary = {}
+	var ui_slots = container.get_children()
+
+	for i in ui_slots.size():
+		var ui_slot: InvSlotUI = ui_slots[i]
+		var slot: OptiInventorySlot = ui_slot.slot
+
+		if slot.item == null or slot.quantity <= 0:
+			result[i] = [null, 0, slot.enabled]
+		else:
+			result[i] = [
+				slot.item.resource_path,
+				slot.quantity,
+				slot.enabled
+			]
+
+	return result
 
 
 
+
+
+func _save_invContainer_contents():
+	var tmp = find_anywhere("InventorySlotContainer")
+	var tmp2 = inventory_to_dictionary(tmp)
+	GmMgr._save_inventory(tmp2)
 
 func _save_lrgContainer_contents():
 	var tmp = find_anywhere("LargeStrgContainer")

@@ -102,15 +102,6 @@ func _save_inventory(slots: Dictionary):
 func _save_large_container(slots: Dictionary):
 	for i in STORAGE_TEST_LARGE.size():
 		var slot = STORAGE_TEST_LARGE[i]
-
-		#if slot.item == null or slot.quantity <= 0:
-			#slots[i] = [null, 0, true]
-		#else:
-			#slots[i] = [
-				#slot.item.resource_path,
-				#slot.quantity,
-				#slot.enabled
-			#]
 		if slot[0] == null or slot[1] <= 0:
 			slots[i] = [null, 0, true]
 		else:
