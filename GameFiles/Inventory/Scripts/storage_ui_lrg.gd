@@ -8,33 +8,6 @@ extends popup_ui
 var inventory : Array[OptiInventorySlot] = []
 
 
-#var slot_contents: Dictionary = {
-		#0: ["res://resources/crop_carrot.tres", 90, true],
-		#1: ["res://resources/crop_tomato.tres", 90, true],
-		#2: ["res://resources/crop_strawberry.tres", 90, true],
-		#3: ["res://resources/crop_turnip.tres", 90, true],
-		#4: [null, 0, true],
-		#5: [null, 0, true],
-		#6: [null, 0, true],
-		#7: [null, 0, true],
-		#8: [null, 0, true],
-		#9: [null, 0, true],
-		#10: [null, 0, true],
-		#11: [null, 0, true],
-		#12: [null, 0, true],
-		#13: [null, 0, true],
-		#14: [null, 0, true],
-		#15: [null, 0, true],
-		#16: [null, 0, true],
-		#17: [null, 0, true],
-		#18: [null, 0, true],
-		#19: [null, 0, true],
-		#20: [null, 0, true],
-		#21: [null, 0, true],
-		#22: [null, 0, true],
-		#23: [null, 0, true],
-		#24: [null, 0, true],
-#}
 
 
 
@@ -112,6 +85,12 @@ func _on_btn_transfer_all_to_strg_pressed() -> void:
 		test_container.get_children())
 	_refresh_inventory_items()
 
+### - Context Menu Options
+func _on_btn_move_pressed() -> void:
+	StorageManager._handle_move_action()
+
+
+
 
 
 #
@@ -157,9 +136,6 @@ func _on_btn_transfer_all_to_strg_pressed() -> void:
 				#slot.enabled
 			#]
 
-### - Context Menu Options
-func _on_btn_move_pressed() -> void:
-	StorageManager._handle_move_action()
 
 
 
@@ -181,6 +157,36 @@ func _on_btn_move_pressed() -> void:
 			#]
 #
 	#return result
+
+
+
+#var slot_contents: Dictionary = {
+		#0: ["res://resources/crop_carrot.tres", 90, true],
+		#1: ["res://resources/crop_tomato.tres", 90, true],
+		#2: ["res://resources/crop_strawberry.tres", 90, true],
+		#3: ["res://resources/crop_turnip.tres", 90, true],
+		#4: [null, 0, true],
+		#5: [null, 0, true],
+		#6: [null, 0, true],
+		#7: [null, 0, true],
+		#8: [null, 0, true],
+		#9: [null, 0, true],
+		#10: [null, 0, true],
+		#11: [null, 0, true],
+		#12: [null, 0, true],
+		#13: [null, 0, true],
+		#14: [null, 0, true],
+		#15: [null, 0, true],
+		#16: [null, 0, true],
+		#17: [null, 0, true],
+		#18: [null, 0, true],
+		#19: [null, 0, true],
+		#20: [null, 0, true],
+		#21: [null, 0, true],
+		#22: [null, 0, true],
+		#23: [null, 0, true],
+		#24: [null, 0, true],
+#}
 
 
 
