@@ -93,22 +93,21 @@ var STORAGE_TEST_LARGE: Dictionary = {
 }
 
 
+
 func _save_inventory(slots: Dictionary):
-	inventory_main = find_anywhere("Inventory_Main")
-	inventory_main._save_slots_to_dictionary(slots)
+	#inventory_main = find_anywhere("Inventory_Main")
+	#inventory_main._save_slots_to_dictionary(slots)
+	PLAYER_INVENTORY_TEST_LARGE.clear()
+
+	for i in slots:
+		PLAYER_INVENTORY_TEST_LARGE[i] = slots[i].duplicate()
 
 
 func _save_large_container(slots: Dictionary):
-	for i in STORAGE_TEST_LARGE.size():
-		var slot = STORAGE_TEST_LARGE[i]
-		if slot[0] == null or slot[1] <= 0:
-			slots[i] = [null, 0, true]
-		else:
-			slots[i] = [
-				slot[0],
-				slot[1],
-				slot[2]
-			]
+	STORAGE_TEST_LARGE.clear()
+
+	for i in slots:
+		STORAGE_TEST_LARGE[i] = slots[i].duplicate()
 
 
 

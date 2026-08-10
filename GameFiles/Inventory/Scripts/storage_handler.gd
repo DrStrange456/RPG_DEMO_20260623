@@ -89,6 +89,7 @@ func move_item_to_inventory(ctx):
 		else:
 			_return_what_didnt_fit_strg(SRC,gcGRID_STRG,intSlotIndex)
 		leftover_delta = 0
+		_save_both_contents(gcGRID_INV,gcGRID_STRG)
 
 func move_single_item_to_inventory(ctx):
 	var SRC = ctx.slot_clicked
@@ -106,6 +107,7 @@ func handle_click_InvToStrg_OnlyOne(gcGRID_INV: GridContainer,gcGRID_STRG: GridC
 	if ptrINVENTORY[intSlotIndex][0] != null:
 		_transfer_inv_to_storage_JustOne(gcGRID_STRG,intSlotIndex)
 		_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
+		_save_both_contents(gcGRID_INV,gcGRID_STRG)
 		leftover_delta = 0
 
 func handle_click_StrgToInv_single_item(SRC: InvSlotUI,gcGRID_STRG: GridContainer,gcGRID_INV: GridContainer, intSlotIndex: int):
@@ -119,6 +121,7 @@ func handle_click_StrgToInv_single_item(SRC: InvSlotUI,gcGRID_STRG: GridContaine
 		else:
 			# more than 1 in slot, just move 1 and update count
 			handle_click_StrgToInv_OnlyOne(SRC,gcGRID_STRG,gcGRID_INV,intSlotIndex)
+		_save_both_contents(gcGRID_INV,gcGRID_STRG)
 	else:
 		print("nothing to move")
 
@@ -261,8 +264,6 @@ func _transfer_storage_to_inv(SRC: InvSlotUI,gcGRID_DEST: GridContainer,_slotInd
 			ptrINVENTORY[destIndex][0] = item.resource_path
 			ptrINVENTORY[destIndex][1] = new_qty
 			
-			_save_both_contents()
-			
 			if remaining <= 0:
 				return true  # Done adding
 		destIndex += 1
@@ -281,8 +282,6 @@ func _transfer_storage_to_inv(SRC: InvSlotUI,gcGRID_DEST: GridContainer,_slotInd
 			# Update DATA here
 			ptrINVENTORY[destIndex][0] = item.resource_path
 			ptrINVENTORY[destIndex][1] = new_qty
-			
-			_save_both_contents()
 			
 			if remaining <= 0:
 				return true  # Done adding
@@ -325,8 +324,6 @@ func _transfer_inv_to_storage_JustOne(gcGRID_DEST: GridContainer,slotIndex: int)
 			remaining -= to_add
 			leftover_delta = remaining
 			
-			_save_both_contents()
-			
 			return true  # Done adding
 	# Step 2: Fill new empty slots
 	for slot in slots:
@@ -339,8 +336,6 @@ func _transfer_inv_to_storage_JustOne(gcGRID_DEST: GridContainer,slotIndex: int)
 			slot.update_ui()
 			remaining -= to_add
 			leftover_delta = remaining
-			
-			_save_both_contents()
 			
 			return true  # Done adding
 	## Step 3: Not enough space
@@ -378,8 +373,6 @@ func _transfer_storage_to_inv_JustOne(SRC: InvSlotUI,gcGRID_DEST: GridContainer,
 			ptrINVENTORY[destIndex][1] = new_qty
 			
 			leftover_delta = remaining
-			_save_both_contents()
-			
 			return true  # Done adding
 			
 		destIndex += 1
@@ -400,8 +393,6 @@ func _transfer_storage_to_inv_JustOne(SRC: InvSlotUI,gcGRID_DEST: GridContainer,
 			ptrINVENTORY[destIndex][1] = new_qty
 			
 			leftover_delta = remaining
-			_save_both_contents()
-			
 			return true  # Done adding
 			
 		destIndex += 1
@@ -522,7 +513,7 @@ func try_add_item_to_inventory(inventory: Dictionary, item_name: String, quantit
 				slot[1] = str(int(slot[1]) + int(add))
 				quantity -= int(add)
 				
-				_save_both_contents()
+				_save_both_contents_special()
 				
 				if quantity <= 0:
 					return 0
@@ -543,7 +534,7 @@ func try_add_item_to_inventory(inventory: Dictionary, item_name: String, quantit
 			]
 			quantity -= stack_size
 
-	_save_both_contents()
+	_save_both_contents_special()
 	return quantity
 
 func try_add_item_to_container(container: Array, item_name: String, quantity: int) -> int:
@@ -569,7 +560,7 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 
 				quantity -= add_amount
 
-				_save_both_contents()
+				_save_both_contents_special()
 				
 				if quantity <= 0:
 					return 0
@@ -586,7 +577,7 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 
 			quantity -= stack_size
 
-			_save_both_contents()
+			_save_both_contents_special()
 			
 			if quantity <= 0:
 				return 0
@@ -1012,12 +1003,23 @@ func inventory_to_dictionary(container: GridContainer) -> Dictionary:
 
 
 
-func _save_invContainer_contents():
+func _save_invContainer_contents(gcINV):
+	#var tmp = find_anywhere("InventorySlotContainer")
+	var tmp = inventory_to_dictionary(gcINV)
+	GmMgr._save_inventory(tmp)
+
+func _save_lrgContainer_contents(gcSTRT):
+	#var tmp = find_anywhere("LargeStrgContainer")
+	var tmp = storage_to_dictionary(gcSTRT)
+	GmMgr._save_large_container(tmp)
+
+
+func _save_invContainer_contents_spec():
 	var tmp = find_anywhere("InventorySlotContainer")
 	var tmp2 = inventory_to_dictionary(tmp)
 	GmMgr._save_inventory(tmp2)
 
-func _save_lrgContainer_contents():
+func _save_lrgContainer_contents_spec():
 	var tmp = find_anywhere("LargeStrgContainer")
 	var tmp2 = storage_to_dictionary(tmp)
 	GmMgr._save_large_container(tmp2)
@@ -1025,8 +1027,13 @@ func _save_lrgContainer_contents():
 
 
 
-func _save_both_contents():
-	_save_lrgContainer_contents()
-	_save_invContainer_contents()
+func _save_both_contents(gcINV,gcSTRG):
+	_save_lrgContainer_contents(gcSTRG)
+	_save_invContainer_contents(gcINV)
+
+func _save_both_contents_special():
+	_save_lrgContainer_contents_spec()
+	_save_invContainer_contents_spec()
+
 
 # bottom
