@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func initialize():
-	var pInventory = self.get_parent().PLAYER_INVENTORY_TEST_LARGE
+	var pInventory = self.get_parent().INVENTORY
 	var inv_ui = self.find_child("MainInventoryController",1)
 	_load_slots_from_save(inv_ui, pInventory)
 

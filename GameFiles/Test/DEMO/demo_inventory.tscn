@@ -105,3 +105,12 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 11
+
+[node name="btnSaveInventory" type="Button" parent="." unique_id=350033925]
+offset_left = 82.0
+offset_top = 264.0
+offset_right = 159.0
+offset_bottom = 302.0
+text = "SAVE"
+
+[connection signal="pressed" from="btnSaveInventory" to="." method="_on_btn_save_inventory_pressed"]

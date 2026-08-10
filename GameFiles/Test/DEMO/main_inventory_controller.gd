@@ -11,7 +11,7 @@ var holding_item_qty
 
 
 func _ready() -> void:
-	ptrINVENTORY = $"../../..".PLAYER_INVENTORY_TEST_LARGE
+	ptrINVENTORY = $"../../..".INVENTORY
 
 
 func _process(_delta: float) -> void:
