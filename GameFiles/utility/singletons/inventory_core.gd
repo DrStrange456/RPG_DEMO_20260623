@@ -17,6 +17,23 @@ var INVENTORY: Dictionary = {
 
 
 
+func _putItem_intoSlot(idx: int, res: String, qty: int):
+	INVENTORY[idx][0] = res
+	INVENTORY[idx][1] = qty
+
+func _isSlotItem_diff(slot: InvSlotUI, holding)->bool:
+	# TODO: Needs testing
+	if slot and holding:
+		var itm_in_slot = slot.slot.item
+		var itm_in_mouse = holding
+		# Return true if the textures are different
+		if itm_in_slot:
+			return (itm_in_slot.icon != itm_in_mouse.texture_rect.texture)
+		else:
+			return false  # return false if item_in_slot is null
+	else:
+		return true
+
 func _isSlot_Empty(slot: InvSlotUI)->bool:
 	var idx = slot.indx
 	var itm = INVENTORY[idx][0]

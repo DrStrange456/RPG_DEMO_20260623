@@ -8,6 +8,8 @@ extends GridContainer
 
 var slotPreview = GmMgr.glSlotPrev
 var holding_item
+
+# - these are for tracking while holding the item
 var holding_item_resource
 var holding_item_qty
 
@@ -42,10 +44,10 @@ func _slot_gui_input(event: InputEvent, slot: InvSlotUI):
 ## LEFT CLICK
 func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 	if holding_item != null:  # Holding Item with Mouse
-		if check_isSlot_Empty(slot):
+		if isSlot_Empty(slot):
 			Left_Click_Empty_Slot(slot)
 		else:  # Putting item into occupied slot
-			if is_SlotItem_diff(slot, holding_item):
+			if isSlotItem_diff(slot, holding_item):
 				Left_Click_Different_Item(slot)
 			else:
 				Left_Click_Same_Item(slot)
@@ -54,9 +56,9 @@ func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 
 ## RIGHT CLICK
 func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
-	if !check_isSlot_Empty(slot):
+	if !isSlot_Empty(slot):
 		if holding_item != null:  # Holding Item with Mouse
-			if !is_SlotItem_diff(slot, holding_item):
+			if !isSlotItem_diff(slot, holding_item):
 				if _is_holding_stack_full(): 
 					return  # slot full, cannot add
 				Right_Click_Holding_Same_Item(slot)
@@ -67,18 +69,13 @@ func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 
 ## - Handle Left Clicks
 
-func check_isSlot_Empty(slot: InvSlotUI)->bool:
-	return InvCore._isSlot_Empty(slot)
-
-func is_SlotItem_diff(itm_Slot: InvSlotUI, holding)->bool:
-	return false
-
 func Left_Click_Not_Holding(slot: InvSlotUI):
-	if check_isSlot_Empty(slot): return
+	if isSlot_Empty(slot): return
 	mouse_pick_from_slot(slot)
 
 func Left_Click_Empty_Slot(slot: InvSlotUI):
-	pass
+	if isSlot_Empty(slot):
+		mouse_drop_in_EmptySlot(slot)
 
 func Left_Click_Different_Item(slot: InvSlotUI):
 	pass
@@ -110,18 +107,47 @@ func Right_Click_Holding_Same_Item(slot: InvSlotUI):
 
 ## - Functions
 
+func isSlotItem_diff(itm_Slot: InvSlotUI, holding)->bool:
+	# TODO: Needs Testing
+	return InvCore._isSlotItem_diff(itm_Slot,holding)
+
+
+func mouse_drop_in_EmptySlot(slot: InvSlotUI):
+	InvCore._putItem_intoSlot(
+		slot.indx,
+		holding_item_resource.resource_path,
+		int(holding_item_qty))
+	
+	## * Update UI
+	move_item_from_mouse_to_slot(slot)
+
+func move_item_from_mouse_to_slot(obj_Slot):
+	# 1) Unparent holding item and reparent to slot
+	# 2) Set slot variables accordingly
+	# - - - (1)
+	remove_child(holding_item)
+	obj_Slot.slot.item = holding_item_resource
+	obj_Slot.qty_label = holding_item_qty
+	obj_Slot.slot.quantity = holding_item_qty
+	obj_Slot.update_ui()
+	# - - - (2)
+	holding_item = null
+
+func isSlot_Empty(slot: InvSlotUI)->bool:
+	return InvCore._isSlot_Empty(slot)
+
 func mouse_pick_from_slot(slot: InvSlotUI):
-	_pin_to_mouse(slot)
+	pin_to_mouse(slot)
 
-func _pin_to_mouse(slot: InvSlotUI):
-	_store_key_data(slot)
-	_move_item_to_mouse_holding(slot)
-	_remove_from_inventory(slot.indx)
+func pin_to_mouse(slot: InvSlotUI):
+	store_key_data(slot)
+	move_item_to_mouse_holding(slot)
+	remove_from_inventory(slot.indx)
 
-func _move_item_to_mouse_holding(slot: InvSlotUI):
-	holding_item = _pin_item_to_mouse(slot)
+func move_item_to_mouse_holding(slot: InvSlotUI):
+	holding_item = pin_item_to_mouse(slot)
 
-func _pin_item_to_mouse(slot: InvSlotUI):
+func pin_item_to_mouse(slot: InvSlotUI):
 	if slot.slot.item:
 		# unparent item obj and attach to mouse, 
 		# must add back to scene tree so added to current (InvController) node
@@ -131,7 +157,7 @@ func _pin_item_to_mouse(slot: InvSlotUI):
 		add_child(itm_preview)
 		return itm_preview
 
-func _remove_from_inventory(intSlotIndex: int):
+func remove_from_inventory(intSlotIndex: int):
 	InvCore._remove_item_at(intSlotIndex)
 	
 	# * Update UI
@@ -140,7 +166,7 @@ func _remove_from_inventory(intSlotIndex: int):
 	slots[intSlotIndex].slot.quantity = ""
 	slots[intSlotIndex].update_ui()
 
-func _store_key_data(slot: InvSlotUI):
+func store_key_data(slot: InvSlotUI):
 	holding_item_resource = slot.slot.item
 	holding_item_qty = int(slot.qty_label.text)
 

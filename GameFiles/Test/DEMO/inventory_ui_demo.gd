@@ -31,7 +31,6 @@ func _load_slots_from_save(slots: GridContainer, inv: Dictionary):
 			slots._set_slot(i)
 		if inv[j][0] != null:
 			if int(inv[j][1]) > 0:
-				print(inventory[j])
 				inventory[j].indx = j
 				inventory[j].set_item(load(inv[j][0]))
 				inventory[j].set_quantity(inv[j][1])
