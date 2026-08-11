@@ -1,7 +1,10 @@
 extends Node2D
 
+# Demo_Inventory.gd
 
-@onready var inv_grid_slots: GridContainer = $InventoryUI_Demo/Panel/MainInventoryController
+
+@onready var inv_grid_slots: GridContainer = $InventoryUI_Demo/Panel2/MainInventoryController
+@onready var inventory_core_demo: Control = $InventoryCore_Demo
 
 
 
@@ -22,15 +25,19 @@ var INVENTORY: Dictionary = {
 
 
 
+## SECOND TRY
+
+
+
+
+## FIRST TRY
 func _save_core_inventory(gcSLOTS: Dictionary,glINVENTORY: Dictionary):
 	glINVENTORY.clear()
 	for i in gcSLOTS:
 		glINVENTORY[i] = gcSLOTS[i].duplicate()
 
-
 func _on_btn_save_inventory_pressed() -> void:
 	_save_core_inventory(grid_to_dictionary(inv_grid_slots),INVENTORY)
-
 
 func grid_to_dictionary(container: GridContainer) -> Dictionary:
 	var result: Dictionary = {}

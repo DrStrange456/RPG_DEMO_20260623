@@ -1,5 +1,8 @@
 extends Control
 
+# InventoryUI_Demo.gd
+
+
 
 @onready var main_inventory_container_ui: GridContainer
 var inventory : Array[OptiInventorySlot] = []
@@ -37,3 +40,6 @@ func bind_inventory(inv,gc: GridContainer):
 	var ui_slots = gc.get_children()
 	for i in ui_slots.size():
 		ui_slots[i].bind_slot(inv[i])
+
+
+# BOTTOM

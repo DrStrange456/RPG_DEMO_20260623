@@ -12,7 +12,7 @@ config_version=5
 
 config/name="RPG_DEMO_20260623"
 config/tags=PackedStringArray("most_recent")
-run/main_scene="uid://cb83dvwlk3om0"
+run/main_scene="uid://bq6y5tkdcdrb6"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -28,6 +28,7 @@ AudioManager="*uid://bl75hdjtxhlly"
 StorageManager="*uid://st11jtu58hme"
 AudioController="*uid://deseaqrvtp54y"
 UiManager="*uid://bk2j3588urs3s"
+InvCore="*uid://datlfeu3yar0g"
 
 [debug]
 
