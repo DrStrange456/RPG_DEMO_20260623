@@ -3,7 +3,6 @@ extends GridContainer
 
 # CoreInventoryController.gd
 
-@onready var core_inventory_controller: GridContainer = $"."
 
 
 var slotPreview = GmMgr.glSlotPrev
@@ -161,7 +160,7 @@ func remove_from_inventory(intSlotIndex: int):
 	InvCore._remove_item_at(intSlotIndex)
 	
 	# * Update UI
-	var slots = core_inventory_controller.get_children()
+	var slots = get_children()
 	slots[intSlotIndex].slot.item = null
 	slots[intSlotIndex].slot.quantity = ""
 	slots[intSlotIndex].update_ui()
