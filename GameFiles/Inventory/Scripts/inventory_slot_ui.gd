@@ -26,3 +26,9 @@ func update_ui():
 	else:
 		icon.texture = slot.item.icon
 		qty_label.text = str(slot.quantity)
+
+func _reset_slot():
+	icon = $CenterContainer/TextureRect
+	qty_label = $Label
+	icon.texture = null
+	qty_label.text = ""

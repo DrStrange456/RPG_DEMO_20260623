@@ -27,7 +27,9 @@ var INVENTORY: Dictionary = {
 
 
 func _on_btn_save_inventory_pressed() -> void:
-	InvCore._save_core_inventory(grid_to_dictionary(core_inventory_controller),INVENTORY)
+	var coreINV = grid_to_dictionary(core_inventory_controller)
+	var localINV = INVENTORY
+	InvCore._save_core_inventory(coreINV,localINV)
 	#_save_core_inventory(grid_to_dictionary(inv_grid_slots),INVENTORY)
 
 
@@ -37,39 +39,63 @@ func _on_btn_extend_inventory_pressed() -> void:
 
 
 func _on_btn_reset_pressed() -> void:
-	pass # Replace with function body.
+	_reset_dictionary()
+	_reset_inventory_size(12)
+	reset_inventory_ui(12)
 
 
 
+func _reset_dictionary():
+	var INVENTORY_ORIGINAL: Dictionary = {
+		0: ["res://resources/seeds_turnip.tres", 98, true],
+		1: ["res://resources/seeds_strawberry.tres", 99, true],
+		2: ["res://resources/weapon_sword_fire.tres", 1, true],
+		3: [null, 0, true],
+		4: ["res://resources/seeds_tomato.tres", 65, true],
+		5: ["res://resources/seeds_carrot.tres", 10, true],
+		6: ["res://resources/tool_axe.tres", 1, true],
+		7: ["res://resources/tool_pick.tres", 1, true],
+		8: ["res://resources/weapon_sword1.tres", 1, true],
+		9: [null, 0, true],
+		10: [null, 0, true],
+		11: [null, 0, true],
+	}
+	
+	INVENTORY.clear()
+	for i in INVENTORY_ORIGINAL:
+		INVENTORY[i] = INVENTORY_ORIGINAL[i].duplicate()
 
+func _reset_inventory_size(amount: int) -> void:
+	for i in range(INVENTORY.size() - 1, amount - 1, -1):
+		INVENTORY.erase(i)
+	for i in range(InvCore.INVENTORY.size() - 1, amount - 1, -1):
+		InvCore.INVENTORY.erase(i)
 
+func reset_inventory_ui(amount: int) -> void:
+	while core_inventory_controller.get_child_count() > amount:
+		var child = core_inventory_controller.get_child(core_inventory_controller.get_child_count() - 1)
+		child.free()
 
 
 func expand_data(amount: int) -> void:
 	var current_size := INVENTORY.size()
-
+	var pINV_size := InvCore.INVENTORY.size()
 	for i in amount:
 		var new_index := current_size + i
 		INVENTORY[new_index] = [null, 0, true]
-
+		InvCore.INVENTORY[new_index] = [null, 0, true]
 
 func expand_inventory_ui(amount: int) -> void:
 	for i in amount:
 		var new_slot = new_slot.instantiate()
+		new_slot.indx = 12 + i
 		new_slot.custom_minimum_size = Vector2(40, 40)
-		# FIXME: remove default texture
+		new_slot._reset_slot()
+		new_slot.slot = OptiInventorySlot.new()
 		core_inventory_controller.add_child(new_slot)
+		core_inventory_controller._set_slot(i)
+		# FIXME: GUI INPUT FOR NEW SLOTS NOT WORKING
 
-
-
-
-
-## SECOND TRY
-
-
-
-
-## FIRST TRY
 func _save_core_inventory(gcSLOTS: Dictionary,glINVENTORY: Dictionary):
 	glINVENTORY.clear()
 	for i in gcSLOTS:

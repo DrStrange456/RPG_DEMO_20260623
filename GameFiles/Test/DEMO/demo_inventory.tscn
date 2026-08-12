@@ -125,10 +125,10 @@ offset_bottom = 267.0
 
 [node name="CoreInventoryController" type="GridContainer" parent="InventoryCore_Demo/Panel" unique_id=639879210]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 23.0
-offset_right = 197.0
-offset_bottom = 151.0
+offset_left = 26.0
+offset_top = 20.0
+offset_right = 198.0
+offset_bottom = 148.0
 columns = 4
 script = ExtResource("6_iyjyv")
 
@@ -211,18 +211,17 @@ offset_bottom = 312.0
 text = "SAVE"
 
 [node name="btnReset" type="Button" parent="." unique_id=759940143]
-offset_left = 175.0
+offset_left = 267.0
 offset_top = 274.0
-offset_right = 252.0
+offset_right = 344.0
 offset_bottom = 312.0
-disabled = true
 text = "RESET"
 
 [node name="btnExtendInventory" type="Button" parent="." unique_id=1447379496]
-offset_left = 262.0
-offset_top = 275.0
-offset_right = 339.0
-offset_bottom = 313.0
+offset_left = 177.5
+offset_top = 274.0
+offset_right = 254.5
+offset_bottom = 312.0
 text = "EXTEND"
 
 [connection signal="pressed" from="btnSaveInventory" to="." method="_on_btn_save_inventory_pressed"]

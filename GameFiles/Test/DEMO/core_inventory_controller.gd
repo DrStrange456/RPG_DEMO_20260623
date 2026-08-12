@@ -29,6 +29,7 @@ func _set_slot(indx):
 	var ic_children = get_children()
 	var slot_for_update: InvSlotUI = ic_children[indx]
 	if !slot_for_update.is_connected("gui_input", _slot_gui_input.bind(slot_for_update)):
+		print("added gui input")
 		slot_for_update.connect("gui_input", _slot_gui_input.bind(slot_for_update))
 
 func _slot_gui_input(event: InputEvent, slot: InvSlotUI):
