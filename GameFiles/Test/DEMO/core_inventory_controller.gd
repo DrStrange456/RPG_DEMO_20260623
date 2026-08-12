@@ -79,7 +79,7 @@ func Left_Click_Different_Item(slot: InvSlotUI):
 	mouse_and_slot_swap(slot)
 
 func Left_Click_Same_Item(slot: InvSlotUI):
-	pass
+	mouse_attempt_combine_like_items(slot)
 
 
 
@@ -108,7 +108,6 @@ func Right_Click_Holding_Same_Item(slot: InvSlotUI):
 func isSlotItem_diff(itm_Slot: InvSlotUI, holding)->bool:
 	# TODO: Needs Testing
 	return InvCore._isSlotItem_diff(itm_Slot,holding)
-
 
 func mouse_drop_in_EmptySlot(slot: InvSlotUI):
 	InvCore._putItem_intoSlot(
@@ -192,6 +191,50 @@ func mouse_and_slot_swap(obj_Slot: InvSlotUI):
 	itm_preview._set_quantity(str(holding_item_qty))
 	add_child(itm_preview)
 	holding_item = itm_preview
+
+func mouse_attempt_combine_like_items(obj_Slot: InvSlotUI):
+	var itm_resource = obj_Slot.slot.item
+	var itm_max_stack = itm_resource.max_stack
+	
+	var qty1 = int(obj_Slot.slot.quantity)    # Qty from Slot
+	var qty2 = int(holding_item.label.text)  # Qty holding
+	var room_to_add = itm_max_stack - qty1
+	#
+	if qty1 == itm_max_stack: return  # slot full, cannot add
+	if room_to_add >= qty2:
+		# Set slot qty to combined amount
+		mouse_add_all_holding_to_slot(obj_Slot, qty1+qty2)
+	else:
+		# Add what will fit and update mouse holding
+		mouse_add_what_will_fit_to_slot(obj_Slot, qty2-room_to_add)
+
+func mouse_add_all_holding_to_slot(obj_Slot: InvSlotUI, amt: int)->void:
+	var slot_idx = obj_Slot.indx
+	
+	# * Update Data
+	var tmp_resource = holding_item_resource.resource_path
+	InvCore._putItem_intoSlot(slot_idx,tmp_resource,int(amt))
+	
+	# * Update UI
+	remove_child(holding_item)
+	holding_item.free()
+	obj_Slot.qty_label.text = str(amt)
+	obj_Slot.slot.quantity = amt
+
+func mouse_add_what_will_fit_to_slot(obj_Slot: InvSlotUI, leftover: int)->void:
+	var slot_idx = obj_Slot.indx
+	var itm_resource = obj_Slot.slot.item
+	var itm_max_stack = itm_resource.max_stack
+	
+	# * Update Data
+	var tmp_resource = holding_item_resource.resource_path
+	InvCore._putItem_intoSlot(slot_idx,tmp_resource,int(itm_max_stack))
+	
+	# * Update UI
+	obj_Slot.qty_label.text = str(itm_max_stack)
+	obj_Slot.slot.quantity = itm_max_stack
+	holding_item.label.text = str(leftover)
+	holding_item_qty = str(leftover)
 
 
 
