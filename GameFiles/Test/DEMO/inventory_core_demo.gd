@@ -14,16 +14,6 @@ func _ready() -> void:
 	initialize()
 
 
-
-func _process(_delta: float) -> void:
-	if holding_item != null:  # Set item holding to mouse pos
-		_update_mouse_holding_item_position()
-
-func _update_mouse_holding_item_position():
-	holding_item.position = get_local_mouse_position() - Vector2(20,20)
-
-
-
 func initialize():
 	_load_slots_from_save(core_inventory_controller)
 

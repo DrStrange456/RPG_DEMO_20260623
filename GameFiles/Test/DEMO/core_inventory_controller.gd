@@ -73,11 +73,10 @@ func Left_Click_Not_Holding(slot: InvSlotUI):
 	mouse_pick_from_slot(slot)
 
 func Left_Click_Empty_Slot(slot: InvSlotUI):
-	if isSlot_Empty(slot):
-		mouse_drop_in_EmptySlot(slot)
+	mouse_drop_in_EmptySlot(slot)
 
 func Left_Click_Different_Item(slot: InvSlotUI):
-	pass
+	mouse_and_slot_swap(slot)
 
 func Left_Click_Same_Item(slot: InvSlotUI):
 	pass
@@ -168,6 +167,32 @@ func remove_from_inventory(intSlotIndex: int):
 func store_key_data(slot: InvSlotUI):
 	holding_item_resource = slot.slot.item
 	holding_item_qty = int(slot.qty_label.text)
+
+func mouse_and_slot_swap(obj_Slot: InvSlotUI):
+	var slot_idx = obj_Slot.indx
+	var itm_resource = obj_Slot.slot.item
+	var slot_qty = obj_Slot.slot.quantity
+	
+	# Copy slot item data to temp variables
+	var holding_item_resource_tmp = itm_resource
+	var holding_item_qty_tmp = slot_qty
+	
+	# * Update Data
+	var tmp_resource = holding_item_resource.resource_path
+	InvCore._putItem_intoSlot(slot_idx,tmp_resource,int(holding_item_qty))
+	
+	# * Update UI
+	move_item_from_mouse_to_slot(obj_Slot)
+	
+	holding_item_resource = holding_item_resource_tmp
+	holding_item_qty = holding_item_qty_tmp
+	
+	var itm_preview = slotPreview.instantiate()
+	itm_preview._set_texture(holding_item_resource.icon)
+	itm_preview._set_quantity(str(holding_item_qty))
+	add_child(itm_preview)
+	holding_item = itm_preview
+
 
 
 
