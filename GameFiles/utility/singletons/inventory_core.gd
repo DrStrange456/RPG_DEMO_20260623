@@ -17,6 +17,12 @@ var INVENTORY: Dictionary = {
 
 
 
+
+func _save_core_inventory(gcSLOTS: Dictionary,glINVENTORY: Dictionary):
+	glINVENTORY.clear()
+	for i in INVENTORY:
+		glINVENTORY[i] = INVENTORY[i].duplicate()
+
 func _putItem_intoSlot(idx: int, res: String, qty: int):
 	INVENTORY[idx][0] = res
 	INVENTORY[idx][1] = qty

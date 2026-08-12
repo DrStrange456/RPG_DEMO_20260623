@@ -118,10 +118,10 @@ script = ExtResource("5_ht2vm")
 
 [node name="Panel" type="Panel" parent="InventoryCore_Demo" unique_id=607423246]
 layout_mode = 0
-offset_left = 102.0
-offset_top = 59.0
-offset_right = 324.0
-offset_bottom = 237.0
+offset_left = 104.0
+offset_top = 13.0
+offset_right = 326.0
+offset_bottom = 267.0
 
 [node name="CoreInventoryController" type="GridContainer" parent="InventoryCore_Demo/Panel" unique_id=639879210]
 layout_mode = 0
@@ -204,10 +204,27 @@ mouse_default_cursor_shape = 2
 indx = 11
 
 [node name="btnSaveInventory" type="Button" parent="." unique_id=350033925]
-offset_left = 82.0
-offset_top = 264.0
-offset_right = 159.0
-offset_bottom = 302.0
+offset_left = 88.0
+offset_top = 274.0
+offset_right = 165.0
+offset_bottom = 312.0
 text = "SAVE"
 
+[node name="btnReset" type="Button" parent="." unique_id=759940143]
+offset_left = 175.0
+offset_top = 274.0
+offset_right = 252.0
+offset_bottom = 312.0
+disabled = true
+text = "RESET"
+
+[node name="btnExtendInventory" type="Button" parent="." unique_id=1447379496]
+offset_left = 262.0
+offset_top = 275.0
+offset_right = 339.0
+offset_bottom = 313.0
+text = "EXTEND"
+
 [connection signal="pressed" from="btnSaveInventory" to="." method="_on_btn_save_inventory_pressed"]
+[connection signal="pressed" from="btnReset" to="." method="_on_btn_reset_pressed"]
+[connection signal="pressed" from="btnExtendInventory" to="." method="_on_btn_extend_inventory_pressed"]

@@ -5,8 +5,9 @@ extends Node2D
 
 @onready var inv_grid_slots: GridContainer = $InventoryUI_Demo/Panel2/MainInventoryController
 @onready var inventory_core_demo: Control = $InventoryCore_Demo
+@onready var core_inventory_controller: GridContainer = $InventoryCore_Demo/Panel/CoreInventoryController
 
-
+var new_slot = preload("res://Inventory/inventory_slot_ui.tscn")
 
 var INVENTORY: Dictionary = {
 		0: ["res://resources/seeds_turnip.tres", 98, true],
@@ -25,6 +26,44 @@ var INVENTORY: Dictionary = {
 
 
 
+func _on_btn_save_inventory_pressed() -> void:
+	InvCore._save_core_inventory(grid_to_dictionary(core_inventory_controller),INVENTORY)
+	#_save_core_inventory(grid_to_dictionary(inv_grid_slots),INVENTORY)
+
+
+func _on_btn_extend_inventory_pressed() -> void:
+	expand_data(8)
+	expand_inventory_ui(8)
+
+
+func _on_btn_reset_pressed() -> void:
+	pass # Replace with function body.
+
+
+
+
+
+
+
+func expand_data(amount: int) -> void:
+	var current_size := INVENTORY.size()
+
+	for i in amount:
+		var new_index := current_size + i
+		INVENTORY[new_index] = [null, 0, true]
+
+
+func expand_inventory_ui(amount: int) -> void:
+	for i in amount:
+		var new_slot = new_slot.instantiate()
+		new_slot.custom_minimum_size = Vector2(40, 40)
+		# FIXME: remove default texture
+		core_inventory_controller.add_child(new_slot)
+
+
+
+
+
 ## SECOND TRY
 
 
@@ -35,9 +74,6 @@ func _save_core_inventory(gcSLOTS: Dictionary,glINVENTORY: Dictionary):
 	glINVENTORY.clear()
 	for i in gcSLOTS:
 		glINVENTORY[i] = gcSLOTS[i].duplicate()
-
-func _on_btn_save_inventory_pressed() -> void:
-	_save_core_inventory(grid_to_dictionary(inv_grid_slots),INVENTORY)
 
 func grid_to_dictionary(container: GridContainer) -> Dictionary:
 	var result: Dictionary = {}
