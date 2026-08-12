@@ -93,8 +93,7 @@ func expand_inventory_ui(amount: int) -> void:
 		new_slot._reset_slot()
 		new_slot.slot = OptiInventorySlot.new()
 		core_inventory_controller.add_child(new_slot)
-		core_inventory_controller._set_slot(i)
-		# FIXME: GUI INPUT FOR NEW SLOTS NOT WORKING
+	inventory_core_demo.initialize()
 
 func _save_core_inventory(gcSLOTS: Dictionary,glINVENTORY: Dictionary):
 	glINVENTORY.clear()
@@ -120,6 +119,10 @@ func grid_to_dictionary(container: GridContainer) -> Dictionary:
 
 	return result
 
+func bind_inventory(inv,gc: GridContainer):
+	var ui_slots = gc.get_children()
+	for i in ui_slots.size():
+		ui_slots[i].bind_slot(inv[i])
 
 
 # BOTTOM
