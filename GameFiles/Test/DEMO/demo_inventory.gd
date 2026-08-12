@@ -9,6 +9,7 @@ extends Node2D
 
 var new_slot = preload("res://Inventory/inventory_slot_ui.tscn")
 
+# PLACEHOLDER FOR SAVED INVENTORY
 var INVENTORY: Dictionary = {
 		0: ["res://resources/seeds_turnip.tres", 98, true],
 		1: ["res://resources/seeds_strawberry.tres", 99, true],
@@ -27,15 +28,15 @@ var INVENTORY: Dictionary = {
 
 
 func _on_btn_save_inventory_pressed() -> void:
-	var coreINV = grid_to_dictionary(core_inventory_controller)
 	var localINV = INVENTORY
+	var coreINV = grid_to_dictionary(core_inventory_controller)
 	InvCore._save_core_inventory(coreINV,localINV)
 	#_save_core_inventory(grid_to_dictionary(inv_grid_slots),INVENTORY)
 
 
 func _on_btn_extend_inventory_pressed() -> void:
-	expand_data(8)
-	expand_inventory_ui(8)
+	set_inventory_size_data(20)
+	set_inventory_size_ui(20)
 
 
 func _on_btn_reset_pressed() -> void:
@@ -77,22 +78,43 @@ func reset_inventory_ui(amount: int) -> void:
 		child.free()
 
 
-func expand_data(amount: int) -> void:
-	var current_size := INVENTORY.size()
-	var pINV_size := InvCore.INVENTORY.size()
-	for i in amount:
-		var new_index := current_size + i
-		INVENTORY[new_index] = [null, 0, true]
-		InvCore.INVENTORY[new_index] = [null, 0, true]
+#func set_inventory_size_data(amount: int) -> void:
+	#var current_size := INVENTORY.size()
+	#var pINV_size := InvCore.INVENTORY.size()
+	#for i in amount:
+		#var new_index := current_size + i
+		#INVENTORY[new_index] = [null, 0, true]
+		#InvCore.INVENTORY[new_index] = [null, 0, true]
 
-func expand_inventory_ui(amount: int) -> void:
-	for i in amount:
-		var new_slot = new_slot.instantiate()
-		new_slot.indx = 12 + i
-		new_slot.custom_minimum_size = Vector2(40, 40)
-		new_slot._reset_slot()
-		new_slot.slot = OptiInventorySlot.new()
-		core_inventory_controller.add_child(new_slot)
+func set_inventory_size_data(amount: int) -> void:
+	var current_size := INVENTORY.size()
+
+	for i in range(current_size, amount):
+		INVENTORY[i] = [null, 0, true]
+		InvCore.INVENTORY[i] = [null, 0, true]
+
+#func set_inventory_size_ui(amount: int) -> void:
+	#for i in amount:
+		#var new_slot = new_slot.instantiate()
+		#new_slot.indx = 12 + i
+		#new_slot.custom_minimum_size = Vector2(40, 40)
+		#new_slot._reset_slot()
+		#new_slot.slot = OptiInventorySlot.new()
+		#core_inventory_controller.add_child(new_slot)
+	#inventory_core_demo.initialize()
+
+func set_inventory_size_ui(amount: int) -> void:
+	var current_size := core_inventory_controller.get_child_count()
+
+	for i in range(current_size, amount):
+		var new_slot_instance = new_slot.instantiate()
+		new_slot_instance.indx = i
+		new_slot_instance.custom_minimum_size = Vector2(40, 40)
+		new_slot_instance._reset_slot()
+		new_slot_instance.slot = OptiInventorySlot.new()
+		
+		core_inventory_controller.add_child(new_slot_instance)
+
 	inventory_core_demo.initialize()
 
 func _save_core_inventory(gcSLOTS: Dictionary,glINVENTORY: Dictionary):
@@ -119,10 +141,10 @@ func grid_to_dictionary(container: GridContainer) -> Dictionary:
 
 	return result
 
-func bind_inventory(inv,gc: GridContainer):
-	var ui_slots = gc.get_children()
-	for i in ui_slots.size():
-		ui_slots[i].bind_slot(inv[i])
+#func bind_inventory(inv,gc: GridContainer):
+	#var ui_slots = gc.get_children()
+	#for i in ui_slots.size():
+		#ui_slots[i].bind_slot(inv[i])
 
 
 # BOTTOM
