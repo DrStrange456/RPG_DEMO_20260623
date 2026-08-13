@@ -54,6 +54,7 @@ func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 	else:  
 		Left_Click_Not_Holding(slot)
 
+
 ## RIGHT CLICK
 func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 	if !InvCore._isSlot_Empty(slot):
@@ -64,6 +65,7 @@ func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 				Right_Click_Holding_Same_Item(slot)
 		else:
 			Right_Click_Not_Holding(slot)
+
 
 
 
@@ -95,7 +97,6 @@ func Right_Click_Not_Holding(slot: InvSlotUI):
 		mouse_pick_single_item_fromSlot(slot)
 
 func Right_Click_Holding_Same_Item(slot: InvSlotUI):
-	# FIXME: When holding 1 item and 1 item in slot, only removes single item
 	if !InvCore._isSlot_Empty(slot):
 		if slot.slot.quantity == 1:
 			# - Mouse pick single item, add to holding -
@@ -109,31 +110,11 @@ func Right_Click_Holding_Same_Item(slot: InvSlotUI):
 
 
 
-func mouse_pick_single_item_fromSlot(slot: InvSlotUI):
-	var slot_idx = slot.indx
-	var itm_resource = slot.slot.item
-	
-	holding_item_resource = itm_resource
-	holding_item_qty = 1
-	
-	# * Update Data
-	InvCore._updateItem_MinusOne(slot_idx)
-	
-	## * Update UI
-	slot.qty_label.text = str(int(slot.qty_label.text) - 1)
-	slot.slot.quantity -= 1
-	holding_item = _pin_single_item_to_mouse(slot)
-
-
 
 
 
 
 ## - Functions
-
-#func isSlotItem_diff(itm_Slot: InvSlotUI, holding)->bool:
-	## TODO: Needs Testing
-	#return InvCore._isSlotItem_diff(itm_Slot,holding)
 
 func mouse_drop_in_EmptySlot(slot: InvSlotUI):
 	InvCore._putItem_intoSlot(
@@ -282,10 +263,14 @@ func mouse_take_item_fromSlot_holding(obj_slot):
 	var slot_idx = obj_slot.indx
 	
 	# * Update Data
-	InvCore._updateItem_MinusOne(slot_idx)
+	#InvCore._updateItem_MinusOne(slot_idx)
+	InvCore._remove_item_at(slot_idx)
 	
 	# * Update UI
-	InvCore._remove_item_at(slot_idx)
+	obj_slot.slot.item = null
+	obj_slot.slot.quantity = ""
+	obj_slot.update_ui()
+	
 	holding_item_qty = int(holding_item.label.text) + 1
 	holding_item.label.text = str(holding_item_qty)
 
@@ -300,6 +285,22 @@ func mouse_pick_item_fromSlot_holding(obj_slot):
 	obj_slot.slot.quantity -= 1
 	holding_item_qty = int(holding_item.label.text) + 1
 	holding_item.label.text = str(holding_item_qty)
+
+func mouse_pick_single_item_fromSlot(slot: InvSlotUI):
+	var slot_idx = slot.indx
+	var itm_resource = slot.slot.item
+	
+	holding_item_resource = itm_resource
+	holding_item_qty = 1
+	
+	# * Update Data
+	InvCore._updateItem_MinusOne(slot_idx)
+	
+	## * Update UI
+	slot.qty_label.text = str(int(slot.qty_label.text) - 1)
+	slot.slot.quantity -= 1
+	holding_item = _pin_single_item_to_mouse(slot)
+
 
 
 
