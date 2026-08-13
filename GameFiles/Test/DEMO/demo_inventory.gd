@@ -52,10 +52,11 @@ func _reset_inventory():
 
 ## Extend Inventory
 func set_inventory_size_data(amount: int) -> void:
-	var current_size := INVENTORY.size()
+	#var current_size := INVENTORY.size()
+    var current_size := InvCore.INVENTORY.size()
 
 	for i in range(current_size, amount):
-		INVENTORY[i] = [null, 0, true]
+		#INVENTORY[i] = [null, 0, true]
 		InvCore.INVENTORY[i] = [null, 0, true]
 
 #func set_inventory_size_ui(amount: int) -> void:
@@ -102,9 +103,9 @@ func _reset_dictionary_core_data():
 	
 	var pINV = InvCore.INVENTORY
 	# * Local
-	INVENTORY.clear()
-	for i in INVENTORY_ORIGINAL:
-		INVENTORY[i] = INVENTORY_ORIGINAL[i].duplicate()
+	#INVENTORY.clear()
+	#for i in INVENTORY_ORIGINAL:
+	#	INVENTORY[i] = INVENTORY_ORIGINAL[i].duplicate()
 	# * Global
 	pINV.clear()
 	for i in INVENTORY_ORIGINAL:
@@ -116,8 +117,8 @@ func _reset_dictionary_core_data():
 
 func _reset_inventory_size(amount: int) -> void:
 	# Data
-	for i in range(INVENTORY.size() - 1, amount - 1, -1):
-		INVENTORY.erase(i)
+	#for i in range(INVENTORY.size() - 1, amount - 1, -1):
+	#	INVENTORY.erase(i)
 	for i in range(InvCore.INVENTORY.size() - 1, amount - 1, -1):
 		InvCore.INVENTORY.erase(i)
 	# UI
