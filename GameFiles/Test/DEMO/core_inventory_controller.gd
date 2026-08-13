@@ -2,7 +2,7 @@
 extends GridContainer
 
 # CoreInventoryController.gd
-
+# inventory links verified
 
 
 var slotPreview = GmMgr.glSlotPrev
@@ -263,7 +263,6 @@ func mouse_take_item_fromSlot_holding(obj_slot):
 	var slot_idx = obj_slot.indx
 	
 	# * Update Data
-	#InvCore._updateItem_MinusOne(slot_idx)
 	InvCore._remove_item_at(slot_idx)
 	
 	# * Update UI
