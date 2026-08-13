@@ -28,10 +28,7 @@ var INVENTORY: Dictionary = {
 
 
 func _on_btn_save_inventory_pressed() -> void:
-	var localINV = INVENTORY
-	var coreINV = grid_to_dictionary(core_inventory_controller)
-	InvCore._save_core_inventory(coreINV,localINV)
-	#_save_core_inventory(grid_to_dictionary(inv_grid_slots),INVENTORY)
+	InvCore._save_core_inventory(INVENTORY)
 
 
 func _on_btn_extend_inventory_pressed() -> void:
@@ -42,7 +39,7 @@ func _on_btn_extend_inventory_pressed() -> void:
 func _on_btn_reset_pressed() -> void:
 	_reset_dictionary()
 	_reset_inventory_size(12)
-	reset_inventory_ui(12)
+	_reset_inventory_ui(12)
 
 
 
@@ -72,10 +69,27 @@ func _reset_inventory_size(amount: int) -> void:
 	for i in range(InvCore.INVENTORY.size() - 1, amount - 1, -1):
 		InvCore.INVENTORY.erase(i)
 
-func reset_inventory_ui(amount: int) -> void:
-	while core_inventory_controller.get_child_count() > amount:
-		var child = core_inventory_controller.get_child(core_inventory_controller.get_child_count() - 1)
-		child.free()
+func _reset_inventory_ui(amount: int) -> void:
+	var current_size := core_inventory_controller.get_child_count()
+
+	# Reset existing slots
+	for child in core_inventory_controller.get_children():
+		if child.has_method("_reset_slot"):
+			child._reset_slot()
+			child.slot = OptiInventorySlot.new()
+
+	# Add any slots that don't currently exist
+	for i in range(current_size, amount):
+		var new_slot_instance = new_slot.instantiate()
+		new_slot_instance.indx = i
+		new_slot_instance.custom_minimum_size = Vector2(40, 40)
+		new_slot_instance._reset_slot()
+		new_slot_instance.slot = OptiInventorySlot.new()
+
+		core_inventory_controller.add_child(new_slot_instance)
+
+	inventory_core_demo.initialize()
+
 
 
 #func set_inventory_size_data(amount: int) -> void:

@@ -88,16 +88,40 @@ func Left_Click_Same_Item(slot: InvSlotUI):
 
 ## - Handle Right Clicks
 
-func _is_holding_stack_full()->bool:
-	return false
-
-
 func Right_Click_Not_Holding(slot: InvSlotUI):
-	pass
+	if slot.slot.quantity == 1:
+		Left_Click_Not_Holding(slot)
+	else:  # slot qty > 1
+		mouse_pick_single_item_fromSlot(slot)
 
 func Right_Click_Holding_Same_Item(slot: InvSlotUI):
-	pass
+	if !isSlot_Empty(slot):
+		if slot.slot.quantity == 1:
+			# - Mouse pick single item, add to holding -
+			mouse_take_item_fromSlot_holding(slot)
+		else:
+			# - Mouse pick from multiples  -
+			# decrement slot stack, and increment holding stack
+			mouse_pick_item_fromSlot_holding(slot)
 
+
+
+
+
+func mouse_pick_single_item_fromSlot(slot: InvSlotUI):
+	var slot_idx = slot.indx
+	var itm_resource = slot.slot.item
+	
+	holding_item_resource = itm_resource
+	holding_item_qty = 1
+	
+	# * Update Data
+	InvCore._updateItem_MinusOne(slot_idx)
+	
+	## * Update UI
+	slot.qty_label.text = str(int(slot.qty_label.text) - 1)
+	slot.slot.quantity -= 1
+	holding_item = _pin_single_item_to_mouse(slot)
 
 
 
@@ -130,6 +154,17 @@ func move_item_from_mouse_to_slot(obj_Slot):
 	obj_Slot.update_ui()
 	# - - - (2)
 	holding_item = null
+
+func _pin_single_item_to_mouse(slot):
+	if slot:
+		if !isSlot_Empty(slot):
+			# unparent item obj and attach to mouse, 
+			# must add back to scene tree so added to current (InvController) node
+			var itm_preview = slotPreview.instantiate()
+			itm_preview._set_texture(slot.slot.item.icon)
+			itm_preview._set_quantity(str(1))
+			add_child(itm_preview)
+			return itm_preview
 
 func isSlot_Empty(slot: InvSlotUI)->bool:
 	return InvCore._isSlot_Empty(slot)
@@ -236,6 +271,34 @@ func mouse_add_what_will_fit_to_slot(obj_Slot: InvSlotUI, leftover: int)->void:
 	obj_Slot.slot.quantity = itm_max_stack
 	holding_item.label.text = str(leftover)
 	holding_item_qty = str(leftover)
+
+func _is_holding_stack_full()->bool:
+	var itm_stack = int(holding_item.label.text)
+	var itm_max_stack = int(holding_item_resource.max_stack)
+	return itm_stack == itm_max_stack
+
+func mouse_take_item_fromSlot_holding(obj_slot):
+	var slot_idx = obj_slot.indx
+	
+	# * Update Data
+	InvCore._updateItem_MinusOne(slot_idx)
+	
+	# * Update UI
+	InvCore._remove_item_at(slot_idx)
+	holding_item_qty = int(holding_item.label.text) + 1
+	holding_item.label.text = str(holding_item_qty)
+
+func mouse_pick_item_fromSlot_holding(obj_slot):
+	var slot_idx = obj_slot.indx
+	
+	# * Update Data
+	InvCore._updateItem_MinusOne(slot_idx)
+	
+	# * Update UI (SLOT/MOUSE)
+	obj_slot.qty_label.text = str(int(obj_slot.qty_label.text) - 1)
+	obj_slot.slot.quantity -= 1
+	holding_item_qty = int(holding_item.label.text) + 1
+	holding_item.label.text = str(holding_item_qty)
 
 
 

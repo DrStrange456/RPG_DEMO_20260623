@@ -10,8 +10,11 @@ var pInv: Dictionary = InvCore.INVENTORY
 var holding_item
 
 
+
 func _ready() -> void:
 	initialize()
+
+
 
 
 func initialize():

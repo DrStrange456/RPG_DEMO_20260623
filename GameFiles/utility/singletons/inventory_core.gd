@@ -1,5 +1,6 @@
 extends Node
 
+## CORE INVENTORY
 var INVENTORY: Dictionary = {
 		0: ["res://resources/seeds_turnip.tres", 98, true],
 		1: ["res://resources/seeds_strawberry.tres", 1, true],
@@ -18,7 +19,7 @@ var INVENTORY: Dictionary = {
 
 
 
-func _save_core_inventory(gcSLOTS: Dictionary,glINVENTORY: Dictionary):
+func _save_core_inventory(glINVENTORY: Dictionary):
 	glINVENTORY.clear()
 	for i in INVENTORY:
 		glINVENTORY[i] = INVENTORY[i].duplicate()
@@ -27,8 +28,10 @@ func _putItem_intoSlot(idx: int, res: String, qty: int):
 	INVENTORY[idx][0] = res
 	INVENTORY[idx][1] = qty
 
+func _updateItem_MinusOne(idx: int):
+	INVENTORY[idx][1] -= 1
+
 func _isSlotItem_diff(slot: InvSlotUI, holding)->bool:
-	# TODO: Needs testing
 	if slot and holding:
 		var itm_in_slot = slot.slot.item
 		var itm_in_mouse = holding
@@ -52,3 +55,7 @@ func _isSlot_Empty(slot: InvSlotUI)->bool:
 func _remove_item_at(indx: int):
 	if INVENTORY.has(indx):
 		INVENTORY[indx] = [null, 0, true]
+
+
+
+# BOTTOM

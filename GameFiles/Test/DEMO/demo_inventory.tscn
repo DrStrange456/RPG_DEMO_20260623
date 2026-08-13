@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ct33s3411wpi2" path="res://Test/DEMO/demo_inventory.gd" id="1_joxkd"]
 [ext_resource type="PackedScene" uid="uid://lt04e7ajlebf" path="res://Inventory/inventory_slot_ui.tscn" id="2_e4kdm"]
-[ext_resource type="Script" uid="uid://bj0l0obrd6482" path="res://Test/DEMO/inventory_ui_demo.gd" id="2_iaol0"]
-[ext_resource type="Script" uid="uid://23840ksd6x1d" path="res://Test/DEMO/main_inventory_controller.gd" id="3_rvloh"]
 [ext_resource type="Script" uid="uid://73byibi34dtj" path="res://Test/DEMO/inventory_core_demo.gd" id="5_ht2vm"]
 [ext_resource type="Script" uid="uid://cutq4ehqp54po" path="res://Test/DEMO/core_inventory_controller.gd" id="6_iyjyv"]
 
@@ -13,101 +11,6 @@ script = ExtResource("1_joxkd")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=461653155]
 position = Vector2(352, 154)
 zoom = Vector2(2, 2)
-
-[node name="InventoryUI_Demo" type="Control" parent="." unique_id=1051440927]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_iaol0")
-
-[node name="Panel2" type="Panel" parent="InventoryUI_Demo" unique_id=640824669]
-self_modulate = Color(1.0729612, 6.6845846, 4.956004, 1)
-layout_mode = 0
-offset_left = 391.0
-offset_top = 60.0
-offset_right = 610.0
-offset_bottom = 239.0
-
-[node name="MainInventoryController" type="GridContainer" parent="InventoryUI_Demo/Panel2" unique_id=1209602492]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 23.0
-offset_right = 197.0
-offset_bottom = 151.0
-columns = 4
-script = ExtResource("3_rvloh")
-
-[node name="InventorySlotUI" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=1205913611 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-
-[node name="InventorySlotUI2" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=1600649931 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 1
-
-[node name="InventorySlotUI3" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=1372159529 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 2
-
-[node name="InventorySlotUI4" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=506849985 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 3
-
-[node name="InventorySlotUI5" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=2056583657 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 4
-
-[node name="InventorySlotUI6" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=1022373143 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 5
-
-[node name="InventorySlotUI7" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=1229584116 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 6
-
-[node name="InventorySlotUI8" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=232645347 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 7
-
-[node name="InventorySlotUI9" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=730347887 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 8
-
-[node name="InventorySlotUI10" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=1559600672 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 9
-
-[node name="InventorySlotUI11" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=293374084 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 10
-
-[node name="InventorySlotUI12" parent="InventoryUI_Demo/Panel2/MainInventoryController" unique_id=373887232 instance=ExtResource("2_e4kdm")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-indx = 11
 
 [node name="InventoryCore_Demo" type="Control" parent="." unique_id=467426219]
 layout_mode = 3
@@ -210,13 +113,6 @@ offset_right = 165.0
 offset_bottom = 312.0
 text = "SAVE"
 
-[node name="btnReset" type="Button" parent="." unique_id=759940143]
-offset_left = 267.0
-offset_top = 274.0
-offset_right = 344.0
-offset_bottom = 312.0
-text = "RESET"
-
 [node name="btnExtendInventory" type="Button" parent="." unique_id=1447379496]
 offset_left = 177.5
 offset_top = 274.0
@@ -224,6 +120,13 @@ offset_right = 254.5
 offset_bottom = 312.0
 text = "EXTEND"
 
+[node name="btnReset" type="Button" parent="." unique_id=759940143]
+offset_left = 267.0
+offset_top = 274.0
+offset_right = 344.0
+offset_bottom = 312.0
+text = "RESET"
+
 [connection signal="pressed" from="btnSaveInventory" to="." method="_on_btn_save_inventory_pressed"]
-[connection signal="pressed" from="btnReset" to="." method="_on_btn_reset_pressed"]
 [connection signal="pressed" from="btnExtendInventory" to="." method="_on_btn_extend_inventory_pressed"]
+[connection signal="pressed" from="btnReset" to="." method="_on_btn_reset_pressed"]
