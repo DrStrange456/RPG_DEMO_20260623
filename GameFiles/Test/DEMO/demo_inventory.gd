@@ -8,22 +8,6 @@ extends Node2D
 
 var new_slot = preload("res://Inventory/inventory_slot_ui.tscn")
 
-# PLACEHOLDER FOR SAVED INVENTORY
-#var INVENTORY: Dictionary = {
-#		0: ["res://resources/seeds_turnip.tres", 98, true],
-#		1: ["res://resources/seeds_strawberry.tres", 99, true],
-#		2: ["res://resources/weapon_sword_fire.tres", 1, true],
-#		3: [null, 0, true],
-#		4: ["res://resources/seeds_tomato.tres", 65, true],
-#		5: ["res://resources/seeds_carrot.tres", 10, true],
-#		6: ["res://resources/tool_axe.tres", 1, true],
-#		7: ["res://resources/tool_pick.tres", 1, true],
-#		8: ["res://resources/weapon_sword1.tres", 1, true],
-#		9: [null, 0, true],
-#		10: [null, 0, true],
-#		11: [null, 0, true],
-#}
-
 
 
 func _on_btn_save_inventory_pressed() -> void:
@@ -38,7 +22,8 @@ func _on_btn_reset_pressed() -> void:
 
 
 func _save_inventory():
-	InvCore._save_core_inventory(InvCore.INVENTORY)
+	#InvCore._save_core_inventory(InvCore.INVENTORY)
+	print("To be replaced with save to JSON")
 
 func _extend_inventory():
 	set_inventory_size_data(20)
@@ -53,7 +38,7 @@ func _reset_inventory():
 ## Extend Inventory
 func set_inventory_size_data(amount: int) -> void:
 	#var current_size := INVENTORY.size()
-    var current_size := InvCore.INVENTORY.size()
+	var current_size := InvCore.INVENTORY.size()
 
 	for i in range(current_size, amount):
 		#INVENTORY[i] = [null, 0, true]

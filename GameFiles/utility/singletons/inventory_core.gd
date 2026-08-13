@@ -19,7 +19,7 @@ var INVENTORY: Dictionary = {
 
 
 
-func _save_core_inventory(glINVENTORY: Dictionary):
+func _save_core_inventory_to(glINVENTORY: Dictionary):
 	glINVENTORY.clear()
 	for i in INVENTORY:
 		glINVENTORY[i] = INVENTORY[i].duplicate()
