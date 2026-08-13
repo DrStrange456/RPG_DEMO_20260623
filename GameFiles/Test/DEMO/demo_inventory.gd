@@ -38,7 +38,7 @@ func _on_btn_reset_pressed() -> void:
 
 
 func _save_inventory():
-	InvCore._save_core_inventory(INVENTORY)
+	InvCore._save_core_inventory(InvCore.INVENTORY)
 
 func _extend_inventory():
 	set_inventory_size_data(20)
