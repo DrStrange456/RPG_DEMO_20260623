@@ -32,7 +32,7 @@ func _load_slots_from_save(slots: GridContainer):
 			slots._set_slot(i)
 		if pInv[j][0] != null:
 			if int(pInv[j][1]) > 0:
-				print(inventory[j])
+				print(inventory[j])  # HACK: PRINT HERE
 				inventory[j].indx = j
 				inventory[j].set_item(load(pInv[j][0]))
 				inventory[j].set_quantity(pInv[j][1])

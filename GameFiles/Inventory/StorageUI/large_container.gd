@@ -35,8 +35,6 @@ func _load_slots_from_save():
 	#bind_storage(storage_slots)
 
 func load_storage_from_dictionary(dict):
-	#FIXME: Not loading all of contents into UI
-	
 	# Hard coded slot contents (STORAGE_TEST) for dev
 	for k in preset_container_count:
 		var test1 = null
