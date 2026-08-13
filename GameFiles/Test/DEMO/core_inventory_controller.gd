@@ -44,10 +44,10 @@ func _slot_gui_input(event: InputEvent, slot: InvSlotUI):
 ## LEFT CLICK
 func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 	if holding_item != null:  # Holding Item with Mouse
-		if isSlot_Empty(slot):
+		if InvCore._isSlot_Empty(slot):
 			Left_Click_Empty_Slot(slot)
 		else:  # Putting item into occupied slot
-			if isSlotItem_diff(slot, holding_item):
+			if InvCore._isSlotItem_diff(slot, holding_item):
 				Left_Click_Different_Item(slot)
 			else:
 				Left_Click_Same_Item(slot)
@@ -56,9 +56,9 @@ func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 
 ## RIGHT CLICK
 func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
-	if !isSlot_Empty(slot):
+	if !InvCore._isSlot_Empty(slot):
 		if holding_item != null:  # Holding Item with Mouse
-			if !isSlotItem_diff(slot, holding_item):
+			if !InvCore._isSlotItem_diff(slot, holding_item):
 				if _is_holding_stack_full(): 
 					return  # slot full, cannot add
 				Right_Click_Holding_Same_Item(slot)
@@ -70,7 +70,7 @@ func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 ## - Handle Left Clicks
 
 func Left_Click_Not_Holding(slot: InvSlotUI):
-	if isSlot_Empty(slot): return
+	if InvCore._isSlot_Empty(slot): return
 	mouse_pick_from_slot(slot)
 
 func Left_Click_Empty_Slot(slot: InvSlotUI):
@@ -95,7 +95,8 @@ func Right_Click_Not_Holding(slot: InvSlotUI):
 		mouse_pick_single_item_fromSlot(slot)
 
 func Right_Click_Holding_Same_Item(slot: InvSlotUI):
-	if !isSlot_Empty(slot):
+	# FIXME: When holding 1 item and 1 item in slot, only removes single item
+	if !InvCore._isSlot_Empty(slot):
 		if slot.slot.quantity == 1:
 			# - Mouse pick single item, add to holding -
 			mouse_take_item_fromSlot_holding(slot)
@@ -130,9 +131,9 @@ func mouse_pick_single_item_fromSlot(slot: InvSlotUI):
 
 ## - Functions
 
-func isSlotItem_diff(itm_Slot: InvSlotUI, holding)->bool:
-	# TODO: Needs Testing
-	return InvCore._isSlotItem_diff(itm_Slot,holding)
+#func isSlotItem_diff(itm_Slot: InvSlotUI, holding)->bool:
+	## TODO: Needs Testing
+	#return InvCore._isSlotItem_diff(itm_Slot,holding)
 
 func mouse_drop_in_EmptySlot(slot: InvSlotUI):
 	InvCore._putItem_intoSlot(
@@ -157,7 +158,7 @@ func move_item_from_mouse_to_slot(obj_Slot):
 
 func _pin_single_item_to_mouse(slot):
 	if slot:
-		if !isSlot_Empty(slot):
+		if !InvCore._isSlot_Empty(slot):
 			# unparent item obj and attach to mouse, 
 			# must add back to scene tree so added to current (InvController) node
 			var itm_preview = slotPreview.instantiate()
@@ -166,8 +167,8 @@ func _pin_single_item_to_mouse(slot):
 			add_child(itm_preview)
 			return itm_preview
 
-func isSlot_Empty(slot: InvSlotUI)->bool:
-	return InvCore._isSlot_Empty(slot)
+#func isSlot_Empty(slot: InvSlotUI)->bool:
+	#return InvCore._isSlot_Empty(slot)
 
 func mouse_pick_from_slot(slot: InvSlotUI):
 	pin_to_mouse(slot)
