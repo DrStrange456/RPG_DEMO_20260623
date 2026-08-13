@@ -37,9 +37,6 @@ func _on_btn_reset_pressed() -> void:
 
 
 
-
-
-
 func _save_inventory():
 	InvCore._save_core_inventory(INVENTORY)
 
@@ -50,7 +47,6 @@ func _extend_inventory():
 func _reset_inventory():
 	_reset_dictionary_core_data()
 	_reset_inventory_ui(12)
-
 
 
 
@@ -88,10 +84,6 @@ func set_inventory_size_ui(amount: int) -> void:
 
 
 ## Reset Inventory
-
-
-
-
 func _reset_dictionary_core_data():
 	const INVENTORY_ORIGINAL: Dictionary = {
 		0: ["res://resources/seeds_turnip.tres", 98, true],
@@ -121,7 +113,6 @@ func _reset_dictionary_core_data():
 	# * UI
 	for i in range(INVENTORY_ORIGINAL.size()):
 		core_inventory_controller.get_child(i).update_ui()
-
 
 func _reset_inventory_size(amount: int) -> void:
 	# Data
@@ -161,35 +152,13 @@ func _reset_inventory_ui(amount: int) -> void:
 	inventory_core_demo.initialize()
 
 
-
+## Save Inventory
 func _save_core_inventory(gcSLOTS: Dictionary,glINVENTORY: Dictionary):
 	glINVENTORY.clear()
 	for i in gcSLOTS:
 		glINVENTORY[i] = gcSLOTS[i].duplicate()
 
-func grid_to_dictionary(container: GridContainer) -> Dictionary:
-	var result: Dictionary = {}
-	var ui_slots = container.get_children()
 
-	for i in ui_slots.size():
-		var ui_slot: InvSlotUI = ui_slots[i]
-		var slot: OptiInventorySlot = ui_slot.slot
-
-		if slot.item == null or slot.quantity <= 0:
-			result[i] = [null, 0, slot.enabled]
-		else:
-			result[i] = [
-				slot.item.resource_path,
-				slot.quantity,
-				slot.enabled
-			]
-
-	return result
-
-#func bind_inventory(inv,gc: GridContainer):
-	#var ui_slots = gc.get_children()
-	#for i in ui_slots.size():
-		#ui_slots[i].bind_slot(inv[i])
 
 
 # BOTTOM
