@@ -1,7 +1,7 @@
 extends Control
 
 # InventoryCore_Demo.gd
-
+# inventory links verified
 
 @onready var core_inventory_controller: GridContainer = $Panel/CoreInventoryController
 var inventory : Array[OptiInventorySlot] = []
