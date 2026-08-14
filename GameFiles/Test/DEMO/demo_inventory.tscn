@@ -151,10 +151,10 @@ script = ExtResource("5_iyjyv")
 
 [node name="Panel" type="Panel" parent="INV_AND_STRG/StorageInventoryCore_Demo" unique_id=757576686]
 layout_mode = 0
-offset_left = 124.0
-offset_top = 51.0
-offset_right = 346.0
-offset_bottom = 305.0
+offset_left = 428.0
+offset_top = 91.0
+offset_right = 650.0
+offset_bottom = 345.0
 
 [node name="StorageCoreInventoryController" type="GridContainer" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel" unique_id=1524381757]
 layout_mode = 0
@@ -244,10 +244,10 @@ offset_bottom = 40.0
 
 [node name="Panel" type="Panel" parent="INV_AND_STRG/StorageContainer" unique_id=184570807]
 layout_mode = 0
-offset_left = 447.0
-offset_top = 51.0
-offset_right = 667.0
-offset_bottom = 304.0
+offset_left = 115.0
+offset_top = 91.0
+offset_right = 335.0
+offset_bottom = 344.0
 
 [node name="CoreInventoryController" type="GridContainer" parent="INV_AND_STRG/StorageContainer/Panel" unique_id=1663839987]
 layout_mode = 0

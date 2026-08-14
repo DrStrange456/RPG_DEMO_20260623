@@ -13,6 +13,29 @@ var holding_item_resource
 var holding_item_qty
 
 
+func _ready() -> void:
+	init_UI()
+	refresh_UI()
+
+func init_UI():
+	var slots = get_children()
+	for m in slots:
+		m.slot = OptiInventorySlot.new()
+
+func refresh_UI():
+	var slots = get_children()
+	for m in slots:
+		m._reset_slot()
+
+func update_UI():
+	var slots = get_children()
+	for m in slots:
+		m.update_ui()
+
+func update_UI_at(indx: int):
+	var slot = get_child(indx)
+	slot.update_ui()
+
 
 
 func _process(_delta: float) -> void:
@@ -41,6 +64,15 @@ func _slot_gui_input(event: InputEvent, slot: InvSlotUI):
 
 
 
+
+
+
+
+
+
+
+
+
 ## LEFT CLICK
 func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 	if holding_item != null:  # Holding Item with Mouse
@@ -54,7 +86,6 @@ func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 	else:  
 		Left_Click_Not_Holding(slot)
 
-
 ## RIGHT CLICK
 func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 	if !InvCore._isSlot_Empty(slot):
@@ -65,9 +96,6 @@ func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 				Right_Click_Holding_Same_Item(slot)
 		else:
 			Right_Click_Not_Holding(slot)
-
-
-
 
 ## - Handle Left Clicks
 
@@ -83,10 +111,6 @@ func Left_Click_Different_Item(slot: InvSlotUI):
 
 func Left_Click_Same_Item(slot: InvSlotUI):
 	mouse_attempt_combine_like_items(slot)
-
-
-
-
 
 ## - Handle Right Clicks
 
@@ -105,14 +129,6 @@ func Right_Click_Holding_Same_Item(slot: InvSlotUI):
 			# - Mouse pick from multiples  -
 			# decrement slot stack, and increment holding stack
 			mouse_pick_item_fromSlot_holding(slot)
-
-
-
-
-
-
-
-
 
 ## - Functions
 

@@ -5,6 +5,10 @@ extends GridContainer
 # inventory links verified
 
 
+@onready var core_inventory_controller: GridContainer = $"../../../StorageContainer/Panel/CoreInventoryController"
+
+
+
 var slotPreview = GmMgr.glSlotPrev
 var holding_item
 
@@ -72,9 +76,17 @@ func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 ## - Handle Left Clicks
 
 func Left_Click_Not_Holding(slot: InvSlotUI):
+	var context = {
+				"source": self,
+				"container": core_inventory_controller,
+				"slot_index": slot.indx
+			}
+	StorageManager.move_item_to_storage(context)
+	core_inventory_controller.update_UI()
+	#core_inventory_controller.update_UI_at(slot.indx)
 	#if InvCore._isSlot_Empty(slot): return
 	#mouse_pick_from_slot(slot)
-	pass
+	#pass
 
 func Left_Click_Empty_Slot(slot: InvSlotUI):
 	#mouse_drop_in_EmptySlot(slot)
