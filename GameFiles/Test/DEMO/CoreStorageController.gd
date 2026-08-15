@@ -1,11 +1,13 @@
 @icon("res://assets/icons/inv_Icons/InventoryContainer.svg")
 extends GridContainer
 
-# CoreInventoryController.gd
+# CoreStorageController.gd
 # inventory links verified
 
 
-@onready var core_inventory_controller: GridContainer = $"../../../StorageContainerCore_Demo/Panel/CoreStorageController"
+@onready var core_inventory_controller_strg: GridContainer = $"../../../StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg"
+@onready var storage_container_core_demo: Control = $"../.."
+@onready var strgInv = storage_container_core_demo.storage_core_data
 
 
 
@@ -53,9 +55,9 @@ func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 
 ## RIGHT CLICK
 func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
-	if !InvCore._isSlot_Empty(slot):
+	if !strgInv._isSlot_Empty(slot):
 		if holding_item != null:  # Holding Item with Mouse
-			if !InvCore._isSlotItem_diff(slot, holding_item):
+			if !strgInv._isSlotItem_diff(slot, holding_item):
 				if _is_holding_stack_full(): 
 					return  # slot full, cannot add
 				Right_Click_Holding_Same_Item(slot)
@@ -70,11 +72,11 @@ func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 func Left_Click_Not_Holding(slot: InvSlotUI):
 	var context = {
 				"source": self,
-				"container": core_inventory_controller,
+				"container": core_inventory_controller_strg,
 				"slot_index": slot.indx
 			}
-	move_item_to_storage(context)
-	core_inventory_controller.update_UI()
+	move_item_to_inventory(context)
+	core_inventory_controller_strg.update_UI()
 
 
 
@@ -117,14 +119,15 @@ func Right_Click_Holding_Same_Item(slot: InvSlotUI):
 
 
 
-### INV to STRG
-func move_item_to_storage(ctx):
+### STRG to INV
+func move_item_to_inventory(ctx):
 	var gcGRID_INV = ctx.source
 	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index
-	if !InvCore._isSlot_Empty_At(intSlotIndex):
-		if transfer_inventory_slot_to_container(InvCore.DATA,gcGRID_STRG.get_children(),intSlotIndex):
-			InvCore._remove_item_at(intSlotIndex)
+	strgInv = storage_container_core_demo.storage_core_data
+	if !strgInv._isSlot_Empty_At(intSlotIndex):
+		if transfer_inventory_slot_to_container(strgInv.DATA,gcGRID_STRG.get_children(),intSlotIndex):
+			strgInv._remove_item_at(intSlotIndex)
 		else:
 			_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
 		leftover_delta = 0

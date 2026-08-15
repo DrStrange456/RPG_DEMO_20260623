@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://lt04e7ajlebf" path="res://Inventory/inventory_slot_ui.tscn" id="2_e4kdm"]
 [ext_resource type="Script" uid="uid://73byibi34dtj" path="res://Test/DEMO/inventory_core_demo.gd" id="5_ht2vm"]
 [ext_resource type="Script" uid="uid://c80gl7sw1e2ao" path="res://Test/DEMO/storage_inventory_core_demo.gd" id="5_iyjyv"]
-[ext_resource type="Script" uid="uid://dnk2kr6iav36f" path="res://Test/DEMO/storage_core_inventory_controller.gd" id="6_djso2"]
+[ext_resource type="Script" uid="uid://dnk2kr6iav36f" path="res://Test/DEMO/CoreInventoryController_Strg.gd" id="6_djso2"]
 [ext_resource type="Script" uid="uid://cutq4ehqp54po" path="res://Test/DEMO/core_inventory_controller.gd" id="6_iyjyv"]
 [ext_resource type="Script" uid="uid://b8fw10n2updeg" path="res://Test/DEMO/storage_container_core_demo.gd" id="7_iyjyv"]
-[ext_resource type="Script" uid="uid://dhfkwoib3lgly" path="res://Test/DEMO/core_storage_controller.gd" id="8_djso2"]
+[ext_resource type="Script" uid="uid://dhfkwoib3lgly" path="res://Test/DEMO/CoreStorageController.gd" id="8_djso2"]
 
 [node name="Demo_Inventory" type="Node2D" unique_id=698582733]
 script = ExtResource("1_joxkd")

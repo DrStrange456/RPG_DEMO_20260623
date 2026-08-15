@@ -1,15 +1,27 @@
-class_name DataCore
-extends Node
+class_name storage_data_core
+extends DataCore
 
+## CORE STORAGE
+var tmpDATA = {
+		0: [null, 0, true],
+		1: [null, 0, true],
+		2: [null, 0, true],
+		3: [null, 0, true],
+		4: [null, 0, true],
+		5: [null, 0, true],
+		6: [null, 0, true],
+		7: [null, 0, true],
+		8: [null, 0, true],
+		9: [null, 0, true],
+		10: [null, 0, true],
+		11: [null, 0, true],
+}
 
-## CORE STORAGE - BASE CLASS
-var DATA: Dictionary = {}
+func _ready() -> void:
+	set_data_values(tmpDATA)
 
-
-func set_data_values(val: Dictionary)->void:
-	DATA = val
-
-
+func _init() -> void:
+	set_data_values(tmpDATA)
 
 
 func _save_core_inventory_to(glINVENTORY: Dictionary):
@@ -24,8 +36,8 @@ func _putItem_intoSlot(idx: int, res: String, qty: int):
 func _updateItem_MinusOne(idx: int):
 	DATA[idx][1] -= 1
 
-func _updateItem_At(idx: int, amt: int):
-	DATA[idx][1] = amt
+func _updateItem_Quantity(idx: int, qty: int):
+	DATA[idx][1] = qty
 
 func _isSlotItem_diff(slot: InvSlotUI, holding)->bool:
 	if slot and holding:
@@ -41,15 +53,6 @@ func _isSlotItem_diff(slot: InvSlotUI, holding)->bool:
 
 func _isSlot_Empty(slot: InvSlotUI)->bool:
 	var idx = slot.indx
-	var itm = DATA[idx][0]
-	if !DATA.has(idx):
-		return true
-	if itm == null: 
-		return true
-	return false
-
-func _isSlot_Empty_At(idx: int)->bool:
-	#var idx = slot.indx
 	var itm = DATA[idx][0]
 	if !DATA.has(idx):
 		return true

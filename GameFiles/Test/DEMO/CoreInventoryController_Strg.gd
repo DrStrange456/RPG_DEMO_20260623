@@ -1,11 +1,12 @@
 @icon("res://assets/icons/inv_Icons/InventoryContainer.svg")
 extends GridContainer
 
-# CoreStorageController.gd
-# inventory links verified
+# CoreInventoryController.gd
 
 
-@onready var core_inventory_controller_strg: GridContainer = $"../../../StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg"
+
+@onready var Core_Storage_Controller: GridContainer = $"../../../StorageContainerCore_Demo/Panel/CoreStorageController"
+@onready var storage_container_core_demo: Control = $"../../../StorageContainerCore_Demo"
 
 
 
@@ -34,7 +35,6 @@ func _set_slot(indx):
 	var ic_children = get_children()
 	var slot_for_update: InvSlotUI = ic_children[indx]
 	if !slot_for_update.is_connected("gui_input", _slot_gui_input.bind(slot_for_update)):
-		print("added gui input")
 		slot_for_update.connect("gui_input", _slot_gui_input.bind(slot_for_update))
 
 func _slot_gui_input(event: InputEvent, slot: InvSlotUI):
@@ -71,11 +71,11 @@ func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 func Left_Click_Not_Holding(slot: InvSlotUI):
 	var context = {
 				"source": self,
-				"container": core_inventory_controller_strg,
+				"container": Core_Storage_Controller,
 				"slot_index": slot.indx
 			}
-	move_item_to_inventory(context)
-	core_inventory_controller_strg.update_UI()
+	move_item_to_storage(context)
+	Core_Storage_Controller.update_UI()
 
 
 
@@ -119,12 +119,18 @@ func Right_Click_Holding_Same_Item(slot: InvSlotUI):
 
 
 ### INV to STRG
-func move_item_to_inventory(ctx):
+func move_item_to_storage(ctx):
 	var gcGRID_INV = ctx.source
 	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index
 	if !InvCore._isSlot_Empty_At(intSlotIndex):
-		if transfer_inventory_slot_to_container(InvCore.DATA,gcGRID_STRG.get_children(),intSlotIndex):
+		# FIXME: only updates inventory Data/UI and storage UI.
+		if transfer_inventory_slot_to_container(
+			InvCore.DATA,
+			storage_container_core_demo.storage_core_data.DATA,
+			gcGRID_STRG.get_children(),
+			intSlotIndex):
+				
 			InvCore._remove_item_at(intSlotIndex)
 		else:
 			_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
@@ -138,7 +144,12 @@ func move_item_to_inventory(ctx):
 
 
 
-func transfer_inventory_slot_to_container(inventory: Dictionary, container: Array, slot_index: int):
+func transfer_inventory_slot_to_container(
+	inventory: Dictionary, 
+	storage,
+	container: Array, 
+	slot_index: int):
+		
 	var slot_data = inventory[slot_index]
 	var item_path = slot_data[0]
 	var quantity = slot_data[1]
@@ -164,6 +175,7 @@ func transfer_inventory_slot_to_container(inventory: Dictionary, container: Arra
 
 			var add = min(space, remaining)
 
+			storage[slot_index][1] = slot.slot.quantity + add
 			slot.slot.set_quantity(slot.slot.quantity + add)
 			remaining -= add
 
@@ -179,6 +191,9 @@ func transfer_inventory_slot_to_container(inventory: Dictionary, container: Arra
 
 			slot.slot.set_item(item)
 			slot.slot.set_quantity(stack)
+			
+			storage[slot_index][0] = item.resource_path
+			storage[slot_index][1] = stack
 
 			remaining -= stack
 
