@@ -31,6 +31,9 @@ func _putItem_intoSlot(idx: int, res: String, qty: int):
 func _updateItem_MinusOne(idx: int):
 	INVENTORY[idx][1] -= 1
 
+func _updateItem_At(idx: int, amt: int):
+	INVENTORY[idx][1] = amt
+
 func _isSlotItem_diff(slot: InvSlotUI, holding)->bool:
 	if slot and holding:
 		var itm_in_slot = slot.slot.item
@@ -45,6 +48,15 @@ func _isSlotItem_diff(slot: InvSlotUI, holding)->bool:
 
 func _isSlot_Empty(slot: InvSlotUI)->bool:
 	var idx = slot.indx
+	var itm = INVENTORY[idx][0]
+	if !INVENTORY.has(idx):
+		return true
+	if itm == null: 
+		return true
+	return false
+
+func _isSlot_Empty_At(idx: int)->bool:
+	#var idx = slot.indx
 	var itm = INVENTORY[idx][0]
 	if !INVENTORY.has(idx):
 		return true

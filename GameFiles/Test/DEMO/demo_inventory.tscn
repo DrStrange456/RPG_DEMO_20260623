@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c80gl7sw1e2ao" path="res://Test/DEMO/storage_inventory_core_demo.gd" id="5_iyjyv"]
 [ext_resource type="Script" uid="uid://dnk2kr6iav36f" path="res://Test/DEMO/storage_core_inventory_controller.gd" id="6_djso2"]
 [ext_resource type="Script" uid="uid://cutq4ehqp54po" path="res://Test/DEMO/core_inventory_controller.gd" id="6_iyjyv"]
+[ext_resource type="Script" uid="uid://dnbsxrq150frt" path="res://Test/DEMO/storage_container.gd" id="7_iyjyv"]
 
 [node name="Demo_Inventory" type="Node2D" unique_id=698582733]
 script = ExtResource("1_joxkd")
@@ -241,6 +242,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("7_iyjyv")
 
 [node name="Panel" type="Panel" parent="INV_AND_STRG/StorageContainer" unique_id=184570807]
 layout_mode = 0
