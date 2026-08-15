@@ -174,8 +174,9 @@ func transfer_inventory_slot_to_container(
 
 			var add = min(space, remaining)
 
-			storage[slot_index][1] = slot.slot.quantity + add
-			slot.slot.set_quantity(slot.slot.quantity + add)
+			var new_slot_qty: int = int(slot.slot.quantity + add)
+			storage[slot.indx][1] = new_slot_qty  # DATA
+			slot.slot.set_quantity(new_slot_qty)  # UI
 			remaining -= add
 
 	# --- fill empty slots ---
@@ -191,8 +192,8 @@ func transfer_inventory_slot_to_container(
 			slot.slot.set_item(item)
 			slot.slot.set_quantity(stack)
 			
-			storage[slot_index][0] = item.resource_path
-			storage[slot_index][1] = stack
+			storage[slot.indx][0] = item.resource_path
+			storage[slot.indx][1] = stack
 
 			remaining -= stack
 

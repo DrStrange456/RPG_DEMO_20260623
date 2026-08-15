@@ -35,7 +35,6 @@ func _set_slot(indx):
 	var ic_children = get_children()
 	var slot_for_update: InvSlotUI = ic_children[indx]
 	if !slot_for_update.is_connected("gui_input", _slot_gui_input.bind(slot_for_update)):
-		#print("added gui input")
 		slot_for_update.connect("gui_input", _slot_gui_input.bind(slot_for_update))
 
 func _slot_gui_input(event: InputEvent, slot: InvSlotUI):
@@ -175,7 +174,7 @@ func transfer_storage_slot_to_inventory(
 
 			var add = min(space, remaining)
 
-			invStorage[slot_index][1] = slot.slot.quantity + add
+			invStorage[slot.indx][1] = slot.slot.quantity + add
 			slot.slot.set_quantity(slot.slot.quantity + add)
 			remaining -= add
 
@@ -192,8 +191,8 @@ func transfer_storage_slot_to_inventory(
 			slot.slot.set_item(item)
 			slot.slot.set_quantity(stack)
 			
-			invStorage[slot_index][0] = item.resource_path
-			invStorage[slot_index][1] = stack
+			invStorage[slot.indx][0] = item.resource_path
+			invStorage[slot.indx][1] = stack
 
 			remaining -= stack
 
