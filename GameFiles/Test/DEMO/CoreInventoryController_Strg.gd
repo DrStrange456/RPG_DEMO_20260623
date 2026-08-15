@@ -124,7 +124,6 @@ func move_item_to_storage(ctx):
 	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index
 	if !InvCore._isSlot_Empty_At(intSlotIndex):
-		# FIXME: only updates inventory Data/UI and storage UI.
 		if transfer_inventory_slot_to_container(
 			InvCore.DATA,
 			storage_container_core_demo.storage_core_data.DATA,

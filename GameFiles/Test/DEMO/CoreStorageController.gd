@@ -35,7 +35,7 @@ func _set_slot(indx):
 	var ic_children = get_children()
 	var slot_for_update: InvSlotUI = ic_children[indx]
 	if !slot_for_update.is_connected("gui_input", _slot_gui_input.bind(slot_for_update)):
-		print("added gui input")
+		#print("added gui input")
 		slot_for_update.connect("gui_input", _slot_gui_input.bind(slot_for_update))
 
 func _slot_gui_input(event: InputEvent, slot: InvSlotUI):
@@ -126,7 +126,12 @@ func move_item_to_inventory(ctx):
 	var intSlotIndex = ctx.slot_index
 	strgInv = storage_container_core_demo.storage_core_data
 	if !strgInv._isSlot_Empty_At(intSlotIndex):
-		if transfer_inventory_slot_to_container(strgInv.DATA,gcGRID_STRG.get_children(),intSlotIndex):
+		if transfer_storage_slot_to_inventory(
+			strgInv.DATA,
+			InvCore.DATA,
+			gcGRID_STRG.get_children(),
+			intSlotIndex):
+				
 			strgInv._remove_item_at(intSlotIndex)
 		else:
 			_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
@@ -140,7 +145,11 @@ func move_item_to_inventory(ctx):
 
 
 
-func transfer_inventory_slot_to_container(inventory: Dictionary, container: Array, slot_index: int):
+func transfer_storage_slot_to_inventory(
+	inventory: Dictionary, 
+	invStorage,
+	container: Array, 
+	slot_index: int):
 	var slot_data = inventory[slot_index]
 	var item_path = slot_data[0]
 	var quantity = slot_data[1]
@@ -166,6 +175,7 @@ func transfer_inventory_slot_to_container(inventory: Dictionary, container: Arra
 
 			var add = min(space, remaining)
 
+			invStorage[slot_index][1] = slot.slot.quantity + add
 			slot.slot.set_quantity(slot.slot.quantity + add)
 			remaining -= add
 
@@ -181,12 +191,16 @@ func transfer_inventory_slot_to_container(inventory: Dictionary, container: Arra
 
 			slot.slot.set_item(item)
 			slot.slot.set_quantity(stack)
+			
+			invStorage[slot_index][0] = item.resource_path
+			invStorage[slot_index][1] = stack
 
 			remaining -= stack
 
 	# --- update inventory dictionary ---
 	if remaining == 0:
-		InvCore._remove_item_at(slot_index)
+		inventory[slot_index] = [ null, 0, true ]
+		#InvCore._remove_item_at(slot_index)
 	if remaining > 0:
 		leftover_delta = remaining
 
@@ -194,7 +208,7 @@ func transfer_inventory_slot_to_container(inventory: Dictionary, container: Arra
 func _return_what_didnt_fit(gcGRID_INV: GridContainer,intSlotIndex: int):
 	# - - Update Data then UI
 	# DATA
-	InvCore._updateItem_At(intSlotIndex,leftover_delta)
+	strgInv._updateItem_At(intSlotIndex,leftover_delta)
 	# UI
 	var handle_to_source_slot = gcGRID_INV.get_child(intSlotIndex)
 	if leftover_delta <= 0:
