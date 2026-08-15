@@ -9,6 +9,9 @@ var DATA: Dictionary = {}
 func set_data_values(val: Dictionary)->void:
 	DATA = val
 
+
+
+
 func _save_core_inventory_to(glINVENTORY: Dictionary):
 	glINVENTORY.clear()
 	for i in DATA:
