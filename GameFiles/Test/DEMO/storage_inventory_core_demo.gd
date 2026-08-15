@@ -11,7 +11,7 @@ var new_slot = preload("res://Inventory/inventory_slot_ui.tscn")
 @onready var core_inventory_controller: GridContainer = $Panel/StorageCoreInventoryController
 var inventory : Array[OptiInventorySlot] = []
 
-var pInv: Dictionary = InvCore.INVENTORY
+var pInv: Dictionary = InvCore.DATA
 var holding_item
 
 
@@ -26,7 +26,7 @@ func initialize():
 	_load_slots_from_save(core_inventory_controller)
 
 func _load_slots_from_save(slots: GridContainer):
-	inventory.resize(pInv.size())
+	inventory.resize(12)
 	for i in inventory.size():
 		inventory[i] = OptiInventorySlot.new()
 	
@@ -74,7 +74,7 @@ func _reset_inventory():
 ## Extend Inventory
 func set_inventory_size_data(amount: int) -> void:
 	#var current_size := INVENTORY.size()
-	var current_size := InvCore.INVENTORY.size()
+	var current_size := InvCore.DATA.size()
 
 	for i in range(current_size, amount):
 		#INVENTORY[i] = [null, 0, true]

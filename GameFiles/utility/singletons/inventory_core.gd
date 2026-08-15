@@ -21,19 +21,18 @@ func _ready() -> void:
 
 
 
-<<<<<<< HEAD
-=======
+
 func _save_core_inventory_to(glINVENTORY: Dictionary):
 	glINVENTORY.clear()
-	for i in INVENTORY:
-		glINVENTORY[i] = INVENTORY[i].duplicate()
+	for i in DATA:
+		glINVENTORY[i] = DATA[i].duplicate()
 
 func _putItem_intoSlot(idx: int, res: String, qty: int):
-	INVENTORY[idx][0] = res
-	INVENTORY[idx][1] = qty
+	DATA[idx][0] = res
+	DATA[idx][1] = qty
 
 func _updateItem_MinusOne(idx: int):
-	INVENTORY[idx][1] -= 1
+	DATA[idx][1] -= 1
 
 func _isSlotItem_diff(slot: InvSlotUI, holding)->bool:
 	if slot and holding:
@@ -49,18 +48,17 @@ func _isSlotItem_diff(slot: InvSlotUI, holding)->bool:
 
 func _isSlot_Empty(slot: InvSlotUI)->bool:
 	var idx = slot.indx
-	var itm = INVENTORY[idx][0]
-	if !INVENTORY.has(idx):
+	var itm = DATA[idx][0]
+	if !DATA.has(idx):
 		return true
 	if itm == null: 
 		return true
 	return false
 
 func _remove_item_at(indx: int):
-	if INVENTORY.has(indx):
-		INVENTORY[indx] = [null, 0, true]
+	if DATA.has(indx):
+		DATA[indx] = [null, 0, true]
 
 
->>>>>>> parent of de17807 (jkljljkl)
 
 # BOTTOM

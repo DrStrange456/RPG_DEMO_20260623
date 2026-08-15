@@ -143,12 +143,12 @@ func move_item_to_storage(ctx):
 	var gcGRID_INV = ctx.source
 	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index
-	if ptrINVENTORY[intSlotIndex][0] != null:
-		if transfer_inventory_slot_to_container(ptrINVENTORY,gcGRID_STRG.get_children(),intSlotIndex):
-			_remove_from_inventory(gcGRID_INV,intSlotIndex)  # All items successfully transferred
-		else:
-			_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
-		leftover_delta = 0
+	#if ptrINVENTORY[intSlotIndex][0] != null:
+		#if transfer_inventory_slot_to_container(ptrINVENTORY,gcGRID_STRG.get_children(),intSlotIndex):
+			#_remove_from_inventory(gcGRID_INV,intSlotIndex)  # All items successfully transferred
+		#else:
+			#_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
+		#leftover_delta = 0
 
 
 

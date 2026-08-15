@@ -303,9 +303,7 @@ func mouse_pick_item_fromSlot_holding(obj_slot):
 	holding_item_qty = int(holding_item.label.text) + 1
 	holding_item.label.text = str(holding_item_qty)
 
-<<<<<<< HEAD
 
-=======
 func mouse_pick_single_item_fromSlot(slot: InvSlotUI):
 	var slot_idx = slot.indx
 	var itm_resource = slot.slot.item
@@ -320,7 +318,7 @@ func mouse_pick_single_item_fromSlot(slot: InvSlotUI):
 	slot.qty_label.text = str(int(slot.qty_label.text) - 1)
 	slot.slot.quantity -= 1
 	holding_item = _pin_single_item_to_mouse(slot)
->>>>>>> parent of de17807 (jkljljkl)
+
 
 
 
