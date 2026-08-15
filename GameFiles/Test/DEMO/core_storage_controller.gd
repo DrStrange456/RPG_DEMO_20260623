@@ -1,11 +1,12 @@
 @icon("res://assets/icons/inv_Icons/InventoryContainer.svg")
 extends GridContainer
 
-# CoreInventoryController.gd
+# CoreStorageController.gd
 # inventory links verified
 
 
-@onready var core_inventory_controller: GridContainer = $"../../../StorageContainerCore_Demo/Panel/CoreStorageController"
+@onready var core_inventory_controller_strg: GridContainer = $"../../../StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg"
+
 
 
 
@@ -70,11 +71,11 @@ func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 func Left_Click_Not_Holding(slot: InvSlotUI):
 	var context = {
 				"source": self,
-				"container": core_inventory_controller,
+				"container": core_inventory_controller_strg,
 				"slot_index": slot.indx
 			}
-	move_item_to_storage(context)
-	core_inventory_controller.update_UI()
+	move_item_to_inventory(context)
+	core_inventory_controller_strg.update_UI()
 
 
 
@@ -118,7 +119,7 @@ func Right_Click_Holding_Same_Item(slot: InvSlotUI):
 
 
 ### INV to STRG
-func move_item_to_storage(ctx):
+func move_item_to_inventory(ctx):
 	var gcGRID_INV = ctx.source
 	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index

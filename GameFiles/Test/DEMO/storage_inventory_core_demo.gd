@@ -3,15 +3,13 @@ extends Control
 # InventoryCore_Demo.gd
 # inventory links verified
 
-# DATA: This script loads the data into the UI
-# Also sets up GUI Input captures
 
 var new_slot = preload("res://Inventory/inventory_slot_ui.tscn")
 
-@onready var core_inventory_controller: GridContainer = $Panel/StorageCoreInventoryController
-var inventory : Array[OptiInventorySlot] = []
+@onready var core_inventory_controller: GridContainer = $Panel/CoreInventoryController_Strg
+@onready var pInv: Dictionary = InvCore.DATA
 
-var pInv: Dictionary = InvCore.DATA
+var inventory : Array[OptiInventorySlot] = []
 var holding_item
 
 
