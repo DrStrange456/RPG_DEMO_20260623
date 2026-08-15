@@ -38,6 +38,8 @@ func update_UI_at(indx: int):
 
 
 
+
+
 func _process(_delta: float) -> void:
 	if holding_item != null:  # Set item holding to mouse pos
 		_update_mouse_holding_item_position()

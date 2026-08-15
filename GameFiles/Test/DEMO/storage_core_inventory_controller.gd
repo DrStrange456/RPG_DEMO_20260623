@@ -81,12 +81,10 @@ func Left_Click_Not_Holding(slot: InvSlotUI):
 				"container": core_inventory_controller,
 				"slot_index": slot.indx
 			}
-	StorageManager.move_item_to_storage(context)
+			# FIXME: the old procedure pointing to wrong inventory.
+	#StorageManager.move_item_to_storage(context)
 	core_inventory_controller.update_UI()
-	#core_inventory_controller.update_UI_at(slot.indx)
-	#if InvCore._isSlot_Empty(slot): return
-	#mouse_pick_from_slot(slot)
-	#pass
+
 
 func Left_Click_Empty_Slot(slot: InvSlotUI):
 	#mouse_drop_in_EmptySlot(slot)
@@ -128,6 +126,29 @@ func Right_Click_Holding_Same_Item(slot: InvSlotUI):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+### INV to STRG
+func move_item_to_storage(ctx):
+	var gcGRID_INV = ctx.source
+	var gcGRID_STRG = ctx.container
+	var intSlotIndex = ctx.slot_index
+	if ptrINVENTORY[intSlotIndex][0] != null:
+		if transfer_inventory_slot_to_container(ptrINVENTORY,gcGRID_STRG.get_children(),intSlotIndex):
+			_remove_from_inventory(gcGRID_INV,intSlotIndex)  # All items successfully transferred
+		else:
+			_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
+		leftover_delta = 0
 
 
 
