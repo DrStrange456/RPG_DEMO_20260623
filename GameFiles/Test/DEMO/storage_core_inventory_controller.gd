@@ -16,8 +16,6 @@ var holding_item
 var holding_item_resource
 var holding_item_qty
 
-var leftover_delta: int = 0
-
 
 
 
@@ -84,10 +82,8 @@ func Left_Click_Not_Holding(slot: InvSlotUI):
 				"slot_index": slot.indx
 			}
 			# FIXME: the old procedure pointing to wrong inventory.
-	move_item_to_storage(context)
+	#StorageManager.move_item_to_storage(context)
 	core_inventory_controller.update_UI()
-
-
 
 
 func Left_Click_Empty_Slot(slot: InvSlotUI):
@@ -147,97 +143,12 @@ func move_item_to_storage(ctx):
 	var gcGRID_INV = ctx.source
 	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index
-	if !InvCore._isSlot_Empty_At(intSlotIndex):
-		if transfer_inventory_slot_to_container(InvCore.INVENTORY,gcGRID_STRG.get_children(),intSlotIndex):
-			InvCore._remove_item_at(intSlotIndex)
+	if ptrINVENTORY[intSlotIndex][0] != null:
+		if transfer_inventory_slot_to_container(ptrINVENTORY,gcGRID_STRG.get_children(),intSlotIndex):
+			_remove_from_inventory(gcGRID_INV,intSlotIndex)  # All items successfully transferred
 		else:
 			_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
 		leftover_delta = 0
-
-
-func transfer_inventory_slot_to_container(inventory: Dictionary, container: Array, slot_index: int):
-	var slot_data = inventory[slot_index]
-	var item_path = slot_data[0]
-	var quantity = slot_data[1]
-
-	if item_path == null:
-		return
-
-	var item = load(item_path)
-	var max_stack = item.max_stack
-	var remaining = int(quantity)
-
-	# --- fill existing stacks ---
-	for slot in container:
-
-		if remaining <= 0:
-			break
-
-		if slot.slot.item == item:
-
-			var space = max_stack - slot.slot.quantity
-			if space <= 0:
-				continue
-
-			var add = min(space, remaining)
-
-			slot.slot.set_quantity(slot.slot.quantity + add)
-			remaining -= add
-
-	# --- fill empty slots ---
-	for slot in container:
-
-		if remaining <= 0:
-			break
-
-		if slot.slot.item == null:
-
-			var stack = min(max_stack, remaining)
-
-			slot.slot.set_item(item)
-			slot.slot.set_quantity(stack)
-
-			remaining -= stack
-
-	# --- update inventory dictionary ---
-	if remaining == 0:
-		InvCore._remove_item_at(slot_index)
-	if remaining > 0:
-		leftover_delta = remaining
-
-
-func _return_what_didnt_fit(gcGRID_INV: GridContainer,intSlotIndex: int):
-	# - - Update Data then UI
-	# DATA
-	InvCore._updateItem_At(intSlotIndex,leftover_delta)
-	# UI
-	var handle_to_source_slot = gcGRID_INV.get_child(intSlotIndex)
-	if leftover_delta <= 0:
-		handle_to_source_slot.slot.clear()
-	else:
-		handle_to_source_slot.slot.set_quantity(leftover_delta)
-
-
-
-
-
-
-
-
-
-func update_UI():
-	var slots = get_children()
-	for m in slots:
-		m.update_ui()
-
-
-
-
-
-
-
-
-
 
 
 

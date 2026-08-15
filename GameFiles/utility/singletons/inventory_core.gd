@@ -1,7 +1,7 @@
-extends Node
+extends DataCore
 
 ## CORE INVENTORY
-var INVENTORY: Dictionary = {
+var tmpDATA = {
 		0: ["res://resources/seeds_turnip.tres", 98, true],
 		1: ["res://resources/seeds_strawberry.tres", 3, true],
 		2: ["res://resources/weapon_sword_fire.tres", 1, true],
@@ -16,9 +16,13 @@ var INVENTORY: Dictionary = {
 		11: [null, 0, true],
 }
 
+func _ready() -> void:
+	set_data_values(tmpDATA)
 
 
 
+<<<<<<< HEAD
+=======
 func _save_core_inventory_to(glINVENTORY: Dictionary):
 	glINVENTORY.clear()
 	for i in INVENTORY:
@@ -30,9 +34,6 @@ func _putItem_intoSlot(idx: int, res: String, qty: int):
 
 func _updateItem_MinusOne(idx: int):
 	INVENTORY[idx][1] -= 1
-
-func _updateItem_At(idx: int, amt: int):
-	INVENTORY[idx][1] = amt
 
 func _isSlotItem_diff(slot: InvSlotUI, holding)->bool:
 	if slot and holding:
@@ -55,19 +56,11 @@ func _isSlot_Empty(slot: InvSlotUI)->bool:
 		return true
 	return false
 
-func _isSlot_Empty_At(idx: int)->bool:
-	#var idx = slot.indx
-	var itm = INVENTORY[idx][0]
-	if !INVENTORY.has(idx):
-		return true
-	if itm == null: 
-		return true
-	return false
-
 func _remove_item_at(indx: int):
 	if INVENTORY.has(indx):
 		INVENTORY[indx] = [null, 0, true]
 
 
+>>>>>>> parent of de17807 (jkljljkl)
 
 # BOTTOM
