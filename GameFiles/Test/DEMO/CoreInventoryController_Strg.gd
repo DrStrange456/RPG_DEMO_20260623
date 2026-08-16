@@ -218,8 +218,8 @@ func move_just_one_item_to_storage(ctx):
 			#InvCore._remove_item_at(intSlotIndex)
 			InvCore._updateItem_MinusOne(intSlotIndex)
 			# should only be removing a single item
-		else:
-			_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
+		#else:
+			#_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
 		leftover_delta = 0
 
 
@@ -290,70 +290,178 @@ func transfer_inventory_slot_to_container(
 		leftover_delta = remaining
 
 
-func transfer_single_inventory_item_to_container(
-	inventory: Dictionary, 
-	storage,
-	container: Array, 
-	slot_index: int):
-		
-	var slot_data = inventory[slot_index]
-	var item_path = slot_data[0]
-	var quantity = slot_data[1]
+#func transfer_single_inventory_item_to_container(
+	#inventory: Dictionary, 
+	#storage,
+	#container: Array, 
+	#slot_index: int):
+		#
+	#var src_slot_data = inventory[slot_index]
+	#var item_path = src_slot_data[0]
+	#var quantity = src_slot_data[1]
+#
+	#if item_path == null:
+		#return
+#
+	#var item = load(item_path)
+	#var max_stack = item.max_stack
+	#var src_remaining = int(quantity)
+#
+	## --- fill existing stacks ---
+	#for slot in container:
+#
+		#if src_remaining <= 0:
+			#break
+#
+		#if slot.slot.item == item:
+#
+			#var space = max_stack - slot.slot.quantity
+			#if space <= 0:
+				#continue
+#
+			#var add = min(space, src_remaining)
+#
+			##var new_slot_qty: int = int(slot.slot.quantity + add)
+			#var new_slot_qty: int = int(slot.slot.quantity - 1)
+			#var new_strg_slot_qty: int = storage[slot.indx][1] + 1
+			#storage[slot.indx][1] = new_strg_slot_qty  # DATA
+			#slot.slot.set_quantity(new_slot_qty)  # UI
+			#src_remaining -= add
+#
+	## --- fill empty slots ---
+	#for dest_slot in container:
+#
+		#if src_remaining <= 0:
+			#break
+#
+		#if dest_slot.slot.item == null:
+#
+			#var src_stack = min(max_stack, src_remaining)
+			##var stack = 1
+#
+			## UI
+			#dest_slot.slot.set_item(item)
+			#dest_slot.slot.set_quantity(1) # SRC
+			#
+			## DATA
+			#storage[dest_slot.indx][0] = item.resource_path
+			#storage[dest_slot.indx][1] = 1 # DEST
+#
+			##src_remaining -= 1
+			#src_remaining -= src_stack
+			#return
+#
+	## --- update inventory dictionary ---
+	#if src_remaining == 0:
+		#InvCore._remove_item_at(slot_index)
+	#if src_remaining > 0:
+		#leftover_delta = src_remaining
 
-	if item_path == null:
+func transfer_single_inventory_item_to_container(
+	inventory: Dictionary,
+	storage,
+	container: Array,
+	slot_index: int
+):
+
+	var src_slot_data = inventory[slot_index]
+	var item_path = src_slot_data[0]
+	var quantity = int(src_slot_data[1])
+
+	# Source slot is empty
+	if item_path == null or quantity <= 0:
 		return
 
 	var item = load(item_path)
-	var max_stack = item.max_stack
-	var remaining = int(quantity)
 
-	# --- fill existing stacks ---
-	for slot in container:
+	if item == null:
+		return
 
-		if remaining <= 0:
-			break
+	var max_stack: int = item.max_stack
 
-		if slot.slot.item == item:
 
-			var space = max_stack - slot.slot.quantity
-			if space <= 0:
-				continue
+	# ============================================================
+	# TRANSFER EXACTLY ONE ITEM
+	# ============================================================
 
-			var add = min(space, remaining)
+	# ------------------------------------------------------------
+	# 1. Look for an existing matching storage stack
+	# ------------------------------------------------------------
 
-			#var new_slot_qty: int = int(slot.slot.quantity + add)
-			var new_slot_qty: int = int(slot.slot.quantity - 1)
-			var new_strg_slot_qty: int = storage[slot.indx][1] + 1
-			storage[slot.indx][1] = new_strg_slot_qty  # DATA
-			slot.slot.set_quantity(new_slot_qty)  # UI
-			remaining -= add
+	for dest_slot in container:
 
-	# --- fill empty slots ---
-	for slot in container:
+		if dest_slot.slot.item != item:
+			continue
 
-		if remaining <= 0:
-			break
+		var current_quantity: int = int(dest_slot.slot.quantity)
 
-		if slot.slot.item == null:
+		if current_quantity >= max_stack:
+			continue
 
-			var stack = min(max_stack, remaining)
-			#var stack = 1
+		# Add ONE item to storage
+		var new_quantity := current_quantity + 1
 
-			slot.slot.set_item(item)
-			slot.slot.set_quantity(stack - 1) # SRC
-			
-			storage[slot.indx][0] = item.resource_path
-			storage[slot.indx][1] = 1 # DEST
+		# DATA - storage
+		storage[dest_slot.indx][1] = new_quantity
 
-			remaining -= 1
-			#remaining -= stack
-			return
+		# UI - storage
+		dest_slot.slot.set_quantity(new_quantity)
 
-	# --- update inventory dictionary ---
-	if remaining == 0:
-		InvCore._remove_item_at(slot_index)
-	if remaining > 0:
-		leftover_delta = remaining
+		# DATA - inventory
+		inventory[slot_index][1] = quantity - 1
+
+		# UI - inventory
+		var source_slot = get_child(slot_index)
+
+		if source_slot:
+			if quantity - 1 <= 0:
+				source_slot.slot.clear()
+			else:
+				source_slot.slot.set_quantity(quantity - 1)
+
+		return
+
+
+	# ------------------------------------------------------------
+	# 2. Look for an empty storage slot
+	# ------------------------------------------------------------
+
+	for dest_slot in container:
+
+		if dest_slot.slot.item != null:
+			continue
+
+		# DATA - storage
+		storage[dest_slot.indx][0] = item.resource_path
+		storage[dest_slot.indx][1] = 1
+
+		# UI - storage
+		dest_slot.slot.set_item(item)
+		dest_slot.slot.set_quantity(1)
+
+		# DATA - inventory
+		inventory[slot_index][1] = quantity - 1
+
+		# UI - inventory
+		#var source_slot = get_node_or_null("../InventorySlotContainer").get_child(slot_index)
+		var source_slot = get_child(slot_index)
+
+		if source_slot:
+			if quantity - 1 <= 0:
+				source_slot.slot.clear()
+			else:
+				source_slot.slot.set_quantity(quantity - 1)
+
+		return
+
+
+	# ------------------------------------------------------------
+	# 3. Storage is full / no available space
+	# ------------------------------------------------------------
+
+	return
+
+
 
 
 func _return_what_didnt_fit(gcGRID_INV: GridContainer,intSlotIndex: int):
