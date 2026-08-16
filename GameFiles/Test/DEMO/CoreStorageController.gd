@@ -5,6 +5,10 @@ extends GridContainer
 # inventory links verified
 
 
+@export var SRC_Controller: GridContainer
+@export var DST_Controller: GridContainer
+
+
 @onready var core_inventory_controller_strg: GridContainer = $"../../../StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg"
 @onready var storage_container_core_demo: Control = $"../.."
 @onready var strgInv = storage_container_core_demo.storage_core_data
@@ -54,16 +58,10 @@ func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 
 ## RIGHT CLICK
 func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
+	strgInv = storage_container_core_demo.storage_core_data
 	if !strgInv._isSlot_Empty(slot):
-		if holding_item != null:  # Holding Item with Mouse
-			if !strgInv._isSlotItem_diff(slot, holding_item):
-				if _is_holding_stack_full(): 
-					return  # slot full, cannot add
-				Right_Click_Holding_Same_Item(slot)
-		else:
+		if holding_item == null:  # Holding Item with Mouse
 			Right_Click_Not_Holding(slot)
-
-
 
 
 ## - Handle Left Clicks
@@ -79,48 +77,25 @@ func Left_Click_Not_Holding(slot: InvSlotUI):
 	debug_out()
 
 
-
-
-
-
 ## - Handle Right Clicks
 
 func Right_Click_Not_Holding(slot: InvSlotUI):
-	#if slot.slot.quantity == 1:
-		#Left_Click_Not_Holding(slot)
-	#else:  # slot qty > 1
-		#mouse_pick_single_item_fromSlot(slot)
-	pass
-
-func Right_Click_Holding_Same_Item(slot: InvSlotUI):
-	#if !InvCore._isSlot_Empty(slot):
-		#if slot.slot.quantity == 1:
-			## - Mouse pick single item, add to holding -
-			#mouse_take_item_fromSlot_holding(slot)
-		#else:
-			## - Mouse pick from multiples  -
-			## decrement slot stack, and increment holding stack
-			#mouse_pick_item_fromSlot_holding(slot)
-	pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	if slot.slot.quantity == 1:
+		Left_Click_Not_Holding(slot)
+	else:  # slot qty > 1
+		var context = {
+				"source": self,
+				"container": core_inventory_controller_strg,
+				"slot_index": slot.indx
+			}
+		move_just_one_item_to_storage(context)
+	core_inventory_controller_strg.update_UI()
+	debug_out()
 
 
 ### STRG to INV
 func move_item_to_inventory(ctx):
+	# Move whole slot
 	var gcGRID_INV = ctx.source
 	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index
@@ -136,13 +111,6 @@ func move_item_to_inventory(ctx):
 		else:
 			_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
 		leftover_delta = 0
-
-
-
-
-
-
-
 
 
 func transfer_storage_slot_to_inventory(
@@ -200,7 +168,6 @@ func transfer_storage_slot_to_inventory(
 	# --- update inventory dictionary ---
 	if remaining == 0:
 		inventory[slot_index] = [ null, 0, true ]
-		#InvCore._remove_item_at(slot_index)
 	if remaining > 0:
 		leftover_delta = remaining
 
@@ -215,6 +182,133 @@ func _return_what_didnt_fit(gcGRID_INV: GridContainer,intSlotIndex: int):
 		handle_to_source_slot.slot.clear()
 	else:
 		handle_to_source_slot.slot.set_quantity(leftover_delta)
+
+
+
+
+
+## STRG to INV
+func move_just_one_item_to_storage(ctx):
+	var gcGRID_STRG = ctx.container
+	var intSlotIndex = ctx.slot_index
+	if !strgInv._isSlot_Empty_At(intSlotIndex):
+		if transfer_single_storage_item_to_container(
+			strgInv.DATA,
+			storage_container_core_demo.storage_core_data.DATA,
+			DST_Controller.get_children(),
+			intSlotIndex,
+			self):
+			
+			strgInv._updateItem_MinusOne(intSlotIndex)
+		leftover_delta = 0
+
+
+func transfer_single_storage_item_to_container(
+	inventory: Dictionary,
+	storage,
+	container: Array,
+	slot_index: int,
+	inventory_grid: GridContainer):
+
+	var src_slot_data = inventory.get(slot_index)
+
+	if src_slot_data == null:
+		return
+
+	var item_path = src_slot_data[0]
+	var quantity := int(src_slot_data[1])
+
+	# Nothing to transfer
+	if item_path == null or quantity <= 0:
+		return
+
+	var item = load(item_path)
+
+	if item == null:
+		return
+
+	var max_stack: int = item.max_stack
+
+
+	# ============================================================
+	# FIND EXISTING STACK
+	# ============================================================
+
+	for dest_slot in container:
+
+		if dest_slot.slot.item != item:
+			continue
+
+		var current_quantity := int(dest_slot.slot.quantity)
+
+		if current_quantity >= max_stack:
+			continue
+
+		# Add exactly ONE
+		current_quantity += 1
+
+		# STORAGE DATA
+		#storage[dest_slot.indx][1] = current_quantity
+		InvCore.DATA[dest_slot.indx][1] = current_quantity
+
+		# STORAGE UI
+		dest_slot.slot.set_quantity(current_quantity)
+
+		# INVENTORY DATA
+		quantity -= 1
+		inventory[slot_index][1] = quantity
+
+		# INVENTORY UI
+		var source_slot = inventory_grid.get_child(slot_index)
+
+		if quantity <= 0:
+			source_slot.slot.clear()
+		else:
+			source_slot.slot.set_quantity(quantity)
+
+		return
+
+
+	# ============================================================
+	# FIND EMPTY STORAGE SLOT
+	# ============================================================
+
+	for dest_slot in container:
+
+		if dest_slot.slot.item != null:
+			continue
+
+		# STORAGE DATA
+		#storage[dest_slot.indx][0] = item.resource_path
+		#storage[dest_slot.indx][1] = 1
+		
+		InvCore.DATA[dest_slot.indx][0] = item.resource_path
+		InvCore.DATA[dest_slot.indx][1] = 1
+
+		# STORAGE UI
+		dest_slot.slot.set_item(item)
+		dest_slot.slot.set_quantity(1)
+
+		# INVENTORY DATA
+		quantity -= 1
+		inventory[slot_index][1] = quantity
+
+		# INVENTORY UI
+		var source_slot = inventory_grid.get_child(slot_index)
+
+		if quantity <= 0:
+			source_slot.slot.clear()
+		else:
+			source_slot.slot.set_quantity(quantity)
+
+		return
+
+
+	# ============================================================
+	# NO ROOM
+	# ============================================================
+
+	return
 
 
 
