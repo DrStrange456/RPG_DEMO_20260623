@@ -87,10 +87,16 @@ func Left_Click_Not_Holding(slot: InvSlotUI):
 
 func Right_Click_Not_Holding(slot: InvSlotUI):
 	if slot.slot.quantity == 1:
-		_Right_Click_Not_Holding(slot)
-	#else:  # slot qty > 1
-		#mouse_pick_single_item_fromSlot(slot)
-	#pass
+		Left_Click_Not_Holding(slot)
+	else:  # slot qty > 1
+		var context = {
+				"source": self,
+				"container": Core_Storage_Controller,
+				"slot_index": slot.indx
+			}
+		move_just_one_item_to_storage(context)
+	Core_Storage_Controller.update_UI()
+	debug_out()
 
 func Right_Click_Holding_Same_Item(slot: InvSlotUI):
 	#if !InvCore._isSlot_Empty(slot):
@@ -105,8 +111,8 @@ func Right_Click_Holding_Same_Item(slot: InvSlotUI):
 
 
 
-func _Right_Click_Not_Holding(slot):
-	move_just_one_item_to_storage(slot)
+#func _Right_Click_Not_Holding(slot):
+	#move_just_one_item_to_storage(slot)
 
 #func mouse_get_item_from_slot(slot):
 	#if InvCore._isSlot_Empty(slot): return
@@ -152,6 +158,32 @@ func _Right_Click_Not_Holding(slot):
 
 
 
+func debug_out():
+	print_inventory_debug(InvCore.DATA)
+	print_inventory_debug(storage_container_core_demo.storage_core_data.DATA)
+
+
+func print_inventory_debug(inventory: Dictionary) -> void:
+	print("\n========== INVENTORY ==========")
+
+	for index in inventory:
+		var item = inventory[index]
+
+		print(
+			"Slot %02d | Item: %-45s | Amount: %3d | Enabled: %s"
+			% [
+				index,
+				str(item[0]),
+				item[1],
+				item[2]
+			]
+		)
+
+	print("================================\n")
+
+
+
+
 
 
 
@@ -177,13 +209,15 @@ func move_just_one_item_to_storage(ctx):
 	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index
 	if !InvCore._isSlot_Empty_At(intSlotIndex):
-		if transfer_single_inventory_slot_to_container(
+		if transfer_single_inventory_item_to_container(
 			InvCore.DATA,
 			storage_container_core_demo.storage_core_data.DATA,
 			gcGRID_STRG.get_children(),
 			intSlotIndex):
 				
-			InvCore._remove_item_at(intSlotIndex)
+			#InvCore._remove_item_at(intSlotIndex)
+			InvCore._updateItem_MinusOne(intSlotIndex)
+			# should only be removing a single item
 		else:
 			_return_what_didnt_fit(gcGRID_INV,intSlotIndex)
 		leftover_delta = 0
@@ -256,7 +290,7 @@ func transfer_inventory_slot_to_container(
 		leftover_delta = remaining
 
 
-func transfer_single_inventory_slot_to_container(
+func transfer_single_inventory_item_to_container(
 	inventory: Dictionary, 
 	storage,
 	container: Array, 
@@ -264,7 +298,7 @@ func transfer_single_inventory_slot_to_container(
 		
 	var slot_data = inventory[slot_index]
 	var item_path = slot_data[0]
-	var quantity = 1
+	var quantity = slot_data[1]
 
 	if item_path == null:
 		return
@@ -287,8 +321,10 @@ func transfer_single_inventory_slot_to_container(
 
 			var add = min(space, remaining)
 
-			var new_slot_qty: int = int(slot.slot.quantity + add)
-			storage[slot.indx][1] = new_slot_qty  # DATA
+			#var new_slot_qty: int = int(slot.slot.quantity + add)
+			var new_slot_qty: int = int(slot.slot.quantity - 1)
+			var new_strg_slot_qty: int = storage[slot.indx][1] + 1
+			storage[slot.indx][1] = new_strg_slot_qty  # DATA
 			slot.slot.set_quantity(new_slot_qty)  # UI
 			remaining -= add
 
@@ -301,14 +337,17 @@ func transfer_single_inventory_slot_to_container(
 		if slot.slot.item == null:
 
 			var stack = min(max_stack, remaining)
+			#var stack = 1
 
 			slot.slot.set_item(item)
-			slot.slot.set_quantity(stack)
+			slot.slot.set_quantity(stack - 1) # SRC
 			
 			storage[slot.indx][0] = item.resource_path
-			storage[slot.indx][1] = stack
+			storage[slot.indx][1] = 1 # DEST
 
-			remaining -= stack
+			remaining -= 1
+			#remaining -= stack
+			return
 
 	# --- update inventory dictionary ---
 	if remaining == 0:
