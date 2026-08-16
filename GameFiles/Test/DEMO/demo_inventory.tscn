@@ -258,7 +258,7 @@ offset_top = 91.0
 offset_right = 335.0
 offset_bottom = 344.0
 
-[node name="CoreStorageController" type="GridContainer" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel" unique_id=1663839987 node_paths=PackedStringArray("source_controller", "source_parent_control", "destination_controller", "destination_parent_control")]
+[node name="CoreStorageController" type="GridContainer" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel" unique_id=1663839987 node_paths=PackedStringArray("source_controller", "source_parent_control", "destination_controller")]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 20.0
@@ -269,7 +269,6 @@ script = ExtResource("8_djso2")
 source_controller = NodePath(".")
 source_parent_control = NodePath("../..")
 destination_controller = NodePath("../../../StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg")
-destination_parent_control = NodePath("../../../StorageInventoryCore_Demo")
 
 [node name="InventorySlotUI" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=830912392 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)

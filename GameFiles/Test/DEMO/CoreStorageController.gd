@@ -22,9 +22,7 @@ extends gridcontainer_base
 
 @export var source_controller: GridContainer
 @export var source_parent_control: Control
-
 @export var destination_controller: GridContainer
-@export var destination_parent_control: Control
 
 
 # ==============================================================================
