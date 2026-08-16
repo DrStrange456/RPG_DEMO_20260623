@@ -341,6 +341,22 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 11
 
+[node name="Buttons" type="Node2D" parent="INV_AND_STRG" unique_id=1153055429]
+
+[node name="btnSort_Storage" type="Button" parent="INV_AND_STRG/Buttons" unique_id=1572999768]
+offset_left = 118.0
+offset_top = 351.0
+offset_right = 178.0
+offset_bottom = 384.0
+text = "Sort"
+
+[node name="btnSort_Inventory" type="Button" parent="INV_AND_STRG/Buttons" unique_id=1004245733]
+offset_left = 438.0
+offset_top = 359.0
+offset_right = 491.0
+offset_bottom = 387.0
+text = "Sort"
+
 [node name="btnINVENTORY_ONLY" type="Button" parent="." unique_id=576094498]
 offset_left = 13.0
 offset_top = 15.0
@@ -359,5 +375,7 @@ text = "Inv & Strg"
 [connection signal="pressed" from="INV/buttons/btnExtendInventory" to="." method="_on_btn_extend_inventory_pressed"]
 [connection signal="pressed" from="INV/buttons/btnSortAndCombine" to="." method="_on_btn_sort_and_combine_pressed"]
 [connection signal="pressed" from="INV/buttons/btnReset" to="." method="_on_btn_reset_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btnSort_Storage" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_sort_storage_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btnSort_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_sort_inventory_pressed"]
 [connection signal="pressed" from="btnINVENTORY_ONLY" to="." method="_on_btn_inventory_only_pressed"]
 [connection signal="pressed" from="btnINVENTORY_AND_STORAGE" to="." method="_on_btn_inventory_and_storage_pressed"]

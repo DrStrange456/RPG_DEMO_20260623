@@ -229,3 +229,7 @@ func sort_and_combine_inventory_Inv():
 
 
 # BOTTOM
+
+
+func _on_btn_sort_inventory_pressed() -> void:
+	sort_and_combine_inventory_Inv()
