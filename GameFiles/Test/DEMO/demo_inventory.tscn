@@ -350,6 +350,13 @@ offset_right = 178.0
 offset_bottom = 384.0
 text = "Sort"
 
+[node name="btn_Extend_Storage" type="Button" parent="INV_AND_STRG/Buttons" unique_id=2073589373]
+offset_left = 186.0
+offset_top = 353.0
+offset_right = 246.0
+offset_bottom = 386.0
+text = "Extend"
+
 [node name="btnSort_Inventory" type="Button" parent="INV_AND_STRG/Buttons" unique_id=1004245733]
 offset_left = 438.0
 offset_top = 359.0
@@ -362,7 +369,8 @@ offset_left = 503.0
 offset_top = 358.0
 offset_right = 556.0
 offset_bottom = 389.0
-text = "Sort"
+text = "Extend
+"
 
 [node name="btnINVENTORY_ONLY" type="Button" parent="." unique_id=576094498]
 offset_left = 13.0
@@ -383,6 +391,7 @@ text = "Inv & Strg"
 [connection signal="pressed" from="INV/buttons/btnSortAndCombine" to="." method="_on_btn_sort_and_combine_pressed"]
 [connection signal="pressed" from="INV/buttons/btnReset" to="." method="_on_btn_reset_pressed"]
 [connection signal="pressed" from="INV_AND_STRG/Buttons/btnSort_Storage" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_sort_storage_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Extend_Storage" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_extend_storage_pressed"]
 [connection signal="pressed" from="INV_AND_STRG/Buttons/btnSort_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_sort_inventory_pressed"]
 [connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Extend_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_extend_inventory_pressed"]
 [connection signal="pressed" from="btnINVENTORY_ONLY" to="." method="_on_btn_inventory_only_pressed"]

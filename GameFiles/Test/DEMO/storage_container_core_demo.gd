@@ -166,3 +166,7 @@ func sort_and_combine_inventory_Inv():
 
 func _on_btn_sort_storage_pressed() -> void:
 	sort_and_combine_inventory_Inv()
+
+
+func _on_btn_extend_storage_pressed() -> void:
+	pass # Replace with function body.
