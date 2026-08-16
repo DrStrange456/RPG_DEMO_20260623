@@ -1,5 +1,4 @@
-@icon("res://assets/icons/inv_Icons/InventoryContainer.svg")
-extends GridContainer
+extends gridcontainer_base
 
 
 # ==============================================================================
@@ -41,13 +40,11 @@ extends GridContainer
 # ==============================================================================
 
 var slot_preview = GmMgr.glSlotPrev
-
 var holding_item
 
 # These variables track the item currently being held.
 var holding_item_resource
 var holding_item_quantity
-
 
 # Tracks the number of items that could not be transferred.
 var leftover_quantity: int = 0
@@ -58,17 +55,13 @@ var leftover_quantity: int = 0
 # ==============================================================================
 
 func _process(_delta: float) -> void:
-
 	if holding_item != null:
 		# Keep the held item positioned underneath the mouse.
 		_update_holding_item_position()
 
 
 func _update_holding_item_position() -> void:
-
-	holding_item.position = (
-		get_local_mouse_position() - Vector2(20, 20)
-	)
+	holding_item.position = get_local_mouse_position() - Vector2(20, 20)
 
 
 # ==============================================================================
@@ -76,7 +69,6 @@ func _update_holding_item_position() -> void:
 # ==============================================================================
 
 func _set_slot(slot_index):
-
 	var storage_slots = get_children()
 	var slot_to_update: InvSlotUI = storage_slots[slot_index]
 
@@ -94,25 +86,15 @@ func _set_slot(slot_index):
 # SLOT INPUT
 # ==============================================================================
 
-func _slot_gui_input(
-	event: InputEvent,
-	slot: InvSlotUI
-):
-
+func _slot_gui_input(event: InputEvent, slot: InvSlotUI):
 	if event is InputEventMouseButton:
 
 		# Left mouse button.
-		if (
-			event.button_index == MOUSE_BUTTON_LEFT
-			&& event.pressed
-		):
+		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
 			pick_all_from_slot(event, slot)
 
 		# Right mouse button.
-		if (
-			event.button_index == MOUSE_BUTTON_RIGHT
-			&& event.pressed
-		):
+		if event.button_index == MOUSE_BUTTON_RIGHT && event.pressed:
 			pick_just_one_from_slot(event, slot)
 
 
@@ -120,11 +102,7 @@ func _slot_gui_input(
 # LEFT CLICK
 # ==============================================================================
 
-func pick_all_from_slot(
-	_event: InputEvent,
-	slot: InvSlotUI
-):
-
+func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 	# Only pick up an item if we are not already holding one.
 	if holding_item == null:
 		left_click_not_holding(slot)
@@ -134,11 +112,7 @@ func pick_all_from_slot(
 # RIGHT CLICK
 # ==============================================================================
 
-func pick_just_one_from_slot(
-	_event: InputEvent,
-	slot: InvSlotUI
-):
-
+func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 	storage_inventory = source_parent_control.storage_core_data
 
 	if !storage_inventory._isSlot_Empty(slot):
@@ -152,10 +126,7 @@ func pick_just_one_from_slot(
 # LEFT CLICK HANDLING
 # ==============================================================================
 
-func left_click_not_holding(
-	slot: InvSlotUI
-):
-
+func left_click_not_holding(slot: InvSlotUI):
 	var context = {
 		"source": self,
 		"container": destination_controller,
@@ -163,7 +134,6 @@ func left_click_not_holding(
 	}
 
 	move_item_to_inventory(context)
-
 	destination_controller.update_UI()
 
 
@@ -171,18 +141,13 @@ func left_click_not_holding(
 # RIGHT CLICK HANDLING
 # ==============================================================================
 
-func right_click_not_holding(
-	slot: InvSlotUI
-):
-
+func right_click_not_holding(slot: InvSlotUI):
 	# If there is only one item in the slot,
 	# transfer the entire slot.
 	if slot.slot.quantity == 1:
-
 		left_click_not_holding(slot)
 
 	else:
-
 		# If there are multiple items,
 		# transfer only one item.
 		var context = {
@@ -200,20 +165,15 @@ func right_click_not_holding(
 # STORAGE -> INVENTORY
 # ==============================================================================
 
-func move_item_to_inventory(
-	context
-):
-
-	# Move the entire slot.
+func move_item_to_inventory(context):
+	# Move the entire storage slot.
 	var inventory_grid = context.source
 	var storage_grid = context.container
 	var storage_slot_index = context.slot_index
 
 	storage_inventory = source_parent_control.storage_core_data
 
-	if !storage_inventory._isSlot_Empty_At(
-		storage_slot_index
-	):
+	if !storage_inventory._isSlot_Empty_At(storage_slot_index):
 
 		if transfer_storage_slot_to_inventory(
 			storage_inventory.DATA,
@@ -221,13 +181,11 @@ func move_item_to_inventory(
 			storage_grid.get_children(),
 			storage_slot_index
 		):
-
 			storage_inventory._remove_item_at(
 				storage_slot_index
 			)
 
 		else:
-
 			_return_what_didnt_fit(
 				inventory_grid,
 				storage_slot_index
@@ -246,7 +204,6 @@ func transfer_storage_slot_to_inventory(
 	container: Array,
 	slot_index: int
 ):
-
 	var slot_data = inventory[slot_index]
 
 	var item_path = slot_data[0]
@@ -265,15 +222,11 @@ func transfer_storage_slot_to_inventory(
 	# --------------------------------------------------------------------------
 
 	for slot in container:
-
 		if remaining_quantity <= 0:
 			break
 
 		if slot.slot.item == item:
-
-			var available_space = (
-				max_stack - slot.slot.quantity
-			)
+			var available_space = max_stack - slot.slot.quantity
 
 			if available_space <= 0:
 				continue
@@ -299,12 +252,10 @@ func transfer_storage_slot_to_inventory(
 	# --------------------------------------------------------------------------
 
 	for slot in container:
-
 		if remaining_quantity <= 0:
 			break
 
 		if slot.slot.item == null:
-
 			var stack_quantity = min(
 				max_stack,
 				remaining_quantity
@@ -313,31 +264,20 @@ func transfer_storage_slot_to_inventory(
 			slot.slot.set_item(item)
 			slot.slot.set_quantity(stack_quantity)
 
-			inventory_storage[slot.indx][0] = (
-				item.resource_path
-			)
-
-			inventory_storage[slot.indx][1] = (
-				stack_quantity
-			)
+			inventory_storage[slot.indx][0] = item.resource_path
+			inventory_storage[slot.indx][1] = stack_quantity
 
 			remaining_quantity -= stack_quantity
 
 
 	# --------------------------------------------------------------------------
-	# UPDATE SOURCE INVENTORY DATA
+	# UPDATE SOURCE STORAGE DATA
 	# --------------------------------------------------------------------------
 
 	if remaining_quantity == 0:
-
-		inventory[slot_index] = [
-			null,
-			0,
-			true
-		]
+		inventory[slot_index] = [null, 0, true]
 
 	if remaining_quantity > 0:
-
 		leftover_quantity = remaining_quantity
 
 
@@ -349,33 +289,20 @@ func _return_what_didnt_fit(
 	inventory_grid: GridContainer,
 	inventory_slot_index: int
 ):
-
-	# --------------------------------------------------------------------------
-	# UPDATE DATA
-	# --------------------------------------------------------------------------
-
+	# Update data.
 	storage_inventory._updateItem_At(
 		inventory_slot_index,
 		leftover_quantity
 	)
 
-
-	# --------------------------------------------------------------------------
-	# UPDATE UI
-	# --------------------------------------------------------------------------
-
-	var source_slot = (
-		inventory_grid.get_child(
-			inventory_slot_index
-		)
+	# Update UI.
+	var source_slot = inventory_grid.get_child(
+		inventory_slot_index
 	)
 
 	if leftover_quantity <= 0:
-
 		source_slot.slot.clear()
-
 	else:
-
 		source_slot.slot.set_quantity(
 			leftover_quantity
 		)
@@ -385,15 +312,10 @@ func _return_what_didnt_fit(
 # TRANSFER SINGLE ITEM
 # ==============================================================================
 
-func move_just_one_item_to_storage(
-	context
-):
-
+func move_just_one_item_to_storage(context):
 	var storage_slot_index = context.slot_index
 
-	if !storage_inventory._isSlot_Empty_At(
-		storage_slot_index
-	):
+	if !storage_inventory._isSlot_Empty_At(storage_slot_index):
 
 		if transfer_single_storage_item_to_container(
 			storage_inventory.DATA,
@@ -402,7 +324,6 @@ func move_just_one_item_to_storage(
 			storage_slot_index,
 			self
 		):
-
 			storage_inventory._updateItem_MinusOne(
 				storage_slot_index
 			)
@@ -421,17 +342,13 @@ func transfer_single_storage_item_to_container(
 	slot_index: int,
 	inventory_grid: GridContainer
 ):
-
-	var source_slot_data = inventory.get(
-		slot_index
-	)
+	var source_slot_data = inventory.get(slot_index)
 
 	if source_slot_data == null:
 		return
 
 	var item_path = source_slot_data[0]
 	var quantity := int(source_slot_data[1])
-
 
 	# Nothing to transfer.
 	if item_path == null or quantity <= 0:
@@ -450,7 +367,6 @@ func transfer_single_storage_item_to_container(
 	# ==========================================================================
 
 	for destination_slot in container:
-
 		if destination_slot.slot.item != item:
 			continue
 
@@ -461,11 +377,7 @@ func transfer_single_storage_item_to_container(
 		if current_quantity >= max_stack:
 			continue
 
-
-		# ----------------------------------------------------------------------
 		# Add exactly ONE item.
-		# ----------------------------------------------------------------------
-
 		current_quantity += 1
 
 
@@ -473,11 +385,8 @@ func transfer_single_storage_item_to_container(
 		# STORAGE DATA
 		# ----------------------------------------------------------------------
 
-		# storage[destination_slot.indx][1] = current_quantity
-
-		InvCore.DATA[
-			destination_slot.indx
-		][1] = current_quantity
+		# The original code uses InvCore.DATA here.
+		InvCore.DATA[destination_slot.indx][1] = current_quantity
 
 
 		# ----------------------------------------------------------------------
@@ -494,7 +403,6 @@ func transfer_single_storage_item_to_container(
 		# ----------------------------------------------------------------------
 
 		quantity -= 1
-
 		inventory[slot_index][1] = quantity
 
 
@@ -502,31 +410,23 @@ func transfer_single_storage_item_to_container(
 		# INVENTORY UI
 		# ----------------------------------------------------------------------
 
-		var source_slot = (
-			inventory_grid.get_child(
-				slot_index
-			)
+		var source_slot = inventory_grid.get_child(
+			slot_index
 		)
 
 		if quantity <= 0:
-
 			source_slot.slot.clear()
-
 		else:
-
-			source_slot.slot.set_quantity(
-				quantity
-			)
+			source_slot.slot.set_quantity(quantity)
 
 		return
 
 
 	# ==========================================================================
-	# FIND EMPTY STORAGE SLOT
+	# FIND EMPTY INVENTORY SLOT
 	# ==========================================================================
 
 	for destination_slot in container:
-
 		if destination_slot.slot.item != null:
 			continue
 
@@ -535,16 +435,9 @@ func transfer_single_storage_item_to_container(
 		# STORAGE DATA
 		# ----------------------------------------------------------------------
 
-		# storage[destination_slot.indx][0] = item.resource_path
-		# storage[destination_slot.indx][1] = 1
-
-		InvCore.DATA[
-			destination_slot.indx
-		][0] = item.resource_path
-
-		InvCore.DATA[
-			destination_slot.indx
-		][1] = 1
+		# The original code uses InvCore.DATA here.
+		InvCore.DATA[destination_slot.indx][0] = item.resource_path
+		InvCore.DATA[destination_slot.indx][1] = 1
 
 
 		# ----------------------------------------------------------------------
@@ -560,7 +453,6 @@ func transfer_single_storage_item_to_container(
 		# ----------------------------------------------------------------------
 
 		quantity -= 1
-
 		inventory[slot_index][1] = quantity
 
 
@@ -568,21 +460,14 @@ func transfer_single_storage_item_to_container(
 		# INVENTORY UI
 		# ----------------------------------------------------------------------
 
-		var source_slot = (
-			inventory_grid.get_child(
-				slot_index
-			)
+		var source_slot = inventory_grid.get_child(
+			slot_index
 		)
 
 		if quantity <= 0:
-
 			source_slot.slot.clear()
-
 		else:
-
-			source_slot.slot.set_quantity(
-				quantity
-			)
+			source_slot.slot.set_quantity(quantity)
 
 		return
 
@@ -600,60 +485,15 @@ func transfer_single_storage_item_to_container(
 
 ## Returns true if the currently held stack is full.
 func _is_holding_stack_full() -> bool:
-
-	var item_stack = int(
-		holding_item.label.text
-	)
-
-	var item_max_stack = int(
-		holding_item_resource.max_stack
-	)
+	var item_stack = int(holding_item.label.text)
+	var item_max_stack = int(holding_item_resource.max_stack)
 
 	return item_stack == item_max_stack
 
 
 ## Refreshes the UI for every storage slot.
 func update_UI() -> void:
-
 	var slots = get_children()
 
 	for slot in slots:
 		slot.update_ui()
-
-
-# ==============================================================================
-# DEBUGGING
-# ==============================================================================
-
-func debug_out() -> void:
-
-	print_inventory_debug(
-		InvCore.DATA
-	)
-
-	print_inventory_debug(
-		source_parent_control.storage_core_data.DATA
-	)
-
-
-func print_inventory_debug(
-	inventory: Dictionary
-) -> void:
-
-	print("\n========== INVENTORY ==========")
-
-	for slot_index in inventory:
-
-		var slot_data = inventory[slot_index]
-
-		print(
-			"Slot %02d | Item: %-45s | Amount: %3d | Enabled: %s"
-			% [
-				slot_index,
-				str(slot_data[0]),
-				slot_data[1],
-				slot_data[2]
-			]
-		)
-
-	print("================================\n")
