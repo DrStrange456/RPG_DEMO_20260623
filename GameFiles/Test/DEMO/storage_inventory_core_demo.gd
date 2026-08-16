@@ -16,6 +16,7 @@ var holding_item
 
 func _ready() -> void:
 	initialize()
+	#_extend_inventory()
 
 
 
@@ -72,11 +73,11 @@ func _reset_inventory():
 ## Extend Inventory
 func set_inventory_size_data(amount: int) -> void:
 	#var current_size := INVENTORY.size()
-	var current_size := InvCore.DATA.size()
+	var current_size := pInv.size()
 
 	for i in range(current_size, amount):
 		#INVENTORY[i] = [null, 0, true]
-		InvCore.INVENTORY[i] = [null, 0, true]
+		pInv[i] = [null, 0, true]
 
 func set_inventory_size_ui(amount: int) -> void:
 	var current_size := core_inventory_controller.get_child_count()
@@ -233,3 +234,7 @@ func sort_and_combine_inventory_Inv():
 
 func _on_btn_sort_inventory_pressed() -> void:
 	sort_and_combine_inventory_Inv()
+
+
+func _on_btn_extend_inventory_pressed() -> void:
+	_extend_inventory()
