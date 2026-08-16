@@ -249,6 +249,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_iyjyv")
 storage_controller = NodePath("Panel/CoreStorageController")
+number_of_slots = 12
 
 [node name="Panel" type="Panel" parent="INV_AND_STRG/StorageContainerCore_Demo" unique_id=184570807]
 layout_mode = 0

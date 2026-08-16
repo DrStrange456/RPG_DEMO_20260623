@@ -5,6 +5,7 @@ extends DataCore
 var tmpDATA = {
 		0: [null, 0, true],
 		1: [null, 0, true],
+		#1: ["res://resources/seeds_strawberry.tres", 3, true],
 		2: [null, 0, true],
 		3: [null, 0, true],
 		4: [null, 0, true],
