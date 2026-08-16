@@ -76,6 +76,7 @@ func Left_Click_Not_Holding(slot: InvSlotUI):
 			}
 	move_item_to_inventory(context)
 	core_inventory_controller_strg.update_UI()
+	debug_out()
 
 
 
@@ -234,6 +235,37 @@ func update_UI():
 	var slots = get_children()
 	for m in slots:
 		m.update_ui()
+
+
+
+
+
+
+
+
+func debug_out():
+	print_inventory_debug(InvCore.DATA)
+	print_inventory_debug(storage_container_core_demo.storage_core_data.DATA)
+
+
+func print_inventory_debug(inventory: Dictionary) -> void:
+	print("\n========== INVENTORY ==========")
+
+	for index in inventory:
+		var item = inventory[index]
+
+		print(
+			"Slot %02d | Item: %-45s | Amount: %3d | Enabled: %s"
+			% [
+				index,
+				str(item[0]),
+				item[1],
+				item[2]
+			]
+		)
+
+	print("================================\n")
+
 
 
 
