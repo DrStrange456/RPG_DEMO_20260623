@@ -34,13 +34,15 @@ extends gridcontainer_base
 # Storage data controller associated with the source container.
 @onready var storage_inventory = source_parent_control.storage_core_data
 
+# Inventory data controller associated with the destination container.
+@onready var core_inventory = InvCore
 
 # ==============================================================================
 # ITEM HOLDING
 # ==============================================================================
 
 var slot_preview = GmMgr.glSlotPrev
-var holding_item
+#var holding_item
 
 # These variables track the item currently being held.
 var holding_item_resource
@@ -48,21 +50,6 @@ var holding_item_quantity
 
 # Tracks the number of items that could not be transferred.
 var leftover_quantity: int = 0
-
-
-# ==============================================================================
-# PROCESS
-# ==============================================================================
-
-func _process(_delta: float) -> void:
-	if holding_item != null:
-		# Keep the held item positioned underneath the mouse.
-		_update_holding_item_position()
-
-
-func _update_holding_item_position() -> void:
-	holding_item.position = get_local_mouse_position() - Vector2(20, 20)
-
 
 # ==============================================================================
 # SLOT SETUP
@@ -157,7 +144,6 @@ func right_click_not_holding(slot: InvSlotUI):
 		}
 
 		move_just_one_item_to_storage(context)
-
 	destination_controller.update_UI()
 
 
@@ -177,7 +163,7 @@ func move_item_to_inventory(context):
 
 		if transfer_storage_slot_to_inventory(
 			storage_inventory.DATA,
-			InvCore.DATA,
+			core_inventory.DATA,
 			storage_grid.get_children(),
 			storage_slot_index
 		):
@@ -386,7 +372,7 @@ func transfer_single_storage_item_to_container(
 		# ----------------------------------------------------------------------
 
 		# The original code uses InvCore.DATA here.
-		InvCore.DATA[destination_slot.indx][1] = current_quantity
+		core_inventory.DATA[destination_slot.indx][1] = current_quantity
 
 
 		# ----------------------------------------------------------------------
@@ -436,8 +422,8 @@ func transfer_single_storage_item_to_container(
 		# ----------------------------------------------------------------------
 
 		# The original code uses InvCore.DATA here.
-		InvCore.DATA[destination_slot.indx][0] = item.resource_path
-		InvCore.DATA[destination_slot.indx][1] = 1
+		core_inventory.DATA[destination_slot.indx][0] = item.resource_path
+		core_inventory.DATA[destination_slot.indx][1] = 1
 
 
 		# ----------------------------------------------------------------------

@@ -242,12 +242,13 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 11
 
-[node name="StorageContainerCore_Demo" type="Control" parent="INV_AND_STRG" unique_id=1677833018]
+[node name="StorageContainerCore_Demo" type="Control" parent="INV_AND_STRG" unique_id=1677833018 node_paths=PackedStringArray("storage_controller")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_iyjyv")
+storage_controller = NodePath("Panel/CoreStorageController")
 
 [node name="Panel" type="Panel" parent="INV_AND_STRG/StorageContainerCore_Demo" unique_id=184570807]
 layout_mode = 0
