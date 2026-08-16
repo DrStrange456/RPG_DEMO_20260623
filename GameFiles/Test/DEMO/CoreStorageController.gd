@@ -6,12 +6,13 @@ extends GridContainer
 
 
 @export var SRC_Controller: GridContainer
+@export var SRC_ParentControlNode: Control
 @export var DST_Controller: GridContainer
+@export var DST_ParentControlNode: Control
 
-
-@onready var core_inventory_controller_strg: GridContainer = $"../../../StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg"
-@onready var storage_container_core_demo: Control = $"../.."
-@onready var strgInv = storage_container_core_demo.storage_core_data
+#@onready var core_inventory_controller_strg: GridContainer = $"../../../StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg"
+#@onready var storage_container_core_demo: Control = $"../.."
+@onready var strgInv = SRC_ParentControlNode.storage_core_data
 
 
 
@@ -58,7 +59,7 @@ func pick_all_from_slot(_event: InputEvent, slot: InvSlotUI):
 
 ## RIGHT CLICK
 func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
-	strgInv = storage_container_core_demo.storage_core_data
+	strgInv = SRC_ParentControlNode.storage_core_data
 	if !strgInv._isSlot_Empty(slot):
 		if holding_item == null:  # Holding Item with Mouse
 			Right_Click_Not_Holding(slot)
@@ -69,12 +70,11 @@ func pick_just_one_from_slot(_event: InputEvent, slot: InvSlotUI):
 func Left_Click_Not_Holding(slot: InvSlotUI):
 	var context = {
 				"source": self,
-				"container": core_inventory_controller_strg,
+				"container": DST_Controller,
 				"slot_index": slot.indx
 			}
 	move_item_to_inventory(context)
-	core_inventory_controller_strg.update_UI()
-	debug_out()
+	DST_Controller.update_UI()
 
 
 ## - Handle Right Clicks
@@ -85,12 +85,11 @@ func Right_Click_Not_Holding(slot: InvSlotUI):
 	else:  # slot qty > 1
 		var context = {
 				"source": self,
-				"container": core_inventory_controller_strg,
+				"container": DST_Controller,
 				"slot_index": slot.indx
 			}
 		move_just_one_item_to_storage(context)
-	core_inventory_controller_strg.update_UI()
-	debug_out()
+	DST_Controller.update_UI()
 
 
 ### STRG to INV
@@ -99,7 +98,7 @@ func move_item_to_inventory(ctx):
 	var gcGRID_INV = ctx.source
 	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index
-	strgInv = storage_container_core_demo.storage_core_data
+	strgInv = SRC_ParentControlNode.storage_core_data
 	if !strgInv._isSlot_Empty_At(intSlotIndex):
 		if transfer_storage_slot_to_inventory(
 			strgInv.DATA,
@@ -189,19 +188,17 @@ func _return_what_didnt_fit(gcGRID_INV: GridContainer,intSlotIndex: int):
 
 ## STRG to INV
 func move_just_one_item_to_storage(ctx):
-	var gcGRID_STRG = ctx.container
 	var intSlotIndex = ctx.slot_index
 	if !strgInv._isSlot_Empty_At(intSlotIndex):
 		if transfer_single_storage_item_to_container(
 			strgInv.DATA,
-			storage_container_core_demo.storage_core_data.DATA,
+			SRC_ParentControlNode.storage_core_data.DATA,
 			DST_Controller.get_children(),
 			intSlotIndex,
 			self):
 			
 			strgInv._updateItem_MinusOne(intSlotIndex)
 		leftover_delta = 0
-
 
 func transfer_single_storage_item_to_container(
 	inventory: Dictionary,
@@ -339,8 +336,7 @@ func update_UI():
 
 func debug_out():
 	print_inventory_debug(InvCore.DATA)
-	print_inventory_debug(storage_container_core_demo.storage_core_data.DATA)
-
+	print_inventory_debug(SRC_ParentControlNode.storage_core_data.DATA)
 
 func print_inventory_debug(inventory: Dictionary) -> void:
 	print("\n========== INVENTORY ==========")
