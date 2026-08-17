@@ -3,6 +3,7 @@ extends Control
 # InventoryCore_Demo.gd
 # inventory links verified
 
+@export var number_of_slots: int = 12
 
 var new_slot = preload("res://Inventory/inventory_slot_ui.tscn")
 
@@ -25,7 +26,7 @@ func initialize():
 	_load_slots_from_save(core_inventory_controller)
 
 func _load_slots_from_save(slots: GridContainer):
-	inventory.resize(12)
+	inventory.resize(pInv.size())
 	for i in inventory.size():
 		inventory[i] = OptiInventorySlot.new()
 	
@@ -111,7 +112,7 @@ func _reset_dictionary_core_data():
 		11: [null, 0, true],
 	}
 	
-	var pINV = InvCore.INVENTORY
+	var pINV = InvCore.DATA
 	# * Local
 	#INVENTORY.clear()
 	#for i in INVENTORY_ORIGINAL:
@@ -238,3 +239,7 @@ func _on_btn_sort_inventory_pressed() -> void:
 
 func _on_btn_extend_inventory_pressed() -> void:
 	_extend_inventory()
+
+
+func _on_btn_reset_inventory_pressed() -> void:
+	_reset_inventory()

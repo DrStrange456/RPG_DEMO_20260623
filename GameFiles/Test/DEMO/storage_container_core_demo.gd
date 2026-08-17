@@ -11,6 +11,7 @@ extends Control
 @onready var storage_core_data = storage_data_core.new()
 @onready var core_inventory: Dictionary = storage_core_data.DATA
 
+var new_slot = preload("res://Inventory/inventory_slot_ui.tscn")
 
 # ==============================================================================
 # INVENTORY
@@ -49,7 +50,7 @@ func _load_slots_from_save(slots: GridContainer) -> void:
 # ==============================================================================
 
 func _create_inventory_slots() -> void:
-	inventory.resize(number_of_slots)
+	inventory.resize(core_inventory.size())
 
 	for index in inventory.size():
 		inventory[index] = OptiInventorySlot.new()
@@ -105,6 +106,108 @@ func _bind_inventory_to_ui(slots: GridContainer) -> void:
 
 
 
+func _extend_inventory():
+	set_storage_size_data(20)
+	set_storage_size_ui(20)
+
+func _reset_inventory():
+	_reset_dictionary_core_data()
+	_reset_inventory_ui(12)
+
+
+
+
+## Reset Inventory
+func _reset_dictionary_core_data():
+	const INVENTORY_ORIGINAL: Dictionary = {
+		0: [null, 0, true],
+		1: [null, 0, true],
+		2: [null, 0, true],
+		3: [null, 0, true],
+		4: [null, 0, true],
+		5: [null, 0, true],
+		6: [null, 0, true],
+		7: [null, 0, true],
+		8: [null, 0, true],
+		9: [null, 0, true],
+		10: [null, 0, true],
+		11: [null, 0, true],
+	}
+	
+	var pINV = core_inventory
+	# * Local
+	#INVENTORY.clear()
+	#for i in INVENTORY_ORIGINAL:
+	#	INVENTORY[i] = INVENTORY_ORIGINAL[i].duplicate()
+	# * Global
+	pINV.clear()
+	for i in INVENTORY_ORIGINAL:
+		pINV[i] = INVENTORY_ORIGINAL[i].duplicate()
+	
+	# * UI
+	for i in range(INVENTORY_ORIGINAL.size()):
+		storage_controller.get_child(i).update_ui()
+
+func _reset_inventory_size(amount: int) -> void:
+	# Data
+	#for i in range(INVENTORY.size() - 1, amount - 1, -1):
+	#	INVENTORY.erase(i)
+	for i in range(InvCore.INVENTORY.size() - 1, amount - 1, -1):
+		InvCore.INVENTORY.erase(i)
+	# UI
+	for i in range(storage_controller.get_child_count() - 1, amount - 1, -1):
+		storage_controller.get_child(i).free()
+
+func _reset_inventory_ui(amount: int) -> void:
+	# Remove slots above the desired size
+	for i in range(storage_controller.get_child_count() - 1, amount - 1, -1):
+		storage_controller.get_child(i).free()
+
+	# Reset existing slots
+	var current_size := storage_controller.get_child_count()
+
+	for i in range(current_size):
+		var ui_slot = storage_controller.get_child(i)
+		ui_slot.indx = i
+		ui_slot._reset_slot()
+		ui_slot.slot = OptiInventorySlot.new()
+
+	# Add missing slots
+	for i in range(current_size, amount):
+		var new_slot_instance = new_slot.instantiate()
+		new_slot_instance.indx = i
+		new_slot_instance.custom_minimum_size = Vector2(40, 40)
+		new_slot_instance._reset_slot()
+		new_slot_instance.slot = OptiInventorySlot.new()
+
+		storage_controller.add_child(new_slot_instance)
+
+	# Rebuild/refresh the inventory UI
+	initialize()
+
+
+## Extend Inventory
+func set_storage_size_data(amount: int) -> void:
+	#var current_size := INVENTORY.size()
+	var current_size := core_inventory.size()
+
+	for i in range(current_size, amount):
+		#INVENTORY[i] = [null, 0, true]
+		core_inventory[i] = [null, 0, true]
+
+func set_storage_size_ui(amount: int) -> void:
+	var current_size := storage_controller.get_child_count()
+
+	for i in range(current_size, amount):
+		var new_slot_instance = new_slot.instantiate()
+		new_slot_instance.indx = i
+		new_slot_instance.custom_minimum_size = Vector2(40, 40)
+		new_slot_instance._reset_slot()
+		new_slot_instance.slot = OptiInventorySlot.new()
+		
+		storage_controller.add_child(new_slot_instance)
+
+	initialize()
 
 
 ## Sort and Combine
@@ -169,4 +272,8 @@ func _on_btn_sort_storage_pressed() -> void:
 
 
 func _on_btn_extend_storage_pressed() -> void:
-	pass # Replace with function body.
+	_extend_inventory()
+
+
+func _on_btn_reset_storage_pressed() -> void:
+	_reset_inventory()

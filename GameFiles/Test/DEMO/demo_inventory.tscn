@@ -357,6 +357,13 @@ offset_right = 246.0
 offset_bottom = 386.0
 text = "Extend"
 
+[node name="btn_Reset_Storage" type="Button" parent="INV_AND_STRG/Buttons" unique_id=2032542832]
+offset_left = 258.0
+offset_top = 353.0
+offset_right = 320.0
+offset_bottom = 386.0
+text = "Reset"
+
 [node name="btnSort_Inventory" type="Button" parent="INV_AND_STRG/Buttons" unique_id=1004245733]
 offset_left = 438.0
 offset_top = 359.0
@@ -370,6 +377,14 @@ offset_top = 358.0
 offset_right = 556.0
 offset_bottom = 389.0
 text = "Extend
+"
+
+[node name="btn_Reset_Inventory" type="Button" parent="INV_AND_STRG/Buttons" unique_id=2128094808]
+offset_left = 577.0
+offset_top = 357.0
+offset_right = 639.0
+offset_bottom = 388.0
+text = "Reset
 "
 
 [node name="btnINVENTORY_ONLY" type="Button" parent="." unique_id=576094498]
@@ -392,7 +407,9 @@ text = "Inv & Strg"
 [connection signal="pressed" from="INV/buttons/btnReset" to="." method="_on_btn_reset_pressed"]
 [connection signal="pressed" from="INV_AND_STRG/Buttons/btnSort_Storage" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_sort_storage_pressed"]
 [connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Extend_Storage" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_extend_storage_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Reset_Storage" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_reset_storage_pressed"]
 [connection signal="pressed" from="INV_AND_STRG/Buttons/btnSort_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_sort_inventory_pressed"]
 [connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Extend_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_extend_inventory_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Reset_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_reset_inventory_pressed"]
 [connection signal="pressed" from="btnINVENTORY_ONLY" to="." method="_on_btn_inventory_only_pressed"]
 [connection signal="pressed" from="btnINVENTORY_AND_STORAGE" to="." method="_on_btn_inventory_and_storage_pressed"]
