@@ -560,7 +560,7 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 
 				quantity -= add_amount
 
-				_save_both_contents_special()
+				#_save_both_contents_special()
 				
 				if quantity <= 0:
 					return 0
@@ -577,7 +577,7 @@ func try_add_item_to_container(container: Array, item_name: String, quantity: in
 
 			quantity -= stack_size
 
-			_save_both_contents_special()
+			#_save_both_contents_special()
 			
 			if quantity <= 0:
 				return 0

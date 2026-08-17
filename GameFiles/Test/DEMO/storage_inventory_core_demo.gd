@@ -8,7 +8,10 @@ extends Control
 var new_slot = preload("res://Inventory/inventory_slot_ui.tscn")
 
 @onready var core_inventory_controller: GridContainer = $Panel/CoreInventoryController_Strg
+@onready var core_storage_controller: gridcontainer_base = $"../StorageContainerCore_Demo/Panel/CoreStorageController"
 @onready var pInv: Dictionary = InvCore.DATA
+
+
 
 var inventory : Array[OptiInventorySlot] = []
 var holding_item
@@ -227,6 +230,13 @@ func sort_and_combine_inventory_Inv():
 	initialize()
 
 
+### - Transfer All Items to Storage
+func moveAll_toStorage():
+	for M in core_inventory_controller.get_children():
+		core_inventory_controller.left_click_not_holding(M)
+
+
+
 
 
 
@@ -243,3 +253,13 @@ func _on_btn_extend_inventory_pressed() -> void:
 
 func _on_btn_reset_inventory_pressed() -> void:
 	_reset_inventory()
+
+
+func _on_btn_move_all_to_storage_pressed() -> void:
+	moveAll_toStorage()
+
+
+
+
+
+# Bottom
