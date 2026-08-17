@@ -9,6 +9,7 @@ var new_slot = preload("res://Inventory/inventory_slot_ui.tscn")
 
 @onready var core_inventory_controller: GridContainer = $Panel/CoreInventoryController_Strg
 @onready var core_storage_controller: gridcontainer_base = $"../StorageContainerCore_Demo/Panel/CoreStorageController"
+@onready var storage_container_core_demo: Control = $"../StorageContainerCore_Demo"
 @onready var pInv: Dictionary = InvCore.DATA
 
 
@@ -230,10 +231,293 @@ func sort_and_combine_inventory_Inv():
 	initialize()
 
 
-### - Transfer All Items to Storage
+## - Transfer All Items to Storage
 func moveAll_toStorage():
 	for M in core_inventory_controller.get_children():
 		core_inventory_controller.left_click_not_holding(M)
+
+
+## - Transfer similar items to storage
+func collect_similar_to_chest(
+	storage_slots: Array,
+	inventory: Dictionary,
+	storage: Dictionary
+) -> void:
+
+	# ---------------------------------------------------------
+	# Determine which items already exist in storage
+	# ---------------------------------------------------------
+	var storage_item_types: Array[String] = []
+
+	for key in storage.keys():
+
+		if storage[key][0] == null:
+			continue
+
+		var item_path: String = storage[key][0]
+
+		if not storage_item_types.has(item_path):
+			storage_item_types.append(item_path)
+
+
+	# ---------------------------------------------------------
+	# Process each item type
+	# ---------------------------------------------------------
+	for item_path in storage_item_types:
+
+		var item_res = load(item_path)
+		var max_stack: int = item_res.max_stack
+
+
+		# =====================================================
+		# PASS 1
+		# Fill existing storage stacks
+		# =====================================================
+		for storage_key in storage.keys():
+
+			if storage[storage_key][0] != item_path:
+				continue
+
+			var space: int = (
+				max_stack -
+				int(storage[storage_key][1])
+			)
+
+			if space <= 0:
+				continue
+
+
+			for inventory_key in inventory.keys():
+
+				if inventory[inventory_key][0] != item_path:
+					continue
+
+				var inv_quantity: int = int(
+					inventory[inventory_key][1]
+				)
+
+				if inv_quantity <= 0:
+					continue
+
+
+				var transfer: int = min(
+					space,
+					inv_quantity
+				)
+
+
+				# ================================
+				# DATA
+				# ================================
+				storage[storage_key][1] += transfer
+
+				inventory[inventory_key][1] -= transfer
+
+
+				# ================================
+				# UI
+				# ================================
+				var ui_slot = storage_slots[storage_key]
+
+				ui_slot.slot.set_quantity(
+					storage[storage_key][1]
+				)
+
+
+				# Empty inventory slot
+				if inventory[inventory_key][1] <= 0:
+					inventory[inventory_key] = [
+						null,
+						0,
+						true
+					]
+
+
+				space -= transfer
+
+				if space <= 0:
+					break
+
+
+		# =====================================================
+		# PASS 2
+		# Fill empty storage slots
+		# =====================================================
+		for storage_key in storage.keys():
+
+			if storage[storage_key][0] != null:
+				continue
+
+
+			for inventory_key in inventory.keys():
+
+				if inventory[inventory_key][0] != item_path:
+					continue
+
+				var inv_quantity: int = int(
+					inventory[inventory_key][1]
+				)
+
+				if inv_quantity <= 0:
+					continue
+
+
+				var transfer: int = min(
+					max_stack,
+					inv_quantity
+				)
+
+
+				# ================================
+				# DATA
+				# ================================
+				storage[storage_key] = [
+					item_path,
+					transfer,
+					true
+				]
+
+				inventory[inventory_key][1] -= transfer
+
+
+				# ================================
+				# UI
+				# ================================
+				var ui_slot = storage_slots[storage_key]
+
+				ui_slot.slot.set_item(item_res)
+				ui_slot.slot.set_quantity(transfer)
+
+
+				# Empty inventory slot
+				if inventory[inventory_key][1] <= 0:
+					inventory[inventory_key] = [
+						null,
+						0,
+						true
+					]
+
+				break
+#func collect_similar_to_chest(storage_slots: Array, inventory: Dictionary) -> void:
+#
+	## ---------------------------------------------------------
+	## Get all item types that already exist in storage
+	## ---------------------------------------------------------
+	#var storage_item_types: Array[String] = []
+#
+	#for chest_slot in storage_slots:
+#
+		#if chest_slot.slot.item == null:
+			#continue
+#
+		#var item_path: String = chest_slot.slot.item.resource_path
+#
+		#if not storage_item_types.has(item_path):
+			#storage_item_types.append(item_path)
+#
+#
+	## ---------------------------------------------------------
+	## Process each item type that exists in storage
+	## ---------------------------------------------------------
+	#for item_path in storage_item_types:
+#
+		#var item_res = load(item_path)
+		#var max_stack: int = item_res.max_stack
+#
+#
+		## =====================================================
+		## PASS 1
+		## Fill existing stacks in storage
+		## =====================================================
+		#for chest_slot in storage_slots:
+#
+			#if chest_slot.slot.item == null:
+				#continue
+#
+			#if chest_slot.slot.item.resource_path != item_path:
+				#continue
+#
+			#var space: int = max_stack - chest_slot.slot.quantity
+#
+			#if space <= 0:
+				#continue
+#
+#
+			## Look through inventory for matching item
+			#for key in inventory.keys():
+#
+				#var inv_slot = inventory[key]
+#
+				#if inv_slot[0] != item_path:
+					#continue
+#
+				#var inv_quantity: int = int(inv_slot[1])
+#
+				#if inv_quantity <= 0:
+					#continue
+#
+#
+				## Determine how much can be moved
+				#var transfer: int = min(space, inv_quantity)
+#
+				#chest_slot.slot.set_quantity(
+					#chest_slot.slot.quantity + transfer
+				#)
+#
+				#inventory[key][1] = inv_quantity - transfer
+#
+				#space -= transfer
+#
+#
+				## Empty inventory slot if everything was transferred
+				#if inventory[key][1] <= 0:
+					#inventory[key] = [null, 0, true]
+#
+#
+				## Storage stack is full
+				#if space <= 0:
+					#break
+#
+#
+		## =====================================================
+		## PASS 2
+		## Put remaining matching items into empty storage slots
+		## =====================================================
+		#for chest_slot in storage_slots:
+#
+			#if chest_slot.slot.item != null:
+				#continue
+#
+#
+			## Find a matching inventory item
+			#for key in inventory.keys():
+#
+				#var inv_slot = inventory[key]
+#
+				#if inv_slot[0] != item_path:
+					#continue
+#
+				#var inv_quantity: int = int(inv_slot[1])
+#
+				#if inv_quantity <= 0:
+					#continue
+#
+#
+				## Fill the empty storage slot
+				#var transfer: int = min(max_stack, inv_quantity)
+#
+				#chest_slot.slot.set_item(item_res)
+				#chest_slot.slot.set_quantity(transfer)
+#
+				#inventory[key][1] = inv_quantity - transfer
+#
+#
+				## Empty inventory slot if everything was transferred
+				#if inventory[key][1] <= 0:
+					#inventory[key] = [null, 0, true]
+#
+				#break
+
 
 
 
@@ -256,7 +540,9 @@ func _on_btn_reset_inventory_pressed() -> void:
 
 
 func _on_btn_move_all_to_storage_pressed() -> void:
-	moveAll_toStorage()
+	#moveAll_toStorage()  # Works
+	collect_similar_to_chest(core_storage_controller.get_children(),InvCore.DATA,storage_container_core_demo.storage_core_data.DATA)
+	initialize()
 
 
 
