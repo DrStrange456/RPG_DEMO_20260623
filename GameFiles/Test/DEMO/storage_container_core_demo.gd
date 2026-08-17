@@ -10,6 +10,9 @@ extends Control
 
 @onready var storage_core_data = storage_data_core.new()
 @onready var core_inventory: Dictionary = storage_core_data.DATA
+@onready var core_storage_controller: gridcontainer_base = $Panel/CoreStorageController
+@onready var core_inventory_controller_strg: GridContainer = $"../StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg"
+
 
 var new_slot = preload("res://Inventory/inventory_slot_ui.tscn")
 
@@ -267,6 +270,179 @@ func sort_and_combine_inventory_Inv():
 
 
 
+## - Transfer All Items to Inventory
+func moveAll_toInventory():
+	for M in core_storage_controller.get_children():
+		core_storage_controller.left_click_not_holding(M)
+
+
+## - Transfer similar items to inv
+func collect_similar_to_chest(
+	inventory_slots: Array,
+	inv_val: Dictionary,
+	inv: Dictionary
+) -> void:
+
+	# ---------------------------------------------------------
+	# Determine which items already exist in inv
+	# ---------------------------------------------------------
+	var inv_item_types: Array[String] = []
+
+	for key in inv.keys():
+
+		if inv[key][0] == null:
+			continue
+
+		var item_path: String = inv[key][0]
+
+		if not inv_item_types.has(item_path):
+			inv_item_types.append(item_path)
+
+
+	# ---------------------------------------------------------
+	# Process each item type
+	# ---------------------------------------------------------
+	for item_path in inv_item_types:
+
+		var item_res = load(item_path)
+		var max_stack: int = item_res.max_stack
+
+
+		# =====================================================
+		# PASS 1
+		# Fill existing inv stacks
+		# =====================================================
+		for inv_key in inv.keys():
+
+			if inv[inv_key][0] != item_path:
+				continue
+
+			var space: int = (
+				max_stack -
+				int(inv[inv_key][1])
+			)
+
+			if space <= 0:
+				continue
+
+
+			for inventory_key in inv_val.keys():
+
+				if inv_val[inventory_key][0] != item_path:
+					continue
+
+				var inv_quantity: int = int(
+					inv_val[inventory_key][1]
+				)
+
+				if inv_quantity <= 0:
+					continue
+
+
+				var transfer: int = min(
+					space,
+					inv_quantity
+				)
+
+
+				# ================================
+				# DATA
+				# ================================
+				inv[inv_key][1] += transfer
+
+				inv_val[inventory_key][1] -= transfer
+
+
+				# ================================
+				# UI
+				# ================================
+				var ui_slot = inventory_slots[inv_key]
+
+				ui_slot.slot.set_quantity(
+					inv[inv_key][1]
+				)
+
+
+				# Empty inventory slot
+				if inv_val[inventory_key][1] <= 0:
+					inv_val[inventory_key] = [
+						null,
+						0,
+						true
+					]
+
+
+				space -= transfer
+
+				if space <= 0:
+					break
+
+
+		# =====================================================
+		# PASS 2
+		# Fill empty inv slots
+		# =====================================================
+		for inv_key in inv.keys():
+
+			if inv[inv_key][0] != null:
+				continue
+
+
+			for inventory_key in inv_val.keys():
+
+				if inv_val[inventory_key][0] != item_path:
+					continue
+
+				var inv_quantity: int = int(
+					inv_val[inventory_key][1]
+				)
+
+				if inv_quantity <= 0:
+					continue
+
+
+				var transfer: int = min(
+					max_stack,
+					inv_quantity
+				)
+
+
+				# ================================
+				# DATA
+				# ================================
+				inv[inv_key] = [
+					item_path,
+					transfer,
+					true
+				]
+
+				inv_val[inventory_key][1] -= transfer
+
+
+				# ================================
+				# UI
+				# ================================
+				var ui_slot = inventory_slots[inv_key]
+
+				ui_slot.slot.set_item(item_res)
+				ui_slot.slot.set_quantity(transfer)
+
+
+				# Empty inventory slot
+				if inv_val[inventory_key][1] <= 0:
+					inv_val[inventory_key] = [
+						null,
+						0,
+						true
+					]
+
+				break
+
+
+
+
+
+
 func _on_btn_sort_storage_pressed() -> void:
 	sort_and_combine_inventory_Inv()
 
@@ -277,3 +453,16 @@ func _on_btn_extend_storage_pressed() -> void:
 
 func _on_btn_reset_storage_pressed() -> void:
 	_reset_inventory()
+
+
+func _on_btn_move_all_to_inventory_pressed() -> void:
+	moveAll_toInventory()
+	initialize()
+
+
+func _on_btn_move_like_to_inventory_pressed() -> void:
+	collect_similar_to_chest(
+		core_inventory_controller_strg.get_children(),
+		storage_core_data.DATA,
+		InvCore.DATA)
+	initialize()

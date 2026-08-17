@@ -321,7 +321,7 @@ func move_just_one_item_to_storage(context):
 
 func transfer_single_storage_item_to_container(
 	inventory: Dictionary,
-	storage,
+	_storage,
 	container: Array,
 	slot_index: int,
 	inventory_grid: GridContainer

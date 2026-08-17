@@ -388,11 +388,32 @@ text = "Reset
 "
 
 [node name="btn_MoveAll_toStorage" type="Button" parent="INV_AND_STRG/Buttons" unique_id=692894224]
-offset_left = 354.0
-offset_top = 161.0
-offset_right = 409.0
-offset_bottom = 182.0
+offset_left = 354.5
+offset_top = 93.0
+offset_right = 409.5
+offset_bottom = 124.0
 text = "<-- All"
+
+[node name="btn_MoveLike_toStorage" type="Button" parent="INV_AND_STRG/Buttons" unique_id=392029641]
+offset_left = 350.0
+offset_top = 130.0
+offset_right = 414.0
+offset_bottom = 161.0
+text = "<-- Like"
+
+[node name="btn_MoveAll_toInventory" type="Button" parent="INV_AND_STRG/Buttons" unique_id=1794353737]
+offset_left = 354.0
+offset_top = 305.0
+offset_right = 410.0
+offset_bottom = 336.0
+text = " All -->"
+
+[node name="btn_MoveLike_toInventory" type="Button" parent="INV_AND_STRG/Buttons" unique_id=827043228]
+offset_left = 348.0
+offset_top = 268.0
+offset_right = 416.0
+offset_bottom = 299.0
+text = " Like -->"
 
 [node name="btnINVENTORY_ONLY" type="Button" parent="." unique_id=576094498]
 offset_left = 13.0
@@ -419,5 +440,8 @@ text = "Inv & Strg"
 [connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Extend_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_extend_inventory_pressed"]
 [connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Reset_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_reset_inventory_pressed"]
 [connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveAll_toStorage" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_move_all_to_storage_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveLike_toStorage" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_move_like_to_storage_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveAll_toInventory" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_move_all_to_inventory_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveLike_toInventory" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_move_like_to_inventory_pressed"]
 [connection signal="pressed" from="btnINVENTORY_ONLY" to="." method="_on_btn_inventory_only_pressed"]
 [connection signal="pressed" from="btnINVENTORY_AND_STORAGE" to="." method="_on_btn_inventory_and_storage_pressed"]
