@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bq6y5tkdcdrb6"]
 
-[ext_resource type="Script" uid="uid://ct33s3411wpi2" path="res://Test/DEMO/demo_inventory.gd" id="1_joxkd"]
+[ext_resource type="Script" uid="uid://ct33s3411wpi2" path="res://Storage/Scripts/demo_inventory.gd" id="1_joxkd"]
 [ext_resource type="PackedScene" uid="uid://lt04e7ajlebf" path="res://Inventory/inventory_slot_ui.tscn" id="2_e4kdm"]
-[ext_resource type="Script" uid="uid://73byibi34dtj" path="res://Test/DEMO/inventory_core_demo.gd" id="5_ht2vm"]
-[ext_resource type="Script" uid="uid://c80gl7sw1e2ao" path="res://Test/DEMO/storage_inventory_core_demo.gd" id="5_iyjyv"]
-[ext_resource type="Script" uid="uid://dnk2kr6iav36f" path="res://Test/DEMO/CoreInventoryController_Strg.gd" id="6_djso2"]
-[ext_resource type="Script" uid="uid://cutq4ehqp54po" path="res://Test/DEMO/core_inventory_controller.gd" id="6_iyjyv"]
-[ext_resource type="Script" uid="uid://b8fw10n2updeg" path="res://Test/DEMO/storage_container_core_demo.gd" id="7_iyjyv"]
-[ext_resource type="Script" uid="uid://dhfkwoib3lgly" path="res://Test/DEMO/CoreStorageController.gd" id="8_djso2"]
+[ext_resource type="Script" uid="uid://73byibi34dtj" path="res://Storage/Scripts/inventory_core_demo.gd" id="5_ht2vm"]
+[ext_resource type="Script" uid="uid://c80gl7sw1e2ao" path="res://Storage/Scripts/storage_inventory_core_demo.gd" id="5_iyjyv"]
+[ext_resource type="Script" uid="uid://dnk2kr6iav36f" path="res://Storage/Scripts/CoreInventoryController_Strg.gd" id="6_djso2"]
+[ext_resource type="Script" uid="uid://cutq4ehqp54po" path="res://Storage/Scripts/core_inventory_controller.gd" id="6_iyjyv"]
+[ext_resource type="Script" uid="uid://b8fw10n2updeg" path="res://Storage/Scripts/storage_container_core_demo.gd" id="7_iyjyv"]
+[ext_resource type="Script" uid="uid://dhfkwoib3lgly" path="res://Storage/Scripts/CoreStorageController.gd" id="8_djso2"]
 
 [node name="Demo_Inventory" type="Node2D" unique_id=698582733]
 script = ExtResource("1_joxkd")
@@ -146,21 +146,22 @@ text = "RESET"
 [node name="INV_AND_STRG" type="Node2D" parent="." unique_id=1817869594]
 y_sort_enabled = true
 
-[node name="StorageInventoryCore_Demo" type="Control" parent="INV_AND_STRG" unique_id=1652321211]
+[node name="Storage_InventoryControl" type="Control" parent="INV_AND_STRG" unique_id=1652321211 node_paths=PackedStringArray("inventory_controller")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_iyjyv")
+inventory_controller = NodePath("Panel/Storage_CoreInventoryController")
 
-[node name="Panel" type="Panel" parent="INV_AND_STRG/StorageInventoryCore_Demo" unique_id=757576686]
+[node name="Panel" type="Panel" parent="INV_AND_STRG/Storage_InventoryControl" unique_id=757576686]
 layout_mode = 0
 offset_left = 428.0
 offset_top = 91.0
 offset_right = 650.0
 offset_bottom = 345.0
 
-[node name="CoreInventoryController_Strg" type="GridContainer" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel" unique_id=1524381757 node_paths=PackedStringArray("source_controller", "destination_controller")]
+[node name="Storage_CoreInventoryController" type="GridContainer" parent="INV_AND_STRG/Storage_InventoryControl/Panel" unique_id=1524381757 node_paths=PackedStringArray("source_controller", "destination_controller")]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 20.0
@@ -169,96 +170,96 @@ offset_bottom = 148.0
 columns = 4
 script = ExtResource("6_djso2")
 source_controller = NodePath(".")
-destination_controller = NodePath("../../../StorageContainerCore_Demo/Panel/CoreStorageController")
+destination_controller = NodePath("../../../Storage_StorageControl/Panel/Storage_CoreStorageController")
 
-[node name="InventorySlotUI" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=1461161103 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1461161103 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="InventorySlotUI2" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=1830558907 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI2" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1830558907 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 1
 
-[node name="InventorySlotUI3" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=1115218209 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI3" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1115218209 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 2
 
-[node name="InventorySlotUI4" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=626240168 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI4" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=626240168 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 3
 
-[node name="InventorySlotUI5" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=474062627 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI5" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=474062627 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 4
 
-[node name="InventorySlotUI6" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=34958307 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI6" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=34958307 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 5
 
-[node name="InventorySlotUI7" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=1812782084 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI7" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1812782084 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 6
 
-[node name="InventorySlotUI8" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=728043192 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI8" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=728043192 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 7
 
-[node name="InventorySlotUI9" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=673440938 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI9" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=673440938 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 8
 
-[node name="InventorySlotUI10" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=248268404 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI10" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=248268404 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 9
 
-[node name="InventorySlotUI11" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=1261674739 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI11" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1261674739 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 10
 
-[node name="InventorySlotUI12" parent="INV_AND_STRG/StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg" unique_id=628842040 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI12" parent="INV_AND_STRG/Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=628842040 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 11
 
-[node name="StorageContainerCore_Demo" type="Control" parent="INV_AND_STRG" unique_id=1677833018 node_paths=PackedStringArray("storage_controller")]
+[node name="Storage_StorageControl" type="Control" parent="INV_AND_STRG" unique_id=1677833018 node_paths=PackedStringArray("storage_controller")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_iyjyv")
-storage_controller = NodePath("Panel/CoreStorageController")
+storage_controller = NodePath("Panel/Storage_CoreStorageController")
 number_of_slots = 12
 
-[node name="Panel" type="Panel" parent="INV_AND_STRG/StorageContainerCore_Demo" unique_id=184570807]
+[node name="Panel" type="Panel" parent="INV_AND_STRG/Storage_StorageControl" unique_id=184570807]
 layout_mode = 0
 offset_left = 115.0
 offset_top = 91.0
 offset_right = 335.0
 offset_bottom = 344.0
 
-[node name="CoreStorageController" type="GridContainer" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel" unique_id=1663839987 node_paths=PackedStringArray("source_controller", "source_parent_control", "destination_controller")]
+[node name="Storage_CoreStorageController" type="GridContainer" parent="INV_AND_STRG/Storage_StorageControl/Panel" unique_id=1663839987 node_paths=PackedStringArray("source_controller", "source_parent_control", "destination_controller")]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 20.0
@@ -268,74 +269,74 @@ columns = 4
 script = ExtResource("8_djso2")
 source_controller = NodePath(".")
 source_parent_control = NodePath("../..")
-destination_controller = NodePath("../../../StorageInventoryCore_Demo/Panel/CoreInventoryController_Strg")
+destination_controller = NodePath("../../../Storage_InventoryControl/Panel/Storage_CoreInventoryController")
 
-[node name="InventorySlotUI" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=830912392 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=830912392 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="InventorySlotUI2" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=29196094 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI2" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=29196094 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 1
 
-[node name="InventorySlotUI3" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=1986599810 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI3" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1986599810 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 2
 
-[node name="InventorySlotUI4" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=1079768273 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI4" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1079768273 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 3
 
-[node name="InventorySlotUI5" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=470838976 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI5" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=470838976 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 4
 
-[node name="InventorySlotUI6" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=1471942768 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI6" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1471942768 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 5
 
-[node name="InventorySlotUI7" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=1364659919 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI7" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1364659919 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 6
 
-[node name="InventorySlotUI8" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=2092725733 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI8" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=2092725733 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 7
 
-[node name="InventorySlotUI9" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=2122303636 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI9" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=2122303636 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 8
 
-[node name="InventorySlotUI10" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=2098030597 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI10" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=2098030597 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 9
 
-[node name="InventorySlotUI11" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=2105363127 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI11" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=2105363127 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 10
 
-[node name="InventorySlotUI12" parent="INV_AND_STRG/StorageContainerCore_Demo/Panel/CoreStorageController" unique_id=2043585652 instance=ExtResource("2_e4kdm")]
+[node name="InventorySlotUI12" parent="INV_AND_STRG/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=2043585652 instance=ExtResource("2_e4kdm")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -433,15 +434,15 @@ text = "Inv & Strg"
 [connection signal="pressed" from="INV/buttons/btnExtendInventory" to="." method="_on_btn_extend_inventory_pressed"]
 [connection signal="pressed" from="INV/buttons/btnSortAndCombine" to="." method="_on_btn_sort_and_combine_pressed"]
 [connection signal="pressed" from="INV/buttons/btnReset" to="." method="_on_btn_reset_pressed"]
-[connection signal="pressed" from="INV_AND_STRG/Buttons/btnSort_Storage" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_sort_storage_pressed"]
-[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Extend_Storage" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_extend_storage_pressed"]
-[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Reset_Storage" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_reset_storage_pressed"]
-[connection signal="pressed" from="INV_AND_STRG/Buttons/btnSort_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_sort_inventory_pressed"]
-[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Extend_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_extend_inventory_pressed"]
-[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Reset_Inventory" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_reset_inventory_pressed"]
-[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveAll_toStorage" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_move_all_to_storage_pressed"]
-[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveLike_toStorage" to="INV_AND_STRG/StorageInventoryCore_Demo" method="_on_btn_move_like_to_storage_pressed"]
-[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveAll_toInventory" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_move_all_to_inventory_pressed"]
-[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveLike_toInventory" to="INV_AND_STRG/StorageContainerCore_Demo" method="_on_btn_move_like_to_inventory_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btnSort_Storage" to="INV_AND_STRG/Storage_StorageControl" method="_on_btn_sort_storage_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Extend_Storage" to="INV_AND_STRG/Storage_StorageControl" method="_on_btn_extend_storage_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Reset_Storage" to="INV_AND_STRG/Storage_StorageControl" method="_on_btn_reset_storage_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btnSort_Inventory" to="INV_AND_STRG/Storage_InventoryControl" method="_on_btn_sort_inventory_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Extend_Inventory" to="INV_AND_STRG/Storage_InventoryControl" method="_on_btn_extend_inventory_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_Reset_Inventory" to="INV_AND_STRG/Storage_InventoryControl" method="_on_btn_reset_inventory_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveAll_toStorage" to="INV_AND_STRG/Storage_InventoryControl" method="_on_btn_move_all_to_storage_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveLike_toStorage" to="INV_AND_STRG/Storage_InventoryControl" method="_on_btn_move_like_to_storage_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveAll_toInventory" to="INV_AND_STRG/Storage_StorageControl" method="_on_btn_move_all_to_inventory_pressed"]
+[connection signal="pressed" from="INV_AND_STRG/Buttons/btn_MoveLike_toInventory" to="INV_AND_STRG/Storage_StorageControl" method="_on_btn_move_like_to_inventory_pressed"]
 [connection signal="pressed" from="btnINVENTORY_ONLY" to="." method="_on_btn_inventory_only_pressed"]
 [connection signal="pressed" from="btnINVENTORY_AND_STORAGE" to="." method="_on_btn_inventory_and_storage_pressed"]

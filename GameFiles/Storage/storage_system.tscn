@@ -1,0 +1,281 @@
+[gd_scene format=3 uid="uid://f8ut53ighdq8"]
+
+[ext_resource type="Script" uid="uid://c80gl7sw1e2ao" path="res://Storage/Scripts/storage_inventory_core_demo.gd" id="1_va8ua"]
+[ext_resource type="Script" uid="uid://dnk2kr6iav36f" path="res://Storage/Scripts/CoreInventoryController_Strg.gd" id="2_h2722"]
+[ext_resource type="PackedScene" uid="uid://lt04e7ajlebf" path="res://Inventory/inventory_slot_ui.tscn" id="3_0drg7"]
+[ext_resource type="Script" uid="uid://b8fw10n2updeg" path="res://Storage/Scripts/storage_container_core_demo.gd" id="4_i5bo2"]
+[ext_resource type="Script" uid="uid://dhfkwoib3lgly" path="res://Storage/Scripts/CoreStorageController.gd" id="5_cj6sl"]
+
+[node name="StorageSystem" type="Control" unique_id=98564192]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Storage_InventoryControl" type="Control" parent="." unique_id=148151263 node_paths=PackedStringArray("inventory_controller")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_va8ua")
+inventory_controller = NodePath("Panel/Storage_CoreInventoryController")
+
+[node name="Panel" type="Panel" parent="Storage_InventoryControl" unique_id=1906838516]
+layout_mode = 0
+offset_left = 428.0
+offset_top = 91.0
+offset_right = 650.0
+offset_bottom = 345.0
+
+[node name="Storage_CoreInventoryController" type="GridContainer" parent="Storage_InventoryControl/Panel" unique_id=1398553581 node_paths=PackedStringArray("source_controller", "destination_controller")]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 20.0
+offset_right = 198.0
+offset_bottom = 148.0
+columns = 4
+script = ExtResource("2_h2722")
+source_controller = NodePath(".")
+destination_controller = NodePath("../../../Storage_StorageControl/Panel/Storage_CoreStorageController")
+
+[node name="InventorySlotUI" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=119770590 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI2" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=54129333 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 1
+
+[node name="InventorySlotUI3" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=275556097 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 2
+
+[node name="InventorySlotUI4" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1521893446 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 3
+
+[node name="InventorySlotUI5" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1281843599 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 4
+
+[node name="InventorySlotUI6" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1241247656 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 5
+
+[node name="InventorySlotUI7" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=709957344 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 6
+
+[node name="InventorySlotUI8" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1190065243 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 7
+
+[node name="InventorySlotUI9" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1994857752 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 8
+
+[node name="InventorySlotUI10" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1376326115 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI11" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=1432030753 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 10
+
+[node name="InventorySlotUI12" parent="Storage_InventoryControl/Panel/Storage_CoreInventoryController" unique_id=740821618 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 11
+
+[node name="Storage_StorageControl" type="Control" parent="." unique_id=1840763929 node_paths=PackedStringArray("storage_controller")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_i5bo2")
+storage_controller = NodePath("Panel/Storage_CoreStorageController")
+number_of_slots = 12
+
+[node name="Panel" type="Panel" parent="Storage_StorageControl" unique_id=144782994]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 91.0
+offset_right = 335.0
+offset_bottom = 344.0
+
+[node name="Storage_CoreStorageController" type="GridContainer" parent="Storage_StorageControl/Panel" unique_id=322571864 node_paths=PackedStringArray("source_controller", "source_parent_control", "destination_controller")]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 20.0
+offset_right = 198.0
+offset_bottom = 148.0
+columns = 4
+script = ExtResource("5_cj6sl")
+source_controller = NodePath(".")
+source_parent_control = NodePath("../..")
+destination_controller = NodePath("../../../Storage_InventoryControl/Panel/Storage_CoreInventoryController")
+
+[node name="InventorySlotUI" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1788611167 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventorySlotUI2" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=568467221 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 1
+
+[node name="InventorySlotUI3" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1194525054 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 2
+
+[node name="InventorySlotUI4" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1359960336 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 3
+
+[node name="InventorySlotUI5" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=136062912 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 4
+
+[node name="InventorySlotUI6" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=2053647337 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 5
+
+[node name="InventorySlotUI7" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1548228620 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 6
+
+[node name="InventorySlotUI8" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=621083732 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 7
+
+[node name="InventorySlotUI9" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=705345440 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 8
+
+[node name="InventorySlotUI10" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1864994310 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 9
+
+[node name="InventorySlotUI11" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=73463466 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 10
+
+[node name="InventorySlotUI12" parent="Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1480668491 instance=ExtResource("3_0drg7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 11
+
+[node name="Buttons" type="Node2D" parent="." unique_id=192207816]
+
+[node name="btnSort_Storage" type="Button" parent="Buttons" unique_id=1592433367]
+offset_left = 118.0
+offset_top = 351.0
+offset_right = 178.0
+offset_bottom = 384.0
+text = "Sort"
+
+[node name="btn_Extend_Storage" type="Button" parent="Buttons" unique_id=1598461401]
+offset_left = 186.0
+offset_top = 353.0
+offset_right = 246.0
+offset_bottom = 386.0
+text = "Extend"
+
+[node name="btn_Reset_Storage" type="Button" parent="Buttons" unique_id=224293504]
+offset_left = 258.0
+offset_top = 353.0
+offset_right = 320.0
+offset_bottom = 386.0
+text = "Reset"
+
+[node name="btnSort_Inventory" type="Button" parent="Buttons" unique_id=220817316]
+offset_left = 438.0
+offset_top = 359.0
+offset_right = 491.0
+offset_bottom = 387.0
+text = "Sort"
+
+[node name="btn_Extend_Inventory" type="Button" parent="Buttons" unique_id=1134501584]
+offset_left = 503.0
+offset_top = 358.0
+offset_right = 556.0
+offset_bottom = 389.0
+text = "Extend
+"
+
+[node name="btn_Reset_Inventory" type="Button" parent="Buttons" unique_id=830424673]
+offset_left = 577.0
+offset_top = 357.0
+offset_right = 639.0
+offset_bottom = 388.0
+text = "Reset
+"
+
+[node name="btn_MoveAll_toStorage" type="Button" parent="Buttons" unique_id=729760355]
+offset_left = 354.5
+offset_top = 93.0
+offset_right = 409.5
+offset_bottom = 124.0
+text = "<-- All"
+
+[node name="btn_MoveLike_toStorage" type="Button" parent="Buttons" unique_id=191481959]
+offset_left = 350.0
+offset_top = 130.0
+offset_right = 414.0
+offset_bottom = 161.0
+text = "<-- Like"
+
+[node name="btn_MoveAll_toInventory" type="Button" parent="Buttons" unique_id=1188365464]
+offset_left = 354.0
+offset_top = 305.0
+offset_right = 410.0
+offset_bottom = 336.0
+text = " All -->"
+
+[node name="btn_MoveLike_toInventory" type="Button" parent="Buttons" unique_id=1006757152]
+offset_left = 348.0
+offset_top = 268.0
+offset_right = 416.0
+offset_bottom = 299.0
+text = " Like -->"
