@@ -12,7 +12,7 @@ config_version=5
 
 config/name="RPG_DEMO_20260623"
 config/tags=PackedStringArray("most_recent")
-run/main_scene="uid://bq6y5tkdcdrb6"
+run/main_scene="uid://cb83dvwlk3om0"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
