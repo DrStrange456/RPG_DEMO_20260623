@@ -145,7 +145,7 @@ func set_storage_size_ui(amount: int) -> void:
 
 func _reset_inventory() -> void:
 	_reset_dictionary_core_data()
-	_reset_inventory_ui(12)
+	_reset_inventory_ui(20)
 
 
 func _reset_dictionary_core_data() -> void:
@@ -163,6 +163,14 @@ func _reset_dictionary_core_data() -> void:
 		9: [null, 0, true],
 		10: [null, 0, true],
 		11: [null, 0, true],
+		12: [null, 0, true],
+		13: [null, 0, true],
+		14: [null, 0, true],
+		15: [null, 0, true],
+		16: [null, 0, true],
+		17: [null, 0, true],
+		18: [null, 0, true],
+		19: [null, 0, true],
 	}
 
 	var storage_inventory = core_inventory
@@ -491,9 +499,6 @@ func collect_similar_to_chest(
 # BUTTON HANDLERS
 # ==============================================================================
 
-func _on_btn_sort_storage_pressed() -> void:
-	sort_and_combine_inventory_Inv()
-
 
 func _on_btn_extend_storage_pressed() -> void:
 	_extend_inventory()
@@ -503,19 +508,21 @@ func _on_btn_reset_storage_pressed() -> void:
 	_reset_inventory()
 
 
-func _on_btn_move_all_to_inventory_pressed() -> void:
-	moveAll_toInventory()
-	initialize()
 
+func _on_btn_sort_chest_pressed() -> void:
+	sort_and_combine_inventory_Inv()
 
-func _on_btn_move_like_to_inventory_pressed() -> void:
-
+func _on_btn_transfer_like_pressed() -> void:
 	collect_similar_to_chest(
 		core_inventory_controller_strg.get_children(),
 		storage_core_data.DATA,
 		InvCore.DATA
 	)
 
+	initialize()
+
+func _on_btn_transfer_all_pressed() -> void:
+	moveAll_toInventory()
 	initialize()
 
 

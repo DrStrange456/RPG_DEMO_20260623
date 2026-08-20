@@ -7,6 +7,10 @@
 [ext_resource type="Script" uid="uid://dnk2kr6iav36f" path="res://Storage/Scripts/CoreInventoryController_Strg.gd" id="4_rwb5u"]
 [ext_resource type="Script" uid="uid://b8fw10n2updeg" path="res://Storage/Scripts/storage_container_core_demo.gd" id="6_33j87"]
 [ext_resource type="Script" uid="uid://dhfkwoib3lgly" path="res://Storage/Scripts/CoreStorageController.gd" id="7_hvatu"]
+[ext_resource type="Texture2D" uid="uid://ddtt8ricisuog" path="res://assets/UI/A-MyFiles/button_icon_close.PNG" id="8_hvatu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwb5u"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="StorageUI_Large" type="Control" unique_id=1355165246]
 process_mode = 3
@@ -133,7 +137,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("6_33j87")
 storage_controller = NodePath("Panel/Storage_CoreStorageController")
-number_of_slots = 12
+number_of_slots = 20
 
 [node name="Panel" type="Panel" parent="PopupRoot/Storage_StorageControl" unique_id=1922902414]
 layout_mode = 0
@@ -225,6 +229,54 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 indx = 11
 
+[node name="InventorySlotUI13" parent="PopupRoot/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1134070580 instance=ExtResource("3_cflt7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 12
+
+[node name="InventorySlotUI14" parent="PopupRoot/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=580136548 instance=ExtResource("3_cflt7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 13
+
+[node name="InventorySlotUI15" parent="PopupRoot/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=981068175 instance=ExtResource("3_cflt7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 14
+
+[node name="InventorySlotUI16" parent="PopupRoot/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=2110178920 instance=ExtResource("3_cflt7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 15
+
+[node name="InventorySlotUI17" parent="PopupRoot/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1335469475 instance=ExtResource("3_cflt7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 16
+
+[node name="InventorySlotUI18" parent="PopupRoot/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1205216442 instance=ExtResource("3_cflt7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 17
+
+[node name="InventorySlotUI19" parent="PopupRoot/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=1656840548 instance=ExtResource("3_cflt7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 18
+
+[node name="InventorySlotUI20" parent="PopupRoot/Storage_StorageControl/Panel/Storage_CoreStorageController" unique_id=118469487 instance=ExtResource("3_cflt7")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+indx = 19
+
 [node name="OptionButtons" type="Node2D" parent="PopupRoot" unique_id=1766532277]
 position = Vector2(-16.5, 1.5)
 
@@ -288,9 +340,22 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 12
 text = "A"
 
-[connection signal="pressed" from="PopupRoot/OptionButtons/btnSort_Chest" to="." method="_on_btn_sort_chest_pressed"]
-[connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferLike" to="." method="_on_btn_transfer_like_pressed"]
-[connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferAll" to="." method="_on_btn_transfer_all_pressed"]
-[connection signal="pressed" from="PopupRoot/OptionButtons/btnSort_Inv" to="." method="_on_btn_sort_inv_pressed"]
-[connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferLike_toStrg" to="." method="_on_btn_transfer_like_to_strg_pressed"]
-[connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferAll_toStrg" to="." method="_on_btn_transfer_all_to_strg_pressed"]
+[node name="btnQUIT" type="Button" parent="PopupRoot" unique_id=560226027]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 6.5
+offset_right = 583.0
+offset_bottom = 36.5
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_rwb5u")
+icon = ExtResource("8_hvatu")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="PopupRoot/OptionButtons/btnSort_Chest" to="PopupRoot/Storage_StorageControl" method="_on_btn_sort_chest_pressed"]
+[connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferLike" to="PopupRoot/Storage_StorageControl" method="_on_btn_transfer_like_pressed"]
+[connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferAll" to="PopupRoot/Storage_StorageControl" method="_on_btn_transfer_all_pressed"]
+[connection signal="pressed" from="PopupRoot/OptionButtons/btnSort_Inv" to="PopupRoot/Storage_InventoryControl" method="_on_btn_sort_inv_pressed"]
+[connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferLike_toStrg" to="PopupRoot/Storage_InventoryControl" method="_on_btn_transfer_like_to_strg_pressed"]
+[connection signal="pressed" from="PopupRoot/OptionButtons/btnTransferAll_toStrg" to="PopupRoot/Storage_InventoryControl" method="_on_btn_transfer_all_to_strg_pressed"]
+[connection signal="pressed" from="PopupRoot/btnQUIT" to="." method="_on_btn_quit_pressed"]

@@ -25,6 +25,7 @@ var selected_inv_indx_ptr
 
 var selected_slot: CropSlot = null
 
+@onready var player_inventory: Dictionary = InvCore.DATA
 
 
 func _ready() -> void:
@@ -186,9 +187,9 @@ func populate_crop_grid():
 	selected_crop = null
 
 
-	for slot_index in GmMgr.PLAYER_INVENTORY_TEST_LARGE.keys():
+	for slot_index in player_inventory.keys():
 
-		var slot = GmMgr.PLAYER_INVENTORY_TEST_LARGE[slot_index]
+		var slot = player_inventory[slot_index]
 
 		var resource_path = slot[0]
 		var quantity = slot[1]

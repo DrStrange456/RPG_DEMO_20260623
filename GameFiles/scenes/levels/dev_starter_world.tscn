@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://bqp6d0hamxsxv" path="res://scenes/UI/pause_ui.tscn" id="8_32xvi"]
 [ext_resource type="Texture2D" uid="uid://2gqi3py2dcnm" path="res://assets/icons/hand_icon.png" id="8_d6qgl"]
 [ext_resource type="PackedScene" uid="uid://bcknoubobah0i" path="res://scenes/machines/seed_maker.tscn" id="8_vqsjl"]
-[ext_resource type="PackedScene" uid="uid://ckohoujmbd77p" path="res://Inventory/StorageUI/StorageUI_Sm.tscn" id="9_penqq"]
 [ext_resource type="PackedScene" uid="uid://my2eogdfe71c" path="res://Inventory/StorageUI/StorageUI_Lrg.tscn" id="10_nfebl"]
 [ext_resource type="PackedScene" uid="uid://7wr7y06ddii6" path="res://characters/bat/bat.tscn" id="10_q502d"]
 [ext_resource type="PackedScene" uid="uid://c4e6rk11j2cs7" path="res://scenes/objects/storage_containers/chest_small.tscn" id="11_4fb74"]
@@ -3802,10 +3801,6 @@ process_mode = 3
 visible = false
 
 [node name="new_general_store" parent="UI/UI_MENUs" unique_id=933798175 instance=ExtResource("7_00lgd")]
-visible = false
-toggle_action = ""
-
-[node name="StorageUI_Small" parent="UI/UI_MENUs" unique_id=1355165246 instance=ExtResource("9_penqq")]
 visible = false
 toggle_action = ""
 

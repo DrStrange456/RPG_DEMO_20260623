@@ -6,18 +6,99 @@ var tmpDATA = {
 		1: ["res://resources/seeds_strawberry.tres", 3, true],
 		2: ["res://resources/weapon_sword_fire.tres", 1, true],
 		3: [null, 0, true],
-		4: ["res://resources/seeds_tomato.tres", 65, true],
+		4: [null, 0, true],
+		#4: ["res://resources/seeds_tomato.tres", 65, true],
 		5: ["res://resources/seeds_carrot.tres", 10, true],
 		6: ["res://resources/seeds_strawberry.tres", 60, true],
 		7: [null, 0, true],
-		8: [null, 0, true],
-		9: ["res://resources/seeds_strawberry.tres", 35, true],
-		10: ["res://resources/seeds_strawberry.tres", 85, true],
-		11: [null, 0, true],
+		8: ["res://resources/crop_strawberry.tres", 3, true],
+		9: ["res://resources/crop_carrot.tres", 2, true],
+		10: ["res://resources/crop_tomato.tres", 1, true],
+		11: ["res://resources/crop_turnip.tres", 2, true],
 }
 
 func _ready() -> void:
 	set_data_values(tmpDATA)
+
+
+
+
+func _add_item_to_inventory(
+	resource_path: String,
+	quantity: int,
+	enabled: bool = true
+) -> int:
+
+	var item = load(resource_path)
+
+	if item == null:
+		return quantity
+
+	var remaining := quantity
+	var max_stack: int = item.max_stack
+
+
+	# ----------------------------------------------------------
+	# PASS 1: FILL EXISTING STACKS
+	# ----------------------------------------------------------
+
+	for index in DATA:
+
+		if remaining <= 0:
+			return 0
+
+		var slot = DATA[index]
+
+		if slot[0] != resource_path:
+			continue
+
+		var current_quantity: int = int(slot[1])
+		var available_space: int = max_stack - current_quantity
+
+		if available_space <= 0:
+			continue
+
+		var amount_to_add: int = min(
+			available_space,
+			remaining
+		)
+
+		DATA[index][1] += amount_to_add
+		remaining -= amount_to_add
+
+
+	# ----------------------------------------------------------
+	# PASS 2: USE EMPTY SLOTS
+	# ----------------------------------------------------------
+
+	for index in DATA:
+
+		if remaining <= 0:
+			return 0
+
+		if DATA[index][0] != null:
+			continue
+
+		var amount_to_add: int = min(
+			max_stack,
+			remaining
+		)
+
+		DATA[index] = [
+			resource_path,
+			amount_to_add,
+			enabled
+		]
+
+		remaining -= amount_to_add
+
+
+	# ----------------------------------------------------------
+	# RETURN WHAT DID NOT FIT
+	# ----------------------------------------------------------
+
+	return remaining
+
 
 
 

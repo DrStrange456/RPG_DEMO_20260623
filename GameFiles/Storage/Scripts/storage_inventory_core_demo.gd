@@ -420,9 +420,6 @@ func collect_similar_to_chest(
 # BUTTON HANDLERS
 # ==============================================================================
 
-func _on_btn_sort_inventory_pressed() -> void:
-	sort_and_combine_inventory_Inv()
-
 
 func _on_btn_extend_inventory_pressed() -> void:
 	_extend_inventory()
@@ -432,12 +429,13 @@ func _on_btn_reset_inventory_pressed() -> void:
 	_reset_inventory()
 
 
-func _on_btn_move_all_to_storage_pressed() -> void:
-	moveAll_toStorage()
-	initialize()
 
 
-func _on_btn_move_like_to_storage_pressed() -> void:
+
+func _on_btn_sort_inv_pressed() -> void:
+	sort_and_combine_inventory_Inv()
+
+func _on_btn_transfer_like_to_strg_pressed() -> void:
 	collect_similar_to_chest(
 		core_storage_controller.get_children(),
 		InvCore.DATA,
@@ -446,8 +444,9 @@ func _on_btn_move_like_to_storage_pressed() -> void:
 
 	initialize()
 
-
-
+func _on_btn_transfer_all_to_strg_pressed() -> void:
+	moveAll_toStorage()
+	initialize()
 
 
 # Bottom

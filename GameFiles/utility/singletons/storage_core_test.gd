@@ -32,6 +32,14 @@ var tmpDATA = {
 		9: ["res://resources/seeds_strawberry.tres", 35, true],
 		10: ["res://resources/seeds_strawberry.tres", 85, true],
 		11: [null, 0, true],
+		12: [null, 0, true],
+		13: [null, 0, true],
+		14: [null, 0, true],
+		15: [null, 0, true],
+		16: [null, 0, true],
+		17: [null, 0, true],
+		18: [null, 0, true],
+		19: [null, 0, true],
 }
 
 
